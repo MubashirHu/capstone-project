@@ -89,6 +89,7 @@ class MPU6050:
         # set the modified based on the gyro range (need to divide to calculate)
         ar:int = self.read_accel_range()
         modifier:float = None
+        ar = 3
         if ar == 0:
             modifier = 16384.0
         elif ar == 1:
