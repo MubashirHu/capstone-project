@@ -17,18 +17,6 @@ void initTasks(void)
 	xTaskCreate(led_task, "LED_Task", 256, NULL, 1, NULL);
 }
 
-void on_uart_rx() {
-    while (uart_is_readable(UART_ID_4G)) {
-        uint8_t ch = uart_getc(UART_ID_4G);
-        // Can we send it back?
-        if (uart_is_writable(UART_ID_4G)) {
-            // Change it slightly first!
-            uart_putc(UART_ID_4G, ch);
-        }
-        chars_rxed++;
-    }
-}
-
 void vTaskUart_4g(void * parameters)
 {
     uart_init(UART_ID_4G, BAUD_RATE_4G);
@@ -36,34 +24,20 @@ void vTaskUart_4g(void * parameters)
     gpio_set_function(UART_RX_PIN_4G, GPIO_FUNC_UART);
     uart_set_hw_flow(UART_ID_4G, false, false);
 
-    // Set data format
     uart_set_format(UART_ID_4G, DATA_BITS, STOP_BITS, PARITY);
 
-    // Turn off FIFO's - we want to do this character by character
-    uart_set_fifo_enabled(UART_ID_4G, false);
+    uart_set_fifo_enabled(UART_ID_4G, true);
 
-    // Set up a RX interrupt
-    // We need to set up the handler first
-    // Select correct interrupt for the UART we are using
-    int UART_IRQ = UART_ID_4G == uart0 ? UART0_IRQ : UART1_IRQ;
 
-    // And set up and enable the interrupt handlers
-    irq_set_exclusive_handler(UART_IRQ, on_uart_rx);
-    irq_set_enabled(UART_IRQ, true);
-
-    // Now enable the UART to send interrupts - RX only
-    uart_set_irq_enables(UART_ID_4G, true, false);
-
-    // OK, all set up.
-    // Lets send a basic string out, and then run a loop and wait for RX interrupts
-    // The handler will count them, but also reflect the incoming data back with a slight change!
+    // TODO: Send initialization commands to 4g module and wait for response  
     uart_puts(UART_ID_4G, "\nHello, uart interrupts\n");
 
     while (1)
+        // TODO: Check relavent queues and if certain ones are not empty, send http request else block
         tight_loop_contents();
 }
 
-void vTaskUart_4g(void * parameters)
+void vTaskUart_OBD(void * parameters)
 {
     uart_init(UART_ID_OBD2, BAUD_RATE_OBD2);
     gpio_set_function(UART_TX_PIN_OBD2, GPIO_FUNC_UART);
@@ -74,23 +48,8 @@ void vTaskUart_4g(void * parameters)
     uart_set_format(UART_ID_OBD2, DATA_BITS, STOP_BITS, PARITY);
 
     // Turn off FIFO's - we want to do this character by character
-    uart_set_fifo_enabled(UART_ID_OBD2, false);
+    uart_set_fifo_enabled(UART_ID_OBD2, true);
 
-    // Set up a RX interrupt
-    // We need to set up the handler first
-    // Select correct interrupt for the UART we are using
-    int UART_IRQ = UART_ID_OBD2 == uart0 ? UART0_IRQ : UART1_IRQ;
-
-    // And set up and enable the interrupt handlers
-    irq_set_exclusive_handler(UART_IRQ, on_uart_rx);
-    irq_set_enabled(UART_IRQ, true);
-
-    // Now enable the UART to send interrupts - RX only
-    uart_set_irq_enables(UART_ID_OBD2, true, false);
-
-    // OK, all set up.
-    // Lets send a basic string out, and then run a loop and wait for RX interrupts
-    // The handler will count them, but also reflect the incoming data back with a slight change!
     uart_puts(UART_ID_OBD2, "\nHello, uart interrupts\n");
 
     while (1)
