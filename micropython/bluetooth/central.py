@@ -45,15 +45,13 @@ _ADV_NONCONN_IND = const(0x03)
 _ENV_SENSE_UUID = bluetooth.UUID("c5e15ad3-bcf5-4cc1-a40a-899931a69a3b")
 # org.bluetooth.characteristic.temperature
 _TEMP_UUID = bluetooth.UUID(0x2A6E)
-# org.bluetooth.characteristic.gap.appearance.xml
-_ADV_APPEARANCE_GENERIC_THERMOMETER = const(768)
 
 # org.bluetooth.service.sensor1
 _SENS1_UUID = bluetooth.UUID("0f5b161f-5f75-49bd-b435-13f88527952d")
 # org.bluetooth.characteristic.message
 _VAL1_UUID = bluetooth.UUID(0x2A6F)
 
-class BLETemperatureCentral:
+class BLEImuCentral:
     def __init__(self, ble):
         self._ble = ble
         self._ble.active(True)
@@ -186,7 +184,7 @@ class BLETemperatureCentral:
             if conn_handle == self._conn_handle and value_handle == self._value_handle:
                 self._update_value(notify_data)
                 if self._notify_callback:
-                    self._notify_callback(self._value)
+                    self._notify_callback(self._value)            
 
     # Returns true if we've successfully connected and discovered characteristics.
     def is_connected(self):
@@ -238,7 +236,7 @@ class BLETemperatureCentral:
 
 def demo():
     ble = bluetooth.BLE()
-    central = BLETemperatureCentral(ble)
+    central = BLEImuCentral(ble)
 
     not_found = False
 
@@ -251,27 +249,24 @@ def demo():
             not_found = True
             print("No sensor found.")
 
-    central.scan(callback=on_scan)
+    while True:
+        central.scan(callback=on_scan)
 
-    # Wait for connection...
-    while not central.is_connected():
-        time.sleep_ms(100)
-        if not_found:
-            return
+        # Wait for connection...
+        while not central.is_connected():
+            time.sleep_ms(100)
+            if not_found:
+                return
 
-    print("Connected")
+        print("Connected")
 
-    # Explicitly issue reads, using "print" as the callback.
-    while central.is_connected():
-        central.read(callback=print)
-        time.sleep_ms(2000)
-
-    # Alternative to the above, just show the most recently notified value.
-    # while central.is_connected():
-    #     print(central.value())
-    #     time.sleep_ms(2000)
-
-    print("Disconnected")
+        # Explicitly issue reads, using "print" as the callback.
+        while central.is_connected():
+            central.read(callback=print)
+            time.sleep_ms(2000)
+            central.disconnect()
+            
+        print("Disconnected")
 
 
 if __name__ == "__main__":

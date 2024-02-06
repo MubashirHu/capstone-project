@@ -41,7 +41,7 @@ _ENV_SENSE_SERVICE = (
 _ADV_APPEARANCE_GENERIC_THERMOMETER = const(768)
 
 
-class BLETemperature:
+class BLEImu:
     def __init__(self, ble, name="leftIMU"):
         self._ble = ble
         self._ble.active(True)
@@ -65,7 +65,7 @@ class BLETemperature:
         elif event == _IRQ_GATTS_INDICATE_DONE:
             conn_handle, value_handle, status = data
 
-    def set_temperature(self, temp_deg_c, notify=False, indicate=False):
+    def _send_pothole_event(self, temp_deg_c, notify=False, indicate=False):
         # Data is sint16 in degrees Celsius with a resolution of 0.01 degrees Celsius.
         # Write the local value, ready for a central to read.
         self._ble.gatts_write(self._handle, struct.pack("<h", int(temp_deg_c * 100)))
@@ -82,21 +82,25 @@ class BLETemperature:
         self._ble.gap_advertise(interval_us, adv_data=self._payload)
 
 
-def demo():
+def main():
     ble = bluetooth.BLE()
-    temp = BLETemperature(ble)
+    imu_peripheral = BLEImu(ble)
 
     t = 25
     i = 0
 
+    imu_peripheral._send_pothole_event(t, notify=i == 0, indicate=False)
+    
     while True:
         # Write every second, notify every 10 seconds.
-        i = (i + 1) % 10
-        temp.set_temperature(t, notify=i == 0, indicate=False)
+        i = 0
+        imu_peripheral._send_pothole_event(t, notify=i == 0, indicate=True)
         # Random walk the temperature.
+        
         t += random.uniform(-0.5, 0.5)
         time.sleep_ms(1000)
+        break
 
 if __name__ == "__main__":
-    demo()
+    main()
 
