@@ -73,35 +73,69 @@ void vTaskUart_OBD(void * parameters)
 
 void vTaskI2C_GPS(void * parameters)
 {
-    // Initialize UART0 with a baud rate of 115200
-    uart_init(UART_TX_PIN_4G, BAUD_RATE_UART_4G);
+    //Initialize UART0 with a baud rate of 115200
+    uart_init(UART_ID_4G, BAUD_RATE_UART_4G);
     // Set UART0 TX (transmit) pin to GPIO 0 and RX (receive) pin to GPIO 1
     gpio_set_function(UART_TX_PIN_4G, GPIO_FUNC_UART);
     gpio_set_function(UART_RX_PIN_4G, GPIO_FUNC_UART);
+    uart_set_hw_flow(UART_ID_4G, false, false);
+    uart_set_format(UART_ID_4G, DATA_BITS, STOP_BITS, PARITY);
 
-    uart_puts(UART_ID_4G, "Test1");
-    // i2c_init(I2C_ID_GPS, BAUD_RATE_I2C_GPS);
-    // gpio_set_function(I2C_SDA_PIN_GPS, GPIO_FUNC_I2C);
-    // gpio_set_function(I2C_SCL_PIN_GPS, GPIO_FUNC_I2C);
-    // gpio_pull_up(I2C_SDA_PIN_GPS);
-    // gpio_pull_up(I2C_SCL_PIN_GPS);
-    //uint8_t data[32];
-    uart_puts(UART_ID_4G, "Test2");
+    uart_set_fifo_enabled(UART_ID_4G, true);
+
+    uart_puts(UART_ID_4G, "\r\nTest1\r\n");
+    i2c_init(I2C_ID_GPS, BAUD_RATE_I2C_GPS);
+    gpio_set_function(I2C_SDA_PIN_GPS, GPIO_FUNC_I2C);
+    gpio_set_function(I2C_SCL_PIN_GPS, GPIO_FUNC_I2C);
+    gpio_pull_up(I2C_SDA_PIN_GPS);
+    gpio_pull_up(I2C_SCL_PIN_GPS);
+    uint8_t bytes_high;
+    uint8_t bytes_low;
+    uint16_t num_bytes;
+    uart_puts(UART_ID_4G, "Test2\r\n");
+    uint8_t data[64];
     while (1)
-        // i2c_write_blocking(I2C_ID_GPS, 0x42, "\xFD\xFE", 2, false);
-        // vTaskDelay(pdMS_TO_TICKS(100));
-        // i2c_read_blocking(I2C_ID_GPS, 0x42, data, 2, false);
+    {
+        if (i2c_write_blocking(I2C_ID_GPS, 0x42, 0xFD, 1, false) != PICO_ERROR_GENERIC &&
+            i2c_read_blocking(I2C_ID_GPS, 0x42, &bytes_high, 1, false) >= 0)
+        {
+            if (i2c_write_blocking(I2C_ID_GPS, 0x42, 0xFE, 1, true) != PICO_ERROR_GENERIC &&
+                i2c_read_blocking(I2C_ID_GPS, 0x42, &bytes_low, 1, false) >= 0) 
+            {
+                //num_bytes = (uint16_t)bytes_high << 8 | bytes_low;
+                char num_bytes_str[6]; // Buffer to store the string representation of num_bytes
+                sprintf(num_bytes_str, "%u", num_bytes); // Convert num_bytes to string
+                uart_puts(UART_ID_4G, "GPS Data Bytes: ");
+                uart_puts(UART_ID_4G, num_bytes_str);
+                uart_puts(UART_ID_4G, "\r\n\r\n");
 
-        uart_puts(UART_ID_4G, "GPS Data Bytes: ");
-        // for (int i = 0; i < 2; i++)
-        // {
-        //     uart_puts(UART_ID_4G, (char *)data[i]);
-        // }
-        //uart_puts(UART_ID_4G, "\n\r");
-        uart_puts(UART_ID_4G, "Test2");
-        printf("Test2");
+                if (i2c_write_blocking(I2C_ID_GPS, 0x42, 0xFF, 1, false) != PICO_ERROR_GENERIC &&
+                    i2c_read_blocking(I2C_ID_GPS, 0x42, data, 64, false) >= 0)
+                {
+                    uart_puts(UART_ID_4G, "GPS NEMA Bytes: ");
+                    for (int i = 0; i < 64; i++) {
+                        // uart_puts(UART_ID_4G, (const char*)data[i]);
+                        char hex_string[20];
+                        sprintf(hex_string, "%02X ", data[i]);
+                        uart_puts(UART_ID_4G, hex_string);
+                    }
+                
+                    uart_puts(UART_ID_4G, "\r\n");
+                }
 
-        vTaskDelay(pdMS_TO_TICKS(10));
+            }
+            else 
+            {
+                uart_puts(UART_ID_4G, "Error reading bytes_low\r\n");
+            }
+        }
+        else 
+        {
+            uart_puts(UART_ID_4G, "Error reading bytes_high\r\n");
+        }
+
+        vTaskDelay(pdMS_TO_TICKS(500));
+    }
 }
 
 void led_task(void * parameters)

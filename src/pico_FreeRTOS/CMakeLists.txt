@@ -1,5 +1,4 @@
 cmake_minimum_required(VERSION 3.12)
-
 # Name project
 SET(ProjectName IOT_Car_Base)
 
@@ -15,7 +14,6 @@ project(${ProjectName})
 
 # Initialize the Raspberry Pi Pico SDK
 pico_sdk_init()
-
 # Add subdirectories
 add_subdirectory(src)
 
