@@ -2,6 +2,8 @@ add_executable(${ProjectName}
     main.c
     tasks.c
     tasks.h
+    queues.c
+    queues.h
 )
 
 target_include_directories(${ProjectName} PRIVATE
@@ -10,6 +12,8 @@ target_include_directories(${ProjectName} PRIVATE
 
 target_link_libraries(${ProjectName} 
     pico_stdlib 
+    hardware_i2c
+    hardware_uart
     FreeRTOS-Kernel-Heap4 
     )
 

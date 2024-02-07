@@ -60,7 +60,7 @@ EQUALS = =
 CMAKE_SOURCE_DIR = /home/sarmad-alvi/Documents/pico/pico-sdk/tools/pioasm
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/sarmad-alvi/Documents/rp2040-freertos-template/build/pioasm
+CMAKE_BINARY_DIR = "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build/pioasm"
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/sarmad-alvi/Documents/rp2040-freertos-template/build/pioasm/CMakeFiles /home/sarmad-alvi/Documents/rp2040-freertos-template/build/pioasm//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build/pioasm/CMakeFiles" "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build/pioasm//CMakeFiles/progress.marks"
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/sarmad-alvi/Documents/rp2040-freertos-template/build/pioasm/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build/pioasm/CMakeFiles" 0
 .PHONY : all
 
 # The main clean target

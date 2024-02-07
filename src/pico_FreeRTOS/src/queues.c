@@ -7,28 +7,29 @@
 
 struct message
 {
-    // char id[15];
     double latitude;
     double longitude;
     double speed;
     int message_type;
 };
 
+QueueHandle_t xMessage_Queue;
+
 
 void initQueues(void)
 {
-	xMessage_Queue = xQueueCreate(800, sizeof(normal_message*));
+	xMessage_Queue = xQueueCreate(800, sizeof(struct message));
 }
 
-void message_enqueue(message x)
+void message_enqueue(struct message x)
 {
-    xQueueSendToBack(xNormal_Queue, &x, NULL);
+    xQueueSendToBack(xMessage_Queue, &x, NULL);
 }
 
 
-int message_queue_dequeue(message* x)
+int message_queue_dequeue(struct message* x)
 {
-    if(xQueueReceive(xNormal_Queue, &x, 1000))
+    if(xQueueReceive(xMessage_Queue, &x, 1000))
     {
         return 1;
     }

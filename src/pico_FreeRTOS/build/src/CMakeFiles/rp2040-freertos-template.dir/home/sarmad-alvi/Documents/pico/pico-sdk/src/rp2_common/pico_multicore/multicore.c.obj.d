@@ -15,14 +15,14 @@ src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico
  /home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/include/pico/lock_core.h \
  /home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_base/include/pico.h \
  /home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_base/include/pico/types.h \
- /home/sarmad-alvi/Documents/rp2040-freertos-template/build/generated/pico_base/pico/version.h \
+ /home/sarmad-alvi/OneDrive/Documents/a\ University/Fifth\ Year/capstone-project/src/pico_FreeRTOS/build/generated/pico_base/pico/version.h \
  /home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_base/include/pico/config.h \
- /home/sarmad-alvi/Documents/rp2040-freertos-template/build/generated/pico_base/pico/config_autogen.h \
+ /home/sarmad-alvi/OneDrive/Documents/a\ University/Fifth\ Year/capstone-project/src/pico_FreeRTOS/build/generated/pico_base/pico/config_autogen.h \
  /home/sarmad-alvi/Documents/pico/pico-sdk/src/boards/include/boards/pico.h \
  /home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/cmsis/include/cmsis/rename_exceptions.h \
- /home/sarmad-alvi/Documents/rp2040-freertos-template/lib/FreeRTOS-Kernel/portable/ThirdParty/GCC/RP2040/include/freertos_sdk_config.h \
- /home/sarmad-alvi/Documents/rp2040-freertos-template/src/FreeRTOSConfig.h \
- /home/sarmad-alvi/Documents/rp2040-freertos-template/lib/FreeRTOS-Kernel/portable/ThirdParty/GCC/RP2040/include/rp2040_config.h \
+ /home/sarmad-alvi/OneDrive/Documents/a\ University/Fifth\ Year/capstone-project/src/pico_FreeRTOS/lib/FreeRTOS-Kernel/portable/ThirdParty/GCC/RP2040/include/freertos_sdk_config.h \
+ /home/sarmad-alvi/OneDrive/Documents/a\ University/Fifth\ Year/capstone-project/src/pico_FreeRTOS/src/FreeRTOSConfig.h \
+ /home/sarmad-alvi/OneDrive/Documents/a\ University/Fifth\ Year/capstone-project/src/pico_FreeRTOS/lib/FreeRTOS-Kernel/portable/ThirdParty/GCC/RP2040/include/rp2040_config.h \
  /home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_platform/include/pico/platform.h \
  /home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2040/hardware_regs/include/hardware/platform_defs.h \
  /home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2040/hardware_regs/include/hardware/regs/addressmap.h \

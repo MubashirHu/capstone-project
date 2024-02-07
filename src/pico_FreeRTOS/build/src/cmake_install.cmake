@@ -1,4 +1,4 @@
-# Install script for directory: /home/sarmad-alvi/Documents/rp2040-freertos-template/src
+# Install script for directory: /home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/src
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

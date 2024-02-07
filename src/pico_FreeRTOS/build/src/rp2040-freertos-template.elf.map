@@ -64,6 +64,24 @@ Discarded input sections
  .text          0x0000000000000000        0x0 CMakeFiles/rp2040-freertos-template.dir/tasks.c.obj
  .data          0x0000000000000000        0x0 CMakeFiles/rp2040-freertos-template.dir/tasks.c.obj
  .bss           0x0000000000000000        0x0 CMakeFiles/rp2040-freertos-template.dir/tasks.c.obj
+ .rodata.vTaskUart_OBD.str1.4
+                0x0000000000000000        0x4 CMakeFiles/rp2040-freertos-template.dir/tasks.c.obj
+ .text.vTaskUart_OBD
+                0x0000000000000000       0x9c CMakeFiles/rp2040-freertos-template.dir/tasks.c.obj
+ .text          0x0000000000000000        0x0 CMakeFiles/rp2040-freertos-template.dir/queues.c.obj
+ .data          0x0000000000000000        0x0 CMakeFiles/rp2040-freertos-template.dir/queues.c.obj
+ .bss           0x0000000000000000        0x0 CMakeFiles/rp2040-freertos-template.dir/queues.c.obj
+ .text.initQueues
+                0x0000000000000000       0x18 CMakeFiles/rp2040-freertos-template.dir/queues.c.obj
+ .text.message_enqueue
+                0x0000000000000000       0x28 CMakeFiles/rp2040-freertos-template.dir/queues.c.obj
+ .text.message_queue_dequeue
+                0x0000000000000000       0x20 CMakeFiles/rp2040-freertos-template.dir/queues.c.obj
+ .bss.xMessage_Queue
+                0x0000000000000000        0x4 CMakeFiles/rp2040-freertos-template.dir/queues.c.obj
+ .comment       0x0000000000000000       0x27 CMakeFiles/rp2040-freertos-template.dir/queues.c.obj
+ .ARM.attributes
+                0x0000000000000000       0x2c CMakeFiles/rp2040-freertos-template.dir/queues.c.obj
  .text          0x0000000000000000        0x0 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdlib/stdlib.c.obj
  .data          0x0000000000000000        0x0 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdlib/stdlib.c.obj
  .bss           0x0000000000000000        0x0 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdlib/stdlib.c.obj
@@ -87,8 +105,6 @@ Discarded input sections
                 0x0000000000000000       0x28 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.obj
  .text.gpio_get_function
                 0x0000000000000000       0x14 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.obj
- .text.gpio_set_pulls
-                0x0000000000000000       0x24 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.obj
  .text.gpio_set_irqover
                 0x0000000000000000       0x24 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.obj
  .text.gpio_set_inover
@@ -407,6 +423,10 @@ Discarded input sections
                 0x0000000000000000       0x24 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_uart/uart.c.obj
  .text.uart_set_baudrate
                 0x0000000000000000       0xb8 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_uart/uart.c.obj
+ .text.uart_set_format
+                0x0000000000000000       0x7c CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_uart/uart.c.obj
+ .text.uart_set_fifo_enabled
+                0x0000000000000000       0x60 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_uart/uart.c.obj
  .text.uart_set_break
                 0x0000000000000000       0x60 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_uart/uart.c.obj
  .text.uart_set_translate_crlf
@@ -1035,6 +1055,29 @@ Discarded input sections
                 0x0000000000000000        0x4 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
  .binary_info.__bi_ptr54
                 0x0000000000000000        0x4 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
+ .text          0x0000000000000000        0x0 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.obj
+ .data          0x0000000000000000        0x0 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.obj
+ .bss           0x0000000000000000        0x0 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.obj
+ .text.i2c_write_blocking_internal
+                0x0000000000000000      0x1a4 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.obj
+ .text.i2c_read_blocking_internal
+                0x0000000000000000       0xf4 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.obj
+ .text.i2c_deinit
+                0x0000000000000000       0x1c CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.obj
+ .text.i2c_set_slave_mode
+                0x0000000000000000       0x40 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.obj
+ .text.i2c_write_blocking_until
+                0x0000000000000000       0x48 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.obj
+ .text.i2c_write_timeout_per_char_us
+                0x0000000000000000       0x48 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.obj
+ .text.i2c_read_blocking
+                0x0000000000000000       0x90 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.obj
+ .text.i2c_read_blocking_until
+                0x0000000000000000       0x48 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.obj
+ .text.i2c_read_timeout_per_char_us
+                0x0000000000000000       0x48 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.obj
+ .data.i2c1_inst
+                0x0000000000000000        0x8 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.obj
  .text          0x0000000000000000        0x0 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/MemMang/heap_4.c.obj
  .data          0x0000000000000000        0x0 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/MemMang/heap_4.c.obj
  .bss           0x0000000000000000        0x0 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/MemMang/heap_4.c.obj
@@ -1362,9 +1405,9 @@ Discarded input sections
                 0x0000000000000000        0x8 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_multicore/multicore.c.obj
  .bss.lockout_victim_initialized
                 0x0000000000000000        0x2 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_multicore/multicore.c.obj
- .text          0x0000000000000000        0x0 /tmp/ccqPP6VB.o
- .data          0x0000000000000000        0x0 /tmp/ccqPP6VB.o
- .bss           0x0000000000000000        0x0 /tmp/ccqPP6VB.o
+ .text          0x0000000000000000        0x0 /tmp/ccdYCspX.o
+ .data          0x0000000000000000        0x0 /tmp/ccdYCspX.o
+ .bss           0x0000000000000000        0x0 /tmp/ccdYCspX.o
  .data          0x0000000000000000        0x0 /usr/lib/gcc/arm-none-eabi/12.2.1/thumb/v6-m/nofp/libgcc.a(_dvmd_tls.o)
  .bss           0x0000000000000000        0x0 /usr/lib/gcc/arm-none-eabi/12.2.1/thumb/v6-m/nofp/libgcc.a(_dvmd_tls.o)
  .text          0x0000000000000000       0x10 /usr/lib/gcc/arm-none-eabi/12.2.1/../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc.a(lib_a-atexit.o)
@@ -1628,11 +1671,11 @@ LOAD /usr/lib/gcc/arm-none-eabi/12.2.1/../../../arm-none-eabi/lib/thumb/v6-m/nof
 .boot2          0x0000000010000000      0x100
                 0x0000000010000000                __boot2_start__ = .
  *(.boot2)
- .boot2         0x0000000010000000      0x100 /tmp/ccqPP6VB.o
+ .boot2         0x0000000010000000      0x100 /tmp/ccdYCspX.o
                 0x0000000010000100                __boot2_end__ = .
                 0x0000000000000001                ASSERT (((__boot2_end__ - __boot2_start__) == 0x100), ERROR: Pico second stage bootloader must be 256 bytes in size)
 
-.text           0x0000000010000100     0x4950
+.text           0x0000000010000100     0x4990
                 0x0000000010000100                __logical_binary_start = .
  *(.vectors)
  .vectors       0x0000000010000100       0xd4 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_standard_link/crt0.S.obj
@@ -1696,422 +1739,426 @@ LOAD /usr/lib/gcc/arm-none-eabi/12.2.1/../../../arm-none-eabi/lib/thumb/v6-m/nof
  .text.startup.main
                 0x0000000010000354       0x10 CMakeFiles/rp2040-freertos-template.dir/main.c.obj
                 0x0000000010000354                main
- .text.on_uart_rx
-                0x0000000010000364       0x84 CMakeFiles/rp2040-freertos-template.dir/tasks.c.obj
-                0x0000000010000364                on_uart_rx
  .text.led_task
-                0x00000000100003e8       0x24 CMakeFiles/rp2040-freertos-template.dir/tasks.c.obj
- .text.vTaskUart_4g
-                0x000000001000040c       0xc0 CMakeFiles/rp2040-freertos-template.dir/tasks.c.obj
+                0x0000000010000364       0x24 CMakeFiles/rp2040-freertos-template.dir/tasks.c.obj
+ .text.vTaskI2C_GPS
+                0x0000000010000388       0x54 CMakeFiles/rp2040-freertos-template.dir/tasks.c.obj
+                0x0000000010000388                vTaskI2C_GPS
  .text.initTasks
-                0x00000000100004cc       0x40 CMakeFiles/rp2040-freertos-template.dir/tasks.c.obj
-                0x00000000100004cc                initTasks
+                0x00000000100003dc       0x40 CMakeFiles/rp2040-freertos-template.dir/tasks.c.obj
+                0x00000000100003dc                initTasks
  .text.gpio_set_function
-                0x000000001000050c       0x30 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.obj
-                0x000000001000050c                gpio_set_function
+                0x000000001000041c       0x30 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.obj
+                0x000000001000041c                gpio_set_function
+ .text.gpio_set_pulls
+                0x000000001000044c       0x24 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.obj
+                0x000000001000044c                gpio_set_pulls
  .text.gpio_init
-                0x000000001000053c       0x3c CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.obj
-                0x000000001000053c                gpio_init
+                0x0000000010000470       0x3c CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.obj
+                0x0000000010000470                gpio_init
  .text.running_on_fpga
-                0x0000000010000578       0x10 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_platform/platform.c.obj
-                0x0000000010000578                running_on_fpga
+                0x00000000100004ac       0x10 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_platform/platform.c.obj
+                0x00000000100004ac                running_on_fpga
  .text.hw_claim_or_assert
-                0x0000000010000588       0x44 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_claim/claim.c.obj
-                0x0000000010000588                hw_claim_or_assert
+                0x00000000100004bc       0x44 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_claim/claim.c.obj
+                0x00000000100004bc                hw_claim_or_assert
  .text.spin_locks_reset
-                0x00000000100005cc       0x1c CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj
-                0x00000000100005cc                spin_locks_reset
+                0x0000000010000500       0x1c CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj
+                0x0000000010000500                spin_locks_reset
  .text.next_striped_spin_lock_num
-                0x00000000100005e8       0x18 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj
-                0x00000000100005e8                next_striped_spin_lock_num
+                0x000000001000051c       0x18 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj
+                0x000000001000051c                next_striped_spin_lock_num
  .text.irq_set_enabled
-                0x0000000010000600       0x24 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
-                0x0000000010000600                irq_set_enabled
+                0x0000000010000534       0x24 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+                0x0000000010000534                irq_set_enabled
  .text.irq_get_vtable_handler
-                0x0000000010000624       0x10 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
-                0x0000000010000624                irq_get_vtable_handler
+                0x0000000010000558       0x10 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+                0x0000000010000558                irq_get_vtable_handler
  .text.irq_set_exclusive_handler
-                0x0000000010000634       0x54 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
-                0x0000000010000634                irq_set_exclusive_handler
+                0x0000000010000568       0x54 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+                0x0000000010000568                irq_set_exclusive_handler
  .text.irq_remove_handler
-                0x0000000010000688      0x1c4 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
-                0x0000000010000688                irq_remove_handler
+                0x00000000100005bc      0x1c4 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+                0x00000000100005bc                irq_remove_handler
  .text.irq_set_priority
-                0x000000001000084c       0x28 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
-                0x000000001000084c                irq_set_priority
+                0x0000000010000780       0x28 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+                0x0000000010000780                irq_set_priority
  .text.irq_add_tail_to_free_list
-                0x0000000010000874       0xb4 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
-                0x0000000010000874                irq_add_tail_to_free_list
+                0x00000000100007a8       0xb4 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+                0x00000000100007a8                irq_add_tail_to_free_list
  .text.irq_init_priorities
-                0x0000000010000928       0x24 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
-                0x0000000010000928                irq_init_priorities
+                0x000000001000085c       0x24 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+                0x000000001000085c                irq_init_priorities
  .text.lock_init
-                0x000000001000094c       0x10 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/lock_core.c.obj
-                0x000000001000094c                lock_init
+                0x0000000010000880       0x10 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/lock_core.c.obj
+                0x0000000010000880                lock_init
  .text.mutex_init
-                0x000000001000095c       0x1c CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/mutex.c.obj
-                0x000000001000095c                mutex_init
+                0x0000000010000890       0x1c CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/mutex.c.obj
+                0x0000000010000890                mutex_init
  .text.recursive_mutex_init
-                0x0000000010000978       0x20 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/mutex.c.obj
-                0x0000000010000978                recursive_mutex_init
+                0x00000000100008ac       0x20 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/mutex.c.obj
+                0x00000000100008ac                recursive_mutex_init
  .text.timer_pool_entry_comparator
-                0x0000000010000998       0x34 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_time/time.c.obj
-                0x0000000010000998                timer_pool_entry_comparator
+                0x00000000100008cc       0x34 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_time/time.c.obj
+                0x00000000100008cc                timer_pool_entry_comparator
  .text.sleep_until_callback
-                0x00000000100009cc       0x24 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_time/time.c.obj
+                0x0000000010000900       0x24 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_time/time.c.obj
  .text.add_alarm_under_lock.isra.0
-                0x00000000100009f0      0x100 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_time/time.c.obj
+                0x0000000010000924      0x100 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_time/time.c.obj
  .text.alarm_pool_alarm_callback
-                0x0000000010000af0      0x1c0 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_time/time.c.obj
+                0x0000000010000a24      0x1c0 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_time/time.c.obj
  .text.alarm_pool_init_default
-                0x0000000010000cb0       0x6c CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_time/time.c.obj
-                0x0000000010000cb0                alarm_pool_init_default
+                0x0000000010000be4       0x6c CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_time/time.c.obj
+                0x0000000010000be4                alarm_pool_init_default
  .text.alarm_pool_add_alarm_at
-                0x0000000010000d1c      0x188 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_time/time.c.obj
-                0x0000000010000d1c                alarm_pool_add_alarm_at
+                0x0000000010000c50      0x188 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_time/time.c.obj
+                0x0000000010000c50                alarm_pool_add_alarm_at
  .text.best_effort_wfe_or_timeout
-                0x0000000010000ea4       0xec CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_time/time.c.obj
-                0x0000000010000ea4                best_effort_wfe_or_timeout
+                0x0000000010000dd8       0xec CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_time/time.c.obj
+                0x0000000010000dd8                best_effort_wfe_or_timeout
  .text.hardware_alarm_irq_handler
-                0x0000000010000f90       0xbc CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
+                0x0000000010000ec4       0xbc CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
  .text.hardware_alarm_claim
-                0x000000001000104c       0x18 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
-                0x000000001000104c                hardware_alarm_claim
+                0x0000000010000f80       0x18 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
+                0x0000000010000f80                hardware_alarm_claim
  .text.time_us_64
-                0x0000000010001064       0x14 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
-                0x0000000010001064                time_us_64
+                0x0000000010000f98       0x14 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
+                0x0000000010000f98                time_us_64
  .text.busy_wait_us
-                0x0000000010001078       0x68 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
-                0x0000000010001078                busy_wait_us
+                0x0000000010000fac       0x68 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
+                0x0000000010000fac                busy_wait_us
  .text.hardware_alarm_set_callback
-                0x00000000100010e0       0x8c CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
-                0x00000000100010e0                hardware_alarm_set_callback
+                0x0000000010001014       0x8c CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
+                0x0000000010001014                hardware_alarm_set_callback
  .text.hardware_alarm_set_target
-                0x000000001000116c       0xd0 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
-                0x000000001000116c                hardware_alarm_set_target
+                0x00000000100010a0       0xd0 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
+                0x00000000100010a0                hardware_alarm_set_target
  .text.hardware_alarm_cancel
-                0x000000001000123c       0x3c CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
-                0x000000001000123c                hardware_alarm_cancel
+                0x0000000010001170       0x3c CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
+                0x0000000010001170                hardware_alarm_cancel
  .text.ph_merge_nodes
-                0x0000000010001278       0x64 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_util/pheap.c.obj
+                0x00000000100011ac       0x64 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_util/pheap.c.obj
  .text.ph_post_alloc_init
-                0x00000000100012dc       0x3c CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_util/pheap.c.obj
-                0x00000000100012dc                ph_post_alloc_init
+                0x0000000010001210       0x3c CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_util/pheap.c.obj
+                0x0000000010001210                ph_post_alloc_init
  .text.ph_merge_two_pass
-                0x0000000010001318       0x98 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_util/pheap.c.obj
-                0x0000000010001318                ph_merge_two_pass
+                0x000000001000124c       0x98 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_util/pheap.c.obj
+                0x000000001000124c                ph_merge_two_pass
  .text.ph_remove_any_head
-                0x00000000100013b0      0x100 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_util/pheap.c.obj
+                0x00000000100012e4      0x100 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_util/pheap.c.obj
  .text.ph_remove_head
-                0x00000000100014b0      0x104 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_util/pheap.c.obj
-                0x00000000100014b0                ph_remove_head
+                0x00000000100013e4      0x104 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_util/pheap.c.obj
+                0x00000000100013e4                ph_remove_head
  .text.ph_remove_and_free_node
-                0x00000000100015b4       0x78 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_util/pheap.c.obj
-                0x00000000100015b4                ph_remove_and_free_node
+                0x00000000100014e8       0x78 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_util/pheap.c.obj
+                0x00000000100014e8                ph_remove_and_free_node
  .text.uart_init
-                0x000000001000162c      0x188 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_uart/uart.c.obj
-                0x000000001000162c                uart_init
- .text.uart_set_format
-                0x00000000100017b4       0x7c CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_uart/uart.c.obj
-                0x00000000100017b4                uart_set_format
- .text.uart_set_fifo_enabled
-                0x0000000010001830       0x60 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_uart/uart.c.obj
-                0x0000000010001830                uart_set_fifo_enabled
+                0x0000000010001560      0x188 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_uart/uart.c.obj
+                0x0000000010001560                uart_init
  .text.clocks_init
-                0x0000000010001890      0x2c8 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.obj
-                0x0000000010001890                clocks_init
+                0x00000000100016e8      0x2c8 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.obj
+                0x00000000100016e8                clocks_init
  .text.clock_get_hz
-                0x0000000010001b58        0xc CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.obj
-                0x0000000010001b58                clock_get_hz
+                0x00000000100019b0        0xc CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.obj
+                0x00000000100019b0                clock_get_hz
  .text.pll_init
-                0x0000000010001b64       0xa0 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_pll/pll.c.obj
-                0x0000000010001b64                pll_init
+                0x00000000100019bc       0xa0 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_pll/pll.c.obj
+                0x00000000100019bc                pll_init
  .text.watchdog_start_tick
-                0x0000000010001c04       0x10 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c.obj
-                0x0000000010001c04                watchdog_start_tick
+                0x0000000010001a5c       0x10 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c.obj
+                0x0000000010001a5c                watchdog_start_tick
  .text.xosc_init
-                0x0000000010001c14       0x28 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_xosc/xosc.c.obj
-                0x0000000010001c14                xosc_init
+                0x0000000010001a6c       0x28 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_xosc/xosc.c.obj
+                0x0000000010001a6c                xosc_init
  .text.runtime_init
-                0x0000000010001c3c       0xf0 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
-                0x0000000010001c3c                runtime_init
- .text._exit    0x0000000010001d2c        0x4 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
-                0x0000000010001d2c                _exit
- .text.exit     0x0000000010001d30        0x8 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
-                0x0000000010001d30                exit
- .text.panic    0x0000000010001d38       0x30 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
-                0x0000000010001d38                panic
+                0x0000000010001a94       0xf0 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
+                0x0000000010001a94                runtime_init
+ .text._exit    0x0000000010001b84        0x4 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
+                0x0000000010001b84                _exit
+ .text.exit     0x0000000010001b88        0x8 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
+                0x0000000010001b88                exit
+ .text.panic    0x0000000010001b90       0x30 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
+                0x0000000010001b90                panic
  .text.panic_unsupported
-                0x0000000010001d68        0xc CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
-                0x0000000010001d68                panic_unsupported
+                0x0000000010001bc0        0xc CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
+                0x0000000010001bc0                panic_unsupported
  .text.hard_assertion_failure
-                0x0000000010001d74        0xc CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
-                0x0000000010001d74                hard_assertion_failure
+                0x0000000010001bcc        0xc CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
+                0x0000000010001bcc                hard_assertion_failure
  .text._out_char
-                0x0000000010001d80       0x10 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+                0x0000000010001bd8       0x10 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
  .text.weak_raw_vprintf
-                0x0000000010001d90       0x30 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
-                0x0000000010001d90                weak_raw_vprintf
- .text          0x0000000010001dc0       0x10 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.obj
+                0x0000000010001be8       0x30 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+                0x0000000010001be8                weak_raw_vprintf
+ .text          0x0000000010001c18       0x10 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.obj
  .text.rom_func_lookup
-                0x0000000010001dd0       0x10 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.obj
-                0x0000000010001dd0                rom_func_lookup
+                0x0000000010001c28       0x10 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.obj
+                0x0000000010001c28                rom_func_lookup
  .text.rom_data_lookup
-                0x0000000010001de0       0x10 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.obj
-                0x0000000010001de0                rom_data_lookup
+                0x0000000010001c38       0x10 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.obj
+                0x0000000010001c38                rom_data_lookup
  .text.rom_funcs_lookup
-                0x0000000010001df0       0x44 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.obj
-                0x0000000010001df0                rom_funcs_lookup
+                0x0000000010001c48       0x44 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.obj
+                0x0000000010001c48                rom_funcs_lookup
  .text.__wrap___aeabi_uidiv
-                0x0000000010001e34       0x4c CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_divider/divider.S.obj
-                0x0000000010001e34                __wrap___aeabi_uidiv
-                0x0000000010001e34                __wrap___aeabi_uidivmod
-                0x0000000010001e34                div_u32u32
-                0x0000000010001e34                divmod_u32u32
-                0x0000000010001e3c                divmod_u32u32_unsafe
-                0x0000000010001e64                divmod_u32u32_savestate
+                0x0000000010001c8c       0x4c CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_divider/divider.S.obj
+                0x0000000010001c8c                __wrap___aeabi_uidiv
+                0x0000000010001c8c                __wrap___aeabi_uidivmod
+                0x0000000010001c8c                div_u32u32
+                0x0000000010001c8c                divmod_u32u32
+                0x0000000010001c94                divmod_u32u32_unsafe
+                0x0000000010001cbc                divmod_u32u32_savestate
  .text.__wrap___aeabi_ldiv
-                0x0000000010001e80      0x424 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_divider/divider.S.obj
-                0x0000000010001e80                div_s64s64
-                0x0000000010001e80                divmod_s64s64
-                0x0000000010001e80                __wrap___aeabi_ldivmod
-                0x0000000010001eb0                div_u64u64
-                0x0000000010001eb0                divmod_u64u64
-                0x0000000010001eb0                __wrap___aeabi_uldivmod
-                0x0000000010001ec0                divmod_u64u64_savestate
-                0x0000000010001ee0                divmod_s64s64_unsafe
-                0x0000000010001f68                divmod_u64u64_unsafe
+                0x0000000010001cd8      0x424 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_divider/divider.S.obj
+                0x0000000010001cd8                div_s64s64
+                0x0000000010001cd8                divmod_s64s64
+                0x0000000010001cd8                __wrap___aeabi_ldivmod
+                0x0000000010001d08                div_u64u64
+                0x0000000010001d08                divmod_u64u64
+                0x0000000010001d08                __wrap___aeabi_uldivmod
+                0x0000000010001d18                divmod_u64u64_savestate
+                0x0000000010001d38                divmod_s64s64_unsafe
+                0x0000000010001dc0                divmod_u64u64_unsafe
  .text.__aeabi_double_init
-                0x00000000100022a4       0x98 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_double/double_init_rom.c.obj
-                0x00000000100022a4                __aeabi_double_init
+                0x00000000100020fc       0x98 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_double/double_init_rom.c.obj
+                0x00000000100020fc                __aeabi_double_init
  .text.double_table_shim_on_use_helper
-                0x000000001000233c       0x2c CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.S.obj
-                0x000000001000233c                double_table_shim_on_use_helper
+                0x0000000010002194       0x2c CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.S.obj
+                0x0000000010002194                double_table_shim_on_use_helper
  .text.__aeabi_float_init
-                0x0000000010002368       0x64 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_float/float_init_rom.c.obj
-                0x0000000010002368                __aeabi_float_init
+                0x00000000100021c0       0x64 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_float/float_init_rom.c.obj
+                0x00000000100021c0                __aeabi_float_init
  .text.float_table_shim_on_use_helper
-                0x00000000100023cc       0x2c CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_float/float_v1_rom_shim.S.obj
-                0x00000000100023cc                float_table_shim_on_use_helper
- .text          0x00000000100023f8       0x10 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
-                0x00000000100023f8                __aeabi_mem_init
- .text.memset   0x0000000010002408        0xc CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
-                0x0000000010002408                __wrap_memset
- .text.memcpy   0x0000000010002414        0xc CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
-                0x0000000010002414                __wrap___aeabi_memcpy
-                0x0000000010002414                __wrap_memcpy
+                0x0000000010002224       0x2c CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_float/float_v1_rom_shim.S.obj
+                0x0000000010002224                float_table_shim_on_use_helper
+ .text          0x0000000010002250       0x10 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
+                0x0000000010002250                __aeabi_mem_init
+ .text.memset   0x0000000010002260        0xc CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
+                0x0000000010002260                __wrap_memset
+ .text.memcpy   0x000000001000226c        0xc CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
+                0x000000001000226c                __wrap___aeabi_memcpy
+                0x000000001000226c                __wrap_memcpy
  .text.stdio_out_chars_crlf
-                0x0000000010002420       0xbc CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+                0x0000000010002278       0xbc CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
  .text.__wrap_putchar
-                0x00000000100024dc       0x98 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
-                0x00000000100024dc                __wrap_putchar
+                0x0000000010002334       0x98 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+                0x0000000010002334                __wrap_putchar
  .text.__wrap_puts
-                0x0000000010002574       0xe0 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
-                0x0000000010002574                __wrap_puts
+                0x00000000100023cc       0xe0 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+                0x00000000100023cc                __wrap_puts
  .text.stdio_set_driver_enabled
-                0x0000000010002654       0x30 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
-                0x0000000010002654                stdio_set_driver_enabled
+                0x00000000100024ac       0x30 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+                0x00000000100024ac                stdio_set_driver_enabled
  .text.stdio_init_all
-                0x0000000010002684        0xc CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
-                0x0000000010002684                stdio_init_all
+                0x00000000100024dc        0xc CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+                0x00000000100024dc                stdio_init_all
  .text.stdio_uart_out_chars
-                0x0000000010002690       0x4c CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
+                0x00000000100024e8       0x4c CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
  .text.stdio_uart_in_chars
-                0x00000000100026dc       0x98 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
-                0x00000000100026dc                stdio_uart_in_chars
+                0x0000000010002534       0x98 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
+                0x0000000010002534                stdio_uart_in_chars
  .text.on_uart_rx
-                0x0000000010002774       0x28 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
+                0x00000000100025cc       0x28 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
  .text.stdio_uart_set_chars_available_callback
-                0x000000001000279c       0x8c CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
+                0x00000000100025f4       0x8c CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
  .text.stdio_uart_init
-                0x0000000010002828       0x48 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
-                0x0000000010002828                stdio_uart_init
+                0x0000000010002680       0x48 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
+                0x0000000010002680                stdio_uart_init
+ .text.i2c_set_baudrate
+                0x00000000100026c8       0xc4 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.obj
+                0x00000000100026c8                i2c_set_baudrate
+ .text.i2c_init
+                0x000000001000278c       0x54 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.obj
+                0x000000001000278c                i2c_init
+ .text.i2c_write_blocking
+                0x00000000100027e0       0xd0 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.obj
+                0x00000000100027e0                i2c_write_blocking
  .text.pvPortMalloc
-                0x0000000010002870      0x12c CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/MemMang/heap_4.c.obj
-                0x0000000010002870                pvPortMalloc
+                0x00000000100028b0      0x12c CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/MemMang/heap_4.c.obj
+                0x00000000100028b0                pvPortMalloc
  .text.vPortFree
-                0x000000001000299c       0x8c CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/MemMang/heap_4.c.obj
-                0x000000001000299c                vPortFree
+                0x00000000100029dc       0x8c CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/MemMang/heap_4.c.obj
+                0x00000000100029dc                vPortFree
  .text.vPortSVCHandler
-                0x0000000010002a28        0x4 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/ThirdParty/GCC/RP2040/port.c.obj
-                0x0000000010002a28                vPortSVCHandler
- *fill*         0x0000000010002a2c        0x4 
+                0x0000000010002a68        0x4 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/ThirdParty/GCC/RP2040/port.c.obj
+                0x0000000010002a68                vPortSVCHandler
+ *fill*         0x0000000010002a6c        0x4 
  .text.vPortStartFirstTask
-                0x0000000010002a30       0x34 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/ThirdParty/GCC/RP2040/port.c.obj
- *fill*         0x0000000010002a64        0xc 
+                0x0000000010002a70       0x34 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/ThirdParty/GCC/RP2040/port.c.obj
+ *fill*         0x0000000010002aa4        0xc 
  .text.xPortPendSVHandler
-                0x0000000010002a70       0x64 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/ThirdParty/GCC/RP2040/port.c.obj
-                0x0000000010002a70                xPortPendSVHandler
+                0x0000000010002ab0       0x64 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/ThirdParty/GCC/RP2040/port.c.obj
+                0x0000000010002ab0                xPortPendSVHandler
  .text.prvFIFOInterruptHandler
-                0x0000000010002ad4       0x78 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/ThirdParty/GCC/RP2040/port.c.obj
+                0x0000000010002b14       0x78 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/ThirdParty/GCC/RP2040/port.c.obj
  .text.prvTaskExitError
-                0x0000000010002b4c        0x8 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/ThirdParty/GCC/RP2040/port.c.obj
+                0x0000000010002b8c        0x8 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/ThirdParty/GCC/RP2040/port.c.obj
  .text.pxPortInitialiseStack
-                0x0000000010002b54       0x20 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/ThirdParty/GCC/RP2040/port.c.obj
-                0x0000000010002b54                pxPortInitialiseStack
+                0x0000000010002b94       0x20 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/ThirdParty/GCC/RP2040/port.c.obj
+                0x0000000010002b94                pxPortInitialiseStack
  .text.vPortYield
-                0x0000000010002b74       0x18 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/ThirdParty/GCC/RP2040/port.c.obj
-                0x0000000010002b74                vPortYield
+                0x0000000010002bb4       0x18 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/ThirdParty/GCC/RP2040/port.c.obj
+                0x0000000010002bb4                vPortYield
  .text.vPortEnterCritical
-                0x0000000010002b8c       0x18 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/ThirdParty/GCC/RP2040/port.c.obj
-                0x0000000010002b8c                vPortEnterCritical
+                0x0000000010002bcc       0x18 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/ThirdParty/GCC/RP2040/port.c.obj
+                0x0000000010002bcc                vPortEnterCritical
  .text.vPortExitCritical
-                0x0000000010002ba4       0x34 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/ThirdParty/GCC/RP2040/port.c.obj
-                0x0000000010002ba4                vPortExitCritical
+                0x0000000010002be4       0x34 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/ThirdParty/GCC/RP2040/port.c.obj
+                0x0000000010002be4                vPortExitCritical
  .text.ulSetInterruptMaskFromISR
-                0x0000000010002bd8        0x8 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/ThirdParty/GCC/RP2040/port.c.obj
-                0x0000000010002bd8                ulSetInterruptMaskFromISR
+                0x0000000010002c18        0x8 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/ThirdParty/GCC/RP2040/port.c.obj
+                0x0000000010002c18                ulSetInterruptMaskFromISR
  .text.vClearInterruptMaskFromISR
-                0x0000000010002be0        0x8 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/ThirdParty/GCC/RP2040/port.c.obj
-                0x0000000010002be0                vClearInterruptMaskFromISR
+                0x0000000010002c20        0x8 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/ThirdParty/GCC/RP2040/port.c.obj
+                0x0000000010002c20                vClearInterruptMaskFromISR
  .text.xPortSysTickHandler
-                0x0000000010002be8       0x24 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/ThirdParty/GCC/RP2040/port.c.obj
-                0x0000000010002be8                xPortSysTickHandler
+                0x0000000010002c28       0x24 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/ThirdParty/GCC/RP2040/port.c.obj
+                0x0000000010002c28                xPortSysTickHandler
  .text.vPortSetupTimerInterrupt
-                0x0000000010002c0c       0x34 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/ThirdParty/GCC/RP2040/port.c.obj
-                0x0000000010002c0c                vPortSetupTimerInterrupt
+                0x0000000010002c4c       0x34 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/ThirdParty/GCC/RP2040/port.c.obj
+                0x0000000010002c4c                vPortSetupTimerInterrupt
  .text.xPortStartScheduler
-                0x0000000010002c40       0xa0 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/ThirdParty/GCC/RP2040/port.c.obj
-                0x0000000010002c40                xPortStartScheduler
+                0x0000000010002c80       0xa0 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/ThirdParty/GCC/RP2040/port.c.obj
+                0x0000000010002c80                xPortStartScheduler
  .text.ulPortLockGetCurrentOwnerId
-                0x0000000010002ce0       0x2c CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/ThirdParty/GCC/RP2040/port.c.obj
-                0x0000000010002ce0                ulPortLockGetCurrentOwnerId
+                0x0000000010002d20       0x2c CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/ThirdParty/GCC/RP2040/port.c.obj
+                0x0000000010002d20                ulPortLockGetCurrentOwnerId
  .text.vPortLockInternalSpinUnlockWithNotify
-                0x0000000010002d0c       0xc8 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/ThirdParty/GCC/RP2040/port.c.obj
-                0x0000000010002d0c                vPortLockInternalSpinUnlockWithNotify
+                0x0000000010002d4c       0xc8 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/ThirdParty/GCC/RP2040/port.c.obj
+                0x0000000010002d4c                vPortLockInternalSpinUnlockWithNotify
  .text.xPortLockInternalSpinUnlockWithBestEffortWaitOrTimeout
-                0x0000000010002dd4       0xfc CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/ThirdParty/GCC/RP2040/port.c.obj
-                0x0000000010002dd4                xPortLockInternalSpinUnlockWithBestEffortWaitOrTimeout
+                0x0000000010002e14       0xfc CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/ThirdParty/GCC/RP2040/port.c.obj
+                0x0000000010002e14                xPortLockInternalSpinUnlockWithBestEffortWaitOrTimeout
  .text.startup.prvRuntimeInitializer
-                0x0000000010002ed0       0x28 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/ThirdParty/GCC/RP2040/port.c.obj
+                0x0000000010002f10       0x28 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/ThirdParty/GCC/RP2040/port.c.obj
  .text.vEventGroupSetBitsCallback
-                0x0000000010002ef8       0x8c CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/event_groups.c.obj
-                0x0000000010002ef8                vEventGroupSetBitsCallback
+                0x0000000010002f38       0x8c CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/event_groups.c.obj
+                0x0000000010002f38                vEventGroupSetBitsCallback
  .text.xEventGroupCreate
-                0x0000000010002f84       0x18 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/event_groups.c.obj
-                0x0000000010002f84                xEventGroupCreate
+                0x0000000010002fc4       0x18 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/event_groups.c.obj
+                0x0000000010002fc4                xEventGroupCreate
  .text.xEventGroupWaitBits
-                0x0000000010002f9c       0xb8 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/event_groups.c.obj
-                0x0000000010002f9c                xEventGroupWaitBits
+                0x0000000010002fdc       0xb8 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/event_groups.c.obj
+                0x0000000010002fdc                xEventGroupWaitBits
  .text.xEventGroupSetBits
-                0x0000000010003054       0x90 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/event_groups.c.obj
-                0x0000000010003054                xEventGroupSetBits
+                0x0000000010003094       0x90 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/event_groups.c.obj
+                0x0000000010003094                xEventGroupSetBits
  .text.xEventGroupSetBitsFromISR
-                0x00000000100030e4       0x18 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/event_groups.c.obj
-                0x00000000100030e4                xEventGroupSetBitsFromISR
+                0x0000000010003124       0x18 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/event_groups.c.obj
+                0x0000000010003124                xEventGroupSetBitsFromISR
  .text.vListInitialise
-                0x00000000100030fc       0x18 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/list.c.obj
-                0x00000000100030fc                vListInitialise
+                0x000000001000313c       0x18 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/list.c.obj
+                0x000000001000313c                vListInitialise
  .text.vListInitialiseItem
-                0x0000000010003114        0x8 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/list.c.obj
-                0x0000000010003114                vListInitialiseItem
+                0x0000000010003154        0x8 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/list.c.obj
+                0x0000000010003154                vListInitialiseItem
  .text.vListInsert
-                0x000000001000311c       0x30 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/list.c.obj
-                0x000000001000311c                vListInsert
+                0x000000001000315c       0x30 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/list.c.obj
+                0x000000001000315c                vListInsert
  .text.uxListRemove
-                0x000000001000314c       0x24 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/list.c.obj
-                0x000000001000314c                uxListRemove
+                0x000000001000318c       0x24 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/list.c.obj
+                0x000000001000318c                uxListRemove
  .text.prvUnlockQueue
-                0x0000000010003170      0x17c CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/queue.c.obj
+                0x00000000100031b0      0x17c CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/queue.c.obj
  .text.prvNotifyQueueSetContainer
-                0x00000000100032ec       0x90 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/queue.c.obj
+                0x000000001000332c       0x90 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/queue.c.obj
  .text.xQueueGenericCreate
-                0x000000001000337c       0xa4 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/queue.c.obj
-                0x000000001000337c                xQueueGenericCreate
+                0x00000000100033bc       0xa4 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/queue.c.obj
+                0x00000000100033bc                xQueueGenericCreate
  .text.xQueueGenericSendFromISR
-                0x0000000010003420      0x130 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/queue.c.obj
-                0x0000000010003420                xQueueGenericSendFromISR
+                0x0000000010003460      0x130 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/queue.c.obj
+                0x0000000010003460                xQueueGenericSendFromISR
  .text.xQueueReceive
-                0x0000000010003550      0x124 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/queue.c.obj
-                0x0000000010003550                xQueueReceive
+                0x0000000010003590      0x124 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/queue.c.obj
+                0x0000000010003590                xQueueReceive
  .text.vQueueAddToRegistry
-                0x0000000010003674      0x118 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/queue.c.obj
-                0x0000000010003674                vQueueAddToRegistry
+                0x00000000100036b4      0x118 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/queue.c.obj
+                0x00000000100036b4                vQueueAddToRegistry
  .text.vQueueWaitForMessageRestricted
-                0x000000001000378c       0x48 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/queue.c.obj
-                0x000000001000378c                vQueueWaitForMessageRestricted
+                0x00000000100037cc       0x48 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/queue.c.obj
+                0x00000000100037cc                vQueueWaitForMessageRestricted
  .text.prvIdleTask
-                0x00000000100037d4       0x60 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
+                0x0000000010003814       0x60 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
  .text.xTaskIncrementTick.part.0
-                0x0000000010003834      0x190 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
+                0x0000000010003874      0x190 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
  .text.xTaskCreate
-                0x00000000100039c4      0x24c CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
-                0x00000000100039c4                xTaskCreate
+                0x0000000010003a04      0x24c CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
+                0x0000000010003a04                xTaskCreate
  .text.vTaskStartScheduler
-                0x0000000010003c10      0x1dc CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
-                0x0000000010003c10                vTaskStartScheduler
+                0x0000000010003c50      0x1dc CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
+                0x0000000010003c50                vTaskStartScheduler
  .text.vTaskSuspendAll
-                0x0000000010003dec       0x10 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
-                0x0000000010003dec                vTaskSuspendAll
+                0x0000000010003e2c       0x10 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
+                0x0000000010003e2c                vTaskSuspendAll
  .text.xTaskResumeAll
-                0x0000000010003dfc      0x180 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
-                0x0000000010003dfc                xTaskResumeAll
+                0x0000000010003e3c      0x180 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
+                0x0000000010003e3c                xTaskResumeAll
  .text.vTaskDelay
-                0x0000000010003f7c       0x78 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
-                0x0000000010003f7c                vTaskDelay
+                0x0000000010003fbc       0x78 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
+                0x0000000010003fbc                vTaskDelay
  .text.xTaskGetTickCount
-                0x0000000010003ff4        0xc CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
-                0x0000000010003ff4                xTaskGetTickCount
+                0x0000000010004034        0xc CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
+                0x0000000010004034                xTaskGetTickCount
  .text.uxTaskGetNumberOfTasks
-                0x0000000010004000        0xc CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
-                0x0000000010004000                uxTaskGetNumberOfTasks
+                0x0000000010004040        0xc CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
+                0x0000000010004040                uxTaskGetNumberOfTasks
  .text.xTaskIncrementTick
-                0x000000001000400c       0x24 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
-                0x000000001000400c                xTaskIncrementTick
+                0x000000001000404c       0x24 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
+                0x000000001000404c                xTaskIncrementTick
  .text.vTaskSwitchContext
-                0x0000000010004030       0x6c CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
-                0x0000000010004030                vTaskSwitchContext
+                0x0000000010004070       0x6c CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
+                0x0000000010004070                vTaskSwitchContext
  .text.vTaskPlaceOnEventList
-                0x000000001000409c       0x94 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
-                0x000000001000409c                vTaskPlaceOnEventList
+                0x00000000100040dc       0x94 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
+                0x00000000100040dc                vTaskPlaceOnEventList
  .text.vTaskPlaceOnUnorderedEventList
-                0x0000000010004130       0xb8 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
-                0x0000000010004130                vTaskPlaceOnUnorderedEventList
+                0x0000000010004170       0xb8 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
+                0x0000000010004170                vTaskPlaceOnUnorderedEventList
  .text.vTaskPlaceOnEventListRestricted
-                0x00000000100041e8       0xc0 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
-                0x00000000100041e8                vTaskPlaceOnEventListRestricted
+                0x0000000010004228       0xc0 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
+                0x0000000010004228                vTaskPlaceOnEventListRestricted
  .text.xTaskRemoveFromEventList
-                0x00000000100042a8       0xd0 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
-                0x00000000100042a8                xTaskRemoveFromEventList
+                0x00000000100042e8       0xd0 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
+                0x00000000100042e8                xTaskRemoveFromEventList
  .text.vTaskRemoveFromUnorderedEventList
-                0x0000000010004378       0x94 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
-                0x0000000010004378                vTaskRemoveFromUnorderedEventList
+                0x00000000100043b8       0x94 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
+                0x00000000100043b8                vTaskRemoveFromUnorderedEventList
  .text.vTaskInternalSetTimeOutState
-                0x000000001000440c       0x18 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
-                0x000000001000440c                vTaskInternalSetTimeOutState
+                0x000000001000444c       0x18 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
+                0x000000001000444c                vTaskInternalSetTimeOutState
  .text.xTaskCheckForTimeOut
-                0x0000000010004424       0x74 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
-                0x0000000010004424                xTaskCheckForTimeOut
+                0x0000000010004464       0x74 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
+                0x0000000010004464                xTaskCheckForTimeOut
  .text.vTaskMissedYield
-                0x0000000010004498        0xc CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
-                0x0000000010004498                vTaskMissedYield
+                0x00000000100044d8        0xc CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
+                0x00000000100044d8                vTaskMissedYield
  .text.xTaskGetCurrentTaskHandle
-                0x00000000100044a4        0xc CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
-                0x00000000100044a4                xTaskGetCurrentTaskHandle
+                0x00000000100044e4        0xc CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
+                0x00000000100044e4                xTaskGetCurrentTaskHandle
  .text.xTaskPriorityDisinherit
-                0x00000000100044b0       0x64 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
-                0x00000000100044b0                xTaskPriorityDisinherit
+                0x00000000100044f0       0x64 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
+                0x00000000100044f0                xTaskPriorityDisinherit
  .text.uxTaskResetEventItemValue
-                0x0000000010004514       0x18 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
-                0x0000000010004514                uxTaskResetEventItemValue
+                0x0000000010004554       0x18 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
+                0x0000000010004554                uxTaskResetEventItemValue
  .text.prvTimerTask
-                0x000000001000452c      0x384 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/timers.c.obj
+                0x000000001000456c      0x384 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/timers.c.obj
  .text.xTimerCreateTimerTask
-                0x00000000100048b0       0x8c CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/timers.c.obj
-                0x00000000100048b0                xTimerCreateTimerTask
+                0x00000000100048f0       0x8c CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/timers.c.obj
+                0x00000000100048f0                xTimerCreateTimerTask
  .text.xTimerPendFunctionCallFromISR
-                0x000000001000493c       0x28 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/timers.c.obj
-                0x000000001000493c                xTimerPendFunctionCallFromISR
+                0x000000001000497c       0x28 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/timers.c.obj
+                0x000000001000497c                xTimerPendFunctionCallFromISR
  .text.exception_set_exclusive_handler
-                0x0000000010004964       0x48 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_exception/exception.c.obj
-                0x0000000010004964                exception_set_exclusive_handler
- .text          0x00000000100049ac       0x5c /usr/lib/gcc/arm-none-eabi/12.2.1/../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc.a(lib_a-strlen-stub.o)
-                0x00000000100049ac                strlen
+                0x00000000100049a4       0x48 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_exception/exception.c.obj
+                0x00000000100049a4                exception_set_exclusive_handler
+ .text          0x00000000100049ec       0x5c /usr/lib/gcc/arm-none-eabi/12.2.1/../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc.a(lib_a-strlen-stub.o)
+                0x00000000100049ec                strlen
  *(.fini)
- .fini          0x0000000010004a08        0x4 /usr/lib/gcc/arm-none-eabi/12.2.1/thumb/v6-m/nofp/crti.o
-                0x0000000010004a08                _fini
- *fill*         0x0000000010004a0c        0x4 
- .fini.__stub   0x0000000010004a10       0x40 linker stubs
+ .fini          0x0000000010004a48        0x4 /usr/lib/gcc/arm-none-eabi/12.2.1/thumb/v6-m/nofp/crti.o
+                0x0000000010004a48                _fini
+ *fill*         0x0000000010004a4c        0x4 
+ .fini.__stub   0x0000000010004a50       0x40 linker stubs
  *crtbegin.o(.ctors)
  *crtbegin?.o(.ctors)
  *(EXCLUDE_FILE(*crtend.o *crtend?.o) .ctors)
@@ -2123,104 +2170,104 @@ LOAD /usr/lib/gcc/arm-none-eabi/12.2.1/../../../arm-none-eabi/lib/thumb/v6-m/nof
  *(SORT_BY_NAME(.dtors.*))
  *(.dtors)
  *(.eh_frame*)
- .eh_frame      0x0000000010004a50        0x0 /usr/lib/gcc/arm-none-eabi/12.2.1/thumb/v6-m/nofp/crtbegin.o
-                0x0000000010004a50                . = ALIGN (0x4)
+ .eh_frame      0x0000000010004a90        0x0 /usr/lib/gcc/arm-none-eabi/12.2.1/thumb/v6-m/nofp/crtbegin.o
+                0x0000000010004a90                . = ALIGN (0x4)
 
-.glue_7         0x0000000010004a50        0x0
- .glue_7        0x0000000010004a50        0x0 linker stubs
+.glue_7         0x0000000010004a90        0x0
+ .glue_7        0x0000000010004a90        0x0 linker stubs
 
-.glue_7t        0x0000000010004a50        0x0
- .glue_7t       0x0000000010004a50        0x0 linker stubs
+.glue_7t        0x0000000010004a90        0x0
+ .glue_7t       0x0000000010004a90        0x0 linker stubs
 
-.vfp11_veneer   0x0000000010004a50        0x0
- .vfp11_veneer  0x0000000010004a50        0x0 linker stubs
+.vfp11_veneer   0x0000000010004a90        0x0
+ .vfp11_veneer  0x0000000010004a90        0x0 linker stubs
 
-.v4_bx          0x0000000010004a50        0x0
- .v4_bx         0x0000000010004a50        0x0 linker stubs
+.v4_bx          0x0000000010004a90        0x0
+ .v4_bx         0x0000000010004a90        0x0 linker stubs
 
-.iplt           0x0000000010004a50        0x0
- .iplt          0x0000000010004a50        0x0 /usr/lib/gcc/arm-none-eabi/12.2.1/thumb/v6-m/nofp/crtbegin.o
+.iplt           0x0000000010004a90        0x0
+ .iplt          0x0000000010004a90        0x0 /usr/lib/gcc/arm-none-eabi/12.2.1/thumb/v6-m/nofp/crtbegin.o
 
-.rodata         0x0000000010004a50      0x170
+.rodata         0x0000000010004a90      0x160
  *(EXCLUDE_FILE(*libm.a: *libc.a:*lib_a-mem*.o *libgcc.a:) .rodata*)
- .rodata.vTaskUart_4g.str1.4
-                0x0000000010004a50       0x19 CMakeFiles/rp2040-freertos-template.dir/tasks.c.obj
- *fill*         0x0000000010004a69        0x3 
+ .rodata.vTaskI2C_GPS.str1.4
+                0x0000000010004a90        0x3 CMakeFiles/rp2040-freertos-template.dir/tasks.c.obj
+ *fill*         0x0000000010004a93        0x1 
  .rodata.initTasks.str1.4
-                0x0000000010004a6c        0xd CMakeFiles/rp2040-freertos-template.dir/tasks.c.obj
- *fill*         0x0000000010004a79        0x3 
+                0x0000000010004a94       0x15 CMakeFiles/rp2040-freertos-template.dir/tasks.c.obj
+ *fill*         0x0000000010004aa9        0x3 
  .rodata.hardware_alarm_claim.str1.4
-                0x0000000010004a7c       0x22 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
- *fill*         0x0000000010004a9e        0x2 
+                0x0000000010004aac       0x22 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
+ *fill*         0x0000000010004ace        0x2 
  .rodata.panic.str1.4
-                0x0000000010004aa0       0x12 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
- *fill*         0x0000000010004ab2        0x2 
+                0x0000000010004ad0       0x12 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
+ *fill*         0x0000000010004ae2        0x2 
  .rodata.panic_unsupported.str1.4
-                0x0000000010004ab4        0xe CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
- *fill*         0x0000000010004ac2        0x2 
+                0x0000000010004ae4        0xe CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
+ *fill*         0x0000000010004af2        0x2 
  .rodata.hard_assertion_failure.str1.4
-                0x0000000010004ac4        0xc CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
+                0x0000000010004af4        0xc CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
  .rodata.str1.4
-                0x0000000010004ad0       0x50 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+                0x0000000010004b00       0x50 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
  .rodata.__bi_81
-                0x0000000010004b20        0xc CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+                0x0000000010004b50        0xc CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
  .rodata.__bi_75
-                0x0000000010004b2c        0xc CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+                0x0000000010004b5c        0xc CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
  .rodata.__bi_44
-                0x0000000010004b38        0xc CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+                0x0000000010004b68        0xc CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
  .rodata.crlf_str.0
-                0x0000000010004b44        0x2 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
- *fill*         0x0000000010004b46        0x2 
+                0x0000000010004b74        0x2 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+ *fill*         0x0000000010004b76        0x2 
  .rodata.str1.4
-                0x0000000010004b48       0x2c CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
+                0x0000000010004b78       0x2c CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
  .rodata.__bi_33.4
-                0x0000000010004b74        0xc CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
+                0x0000000010004ba4        0xc CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
  .rodata.__bi_34.5
-                0x0000000010004b80        0x8 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
+                0x0000000010004bb0        0x8 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
  .rodata.prvTimerTask
-                0x0000000010004b88       0x28 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/timers.c.obj
+                0x0000000010004bb8       0x28 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/timers.c.obj
  .rodata.xTimerCreateTimerTask.str1.4
-                0x0000000010004bb0       0x10 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/timers.c.obj
-                0x0000000010004bc0                . = ALIGN (0x4)
+                0x0000000010004be0       0x10 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/timers.c.obj
+                0x0000000010004bf0                . = ALIGN (0x4)
  *(SORT_BY_ALIGNMENT(SORT_BY_NAME(.flashdata*)))
-                0x0000000010004bc0                . = ALIGN (0x4)
+                0x0000000010004bf0                . = ALIGN (0x4)
 
 .ARM.extab
  *(.ARM.extab* .gnu.linkonce.armextab.*)
-                0x0000000010004bc0                __exidx_start = .
+                0x0000000010004bf0                __exidx_start = .
 
 .ARM.exidx
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
-                0x0000000010004bc0                __exidx_end = .
-                0x0000000010004bc0                . = ALIGN (0x4)
-                0x0000000010004bc0                __binary_info_start = .
+                0x0000000010004bf0                __exidx_end = .
+                0x0000000010004bf0                . = ALIGN (0x4)
+                0x0000000010004bf0                __binary_info_start = .
 
-.binary_info    0x0000000010004bc0       0x24
+.binary_info    0x0000000010004bf0       0x24
  *(.binary_info.keep.*)
  .binary_info.keep.__bi_ptr81
-                0x0000000010004bc0        0x4 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+                0x0000000010004bf0        0x4 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
  .binary_info.keep.__bi_ptr75
-                0x0000000010004bc4        0x4 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+                0x0000000010004bf4        0x4 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
  .binary_info.keep.__bi_ptr50
-                0x0000000010004bc8        0x4 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+                0x0000000010004bf8        0x4 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
  .binary_info.keep.__bi_ptr44
-                0x0000000010004bcc        0x4 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+                0x0000000010004bfc        0x4 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
  .binary_info.keep.__bi_ptr38
-                0x0000000010004bd0        0x4 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+                0x0000000010004c00        0x4 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
  .binary_info.keep.__bi_ptr30
-                0x0000000010004bd4        0x4 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+                0x0000000010004c04        0x4 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
  .binary_info.keep.__bi_ptr22
-                0x0000000010004bd8        0x4 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+                0x0000000010004c08        0x4 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
  *(.binary_info.*)
  .binary_info.__bi_ptr34
-                0x0000000010004bdc        0x4 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
+                0x0000000010004c0c        0x4 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
  .binary_info.__bi_ptr33
-                0x0000000010004be0        0x4 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
-                0x0000000010004be4                __binary_info_end = .
+                0x0000000010004c10        0x4 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
+                0x0000000010004c14                __binary_info_end = .
 
-.rel.dyn        0x0000000010004be4        0x0
- .rel.iplt      0x0000000010004be4        0x0 /usr/lib/gcc/arm-none-eabi/12.2.1/thumb/v6-m/nofp/crtbegin.o
-                0x0000000010004be4                . = ALIGN (0x4)
+.rel.dyn        0x0000000010004c14        0x0
+ .rel.iplt      0x0000000010004c14        0x0 /usr/lib/gcc/arm-none-eabi/12.2.1/thumb/v6-m/nofp/crtbegin.o
+                0x0000000010004c14                . = ALIGN (0x4)
 
 .ram_vector_table
                 0x0000000020000000       0xc0
@@ -2229,7 +2276,7 @@ LOAD /usr/lib/gcc/arm-none-eabi/12.2.1/../../../arm-none-eabi/lib/thumb/v6-m/nof
                 0x0000000020000000       0xc0 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
                 0x0000000020000000                ram_vector_table
 
-.data           0x00000000200000c0      0x1d8 load address 0x0000000010004be4
+.data           0x00000000200000c0      0x1e0 load address 0x0000000010004c14
                 0x00000000200000c0                __data_start__ = .
  *(vtable)
  *(.time_critical*)
@@ -2272,221 +2319,222 @@ LOAD /usr/lib/gcc/arm-none-eabi/12.2.1/../../../arm-none-eabi/lib/thumb/v6-m/nof
  .data.stdio_uart
                 0x0000000020000250       0x18 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
                 0x0000000020000250                stdio_uart
+ .data.i2c0_inst
+                0x0000000020000268        0x8 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.obj
+                0x0000000020000268                i2c0_inst
  .data.ucPrimaryCoreNum
-                0x0000000020000268        0x1 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/ThirdParty/GCC/RP2040/port.c.obj
- *fill*         0x0000000020000269        0x3 
+                0x0000000020000270        0x1 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/ThirdParty/GCC/RP2040/port.c.obj
+ *fill*         0x0000000020000271        0x3 
  .data.uxTopUsedPriority
-                0x000000002000026c        0x4 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
-                0x000000002000026c                uxTopUsedPriority
-                0x0000000020000270                . = ALIGN (0x4)
+                0x0000000020000274        0x4 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
+                0x0000000020000274                uxTopUsedPriority
+                0x0000000020000278                . = ALIGN (0x4)
  *(.after_data.*)
-                0x0000000020000270                . = ALIGN (0x4)
-                0x0000000020000270                PROVIDE (__mutex_array_start = .)
+                0x0000000020000278                . = ALIGN (0x4)
+                0x0000000020000278                PROVIDE (__mutex_array_start = .)
  *(SORT_BY_NAME(.mutex_array.*))
  *(.mutex_array)
- .mutex_array   0x0000000020000270        0x8 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_malloc/pico_malloc.c.obj
- .mutex_array   0x0000000020000278        0x8 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
-                0x0000000020000280                PROVIDE (__mutex_array_end = .)
-                0x0000000020000280                . = ALIGN (0x4)
-                0x0000000020000280                PROVIDE (__preinit_array_start = .)
+ .mutex_array   0x0000000020000278        0x8 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_malloc/pico_malloc.c.obj
+ .mutex_array   0x0000000020000280        0x8 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+                0x0000000020000288                PROVIDE (__mutex_array_end = .)
+                0x0000000020000288                . = ALIGN (0x4)
+                0x0000000020000288                PROVIDE (__preinit_array_start = .)
  *(SORT_BY_NAME(.preinit_array.*))
  .preinit_array.00001
-                0x0000000020000280        0x4 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
+                0x0000000020000288        0x4 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
  .preinit_array.00010
-                0x0000000020000284        0x4 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.obj
+                0x000000002000028c        0x4 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.obj
  .preinit_array.00020
-                0x0000000020000288        0x4 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
+                0x0000000020000290        0x4 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
  .preinit_array.00020
-                0x000000002000028c        0x4 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_float/float_aeabi.S.obj
+                0x0000000020000294        0x4 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_float/float_aeabi.S.obj
  *(.preinit_array)
-                0x0000000020000290                PROVIDE (__preinit_array_end = .)
-                0x0000000020000290                . = ALIGN (0x4)
-                0x0000000020000290                PROVIDE (__init_array_start = .)
+                0x0000000020000298                PROVIDE (__preinit_array_end = .)
+                0x0000000020000298                . = ALIGN (0x4)
+                0x0000000020000298                PROVIDE (__init_array_start = .)
  *(SORT_BY_NAME(.init_array.*))
  *(.init_array)
- .init_array    0x0000000020000290        0x4 /usr/lib/gcc/arm-none-eabi/12.2.1/thumb/v6-m/nofp/crtbegin.o
- .init_array    0x0000000020000294        0x4 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/ThirdParty/GCC/RP2040/port.c.obj
-                0x0000000020000298                PROVIDE (__init_array_end = .)
-                0x0000000020000298                . = ALIGN (0x4)
-                0x0000000020000298                PROVIDE (__fini_array_start = .)
+ .init_array    0x0000000020000298        0x4 /usr/lib/gcc/arm-none-eabi/12.2.1/thumb/v6-m/nofp/crtbegin.o
+ .init_array    0x000000002000029c        0x4 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/ThirdParty/GCC/RP2040/port.c.obj
+                0x00000000200002a0                PROVIDE (__init_array_end = .)
+                0x00000000200002a0                . = ALIGN (0x4)
+                0x00000000200002a0                PROVIDE (__fini_array_start = .)
  *(SORT_BY_NAME(.fini_array.*))
  *(.fini_array)
-                0x0000000020000298                PROVIDE (__fini_array_end = .)
+                0x00000000200002a0                PROVIDE (__fini_array_end = .)
  *(.jcr)
-                0x0000000020000298                . = ALIGN (0x4)
-                0x0000000020000298                __data_end__ = .
-                0x0000000010004be4                __etext = LOADADDR (.data)
+                0x00000000200002a0                . = ALIGN (0x4)
+                0x00000000200002a0                __data_end__ = .
+                0x0000000010004c14                __etext = LOADADDR (.data)
 
 .tm_clone_table
-                0x0000000020000298        0x0 load address 0x0000000010004dbc
+                0x00000000200002a0        0x0 load address 0x0000000010004df4
  .tm_clone_table
-                0x0000000020000298        0x0 /usr/lib/gcc/arm-none-eabi/12.2.1/thumb/v6-m/nofp/crtbegin.o
+                0x00000000200002a0        0x0 /usr/lib/gcc/arm-none-eabi/12.2.1/thumb/v6-m/nofp/crtbegin.o
  .tm_clone_table
-                0x0000000020000298        0x0 /usr/lib/gcc/arm-none-eabi/12.2.1/thumb/v6-m/nofp/crtend.o
+                0x00000000200002a0        0x0 /usr/lib/gcc/arm-none-eabi/12.2.1/thumb/v6-m/nofp/crtend.o
 
-.igot.plt       0x0000000020000298        0x0 load address 0x0000000010004dbc
- .igot.plt      0x0000000020000298        0x0 /usr/lib/gcc/arm-none-eabi/12.2.1/thumb/v6-m/nofp/crtbegin.o
+.igot.plt       0x00000000200002a0        0x0 load address 0x0000000010004df4
+ .igot.plt      0x00000000200002a0        0x0 /usr/lib/gcc/arm-none-eabi/12.2.1/thumb/v6-m/nofp/crtbegin.o
 
 .uninitialized_data
-                0x0000000020000298        0x0 load address 0x0000000010004dbc
-                0x0000000020000298                . = ALIGN (0x4)
+                0x00000000200002a0        0x0 load address 0x0000000010004df4
+                0x00000000200002a0                . = ALIGN (0x4)
  *(.uninitialized_data*)
 
-.scratch_x      0x0000000020040000        0x0 load address 0x0000000010004dbc
+.scratch_x      0x0000000020040000        0x0 load address 0x0000000010004df4
                 0x0000000020040000                __scratch_x_start__ = .
  *(.scratch_x.*)
                 0x0000000020040000                . = ALIGN (0x4)
                 0x0000000020040000                __scratch_x_end__ = .
-                0x0000000010004dbc                __scratch_x_source__ = LOADADDR (.scratch_x)
+                0x0000000010004df4                __scratch_x_source__ = LOADADDR (.scratch_x)
 
-.scratch_y      0x0000000020041000        0x0 load address 0x0000000010004dbc
+.scratch_y      0x0000000020041000        0x0 load address 0x0000000010004df4
                 0x0000000020041000                __scratch_y_start__ = .
  *(.scratch_y.*)
                 0x0000000020041000                . = ALIGN (0x4)
                 0x0000000020041000                __scratch_y_end__ = .
-                0x0000000010004dbc                __scratch_y_source__ = LOADADDR (.scratch_y)
+                0x0000000010004df4                __scratch_y_source__ = LOADADDR (.scratch_y)
 
-.bss            0x0000000020000298    0x207b0
-                0x0000000020000298                . = ALIGN (0x4)
-                0x0000000020000298                __bss_start__ = .
+.bss            0x00000000200002a0    0x207ac
+                0x00000000200002a0                . = ALIGN (0x4)
+                0x00000000200002a0                __bss_start__ = .
  *(SORT_BY_ALIGNMENT(SORT_BY_NAME(.bss*)))
  .bss.configured_freq
-                0x0000000020000298       0x28 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.obj
+                0x00000000200002a0       0x28 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.obj
  .bss.default_alarm_pool_entries
-                0x00000000200002c0      0x100 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_time/time.c.obj
- .bss.sd_table  0x00000000200003c0      0x100 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_double/double_init_rom.c.obj
-                0x00000000200003c0                sd_table
- .bss.sf_table  0x00000000200004c0      0x100 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_float/float_init_rom.c.obj
-                0x00000000200004c0                sf_table
+                0x00000000200002c8      0x100 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_time/time.c.obj
+ .bss.sd_table  0x00000000200003c8      0x100 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_double/double_init_rom.c.obj
+                0x00000000200003c8                sd_table
+ .bss.sf_table  0x00000000200004c8      0x100 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_float/float_init_rom.c.obj
+                0x00000000200004c8                sf_table
  .bss.xQueueRegistry
-                0x00000000200005c0       0x40 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/queue.c.obj
-                0x00000000200005c0                xQueueRegistry
- .bss           0x0000000020000600       0x1c /usr/lib/gcc/arm-none-eabi/12.2.1/thumb/v6-m/nofp/crtbegin.o
+                0x00000000200005c8       0x40 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/queue.c.obj
+                0x00000000200005c8                xQueueRegistry
+ .bss           0x0000000020000608       0x1c /usr/lib/gcc/arm-none-eabi/12.2.1/thumb/v6-m/nofp/crtbegin.o
  .bss.alarm_callbacks
-                0x000000002000061c       0x10 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
+                0x0000000020000624       0x10 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
  .bss.chars_available_callback
-                0x000000002000062c        0x4 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
+                0x0000000020000634        0x4 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
  .bss.chars_available_param
-                0x0000000020000630        0x4 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
- .bss.chars_rxed
-                0x0000000020000634        0x4 CMakeFiles/rp2040-freertos-template.dir/tasks.c.obj
+                0x0000000020000638        0x4 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
  .bss.default_alarm_pool_entry_ids_high
-                0x0000000020000638       0x10 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_time/time.c.obj
+                0x000000002000063c       0x10 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_time/time.c.obj
  .bss.default_alarm_pool_heap_nodes
-                0x0000000020000648       0x30 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_time/time.c.obj
- .bss.drivers   0x0000000020000678        0x4 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
- .bss.filter    0x000000002000067c        0x4 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+                0x000000002000064c       0x30 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_time/time.c.obj
+ .bss.drivers   0x000000002000067c        0x4 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+ .bss.filter    0x0000000020000680        0x4 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
  .bss.lazy_vsnprintf
-                0x0000000020000680        0x4 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
- .bss.pools     0x0000000020000684       0x10 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_time/time.c.obj
+                0x0000000020000684        0x4 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+ .bss.pools     0x0000000020000688       0x10 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_time/time.c.obj
  .bss.pxCrossCoreSpinLock
-                0x0000000020000694        0x4 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/ThirdParty/GCC/RP2040/port.c.obj
+                0x0000000020000698        0x4 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/ThirdParty/GCC/RP2040/port.c.obj
  .bss.pxCurrentTCB
-                0x0000000020000698        0x4 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
-                0x0000000020000698                pxCurrentTCB
+                0x000000002000069c        0x4 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
+                0x000000002000069c                pxCurrentTCB
  .bss.pxCurrentTimerList
-                0x000000002000069c        0x4 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/timers.c.obj
+                0x00000000200006a0        0x4 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/timers.c.obj
  .bss.pxDelayedTaskList
-                0x00000000200006a0        0x4 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
- .bss.pxEnd     0x00000000200006a4        0x4 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/MemMang/heap_4.c.obj
+                0x00000000200006a4        0x4 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
+ .bss.pxEnd     0x00000000200006a8        0x4 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/MemMang/heap_4.c.obj
  .bss.pxOverflowDelayedTaskList
-                0x00000000200006a8        0x4 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
+                0x00000000200006ac        0x4 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
  .bss.pxOverflowTimerList
-                0x00000000200006ac        0x4 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/timers.c.obj
+                0x00000000200006b0        0x4 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/timers.c.obj
  .bss.pxReadyTasksLists
-                0x00000000200006b0      0x280 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
+                0x00000000200006b4      0x280 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
  .bss.pxYieldSpinLock
-                0x0000000020000930        0x4 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/ThirdParty/GCC/RP2040/port.c.obj
+                0x0000000020000934        0x4 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/ThirdParty/GCC/RP2040/port.c.obj
  .bss.sf_clz_func
-                0x0000000020000934        0x4 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_double/double_init_rom.c.obj
-                0x0000000020000934                sf_clz_func
+                0x0000000020000938        0x4 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_double/double_init_rom.c.obj
+                0x0000000020000938                sf_clz_func
  .bss.sleep_notifier
-                0x0000000020000938        0x4 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_time/time.c.obj
+                0x000000002000093c        0x4 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_time/time.c.obj
  .bss.target_hi
-                0x000000002000093c       0x10 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
+                0x0000000020000940       0x10 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
  .bss.uart_char_to_line_feed
-                0x000000002000094c        0x4 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_uart/uart.c.obj
-                0x000000002000094c                uart_char_to_line_feed
+                0x0000000020000950        0x4 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_uart/uart.c.obj
+                0x0000000020000950                uart_char_to_line_feed
  .bss.uart_instance
-                0x0000000020000950        0x4 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
- .bss.ucHeap    0x0000000020000954    0x20000 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/MemMang/heap_4.c.obj
+                0x0000000020000954        0x4 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
+ .bss.ucHeap    0x0000000020000958    0x20000 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/MemMang/heap_4.c.obj
  .bss.ulYieldSpinLockSaveValue
-                0x0000000020020954        0x4 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/ThirdParty/GCC/RP2040/port.c.obj
- .bss.uxCriticalNesting
                 0x0000000020020958        0x4 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/ThirdParty/GCC/RP2040/port.c.obj
- .bss.uxCrossCoreEventBits
+ .bss.uxCriticalNesting
                 0x000000002002095c        0x4 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/ThirdParty/GCC/RP2040/port.c.obj
+ .bss.uxCrossCoreEventBits
+                0x0000000020020960        0x4 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/ThirdParty/GCC/RP2040/port.c.obj
  .bss.uxCurrentNumberOfTasks
-                0x0000000020020960        0x4 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
- .bss.uxDeletedTasksWaitingCleanUp
                 0x0000000020020964        0x4 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
- .bss.uxSchedulerSuspended
+ .bss.uxDeletedTasksWaitingCleanUp
                 0x0000000020020968        0x4 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
- .bss.uxTaskNumber
+ .bss.uxSchedulerSuspended
                 0x000000002002096c        0x4 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
- .bss.uxTopReadyPriority
+ .bss.uxTaskNumber
                 0x0000000020020970        0x4 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
+ .bss.uxTopReadyPriority
+                0x0000000020020974        0x4 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
  .bss.xActiveTimerList1
-                0x0000000020020974       0x14 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/timers.c.obj
+                0x0000000020020978       0x14 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/timers.c.obj
  .bss.xActiveTimerList2
-                0x0000000020020988       0x14 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/timers.c.obj
+                0x000000002002098c       0x14 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/timers.c.obj
  .bss.xDelayedTaskList1
-                0x000000002002099c       0x14 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
+                0x00000000200209a0       0x14 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
  .bss.xDelayedTaskList2
-                0x00000000200209b0       0x14 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
+                0x00000000200209b4       0x14 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
  .bss.xEventGroup
-                0x00000000200209c4        0x4 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/ThirdParty/GCC/RP2040/port.c.obj
+                0x00000000200209c8        0x4 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/ThirdParty/GCC/RP2040/port.c.obj
  .bss.xFreeBytesRemaining
-                0x00000000200209c8        0x4 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/MemMang/heap_4.c.obj
+                0x00000000200209cc        0x4 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/MemMang/heap_4.c.obj
  .bss.xIdleTaskHandles
-                0x00000000200209cc        0x4 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
+                0x00000000200209d0        0x4 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
  .bss.xLastTime.0
-                0x00000000200209d0        0x4 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/timers.c.obj
+                0x00000000200209d4        0x4 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/timers.c.obj
  .bss.xMinimumEverFreeBytesRemaining
-                0x00000000200209d4        0x4 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/MemMang/heap_4.c.obj
+                0x00000000200209d8        0x4 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/MemMang/heap_4.c.obj
  .bss.xNextTaskUnblockTime
-                0x00000000200209d8        0x4 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
- .bss.xNumOfOverflows
                 0x00000000200209dc        0x4 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
+ .bss.xNumOfOverflows
+                0x00000000200209e0        0x4 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
  .bss.xNumberOfSuccessfulAllocations
-                0x00000000200209e0        0x4 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/MemMang/heap_4.c.obj
- .bss.xNumberOfSuccessfulFrees
                 0x00000000200209e4        0x4 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/MemMang/heap_4.c.obj
+ .bss.xNumberOfSuccessfulFrees
+                0x00000000200209e8        0x4 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/MemMang/heap_4.c.obj
  .bss.xPendedTicks
-                0x00000000200209e8        0x4 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
+                0x00000000200209ec        0x4 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
  .bss.xPendingReadyList
-                0x00000000200209ec       0x14 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
+                0x00000000200209f0       0x14 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
  .bss.xSchedulerRunning
-                0x0000000020020a00        0x4 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
- .bss.xStart    0x0000000020020a04        0x8 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/MemMang/heap_4.c.obj
+                0x0000000020020a04        0x4 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
+ .bss.xStart    0x0000000020020a08        0x8 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/MemMang/heap_4.c.obj
  .bss.xSuspendedTaskList
-                0x0000000020020a0c       0x14 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
+                0x0000000020020a10       0x14 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
  .bss.xTasksWaitingTermination
-                0x0000000020020a20       0x14 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
+                0x0000000020020a24       0x14 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
  .bss.xTickCount
-                0x0000000020020a34        0x4 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
+                0x0000000020020a38        0x4 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
  .bss.xTimerQueue
-                0x0000000020020a38        0x4 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/timers.c.obj
- .bss.xTimerTaskHandle
                 0x0000000020020a3c        0x4 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/timers.c.obj
+ .bss.xTimerTaskHandle
+                0x0000000020020a40        0x4 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/timers.c.obj
  .bss.xYieldPendings
-                0x0000000020020a40        0x4 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
- .bss.claimed   0x0000000020020a44        0x1 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
+                0x0000000020020a44        0x4 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
+ .bss.claimed   0x0000000020020a48        0x1 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
  .bss.irq_hander_chain_free_slot_head
-                0x0000000020020a45        0x1 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+                0x0000000020020a49        0x1 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
  .bss.timer_callbacks_pending
-                0x0000000020020a46        0x1 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
+                0x0000000020020a4a        0x1 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
  *(COMMON)
-                0x0000000020020a48                . = ALIGN (0x4)
- *fill*         0x0000000020020a47        0x1 
-                0x0000000020020a48                __bss_end__ = .
+                0x0000000020020a4c                . = ALIGN (0x4)
+ *fill*         0x0000000020020a4b        0x1 
+                0x0000000020020a4c                __bss_end__ = .
 
-.heap           0x0000000020020a48      0x800
-                0x0000000020020a48                __end__ = .
-                0x0000000020020a48                end = __end__
+.heap           0x0000000020020a4c      0x800
+                0x0000000020020a4c                __end__ = .
+                0x0000000020020a4c                end = __end__
  *(.heap*)
- .heap          0x0000000020020a48      0x800 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_standard_link/crt0.S.obj
-                0x0000000020021248                __HeapLimit = .
+ .heap          0x0000000020020a4c      0x800 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_standard_link/crt0.S.obj
+                0x000000002002124c                __HeapLimit = .
 
 .stack1_dummy   0x0000000020040000      0x800
  *(.stack1*)
@@ -2496,8 +2544,8 @@ LOAD /usr/lib/gcc/arm-none-eabi/12.2.1/../../../arm-none-eabi/lib/thumb/v6-m/nof
  *(.stack*)
  .stack         0x0000000020041000      0x800 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_standard_link/crt0.S.obj
 
-.flash_end      0x0000000010004dbc        0x0
-                0x0000000010004dbc                PROVIDE (__flash_binary_end = .)
+.flash_end      0x0000000010004df4        0x0
+                0x0000000010004df4                PROVIDE (__flash_binary_end = .)
                 0x0000000020040000                __StackLimit = (ORIGIN (RAM) + LENGTH (RAM))
                 0x0000000020041000                __StackOneTop = (ORIGIN (SCRATCH_X) + LENGTH (SCRATCH_X))
                 0x0000000020042000                __StackTop = (ORIGIN (SCRATCH_Y) + LENGTH (SCRATCH_Y))
@@ -2508,6 +2556,7 @@ LOAD /usr/lib/gcc/arm-none-eabi/12.2.1/../../../arm-none-eabi/lib/thumb/v6-m/nof
                 0x0000000000000001                ASSERT (((__binary_info_header_end - __logical_binary_start) <= 0x100), Binary info must be in first 256 bytes of the binary)
 LOAD CMakeFiles/rp2040-freertos-template.dir/main.c.obj
 LOAD CMakeFiles/rp2040-freertos-template.dir/tasks.c.obj
+LOAD CMakeFiles/rp2040-freertos-template.dir/queues.c.obj
 LOAD CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdlib/stdlib.c.obj
 LOAD CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.obj
 LOAD CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_platform/platform.c.obj
@@ -2553,6 +2602,7 @@ LOAD CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pic
 LOAD CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
 LOAD CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
 LOAD CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
+LOAD CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.obj
 LOAD CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/MemMang/heap_4.c.obj
 LOAD CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/ThirdParty/GCC/RP2040/port.c.obj
 LOAD CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/croutine.c.obj
@@ -2564,7 +2614,7 @@ LOAD CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
 LOAD CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/timers.c.obj
 LOAD CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_exception/exception.c.obj
 LOAD CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_multicore/multicore.c.obj
-LOAD /tmp/ccqPP6VB.o
+LOAD /tmp/ccdYCspX.o
 LOAD /usr/lib/gcc/arm-none-eabi/12.2.1/../../../arm-none-eabi/lib/thumb/v6-m/nofp/libstdc++.a
 LOAD /usr/lib/gcc/arm-none-eabi/12.2.1/../../../arm-none-eabi/lib/thumb/v6-m/nofp/libm.a
 START GROUP
@@ -2658,31 +2708,33 @@ LOAD linker stubs
  .ARM.attributes
                 0x00000000000005c8       0x2c CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
  .ARM.attributes
-                0x00000000000005f4       0x2c CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/MemMang/heap_4.c.obj
+                0x00000000000005f4       0x2c CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.obj
  .ARM.attributes
-                0x0000000000000620       0x2c CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/ThirdParty/GCC/RP2040/port.c.obj
+                0x0000000000000620       0x2c CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/MemMang/heap_4.c.obj
  .ARM.attributes
-                0x000000000000064c       0x2c CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/event_groups.c.obj
+                0x000000000000064c       0x2c CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/ThirdParty/GCC/RP2040/port.c.obj
  .ARM.attributes
-                0x0000000000000678       0x2c CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/list.c.obj
+                0x0000000000000678       0x2c CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/event_groups.c.obj
  .ARM.attributes
-                0x00000000000006a4       0x2c CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/queue.c.obj
+                0x00000000000006a4       0x2c CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/list.c.obj
  .ARM.attributes
-                0x00000000000006d0       0x2c CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
+                0x00000000000006d0       0x2c CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/queue.c.obj
  .ARM.attributes
-                0x00000000000006fc       0x2c CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/timers.c.obj
+                0x00000000000006fc       0x2c CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
  .ARM.attributes
-                0x0000000000000728       0x2c CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_exception/exception.c.obj
+                0x0000000000000728       0x2c CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/timers.c.obj
  .ARM.attributes
-                0x0000000000000754       0x2c CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_multicore/multicore.c.obj
+                0x0000000000000754       0x2c CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_exception/exception.c.obj
  .ARM.attributes
-                0x0000000000000780       0x22 /tmp/ccqPP6VB.o
+                0x0000000000000780       0x2c CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_multicore/multicore.c.obj
  .ARM.attributes
-                0x00000000000007a2       0x1e /usr/lib/gcc/arm-none-eabi/12.2.1/thumb/v6-m/nofp/libgcc.a(_dvmd_tls.o)
+                0x00000000000007ac       0x22 /tmp/ccdYCspX.o
  .ARM.attributes
-                0x00000000000007c0       0x2c /usr/lib/gcc/arm-none-eabi/12.2.1/../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc.a(lib_a-strlen-stub.o)
+                0x00000000000007ce       0x1e /usr/lib/gcc/arm-none-eabi/12.2.1/thumb/v6-m/nofp/libgcc.a(_dvmd_tls.o)
  .ARM.attributes
-                0x00000000000007ec       0x2c /usr/lib/gcc/arm-none-eabi/12.2.1/thumb/v6-m/nofp/crtend.o
+                0x00000000000007ec       0x2c /usr/lib/gcc/arm-none-eabi/12.2.1/../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc.a(lib_a-strlen-stub.o)
+ .ARM.attributes
+                0x0000000000000818       0x2c /usr/lib/gcc/arm-none-eabi/12.2.1/thumb/v6-m/nofp/crtend.o
 
 .comment        0x0000000000000000       0x59
  .comment       0x0000000000000000       0x26 /usr/lib/gcc/arm-none-eabi/12.2.1/thumb/v6-m/nofp/crtbegin.o
@@ -2713,6 +2765,7 @@ LOAD linker stubs
  .comment       0x0000000000000026       0x27 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
  .comment       0x0000000000000026       0x27 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
  .comment       0x0000000000000026       0x27 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
+ .comment       0x0000000000000026       0x27 CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.obj
  .comment       0x0000000000000026       0x27 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/MemMang/heap_4.c.obj
  .comment       0x0000000000000026       0x27 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/ThirdParty/GCC/RP2040/port.c.obj
  .comment       0x0000000000000026       0x27 CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/event_groups.c.obj

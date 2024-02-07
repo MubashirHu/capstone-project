@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/sarmad-alvi/Documents/rp2040-freertos-template
+CMAKE_SOURCE_DIR = "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/sarmad-alvi/Documents/rp2040-freertos-template/build
+CMAKE_BINARY_DIR = "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build"
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,14 +87,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/sarmad-alvi/Documents/rp2040-freertos-template/build/CMakeFiles /home/sarmad-alvi/Documents/rp2040-freertos-template/build/src//CMakeFiles/progress.marks
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/sarmad-alvi/Documents/rp2040-freertos-template/build/CMakeFiles 0
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(CMAKE_COMMAND) -E cmake_progress_start "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build/CMakeFiles" "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build/src//CMakeFiles/progress.marks"
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/all
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build/CMakeFiles" 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/clean
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/clean
 .PHONY : clean
 
 # The main clean target
@@ -103,36 +103,36 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/preinstall
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/preinstall
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
-src/CMakeFiles/rp2040-freertos-template.dir/rule:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/CMakeFiles/rp2040-freertos-template.dir/rule
-.PHONY : src/CMakeFiles/rp2040-freertos-template.dir/rule
+src/CMakeFiles/IOT_Car_Base.dir/rule:
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/CMakeFiles/IOT_Car_Base.dir/rule
+.PHONY : src/CMakeFiles/IOT_Car_Base.dir/rule
 
 # Convenience name for target.
-rp2040-freertos-template: src/CMakeFiles/rp2040-freertos-template.dir/rule
-.PHONY : rp2040-freertos-template
+IOT_Car_Base: src/CMakeFiles/IOT_Car_Base.dir/rule
+.PHONY : IOT_Car_Base
 
 # fast build rule for target.
-rp2040-freertos-template/fast:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/build
-.PHONY : rp2040-freertos-template/fast
+IOT_Car_Base/fast:
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/build
+.PHONY : IOT_Car_Base/fast
 
 # Convenience name for target.
 src/CMakeFiles/ELF2UF2Build.dir/rule:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/CMakeFiles/ELF2UF2Build.dir/rule
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/CMakeFiles/ELF2UF2Build.dir/rule
 .PHONY : src/CMakeFiles/ELF2UF2Build.dir/rule
 
 # Convenience name for target.
@@ -141,7 +141,7 @@ ELF2UF2Build: src/CMakeFiles/ELF2UF2Build.dir/rule
 
 # fast build rule for target.
 ELF2UF2Build/fast:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/ELF2UF2Build.dir/build.make src/CMakeFiles/ELF2UF2Build.dir/build
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/ELF2UF2Build.dir/build.make src/CMakeFiles/ELF2UF2Build.dir/build
 .PHONY : ELF2UF2Build/fast
 
 __/lib/FreeRTOS-Kernel/croutine.obj: __/lib/FreeRTOS-Kernel/croutine.c.obj
@@ -149,7 +149,7 @@ __/lib/FreeRTOS-Kernel/croutine.obj: __/lib/FreeRTOS-Kernel/croutine.c.obj
 
 # target to build an object file
 __/lib/FreeRTOS-Kernel/croutine.c.obj:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/croutine.c.obj
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/__/lib/FreeRTOS-Kernel/croutine.c.obj
 .PHONY : __/lib/FreeRTOS-Kernel/croutine.c.obj
 
 __/lib/FreeRTOS-Kernel/croutine.i: __/lib/FreeRTOS-Kernel/croutine.c.i
@@ -157,7 +157,7 @@ __/lib/FreeRTOS-Kernel/croutine.i: __/lib/FreeRTOS-Kernel/croutine.c.i
 
 # target to preprocess a source file
 __/lib/FreeRTOS-Kernel/croutine.c.i:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/croutine.c.i
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/__/lib/FreeRTOS-Kernel/croutine.c.i
 .PHONY : __/lib/FreeRTOS-Kernel/croutine.c.i
 
 __/lib/FreeRTOS-Kernel/croutine.s: __/lib/FreeRTOS-Kernel/croutine.c.s
@@ -165,7 +165,7 @@ __/lib/FreeRTOS-Kernel/croutine.s: __/lib/FreeRTOS-Kernel/croutine.c.s
 
 # target to generate assembly for a file
 __/lib/FreeRTOS-Kernel/croutine.c.s:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/croutine.c.s
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/__/lib/FreeRTOS-Kernel/croutine.c.s
 .PHONY : __/lib/FreeRTOS-Kernel/croutine.c.s
 
 __/lib/FreeRTOS-Kernel/event_groups.obj: __/lib/FreeRTOS-Kernel/event_groups.c.obj
@@ -173,7 +173,7 @@ __/lib/FreeRTOS-Kernel/event_groups.obj: __/lib/FreeRTOS-Kernel/event_groups.c.o
 
 # target to build an object file
 __/lib/FreeRTOS-Kernel/event_groups.c.obj:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/event_groups.c.obj
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/__/lib/FreeRTOS-Kernel/event_groups.c.obj
 .PHONY : __/lib/FreeRTOS-Kernel/event_groups.c.obj
 
 __/lib/FreeRTOS-Kernel/event_groups.i: __/lib/FreeRTOS-Kernel/event_groups.c.i
@@ -181,7 +181,7 @@ __/lib/FreeRTOS-Kernel/event_groups.i: __/lib/FreeRTOS-Kernel/event_groups.c.i
 
 # target to preprocess a source file
 __/lib/FreeRTOS-Kernel/event_groups.c.i:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/event_groups.c.i
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/__/lib/FreeRTOS-Kernel/event_groups.c.i
 .PHONY : __/lib/FreeRTOS-Kernel/event_groups.c.i
 
 __/lib/FreeRTOS-Kernel/event_groups.s: __/lib/FreeRTOS-Kernel/event_groups.c.s
@@ -189,7 +189,7 @@ __/lib/FreeRTOS-Kernel/event_groups.s: __/lib/FreeRTOS-Kernel/event_groups.c.s
 
 # target to generate assembly for a file
 __/lib/FreeRTOS-Kernel/event_groups.c.s:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/event_groups.c.s
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/__/lib/FreeRTOS-Kernel/event_groups.c.s
 .PHONY : __/lib/FreeRTOS-Kernel/event_groups.c.s
 
 __/lib/FreeRTOS-Kernel/list.obj: __/lib/FreeRTOS-Kernel/list.c.obj
@@ -197,7 +197,7 @@ __/lib/FreeRTOS-Kernel/list.obj: __/lib/FreeRTOS-Kernel/list.c.obj
 
 # target to build an object file
 __/lib/FreeRTOS-Kernel/list.c.obj:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/list.c.obj
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/__/lib/FreeRTOS-Kernel/list.c.obj
 .PHONY : __/lib/FreeRTOS-Kernel/list.c.obj
 
 __/lib/FreeRTOS-Kernel/list.i: __/lib/FreeRTOS-Kernel/list.c.i
@@ -205,7 +205,7 @@ __/lib/FreeRTOS-Kernel/list.i: __/lib/FreeRTOS-Kernel/list.c.i
 
 # target to preprocess a source file
 __/lib/FreeRTOS-Kernel/list.c.i:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/list.c.i
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/__/lib/FreeRTOS-Kernel/list.c.i
 .PHONY : __/lib/FreeRTOS-Kernel/list.c.i
 
 __/lib/FreeRTOS-Kernel/list.s: __/lib/FreeRTOS-Kernel/list.c.s
@@ -213,7 +213,7 @@ __/lib/FreeRTOS-Kernel/list.s: __/lib/FreeRTOS-Kernel/list.c.s
 
 # target to generate assembly for a file
 __/lib/FreeRTOS-Kernel/list.c.s:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/list.c.s
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/__/lib/FreeRTOS-Kernel/list.c.s
 .PHONY : __/lib/FreeRTOS-Kernel/list.c.s
 
 __/lib/FreeRTOS-Kernel/portable/MemMang/heap_4.obj: __/lib/FreeRTOS-Kernel/portable/MemMang/heap_4.c.obj
@@ -221,7 +221,7 @@ __/lib/FreeRTOS-Kernel/portable/MemMang/heap_4.obj: __/lib/FreeRTOS-Kernel/porta
 
 # target to build an object file
 __/lib/FreeRTOS-Kernel/portable/MemMang/heap_4.c.obj:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/MemMang/heap_4.c.obj
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/__/lib/FreeRTOS-Kernel/portable/MemMang/heap_4.c.obj
 .PHONY : __/lib/FreeRTOS-Kernel/portable/MemMang/heap_4.c.obj
 
 __/lib/FreeRTOS-Kernel/portable/MemMang/heap_4.i: __/lib/FreeRTOS-Kernel/portable/MemMang/heap_4.c.i
@@ -229,7 +229,7 @@ __/lib/FreeRTOS-Kernel/portable/MemMang/heap_4.i: __/lib/FreeRTOS-Kernel/portabl
 
 # target to preprocess a source file
 __/lib/FreeRTOS-Kernel/portable/MemMang/heap_4.c.i:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/MemMang/heap_4.c.i
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/__/lib/FreeRTOS-Kernel/portable/MemMang/heap_4.c.i
 .PHONY : __/lib/FreeRTOS-Kernel/portable/MemMang/heap_4.c.i
 
 __/lib/FreeRTOS-Kernel/portable/MemMang/heap_4.s: __/lib/FreeRTOS-Kernel/portable/MemMang/heap_4.c.s
@@ -237,7 +237,7 @@ __/lib/FreeRTOS-Kernel/portable/MemMang/heap_4.s: __/lib/FreeRTOS-Kernel/portabl
 
 # target to generate assembly for a file
 __/lib/FreeRTOS-Kernel/portable/MemMang/heap_4.c.s:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/MemMang/heap_4.c.s
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/__/lib/FreeRTOS-Kernel/portable/MemMang/heap_4.c.s
 .PHONY : __/lib/FreeRTOS-Kernel/portable/MemMang/heap_4.c.s
 
 __/lib/FreeRTOS-Kernel/portable/ThirdParty/GCC/RP2040/port.obj: __/lib/FreeRTOS-Kernel/portable/ThirdParty/GCC/RP2040/port.c.obj
@@ -245,7 +245,7 @@ __/lib/FreeRTOS-Kernel/portable/ThirdParty/GCC/RP2040/port.obj: __/lib/FreeRTOS-
 
 # target to build an object file
 __/lib/FreeRTOS-Kernel/portable/ThirdParty/GCC/RP2040/port.c.obj:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/ThirdParty/GCC/RP2040/port.c.obj
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/__/lib/FreeRTOS-Kernel/portable/ThirdParty/GCC/RP2040/port.c.obj
 .PHONY : __/lib/FreeRTOS-Kernel/portable/ThirdParty/GCC/RP2040/port.c.obj
 
 __/lib/FreeRTOS-Kernel/portable/ThirdParty/GCC/RP2040/port.i: __/lib/FreeRTOS-Kernel/portable/ThirdParty/GCC/RP2040/port.c.i
@@ -253,7 +253,7 @@ __/lib/FreeRTOS-Kernel/portable/ThirdParty/GCC/RP2040/port.i: __/lib/FreeRTOS-Ke
 
 # target to preprocess a source file
 __/lib/FreeRTOS-Kernel/portable/ThirdParty/GCC/RP2040/port.c.i:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/ThirdParty/GCC/RP2040/port.c.i
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/__/lib/FreeRTOS-Kernel/portable/ThirdParty/GCC/RP2040/port.c.i
 .PHONY : __/lib/FreeRTOS-Kernel/portable/ThirdParty/GCC/RP2040/port.c.i
 
 __/lib/FreeRTOS-Kernel/portable/ThirdParty/GCC/RP2040/port.s: __/lib/FreeRTOS-Kernel/portable/ThirdParty/GCC/RP2040/port.c.s
@@ -261,7 +261,7 @@ __/lib/FreeRTOS-Kernel/portable/ThirdParty/GCC/RP2040/port.s: __/lib/FreeRTOS-Ke
 
 # target to generate assembly for a file
 __/lib/FreeRTOS-Kernel/portable/ThirdParty/GCC/RP2040/port.c.s:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/portable/ThirdParty/GCC/RP2040/port.c.s
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/__/lib/FreeRTOS-Kernel/portable/ThirdParty/GCC/RP2040/port.c.s
 .PHONY : __/lib/FreeRTOS-Kernel/portable/ThirdParty/GCC/RP2040/port.c.s
 
 __/lib/FreeRTOS-Kernel/queue.obj: __/lib/FreeRTOS-Kernel/queue.c.obj
@@ -269,7 +269,7 @@ __/lib/FreeRTOS-Kernel/queue.obj: __/lib/FreeRTOS-Kernel/queue.c.obj
 
 # target to build an object file
 __/lib/FreeRTOS-Kernel/queue.c.obj:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/queue.c.obj
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/__/lib/FreeRTOS-Kernel/queue.c.obj
 .PHONY : __/lib/FreeRTOS-Kernel/queue.c.obj
 
 __/lib/FreeRTOS-Kernel/queue.i: __/lib/FreeRTOS-Kernel/queue.c.i
@@ -277,7 +277,7 @@ __/lib/FreeRTOS-Kernel/queue.i: __/lib/FreeRTOS-Kernel/queue.c.i
 
 # target to preprocess a source file
 __/lib/FreeRTOS-Kernel/queue.c.i:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/queue.c.i
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/__/lib/FreeRTOS-Kernel/queue.c.i
 .PHONY : __/lib/FreeRTOS-Kernel/queue.c.i
 
 __/lib/FreeRTOS-Kernel/queue.s: __/lib/FreeRTOS-Kernel/queue.c.s
@@ -285,7 +285,7 @@ __/lib/FreeRTOS-Kernel/queue.s: __/lib/FreeRTOS-Kernel/queue.c.s
 
 # target to generate assembly for a file
 __/lib/FreeRTOS-Kernel/queue.c.s:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/queue.c.s
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/__/lib/FreeRTOS-Kernel/queue.c.s
 .PHONY : __/lib/FreeRTOS-Kernel/queue.c.s
 
 __/lib/FreeRTOS-Kernel/stream_buffer.obj: __/lib/FreeRTOS-Kernel/stream_buffer.c.obj
@@ -293,7 +293,7 @@ __/lib/FreeRTOS-Kernel/stream_buffer.obj: __/lib/FreeRTOS-Kernel/stream_buffer.c
 
 # target to build an object file
 __/lib/FreeRTOS-Kernel/stream_buffer.c.obj:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/stream_buffer.c.obj
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/__/lib/FreeRTOS-Kernel/stream_buffer.c.obj
 .PHONY : __/lib/FreeRTOS-Kernel/stream_buffer.c.obj
 
 __/lib/FreeRTOS-Kernel/stream_buffer.i: __/lib/FreeRTOS-Kernel/stream_buffer.c.i
@@ -301,7 +301,7 @@ __/lib/FreeRTOS-Kernel/stream_buffer.i: __/lib/FreeRTOS-Kernel/stream_buffer.c.i
 
 # target to preprocess a source file
 __/lib/FreeRTOS-Kernel/stream_buffer.c.i:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/stream_buffer.c.i
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/__/lib/FreeRTOS-Kernel/stream_buffer.c.i
 .PHONY : __/lib/FreeRTOS-Kernel/stream_buffer.c.i
 
 __/lib/FreeRTOS-Kernel/stream_buffer.s: __/lib/FreeRTOS-Kernel/stream_buffer.c.s
@@ -309,7 +309,7 @@ __/lib/FreeRTOS-Kernel/stream_buffer.s: __/lib/FreeRTOS-Kernel/stream_buffer.c.s
 
 # target to generate assembly for a file
 __/lib/FreeRTOS-Kernel/stream_buffer.c.s:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/stream_buffer.c.s
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/__/lib/FreeRTOS-Kernel/stream_buffer.c.s
 .PHONY : __/lib/FreeRTOS-Kernel/stream_buffer.c.s
 
 __/lib/FreeRTOS-Kernel/tasks.obj: __/lib/FreeRTOS-Kernel/tasks.c.obj
@@ -317,7 +317,7 @@ __/lib/FreeRTOS-Kernel/tasks.obj: __/lib/FreeRTOS-Kernel/tasks.c.obj
 
 # target to build an object file
 __/lib/FreeRTOS-Kernel/tasks.c.obj:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/__/lib/FreeRTOS-Kernel/tasks.c.obj
 .PHONY : __/lib/FreeRTOS-Kernel/tasks.c.obj
 
 __/lib/FreeRTOS-Kernel/tasks.i: __/lib/FreeRTOS-Kernel/tasks.c.i
@@ -325,7 +325,7 @@ __/lib/FreeRTOS-Kernel/tasks.i: __/lib/FreeRTOS-Kernel/tasks.c.i
 
 # target to preprocess a source file
 __/lib/FreeRTOS-Kernel/tasks.c.i:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.i
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/__/lib/FreeRTOS-Kernel/tasks.c.i
 .PHONY : __/lib/FreeRTOS-Kernel/tasks.c.i
 
 __/lib/FreeRTOS-Kernel/tasks.s: __/lib/FreeRTOS-Kernel/tasks.c.s
@@ -333,7 +333,7 @@ __/lib/FreeRTOS-Kernel/tasks.s: __/lib/FreeRTOS-Kernel/tasks.c.s
 
 # target to generate assembly for a file
 __/lib/FreeRTOS-Kernel/tasks.c.s:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/tasks.c.s
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/__/lib/FreeRTOS-Kernel/tasks.c.s
 .PHONY : __/lib/FreeRTOS-Kernel/tasks.c.s
 
 __/lib/FreeRTOS-Kernel/timers.obj: __/lib/FreeRTOS-Kernel/timers.c.obj
@@ -341,7 +341,7 @@ __/lib/FreeRTOS-Kernel/timers.obj: __/lib/FreeRTOS-Kernel/timers.c.obj
 
 # target to build an object file
 __/lib/FreeRTOS-Kernel/timers.c.obj:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/timers.c.obj
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/__/lib/FreeRTOS-Kernel/timers.c.obj
 .PHONY : __/lib/FreeRTOS-Kernel/timers.c.obj
 
 __/lib/FreeRTOS-Kernel/timers.i: __/lib/FreeRTOS-Kernel/timers.c.i
@@ -349,7 +349,7 @@ __/lib/FreeRTOS-Kernel/timers.i: __/lib/FreeRTOS-Kernel/timers.c.i
 
 # target to preprocess a source file
 __/lib/FreeRTOS-Kernel/timers.c.i:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/timers.c.i
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/__/lib/FreeRTOS-Kernel/timers.c.i
 .PHONY : __/lib/FreeRTOS-Kernel/timers.c.i
 
 __/lib/FreeRTOS-Kernel/timers.s: __/lib/FreeRTOS-Kernel/timers.c.s
@@ -357,7 +357,7 @@ __/lib/FreeRTOS-Kernel/timers.s: __/lib/FreeRTOS-Kernel/timers.c.s
 
 # target to generate assembly for a file
 __/lib/FreeRTOS-Kernel/timers.c.s:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/__/lib/FreeRTOS-Kernel/timers.c.s
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/__/lib/FreeRTOS-Kernel/timers.c.s
 .PHONY : __/lib/FreeRTOS-Kernel/timers.c.s
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/critical_section.obj: home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/critical_section.c.obj
@@ -365,7 +365,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/critical_section.o
 
 # target to build an object file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/critical_section.c.obj:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/critical_section.c.obj
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/critical_section.c.obj
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/critical_section.c.obj
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/critical_section.i: home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/critical_section.c.i
@@ -373,7 +373,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/critical_section.i
 
 # target to preprocess a source file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/critical_section.c.i:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/critical_section.c.i
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/critical_section.c.i
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/critical_section.c.i
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/critical_section.s: home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/critical_section.c.s
@@ -381,7 +381,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/critical_section.s
 
 # target to generate assembly for a file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/critical_section.c.s:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/critical_section.c.s
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/critical_section.c.s
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/critical_section.c.s
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/lock_core.obj: home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/lock_core.c.obj
@@ -389,7 +389,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/lock_core.obj: hom
 
 # target to build an object file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/lock_core.c.obj:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/lock_core.c.obj
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/lock_core.c.obj
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/lock_core.c.obj
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/lock_core.i: home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/lock_core.c.i
@@ -397,7 +397,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/lock_core.i: home/
 
 # target to preprocess a source file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/lock_core.c.i:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/lock_core.c.i
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/lock_core.c.i
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/lock_core.c.i
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/lock_core.s: home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/lock_core.c.s
@@ -405,7 +405,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/lock_core.s: home/
 
 # target to generate assembly for a file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/lock_core.c.s:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/lock_core.c.s
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/lock_core.c.s
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/lock_core.c.s
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/mutex.obj: home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/mutex.c.obj
@@ -413,7 +413,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/mutex.obj: home/sa
 
 # target to build an object file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/mutex.c.obj:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/mutex.c.obj
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/mutex.c.obj
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/mutex.c.obj
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/mutex.i: home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/mutex.c.i
@@ -421,7 +421,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/mutex.i: home/sarm
 
 # target to preprocess a source file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/mutex.c.i:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/mutex.c.i
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/mutex.c.i
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/mutex.c.i
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/mutex.s: home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/mutex.c.s
@@ -429,7 +429,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/mutex.s: home/sarm
 
 # target to generate assembly for a file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/mutex.c.s:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/mutex.c.s
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/mutex.c.s
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/mutex.c.s
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/sem.obj: home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/sem.c.obj
@@ -437,7 +437,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/sem.obj: home/sarm
 
 # target to build an object file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/sem.c.obj:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/sem.c.obj
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/sem.c.obj
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/sem.c.obj
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/sem.i: home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/sem.c.i
@@ -445,7 +445,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/sem.i: home/sarmad
 
 # target to preprocess a source file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/sem.c.i:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/sem.c.i
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/sem.c.i
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/sem.c.i
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/sem.s: home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/sem.c.s
@@ -453,7 +453,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/sem.s: home/sarmad
 
 # target to generate assembly for a file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/sem.c.s:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/sem.c.s
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/sem.c.s
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_sync/sem.c.s
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_time/time.obj: home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_time/time.c.obj
@@ -461,7 +461,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_time/time.obj: home/sar
 
 # target to build an object file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_time/time.c.obj:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_time/time.c.obj
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_time/time.c.obj
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_time/time.c.obj
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_time/time.i: home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_time/time.c.i
@@ -469,7 +469,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_time/time.i: home/sarma
 
 # target to preprocess a source file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_time/time.c.i:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_time/time.c.i
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_time/time.c.i
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_time/time.c.i
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_time/time.s: home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_time/time.c.s
@@ -477,7 +477,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_time/time.s: home/sarma
 
 # target to generate assembly for a file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_time/time.c.s:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_time/time.c.s
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_time/time.c.s
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_time/time.c.s
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_time/timeout_helper.obj: home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_time/timeout_helper.c.obj
@@ -485,7 +485,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_time/timeout_helper.obj
 
 # target to build an object file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_time/timeout_helper.c.obj:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_time/timeout_helper.c.obj
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_time/timeout_helper.c.obj
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_time/timeout_helper.c.obj
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_time/timeout_helper.i: home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_time/timeout_helper.c.i
@@ -493,7 +493,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_time/timeout_helper.i: 
 
 # target to preprocess a source file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_time/timeout_helper.c.i:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_time/timeout_helper.c.i
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_time/timeout_helper.c.i
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_time/timeout_helper.c.i
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_time/timeout_helper.s: home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_time/timeout_helper.c.s
@@ -501,7 +501,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_time/timeout_helper.s: 
 
 # target to generate assembly for a file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_time/timeout_helper.c.s:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_time/timeout_helper.c.s
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_time/timeout_helper.c.s
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_time/timeout_helper.c.s
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_util/datetime.obj: home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_util/datetime.c.obj
@@ -509,7 +509,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_util/datetime.obj: home
 
 # target to build an object file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_util/datetime.c.obj:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_util/datetime.c.obj
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_util/datetime.c.obj
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_util/datetime.c.obj
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_util/datetime.i: home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_util/datetime.c.i
@@ -517,7 +517,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_util/datetime.i: home/s
 
 # target to preprocess a source file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_util/datetime.c.i:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_util/datetime.c.i
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_util/datetime.c.i
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_util/datetime.c.i
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_util/datetime.s: home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_util/datetime.c.s
@@ -525,7 +525,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_util/datetime.s: home/s
 
 # target to generate assembly for a file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_util/datetime.c.s:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_util/datetime.c.s
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_util/datetime.c.s
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_util/datetime.c.s
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_util/pheap.obj: home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_util/pheap.c.obj
@@ -533,7 +533,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_util/pheap.obj: home/sa
 
 # target to build an object file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_util/pheap.c.obj:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_util/pheap.c.obj
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_util/pheap.c.obj
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_util/pheap.c.obj
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_util/pheap.i: home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_util/pheap.c.i
@@ -541,7 +541,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_util/pheap.i: home/sarm
 
 # target to preprocess a source file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_util/pheap.c.i:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_util/pheap.c.i
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_util/pheap.c.i
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_util/pheap.c.i
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_util/pheap.s: home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_util/pheap.c.s
@@ -549,7 +549,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_util/pheap.s: home/sarm
 
 # target to generate assembly for a file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_util/pheap.c.s:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_util/pheap.c.s
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_util/pheap.c.s
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_util/pheap.c.s
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_util/queue.obj: home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_util/queue.c.obj
@@ -557,7 +557,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_util/queue.obj: home/sa
 
 # target to build an object file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_util/queue.c.obj:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_util/queue.c.obj
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_util/queue.c.obj
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_util/queue.c.obj
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_util/queue.i: home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_util/queue.c.i
@@ -565,7 +565,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_util/queue.i: home/sarm
 
 # target to preprocess a source file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_util/queue.c.i:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_util/queue.c.i
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_util/queue.c.i
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_util/queue.c.i
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_util/queue.s: home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_util/queue.c.s
@@ -573,7 +573,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_util/queue.s: home/sarm
 
 # target to generate assembly for a file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_util/queue.c.s:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_util/queue.c.s
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_util/queue.c.s
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/common/pico_util/queue.c.s
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_claim/claim.obj: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_claim/claim.c.obj
@@ -581,7 +581,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_claim/claim.obj
 
 # target to build an object file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_claim/claim.c.obj:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_claim/claim.c.obj
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_claim/claim.c.obj
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_claim/claim.c.obj
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_claim/claim.i: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_claim/claim.c.i
@@ -589,7 +589,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_claim/claim.i: 
 
 # target to preprocess a source file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_claim/claim.c.i:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_claim/claim.c.i
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_claim/claim.c.i
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_claim/claim.c.i
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_claim/claim.s: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_claim/claim.c.s
@@ -597,7 +597,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_claim/claim.s: 
 
 # target to generate assembly for a file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_claim/claim.c.s:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_claim/claim.c.s
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_claim/claim.c.s
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_claim/claim.c.s
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_clocks/clocks.obj: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.obj
@@ -605,7 +605,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_clocks/clocks.o
 
 # target to build an object file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.obj:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.obj
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.obj
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.obj
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_clocks/clocks.i: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.i
@@ -613,7 +613,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_clocks/clocks.i
 
 # target to preprocess a source file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.i:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.i
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.i
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.i
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_clocks/clocks.s: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.s
@@ -621,7 +621,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_clocks/clocks.s
 
 # target to generate assembly for a file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.s:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.s
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.s
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.s
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_divider/divider.obj: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_divider/divider.S.obj
@@ -629,7 +629,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_divider/divider
 
 # target to build an object file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_divider/divider.S.obj:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_divider/divider.S.obj
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_divider/divider.S.obj
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_divider/divider.S.obj
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_exception/exception.obj: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_exception/exception.c.obj
@@ -637,7 +637,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_exception/excep
 
 # target to build an object file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_exception/exception.c.obj:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_exception/exception.c.obj
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_exception/exception.c.obj
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_exception/exception.c.obj
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_exception/exception.i: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_exception/exception.c.i
@@ -645,7 +645,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_exception/excep
 
 # target to preprocess a source file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_exception/exception.c.i:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_exception/exception.c.i
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_exception/exception.c.i
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_exception/exception.c.i
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_exception/exception.s: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_exception/exception.c.s
@@ -653,7 +653,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_exception/excep
 
 # target to generate assembly for a file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_exception/exception.c.s:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_exception/exception.c.s
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_exception/exception.c.s
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_exception/exception.c.s
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_gpio/gpio.obj: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.obj
@@ -661,7 +661,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_gpio/gpio.obj: 
 
 # target to build an object file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.obj:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.obj
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.obj
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.obj
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_gpio/gpio.i: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.i
@@ -669,7 +669,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_gpio/gpio.i: ho
 
 # target to preprocess a source file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.i:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.i
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.i
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.i
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_gpio/gpio.s: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.s
@@ -677,15 +677,39 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_gpio/gpio.s: ho
 
 # target to generate assembly for a file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.s:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.s
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.s
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.s
+
+home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_i2c/i2c.obj: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.obj
+.PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_i2c/i2c.obj
+
+# target to build an object file
+home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.obj:
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.obj
+.PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.obj
+
+home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_i2c/i2c.i: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.i
+.PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_i2c/i2c.i
+
+# target to preprocess a source file
+home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.i:
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.i
+.PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.i
+
+home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_i2c/i2c.s: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.s
+.PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_i2c/i2c.s
+
+# target to generate assembly for a file
+home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.s:
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.s
+.PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.s
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_irq/irq.obj: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_irq/irq.obj
 
 # target to build an object file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_irq/irq.i: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_irq/irq.c.i
@@ -693,7 +717,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_irq/irq.i: home
 
 # target to preprocess a source file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_irq/irq.c.i:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_irq/irq.c.i
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_irq/irq.c.i
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_irq/irq.c.i
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_irq/irq.s: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_irq/irq.c.s
@@ -701,7 +725,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_irq/irq.s: home
 
 # target to generate assembly for a file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_irq/irq.c.s:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_irq/irq.c.s
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_irq/irq.c.s
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_irq/irq.c.s
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_irq/irq_handler_chain.obj: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_irq/irq_handler_chain.S.obj
@@ -709,7 +733,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_irq/irq_handler
 
 # target to build an object file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_irq/irq_handler_chain.S.obj:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_irq/irq_handler_chain.S.obj
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_irq/irq_handler_chain.S.obj
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_irq/irq_handler_chain.S.obj
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_pll/pll.obj: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_pll/pll.c.obj
@@ -717,7 +741,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_pll/pll.obj: ho
 
 # target to build an object file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_pll/pll.c.obj:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_pll/pll.c.obj
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_pll/pll.c.obj
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_pll/pll.c.obj
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_pll/pll.i: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_pll/pll.c.i
@@ -725,7 +749,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_pll/pll.i: home
 
 # target to preprocess a source file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_pll/pll.c.i:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_pll/pll.c.i
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_pll/pll.c.i
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_pll/pll.c.i
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_pll/pll.s: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_pll/pll.c.s
@@ -733,7 +757,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_pll/pll.s: home
 
 # target to generate assembly for a file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_pll/pll.c.s:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_pll/pll.c.s
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_pll/pll.c.s
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_pll/pll.c.s
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_sync/sync.obj: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj
@@ -741,7 +765,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_sync/sync.obj: 
 
 # target to build an object file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_sync/sync.i: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_sync/sync.c.i
@@ -749,7 +773,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_sync/sync.i: ho
 
 # target to preprocess a source file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_sync/sync.c.i:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_sync/sync.c.i
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_sync/sync.c.i
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_sync/sync.c.i
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_sync/sync.s: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_sync/sync.c.s
@@ -757,7 +781,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_sync/sync.s: ho
 
 # target to generate assembly for a file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_sync/sync.c.s:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_sync/sync.c.s
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_sync/sync.c.s
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_sync/sync.c.s
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_timer/timer.obj: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
@@ -765,7 +789,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_timer/timer.obj
 
 # target to build an object file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_timer/timer.i: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_timer/timer.c.i
@@ -773,7 +797,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_timer/timer.i: 
 
 # target to preprocess a source file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_timer/timer.c.i:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_timer/timer.c.i
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_timer/timer.c.i
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_timer/timer.c.i
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_timer/timer.s: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_timer/timer.c.s
@@ -781,7 +805,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_timer/timer.s: 
 
 # target to generate assembly for a file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_timer/timer.c.s:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_timer/timer.c.s
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_timer/timer.c.s
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_timer/timer.c.s
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_uart/uart.obj: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_uart/uart.c.obj
@@ -789,7 +813,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_uart/uart.obj: 
 
 # target to build an object file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_uart/uart.c.obj:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_uart/uart.c.obj
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_uart/uart.c.obj
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_uart/uart.c.obj
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_uart/uart.i: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_uart/uart.c.i
@@ -797,7 +821,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_uart/uart.i: ho
 
 # target to preprocess a source file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_uart/uart.c.i:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_uart/uart.c.i
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_uart/uart.c.i
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_uart/uart.c.i
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_uart/uart.s: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_uart/uart.c.s
@@ -805,7 +829,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_uart/uart.s: ho
 
 # target to generate assembly for a file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_uart/uart.c.s:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_uart/uart.c.s
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_uart/uart.c.s
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_uart/uart.c.s
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_vreg/vreg.obj: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_vreg/vreg.c.obj
@@ -813,7 +837,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_vreg/vreg.obj: 
 
 # target to build an object file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_vreg/vreg.c.obj:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_vreg/vreg.c.obj
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_vreg/vreg.c.obj
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_vreg/vreg.c.obj
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_vreg/vreg.i: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_vreg/vreg.c.i
@@ -821,7 +845,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_vreg/vreg.i: ho
 
 # target to preprocess a source file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_vreg/vreg.c.i:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_vreg/vreg.c.i
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_vreg/vreg.c.i
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_vreg/vreg.c.i
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_vreg/vreg.s: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_vreg/vreg.c.s
@@ -829,7 +853,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_vreg/vreg.s: ho
 
 # target to generate assembly for a file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_vreg/vreg.c.s:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_vreg/vreg.c.s
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_vreg/vreg.c.s
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_vreg/vreg.c.s
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.obj: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c.obj
@@ -837,7 +861,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_watchdog/watchd
 
 # target to build an object file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c.obj:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c.obj
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c.obj
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c.obj
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.i: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c.i
@@ -845,7 +869,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_watchdog/watchd
 
 # target to preprocess a source file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c.i:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c.i
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c.i
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c.i
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.s: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c.s
@@ -853,7 +877,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_watchdog/watchd
 
 # target to generate assembly for a file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c.s:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c.s
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c.s
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c.s
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_xosc/xosc.obj: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_xosc/xosc.c.obj
@@ -861,7 +885,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_xosc/xosc.obj: 
 
 # target to build an object file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_xosc/xosc.c.obj:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_xosc/xosc.c.obj
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_xosc/xosc.c.obj
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_xosc/xosc.c.obj
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_xosc/xosc.i: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_xosc/xosc.c.i
@@ -869,7 +893,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_xosc/xosc.i: ho
 
 # target to preprocess a source file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_xosc/xosc.c.i:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_xosc/xosc.c.i
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_xosc/xosc.c.i
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_xosc/xosc.c.i
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_xosc/xosc.s: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_xosc/xosc.c.s
@@ -877,7 +901,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_xosc/xosc.s: ho
 
 # target to generate assembly for a file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_xosc/xosc.c.s:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_xosc/xosc.c.s
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_xosc/xosc.c.s
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_xosc/xosc.c.s
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_bit_ops/bit_ops_aeabi.obj: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.obj
@@ -885,7 +909,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_bit_ops/bit_ops_aea
 
 # target to build an object file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.obj:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.obj
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.obj
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.obj
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_bootrom/bootrom.obj: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.obj
@@ -893,7 +917,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_bootrom/bootrom.obj
 
 # target to build an object file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.obj:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.obj
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.obj
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.obj
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_bootrom/bootrom.i: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.i
@@ -901,7 +925,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_bootrom/bootrom.i: 
 
 # target to preprocess a source file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.i:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.i
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.i
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.i
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_bootrom/bootrom.s: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.s
@@ -909,7 +933,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_bootrom/bootrom.s: 
 
 # target to generate assembly for a file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.s:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.s
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.s
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.s
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_divider/divider.obj: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_divider/divider.S.obj
@@ -917,7 +941,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_divider/divider.obj
 
 # target to build an object file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_divider/divider.S.obj:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_divider/divider.S.obj
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_divider/divider.S.obj
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_divider/divider.S.obj
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_double/double_aeabi.obj: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
@@ -925,7 +949,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_double/double_aeabi
 
 # target to build an object file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_double/double_init_rom.obj: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_double/double_init_rom.c.obj
@@ -933,7 +957,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_double/double_init_
 
 # target to build an object file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_double/double_init_rom.c.obj:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_double/double_init_rom.c.obj
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_double/double_init_rom.c.obj
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_double/double_init_rom.c.obj
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_double/double_init_rom.i: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_double/double_init_rom.c.i
@@ -941,7 +965,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_double/double_init_
 
 # target to preprocess a source file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_double/double_init_rom.c.i:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_double/double_init_rom.c.i
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_double/double_init_rom.c.i
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_double/double_init_rom.c.i
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_double/double_init_rom.s: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_double/double_init_rom.c.s
@@ -949,7 +973,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_double/double_init_
 
 # target to generate assembly for a file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_double/double_init_rom.c.s:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_double/double_init_rom.c.s
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_double/double_init_rom.c.s
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_double/double_init_rom.c.s
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_double/double_math.obj: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_double/double_math.c.obj
@@ -957,7 +981,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_double/double_math.
 
 # target to build an object file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_double/double_math.c.obj:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_double/double_math.c.obj
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_double/double_math.c.obj
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_double/double_math.c.obj
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_double/double_math.i: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_double/double_math.c.i
@@ -965,7 +989,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_double/double_math.
 
 # target to preprocess a source file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_double/double_math.c.i:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_double/double_math.c.i
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_double/double_math.c.i
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_double/double_math.c.i
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_double/double_math.s: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_double/double_math.c.s
@@ -973,7 +997,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_double/double_math.
 
 # target to generate assembly for a file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_double/double_math.c.s:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_double/double_math.c.s
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_double/double_math.c.s
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_double/double_math.c.s
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.obj: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.S.obj
@@ -981,7 +1005,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_double/double_v1_ro
 
 # target to build an object file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.S.obj:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.S.obj
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.S.obj
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.S.obj
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_float/float_aeabi.obj: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_float/float_aeabi.S.obj
@@ -989,7 +1013,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_float/float_aeabi.o
 
 # target to build an object file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_float/float_aeabi.S.obj:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_float/float_aeabi.S.obj
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_float/float_aeabi.S.obj
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_float/float_aeabi.S.obj
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_float/float_init_rom.obj: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_float/float_init_rom.c.obj
@@ -997,7 +1021,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_float/float_init_ro
 
 # target to build an object file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_float/float_init_rom.c.obj:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_float/float_init_rom.c.obj
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_float/float_init_rom.c.obj
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_float/float_init_rom.c.obj
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_float/float_init_rom.i: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_float/float_init_rom.c.i
@@ -1005,7 +1029,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_float/float_init_ro
 
 # target to preprocess a source file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_float/float_init_rom.c.i:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_float/float_init_rom.c.i
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_float/float_init_rom.c.i
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_float/float_init_rom.c.i
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_float/float_init_rom.s: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_float/float_init_rom.c.s
@@ -1013,7 +1037,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_float/float_init_ro
 
 # target to generate assembly for a file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_float/float_init_rom.c.s:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_float/float_init_rom.c.s
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_float/float_init_rom.c.s
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_float/float_init_rom.c.s
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_float/float_math.obj: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_float/float_math.c.obj
@@ -1021,7 +1045,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_float/float_math.ob
 
 # target to build an object file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_float/float_math.c.obj:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_float/float_math.c.obj
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_float/float_math.c.obj
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_float/float_math.c.obj
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_float/float_math.i: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_float/float_math.c.i
@@ -1029,7 +1053,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_float/float_math.i:
 
 # target to preprocess a source file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_float/float_math.c.i:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_float/float_math.c.i
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_float/float_math.c.i
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_float/float_math.c.i
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_float/float_math.s: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_float/float_math.c.s
@@ -1037,7 +1061,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_float/float_math.s:
 
 # target to generate assembly for a file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_float/float_math.c.s:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_float/float_math.c.s
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_float/float_math.c.s
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_float/float_math.c.s
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_float/float_v1_rom_shim.obj: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_float/float_v1_rom_shim.S.obj
@@ -1045,7 +1069,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_float/float_v1_rom_
 
 # target to build an object file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_float/float_v1_rom_shim.S.obj:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_float/float_v1_rom_shim.S.obj
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_float/float_v1_rom_shim.S.obj
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_float/float_v1_rom_shim.S.obj
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.obj: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.obj
@@ -1053,7 +1077,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_int64_ops/pico_int6
 
 # target to build an object file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.obj:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.obj
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.obj
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.obj
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_malloc/pico_malloc.obj: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_malloc/pico_malloc.c.obj
@@ -1061,7 +1085,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_malloc/pico_malloc.
 
 # target to build an object file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_malloc/pico_malloc.c.obj:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_malloc/pico_malloc.c.obj
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_malloc/pico_malloc.c.obj
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_malloc/pico_malloc.c.obj
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_malloc/pico_malloc.i: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_malloc/pico_malloc.c.i
@@ -1069,7 +1093,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_malloc/pico_malloc.
 
 # target to preprocess a source file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_malloc/pico_malloc.c.i:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_malloc/pico_malloc.c.i
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_malloc/pico_malloc.c.i
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_malloc/pico_malloc.c.i
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_malloc/pico_malloc.s: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_malloc/pico_malloc.c.s
@@ -1077,7 +1101,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_malloc/pico_malloc.
 
 # target to generate assembly for a file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_malloc/pico_malloc.c.s:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_malloc/pico_malloc.c.s
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_malloc/pico_malloc.c.s
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_malloc/pico_malloc.c.s
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.obj: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
@@ -1085,7 +1109,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aea
 
 # target to build an object file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_multicore/multicore.obj: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_multicore/multicore.c.obj
@@ -1093,7 +1117,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_multicore/multicore
 
 # target to build an object file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_multicore/multicore.c.obj:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_multicore/multicore.c.obj
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_multicore/multicore.c.obj
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_multicore/multicore.c.obj
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_multicore/multicore.i: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_multicore/multicore.c.i
@@ -1101,7 +1125,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_multicore/multicore
 
 # target to preprocess a source file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_multicore/multicore.c.i:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_multicore/multicore.c.i
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_multicore/multicore.c.i
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_multicore/multicore.c.i
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_multicore/multicore.s: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_multicore/multicore.c.s
@@ -1109,7 +1133,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_multicore/multicore
 
 # target to generate assembly for a file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_multicore/multicore.c.s:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_multicore/multicore.c.s
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_multicore/multicore.c.s
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_multicore/multicore.c.s
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_platform/platform.obj: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_platform/platform.c.obj
@@ -1117,7 +1141,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_platform/platform.o
 
 # target to build an object file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_platform/platform.c.obj:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_platform/platform.c.obj
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_platform/platform.c.obj
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_platform/platform.c.obj
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_platform/platform.i: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_platform/platform.c.i
@@ -1125,7 +1149,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_platform/platform.i
 
 # target to preprocess a source file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_platform/platform.c.i:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_platform/platform.c.i
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_platform/platform.c.i
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_platform/platform.c.i
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_platform/platform.s: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_platform/platform.c.s
@@ -1133,7 +1157,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_platform/platform.s
 
 # target to generate assembly for a file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_platform/platform.c.s:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_platform/platform.c.s
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_platform/platform.c.s
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_platform/platform.c.s
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_printf/printf.obj: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
@@ -1141,7 +1165,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_printf/printf.obj: 
 
 # target to build an object file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_printf/printf.c.obj:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_printf/printf.i: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_printf/printf.c.i
@@ -1149,7 +1173,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_printf/printf.i: ho
 
 # target to preprocess a source file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_printf/printf.c.i:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_printf/printf.c.i
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_printf/printf.c.i
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_printf/printf.c.i
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_printf/printf.s: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_printf/printf.c.s
@@ -1157,7 +1181,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_printf/printf.s: ho
 
 # target to generate assembly for a file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_printf/printf.c.s:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_printf/printf.c.s
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_printf/printf.c.s
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_printf/printf.c.s
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_runtime/runtime.obj: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
@@ -1165,7 +1189,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_runtime/runtime.obj
 
 # target to build an object file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_runtime/runtime.i: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_runtime/runtime.c.i
@@ -1173,7 +1197,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_runtime/runtime.i: 
 
 # target to preprocess a source file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_runtime/runtime.c.i:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_runtime/runtime.c.i
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_runtime/runtime.c.i
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_runtime/runtime.c.i
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_runtime/runtime.s: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_runtime/runtime.c.s
@@ -1181,7 +1205,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_runtime/runtime.s: 
 
 # target to generate assembly for a file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_runtime/runtime.c.s:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_runtime/runtime.c.s
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_runtime/runtime.c.s
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_runtime/runtime.c.s
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.obj: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
@@ -1189,7 +1213,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_standard_link/binar
 
 # target to build an object file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.i: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.i
@@ -1197,7 +1221,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_standard_link/binar
 
 # target to preprocess a source file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.i:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.i
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.i
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.i
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.s: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.s
@@ -1205,7 +1229,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_standard_link/binar
 
 # target to generate assembly for a file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.s:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.s
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.s
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.s
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_standard_link/crt0.obj: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_standard_link/crt0.S.obj
@@ -1213,7 +1237,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_standard_link/crt0.
 
 # target to build an object file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_standard_link/crt0.S.obj:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_standard_link/crt0.S.obj
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_standard_link/crt0.S.obj
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_standard_link/crt0.S.obj
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_standard_link/new_delete.obj: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_standard_link/new_delete.cpp.obj
@@ -1221,7 +1245,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_standard_link/new_d
 
 # target to build an object file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_standard_link/new_delete.cpp.obj:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_standard_link/new_delete.cpp.obj
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_standard_link/new_delete.cpp.obj
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_standard_link/new_delete.cpp.obj
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_standard_link/new_delete.i: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_standard_link/new_delete.cpp.i
@@ -1229,7 +1253,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_standard_link/new_d
 
 # target to preprocess a source file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_standard_link/new_delete.cpp.i:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_standard_link/new_delete.cpp.i
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_standard_link/new_delete.cpp.i
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_standard_link/new_delete.cpp.i
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_standard_link/new_delete.s: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_standard_link/new_delete.cpp.s
@@ -1237,7 +1261,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_standard_link/new_d
 
 # target to generate assembly for a file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_standard_link/new_delete.cpp.s:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_standard_link/new_delete.cpp.s
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_standard_link/new_delete.cpp.s
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_standard_link/new_delete.cpp.s
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.obj: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
@@ -1245,7 +1269,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.obj: ho
 
 # target to build an object file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.i: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.c.i
@@ -1253,7 +1277,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.i: home
 
 # target to preprocess a source file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.c.i:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.c.i
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.c.i
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.c.i
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.s: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.c.s
@@ -1261,7 +1285,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.s: home
 
 # target to generate assembly for a file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.c.s:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.c.s
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.c.s
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.c.s
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.obj: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
@@ -1269,7 +1293,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_ua
 
 # target to build an object file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.i: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.i
@@ -1277,7 +1301,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_ua
 
 # target to preprocess a source file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.i:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.i
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.i
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.i
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.s: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.s
@@ -1285,7 +1309,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_ua
 
 # target to generate assembly for a file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.s:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.s
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.s
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.s
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdlib/stdlib.obj: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdlib/stdlib.c.obj
@@ -1293,7 +1317,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdlib/stdlib.obj: 
 
 # target to build an object file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdlib/stdlib.c.obj:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdlib/stdlib.c.obj
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdlib/stdlib.c.obj
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdlib/stdlib.c.obj
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdlib/stdlib.i: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdlib/stdlib.c.i
@@ -1301,7 +1325,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdlib/stdlib.i: ho
 
 # target to preprocess a source file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdlib/stdlib.c.i:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdlib/stdlib.c.i
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdlib/stdlib.c.i
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdlib/stdlib.c.i
 
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdlib/stdlib.s: home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdlib/stdlib.c.s
@@ -1309,7 +1333,7 @@ home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdlib/stdlib.s: ho
 
 # target to generate assembly for a file
 home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdlib/stdlib.c.s:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdlib/stdlib.c.s
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdlib/stdlib.c.s
 .PHONY : home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_stdlib/stdlib.c.s
 
 main.obj: main.c.obj
@@ -1317,7 +1341,7 @@ main.obj: main.c.obj
 
 # target to build an object file
 main.c.obj:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/main.c.obj
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/main.c.obj
 .PHONY : main.c.obj
 
 main.i: main.c.i
@@ -1325,7 +1349,7 @@ main.i: main.c.i
 
 # target to preprocess a source file
 main.c.i:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/main.c.i
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/main.c.i
 .PHONY : main.c.i
 
 main.s: main.c.s
@@ -1333,15 +1357,39 @@ main.s: main.c.s
 
 # target to generate assembly for a file
 main.c.s:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/main.c.s
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/main.c.s
 .PHONY : main.c.s
+
+queues.obj: queues.c.obj
+.PHONY : queues.obj
+
+# target to build an object file
+queues.c.obj:
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/queues.c.obj
+.PHONY : queues.c.obj
+
+queues.i: queues.c.i
+.PHONY : queues.i
+
+# target to preprocess a source file
+queues.c.i:
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/queues.c.i
+.PHONY : queues.c.i
+
+queues.s: queues.c.s
+.PHONY : queues.s
+
+# target to generate assembly for a file
+queues.c.s:
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/queues.c.s
+.PHONY : queues.c.s
 
 tasks.obj: tasks.c.obj
 .PHONY : tasks.obj
 
 # target to build an object file
 tasks.c.obj:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/tasks.c.obj
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/tasks.c.obj
 .PHONY : tasks.c.obj
 
 tasks.i: tasks.c.i
@@ -1349,7 +1397,7 @@ tasks.i: tasks.c.i
 
 # target to preprocess a source file
 tasks.c.i:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/tasks.c.i
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/tasks.c.i
 .PHONY : tasks.c.i
 
 tasks.s: tasks.c.s
@@ -1357,7 +1405,7 @@ tasks.s: tasks.c.s
 
 # target to generate assembly for a file
 tasks.c.s:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/tasks.c.s
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/tasks.c.s
 .PHONY : tasks.c.s
 
 # Help Target
@@ -1369,7 +1417,7 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... ELF2UF2Build"
-	@echo "... rp2040-freertos-template"
+	@echo "... IOT_Car_Base"
 	@echo "... __/lib/FreeRTOS-Kernel/croutine.obj"
 	@echo "... __/lib/FreeRTOS-Kernel/croutine.i"
 	@echo "... __/lib/FreeRTOS-Kernel/croutine.s"
@@ -1437,6 +1485,9 @@ help:
 	@echo "... home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_gpio/gpio.obj"
 	@echo "... home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_gpio/gpio.i"
 	@echo "... home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_gpio/gpio.s"
+	@echo "... home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_i2c/i2c.obj"
+	@echo "... home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_i2c/i2c.i"
+	@echo "... home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_i2c/i2c.s"
 	@echo "... home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_irq/irq.obj"
 	@echo "... home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_irq/irq.i"
 	@echo "... home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/hardware_irq/irq.s"
@@ -1519,6 +1570,9 @@ help:
 	@echo "... main.obj"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... queues.obj"
+	@echo "... queues.i"
+	@echo "... queues.s"
 	@echo "... tasks.obj"
 	@echo "... tasks.i"
 	@echo "... tasks.s"
@@ -1533,6 +1587,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/sarmad-alvi/Documents/rp2040-freertos-template/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build" && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

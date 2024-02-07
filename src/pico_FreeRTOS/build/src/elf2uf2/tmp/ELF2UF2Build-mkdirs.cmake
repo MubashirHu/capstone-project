@@ -5,18 +5,18 @@ cmake_minimum_required(VERSION 3.5)
 
 file(MAKE_DIRECTORY
   "/home/sarmad-alvi/Documents/pico/pico-sdk/tools/elf2uf2"
-  "/home/sarmad-alvi/Documents/rp2040-freertos-template/build/elf2uf2"
-  "/home/sarmad-alvi/Documents/rp2040-freertos-template/build/src/elf2uf2"
-  "/home/sarmad-alvi/Documents/rp2040-freertos-template/build/src/elf2uf2/tmp"
-  "/home/sarmad-alvi/Documents/rp2040-freertos-template/build/src/elf2uf2/src/ELF2UF2Build-stamp"
-  "/home/sarmad-alvi/Documents/rp2040-freertos-template/build/src/elf2uf2/src"
-  "/home/sarmad-alvi/Documents/rp2040-freertos-template/build/src/elf2uf2/src/ELF2UF2Build-stamp"
+  "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build/elf2uf2"
+  "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build/src/elf2uf2"
+  "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build/src/elf2uf2/tmp"
+  "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build/src/elf2uf2/src/ELF2UF2Build-stamp"
+  "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build/src/elf2uf2/src"
+  "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build/src/elf2uf2/src/ELF2UF2Build-stamp"
 )
 
 set(configSubDirs )
 foreach(subDir IN LISTS configSubDirs)
-    file(MAKE_DIRECTORY "/home/sarmad-alvi/Documents/rp2040-freertos-template/build/src/elf2uf2/src/ELF2UF2Build-stamp/${subDir}")
+    file(MAKE_DIRECTORY "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build/src/elf2uf2/src/ELF2UF2Build-stamp/${subDir}")
 endforeach()
 if(cfgdir)
-  file(MAKE_DIRECTORY "/home/sarmad-alvi/Documents/rp2040-freertos-template/build/src/elf2uf2/src/ELF2UF2Build-stamp${cfgdir}") # cfgdir has leading slash
+  file(MAKE_DIRECTORY "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build/src/elf2uf2/src/ELF2UF2Build-stamp${cfgdir}") # cfgdir has leading slash
 endif()

@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/sarmad-alvi/Documents/rp2040-freertos-template
+CMAKE_SOURCE_DIR = "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/sarmad-alvi/Documents/rp2040-freertos-template/build
+CMAKE_BINARY_DIR = "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build"
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/sarmad-alvi/Documents/rp2040-freertos-template/build/CMakeFiles /home/sarmad-alvi/Documents/rp2040-freertos-template/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build/CMakeFiles" "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build//CMakeFiles/progress.marks"
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/sarmad-alvi/Documents/rp2040-freertos-template/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build/CMakeFiles" 0
 .PHONY : all
 
 # The main clean target
@@ -182,17 +182,17 @@ cyw43_driver_picow_cyw43_bus_pio_spi_pio_h/fast:
 .PHONY : cyw43_driver_picow_cyw43_bus_pio_spi_pio_h/fast
 
 #=============================================================================
-# Target rules for targets named rp2040-freertos-template
+# Target rules for targets named IOT_Car_Base
 
 # Build rule for target.
-rp2040-freertos-template: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 rp2040-freertos-template
-.PHONY : rp2040-freertos-template
+IOT_Car_Base: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 IOT_Car_Base
+.PHONY : IOT_Car_Base
 
 # fast build rule for target.
-rp2040-freertos-template/fast:
-	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/rp2040-freertos-template.dir/build.make src/CMakeFiles/rp2040-freertos-template.dir/build
-.PHONY : rp2040-freertos-template/fast
+IOT_Car_Base/fast:
+	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/IOT_Car_Base.dir/build.make src/CMakeFiles/IOT_Car_Base.dir/build
+.PHONY : IOT_Car_Base/fast
 
 #=============================================================================
 # Target rules for targets named ELF2UF2Build
@@ -220,8 +220,8 @@ help:
 	@echo "... bs2_default_bin"
 	@echo "... bs2_default_padded_checksummed_asm"
 	@echo "... cyw43_driver_picow_cyw43_bus_pio_spi_pio_h"
+	@echo "... IOT_Car_Base"
 	@echo "... bs2_default"
-	@echo "... rp2040-freertos-template"
 .PHONY : help
 
 

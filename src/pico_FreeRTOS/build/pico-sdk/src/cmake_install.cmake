@@ -39,9 +39,9 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/sarmad-alvi/Documents/rp2040-freertos-template/build/pico-sdk/src/common/cmake_install.cmake")
-  include("/home/sarmad-alvi/Documents/rp2040-freertos-template/build/pico-sdk/src/rp2_common/cmake_install.cmake")
-  include("/home/sarmad-alvi/Documents/rp2040-freertos-template/build/pico-sdk/src/rp2040/cmake_install.cmake")
+  include("/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build/pico-sdk/src/common/cmake_install.cmake")
+  include("/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build/pico-sdk/src/rp2_common/cmake_install.cmake")
+  include("/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build/pico-sdk/src/rp2040/cmake_install.cmake")
 
 endif()
 
