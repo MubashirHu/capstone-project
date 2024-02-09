@@ -1,4 +1,4 @@
-# Install script for directory: /home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS
+# Install script for directory: /home/swa248/capstone-project/src/pico_FreeRTOS
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,9 +39,9 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build/FREERTOS_KERNEL/cmake_install.cmake")
-  include("/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build/pico-sdk/cmake_install.cmake")
-  include("/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build/src/cmake_install.cmake")
+  include("/home/swa248/capstone-project/src/pico_FreeRTOS/build/FREERTOS_KERNEL/cmake_install.cmake")
+  include("/home/swa248/capstone-project/src/pico_FreeRTOS/build/pico-sdk/cmake_install.cmake")
+  include("/home/swa248/capstone-project/src/pico_FreeRTOS/build/src/cmake_install.cmake")
 
 endif()
 
@@ -53,5 +53,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/swa248/capstone-project/src/pico_FreeRTOS/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
