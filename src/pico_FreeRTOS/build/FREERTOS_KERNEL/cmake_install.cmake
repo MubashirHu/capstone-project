@@ -1,4 +1,4 @@
-# Install script for directory: /home/swa248/capstone-project/src/pico_FreeRTOS/lib/FreeRTOS-Kernel/portable/ThirdParty/GCC/RP2040
+# Install script for directory: /home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/lib/FreeRTOS-Kernel/portable/ThirdParty/GCC/RP2040
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

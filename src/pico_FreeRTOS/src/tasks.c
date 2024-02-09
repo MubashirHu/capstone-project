@@ -5,8 +5,17 @@
 #include "pico/stdlib.h"
 #include "hardware/i2c.h"
 #include "hardware/uart.h"
+#include <string.h>
 
-
+void uart_get_response(uart_inst_t *uart, char *response)
+{
+    int i = 0;
+    while(uart_is_readable(uart) && i < 250)
+    {
+        response[i] = uart_getc(uart);
+        i++;
+    }
+}
 
 static int chars_rxed = 0;
 
@@ -34,17 +43,22 @@ void vTaskUart_4g(void * parameters)
 
     uart_set_fifo_enabled(UART_ID_4G, true);
 
+    char response[250];
 
     // TODO: Send initialization commands to 4g module and wait for response  
-    uart_puts(UART_ID_4G, "AT+HTTPINIT\n");
+    uart_puts(UART_ID_4G, "AT\r\n");
     // get response
-    uart_puts(UART_ID_4G, "AT+HTTPPARA=\"URL\",\"https://test-f1e70.firebaseio.com/pothole.json\"\n");
-    // get response
-    uart_puts(UART_ID_4G, "AT+HTTPACTION=0\n");
-    // get response
-    uart_puts(UART_ID_4G, "AT+HTTPREAD=0,290\n");
-    // get response
-    uart_puts(UART_ID_4G, "AT+HTTPTERM\n");
+    uart_get_response(UART_ID_4G, response);
+
+    // uart_puts(UART_ID_4G, "AT+HTTPINIT\r\n");
+
+    // uart_puts(UART_ID_4G, "AT+HTTPPARA=\"URL\",\"https://test-f1e70.firebaseio.com/pothole.json\"\n");
+    // // get response
+    // uart_puts(UART_ID_4G, "AT+HTTPACTION=0\n");
+    // // get response
+    // uart_puts(UART_ID_4G, "AT+HTTPREAD=0,290\n");
+    // // get response
+    // uart_puts(UART_ID_4G, "AT+HTTPTERM\n");
     // get response
 
     while (1)
@@ -74,66 +88,134 @@ void vTaskUart_OBD(void * parameters)
 void vTaskI2C_GPS(void * parameters)
 {
     //Initialize UART0 with a baud rate of 115200
-    uart_init(UART_ID_4G, BAUD_RATE_UART_4G);
+    uart_init(UART_ID_OBD2, BAUD_RATE_UART_4G);
     // Set UART0 TX (transmit) pin to GPIO 0 and RX (receive) pin to GPIO 1
-    gpio_set_function(UART_TX_PIN_4G, GPIO_FUNC_UART);
-    gpio_set_function(UART_RX_PIN_4G, GPIO_FUNC_UART);
-    uart_set_hw_flow(UART_ID_4G, false, false);
-    uart_set_format(UART_ID_4G, DATA_BITS, STOP_BITS, PARITY);
+    gpio_set_function(UART_TX_PIN_OBD2, GPIO_FUNC_UART);
+    gpio_set_function(UART_RX_PIN_OBD2, GPIO_FUNC_UART);
+    uart_set_hw_flow(UART_ID_OBD2, false, false);
+    uart_set_format(UART_ID_OBD2, DATA_BITS, STOP_BITS, PARITY);
 
-    uart_set_fifo_enabled(UART_ID_4G, true);
+    uart_set_fifo_enabled(UART_ID_OBD2, true);
 
-    uart_puts(UART_ID_4G, "\r\nTest1\r\n");
+    uart_puts(UART_ID_OBD2, "\r\nTest1\r\n");
     i2c_init(I2C_ID_GPS, BAUD_RATE_I2C_GPS);
     gpio_set_function(I2C_SDA_PIN_GPS, GPIO_FUNC_I2C);
     gpio_set_function(I2C_SCL_PIN_GPS, GPIO_FUNC_I2C);
     gpio_pull_up(I2C_SDA_PIN_GPS);
     gpio_pull_up(I2C_SCL_PIN_GPS);
-    uint8_t bytes_high;
-    uint8_t bytes_low;
-    uint16_t num_bytes;
-    uart_puts(UART_ID_4G, "Test2\r\n");
-    uint8_t data[64];
+    uint8_t num_bytes_high;
+    uint8_t num_bytes_low;
+    uint16_t num_bytes_available;
+    uart_puts(UART_ID_OBD2, "Test2\r\n");
+    uint8_t data[256];
     while (1)
     {
-        if (i2c_write_blocking(I2C_ID_GPS, 0x42, 0xFD, 1, false) != PICO_ERROR_GENERIC &&
-            i2c_read_blocking(I2C_ID_GPS, 0x42, &bytes_high, 1, false) >= 0)
-        {
-            if (i2c_write_blocking(I2C_ID_GPS, 0x42, 0xFE, 1, true) != PICO_ERROR_GENERIC &&
-                i2c_read_blocking(I2C_ID_GPS, 0x42, &bytes_low, 1, false) >= 0) 
-            {
-                //num_bytes = (uint16_t)bytes_high << 8 | bytes_low;
-                char num_bytes_str[6]; // Buffer to store the string representation of num_bytes
-                sprintf(num_bytes_str, "%u", num_bytes); // Convert num_bytes to string
-                uart_puts(UART_ID_4G, "GPS Data Bytes: ");
-                uart_puts(UART_ID_4G, num_bytes_str);
-                uart_puts(UART_ID_4G, "\r\n\r\n");
+        size_t len = i2c_read_blocking(i2c0, 0x42, data, 255, false);
+        //data[len] = '\0';
 
-                if (i2c_write_blocking(I2C_ID_GPS, 0x42, 0xFF, 1, false) != PICO_ERROR_GENERIC &&
-                    i2c_read_blocking(I2C_ID_GPS, 0x42, data, 64, false) >= 0)
+            // Process each NMEA sentence
+            // For example, you might check if it starts with "$GPGGA" or "$GPRMC" to extract relevant information
+        char* token = strtok(data, "\n"); // Tokenize by newline
+        while (token != NULL) 
+        {
+            // Check if the token starts with '$' (indicating an NMEA sentence)
+            if (token[0] == '$') 
+            {
+                // Process the NMEA sentence
+                // Example: Print the NMEA sentence to UART
+                // uart_puts(UART_ID_OBD2, token);
+                // uart_puts(UART_ID_OBD2, "\r\n");
+                if (strncmp(token, "$GNGGA", 6) == 0)
                 {
-                    uart_puts(UART_ID_4G, "GPS NEMA Bytes: ");
-                    for (int i = 0; i < 64; i++) {
-                        // uart_puts(UART_ID_4G, (const char*)data[i]);
-                        char hex_string[20];
-                        sprintf(hex_string, "%02X ", data[i]);
-                        uart_puts(UART_ID_4G, hex_string);
+                    // Extract information from GNGGA sentence
+                    char utc_time[11];
+                    char latitude[12];
+                    char latitude_direction;
+                    char longitude[13];
+                    char longitude_direction;
+                    int positioning_status;
+                    int num_satellites;
+                    float hdop;
+                    float altitude;
+                    float geoid_height;
+                    float differential_time;
+                    char reference_base_station[3];
+
+                    // Use sscanf to extract data from the NMEA sentence
+                    int items_matched = sscanf(token, "$GNGGA,%10[^,],%11[^,],%c,%12[^,],%c,%d,%d,%f,%f,%f,M,%f,M,%f,%3[^*]*",
+                                            utc_time, latitude, &latitude_direction, longitude, &longitude_direction,
+                                            &positioning_status, &num_satellites, &hdop, &altitude, &geoid_height,
+                                            &differential_time, reference_base_station);
+
+                    if (items_matched == 14)
+                    {
+                        // Data successfully extracted, print it
+                        uart_puts(UART_ID_OBD2, "UTC Time: ");
+                        uart_puts(UART_ID_OBD2, utc_time);
+                        uart_puts(UART_ID_OBD2, ", Latitude: ");
+                        if (strlen(latitude) > 0)
+                        {
+                            uart_puts(UART_ID_OBD2, latitude);
+                            uart_putc(UART_ID_OBD2, latitude_direction);
+                        }
+                        else
+                        {
+                            uart_puts(UART_ID_OBD2, "N/A");
+                        }
+
+                        uart_puts(UART_ID_OBD2, ", Longitude: ");
+                        if (strlen(longitude) > 0)
+                        {
+                            uart_puts(UART_ID_OBD2, longitude);
+                            uart_putc(UART_ID_OBD2, longitude_direction);
+                        }
+                        else
+                        {
+                            uart_puts(UART_ID_OBD2, "N/A");
+                        }
+
+                        // Inside your parsing logic...
+                        char num_satellites_str[4]; // Assuming maximum 3 digits for the number of satellites
+                        char hdop_str[10]; // Adjust the size as per your requirements
+                        char altitude_str[20]; // Adjust the size as per your requirements
+                        char geoid_height_str[20]; // Adjust the size as per your requirements
+                        char differential_time_str[20]; // Adjust the size as per your requirements
+
+                        // Convert integers and floats to strings
+                        sprintf(num_satellites_str, "%d", num_satellites);
+                        sprintf(hdop_str, "%.2f", hdop); // Assuming 2 decimal places for HDOP
+                        sprintf(altitude_str, "%.2f", altitude); // Assuming 2 decimal places for altitude
+                        sprintf(geoid_height_str, "%.2f", geoid_height); // Assuming 2 decimal places for geoid height
+                        sprintf(differential_time_str, "%.2f", differential_time); // Assuming 2 decimal places for differential time
+
+
+
+                        uart_puts(UART_ID_OBD2, ", Positioning Status: ");
+                        uart_puts(UART_ID_OBD2, positioning_status);
+                        uart_puts(UART_ID_OBD2, ", Number of Satellites: ");
+                        uart_puts(UART_ID_OBD2, num_satellites_str);
+                        uart_puts(UART_ID_OBD2, ", HDOP: ");
+                        uart_puts(UART_ID_OBD2, hdop_str);
+                        uart_puts(UART_ID_OBD2, ", Altitude: ");
+                        uart_puts(UART_ID_OBD2, altitude_str);
+                        uart_puts(UART_ID_OBD2, ", Geoid Height: ");
+                        uart_puts(UART_ID_OBD2, geoid_height_str);
+                        uart_puts(UART_ID_OBD2, ", Differential Time: ");
+                        uart_puts(UART_ID_OBD2, differential_time_str);
+                        uart_puts(UART_ID_OBD2, ", Reference Base Station: ");
+                        uart_puts(UART_ID_OBD2, reference_base_station);
+                        uart_puts(UART_ID_OBD2, "\r\n");
                     }
-                
-                    uart_puts(UART_ID_4G, "\r\n");
+                    else
+                    {
+                        // Print a message indicating that data extraction failed
+                        uart_puts(UART_ID_OBD2, "Invalid NMEA sentence\r\n");
+                    }
                 }
-
             }
-            else 
-            {
-                uart_puts(UART_ID_4G, "Error reading bytes_low\r\n");
-            }
+            // Move to the next token
+            token = strtok(NULL, "\n");
         }
-        else 
-        {
-            uart_puts(UART_ID_4G, "Error reading bytes_high\r\n");
-        }
-
         vTaskDelay(pdMS_TO_TICKS(500));
     }
 }
