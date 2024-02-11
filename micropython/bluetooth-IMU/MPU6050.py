@@ -157,3 +157,15 @@ class MPU6050:
             return 0x18
         else:
             raise Exception("Range index '" + index + "' invalid. Must be 0-3.")
+        
+    def _determine_threshold_crossing(self, average_accel, low_threshold, high_threshold):
+        # Check if the average acceleration value falls below THRESHOLD_LOW
+        if average_accel < low_threshold:
+            return True
+        else:
+            if average_accel > high_threshold:
+                return True
+            else:
+                return False
+                                
+        
