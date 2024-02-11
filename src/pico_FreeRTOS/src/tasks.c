@@ -7,7 +7,7 @@
 #include "hardware/uart.h"
 #include <string.h>
 
-void uart_get_response(uart_inst_t *uart, char *response)
+int uart_get_response(uart_inst_t *uart, char *response)
 {
     int i = 0;
     while(uart_is_readable(uart) && i < 250)
@@ -15,6 +15,7 @@ void uart_get_response(uart_inst_t *uart, char *response)
         response[i] = uart_getc(uart);
         i++;
     }
+    return i;
 }
 
 static int chars_rxed = 0;
@@ -46,9 +47,7 @@ void vTaskUart_4g(void * parameters)
     char response[250];
 
     // TODO: Send initialization commands to 4g module and wait for response  
-    uart_puts(UART_ID_4G, "AT\r\n");
-    // get response
-    uart_get_response(UART_ID_4G, response);
+    
 
     // uart_puts(UART_ID_4G, "AT+HTTPINIT\r\n");
 
@@ -60,10 +59,31 @@ void vTaskUart_4g(void * parameters)
     // // get response
     // uart_puts(UART_ID_4G, "AT+HTTPTERM\n");
     // get response
+    uart_init(UART_ID_OBD2, BAUD_RATE_UART_4G);
+    gpio_set_function(UART_TX_PIN_OBD2, GPIO_FUNC_UART);
+    gpio_set_function(UART_RX_PIN_OBD2, GPIO_FUNC_UART);
+    uart_set_hw_flow(UART_ID_OBD2, false, false);
+
+    // Set data format
+    uart_set_format(UART_ID_OBD2, DATA_BITS, STOP_BITS, PARITY);
 
     while (1)
+    {
+        int response_num = 0;
         // TODO: Check relavent queues and if certain ones are not empty, send http request else block
-        tight_loop_contents();
+        uart_puts(UART_ID_4G, "AT\r\n");
+        // get response
+        vTaskDelay(1000);
+
+        response_num = uart_get_response(UART_ID_4G, response);
+        for(int i = 0; i < response_num; i++)
+        {
+            uart_putc(UART_ID_OBD2, response[i]);
+        }
+        
+        vTaskDelay(1000);
+
+    }
 }
 
 void vTaskUart_OBD(void * parameters)
@@ -111,111 +131,113 @@ void vTaskI2C_GPS(void * parameters)
     while (1)
     {
         size_t len = i2c_read_blocking(i2c0, 0x42, data, 255, false);
-        //data[len] = '\0';
+        data[len] = '\0';
 
             // Process each NMEA sentence
             // For example, you might check if it starts with "$GPGGA" or "$GPRMC" to extract relevant information
         char* token = strtok(data, "\n"); // Tokenize by newline
-        while (token != NULL) 
-        {
-            // Check if the token starts with '$' (indicating an NMEA sentence)
-            if (token[0] == '$') 
-            {
-                // Process the NMEA sentence
-                // Example: Print the NMEA sentence to UART
-                // uart_puts(UART_ID_OBD2, token);
-                // uart_puts(UART_ID_OBD2, "\r\n");
-                if (strncmp(token, "$GNGGA", 6) == 0)
-                {
-                    // Extract information from GNGGA sentence
-                    char utc_time[11];
-                    char latitude[12];
-                    char latitude_direction;
-                    char longitude[13];
-                    char longitude_direction;
-                    int positioning_status;
-                    int num_satellites;
-                    float hdop;
-                    float altitude;
-                    float geoid_height;
-                    float differential_time;
-                    char reference_base_station[3];
+        uart_puts(UART_ID_OBD2, token);
+        uart_puts(UART_ID_OBD2, "\r\n");
+        // while (token != NULL) 
+        // {
+        //     // Check if the token starts with '$' (indicating an NMEA sentence)
+        //     if (token[0] == '$') 
+        //     {
+        //         // Process the NMEA sentence
+        //         // Example: Print the NMEA sentence to UART
+        //         // uart_puts(UART_ID_OBD2, token);
+        //         // uart_puts(UART_ID_OBD2, "\r\n");
+        //         if (strncmp(token, "$GNGGA", 6) == 0)
+        //         {
+        //             // Extract information from GNGGA sentence
+        //             char utc_time[11];
+        //             char latitude[12];
+        //             char latitude_direction;
+        //             char longitude[13];
+        //             char longitude_direction;
+        //             int positioning_status;
+        //             int num_satellites;
+        //             float hdop;
+        //             float altitude;
+        //             float geoid_height;
+        //             float differential_time;
+        //             char reference_base_station[3];
 
-                    // Use sscanf to extract data from the NMEA sentence
-                    int items_matched = sscanf(token, "$GNGGA,%10[^,],%11[^,],%c,%12[^,],%c,%d,%d,%f,%f,%f,M,%f,M,%f,%3[^*]*",
-                                            utc_time, latitude, &latitude_direction, longitude, &longitude_direction,
-                                            &positioning_status, &num_satellites, &hdop, &altitude, &geoid_height,
-                                            &differential_time, reference_base_station);
+        //             // Use sscanf to extract data from the NMEA sentence
+        //             int items_matched = sscanf(token, "$GNGGA,%10[^,],%11[^,],%c,%12[^,],%c,%d,%d,%f,%f,%f,M,%f,M,%f,%3[^*]*",
+        //                                     utc_time, latitude, &latitude_direction, longitude, &longitude_direction,
+        //                                     &positioning_status, &num_satellites, &hdop, &altitude, &geoid_height,
+        //                                     &differential_time, reference_base_station);
 
-                    if (items_matched == 14)
-                    {
-                        // Data successfully extracted, print it
-                        uart_puts(UART_ID_OBD2, "UTC Time: ");
-                        uart_puts(UART_ID_OBD2, utc_time);
-                        uart_puts(UART_ID_OBD2, ", Latitude: ");
-                        if (strlen(latitude) > 0)
-                        {
-                            uart_puts(UART_ID_OBD2, latitude);
-                            uart_putc(UART_ID_OBD2, latitude_direction);
-                        }
-                        else
-                        {
-                            uart_puts(UART_ID_OBD2, "N/A");
-                        }
+        //             //if (items_matched > 0)
+        //             {
+        //                 // Data successfully extracted, print it
+        //                 uart_puts(UART_ID_OBD2, "UTC Time: ");
+        //                 uart_puts(UART_ID_OBD2, utc_time);
+        //                 uart_puts(UART_ID_OBD2, ", Latitude: ");
+        //                 if (strlen(latitude) > 0)
+        //                 {
+        //                     uart_puts(UART_ID_OBD2, latitude);
+        //                     uart_putc(UART_ID_OBD2, latitude_direction);
+        //                 }
+        //                 else
+        //                 {
+        //                     uart_puts(UART_ID_OBD2, "N/A");
+        //                 }
 
-                        uart_puts(UART_ID_OBD2, ", Longitude: ");
-                        if (strlen(longitude) > 0)
-                        {
-                            uart_puts(UART_ID_OBD2, longitude);
-                            uart_putc(UART_ID_OBD2, longitude_direction);
-                        }
-                        else
-                        {
-                            uart_puts(UART_ID_OBD2, "N/A");
-                        }
+        //                 uart_puts(UART_ID_OBD2, ", Longitude: ");
+        //                 if (strlen(longitude) > 0)
+        //                 {
+        //                     uart_puts(UART_ID_OBD2, longitude);
+        //                     uart_putc(UART_ID_OBD2, longitude_direction);
+        //                 }
+        //                 else
+        //                 {
+        //                     uart_puts(UART_ID_OBD2, "N/A");
+        //                 }
 
-                        // Inside your parsing logic...
-                        char num_satellites_str[4]; // Assuming maximum 3 digits for the number of satellites
-                        char hdop_str[10]; // Adjust the size as per your requirements
-                        char altitude_str[20]; // Adjust the size as per your requirements
-                        char geoid_height_str[20]; // Adjust the size as per your requirements
-                        char differential_time_str[20]; // Adjust the size as per your requirements
+        //                 // Inside your parsing logic...
+        //                 char num_satellites_str[4]; // Assuming maximum 3 digits for the number of satellites
+        //                 char hdop_str[10]; // Adjust the size as per your requirements
+        //                 char altitude_str[20]; // Adjust the size as per your requirements
+        //                 char geoid_height_str[20]; // Adjust the size as per your requirements
+        //                 char differential_time_str[20]; // Adjust the size as per your requirements
 
-                        // Convert integers and floats to strings
-                        sprintf(num_satellites_str, "%d", num_satellites);
-                        sprintf(hdop_str, "%.2f", hdop); // Assuming 2 decimal places for HDOP
-                        sprintf(altitude_str, "%.2f", altitude); // Assuming 2 decimal places for altitude
-                        sprintf(geoid_height_str, "%.2f", geoid_height); // Assuming 2 decimal places for geoid height
-                        sprintf(differential_time_str, "%.2f", differential_time); // Assuming 2 decimal places for differential time
+        //                 // Convert integers and floats to strings
+        //                 sprintf(num_satellites_str, "%d", num_satellites);
+        //                 sprintf(hdop_str, "%.2f", hdop); // Assuming 2 decimal places for HDOP
+        //                 sprintf(altitude_str, "%.2f", altitude); // Assuming 2 decimal places for altitude
+        //                 sprintf(geoid_height_str, "%.2f", geoid_height); // Assuming 2 decimal places for geoid height
+        //                 sprintf(differential_time_str, "%.2f", differential_time); // Assuming 2 decimal places for differential time
 
 
 
-                        uart_puts(UART_ID_OBD2, ", Positioning Status: ");
-                        uart_puts(UART_ID_OBD2, positioning_status);
-                        uart_puts(UART_ID_OBD2, ", Number of Satellites: ");
-                        uart_puts(UART_ID_OBD2, num_satellites_str);
-                        uart_puts(UART_ID_OBD2, ", HDOP: ");
-                        uart_puts(UART_ID_OBD2, hdop_str);
-                        uart_puts(UART_ID_OBD2, ", Altitude: ");
-                        uart_puts(UART_ID_OBD2, altitude_str);
-                        uart_puts(UART_ID_OBD2, ", Geoid Height: ");
-                        uart_puts(UART_ID_OBD2, geoid_height_str);
-                        uart_puts(UART_ID_OBD2, ", Differential Time: ");
-                        uart_puts(UART_ID_OBD2, differential_time_str);
-                        uart_puts(UART_ID_OBD2, ", Reference Base Station: ");
-                        uart_puts(UART_ID_OBD2, reference_base_station);
-                        uart_puts(UART_ID_OBD2, "\r\n");
-                    }
-                    else
-                    {
-                        // Print a message indicating that data extraction failed
-                        uart_puts(UART_ID_OBD2, "Invalid NMEA sentence\r\n");
-                    }
-                }
-            }
-            // Move to the next token
-            token = strtok(NULL, "\n");
-        }
+        //                 uart_puts(UART_ID_OBD2, ", Positioning Status: ");
+        //                 uart_puts(UART_ID_OBD2, positioning_status);
+        //                 uart_puts(UART_ID_OBD2, ", Number of Satellites: ");
+        //                 uart_puts(UART_ID_OBD2, num_satellites_str);
+        //                 uart_puts(UART_ID_OBD2, ", HDOP: ");
+        //                 uart_puts(UART_ID_OBD2, hdop_str);
+        //                 uart_puts(UART_ID_OBD2, ", Altitude: ");
+        //                 uart_puts(UART_ID_OBD2, altitude_str);
+        //                 uart_puts(UART_ID_OBD2, ", Geoid Height: ");
+        //                 uart_puts(UART_ID_OBD2, geoid_height_str);
+        //                 uart_puts(UART_ID_OBD2, ", Differential Time: ");
+        //                 uart_puts(UART_ID_OBD2, differential_time_str);
+        //                 uart_puts(UART_ID_OBD2, ", Reference Base Station: ");
+        //                 uart_puts(UART_ID_OBD2, reference_base_station);
+        //                 uart_puts(UART_ID_OBD2, "\r\n");
+        //             }
+        //             // else
+        //             // {
+        //             //     // Print a message indicating that data extraction failed
+        //             //     uart_puts(UART_ID_OBD2, "Invalid NMEA sentence\r\n");
+        //             // }
+        //         }
+        //     }
+        //     // Move to the next token
+        //     token = strtok(NULL, "\n");
+        // }
         vTaskDelay(pdMS_TO_TICKS(500));
     }
 }
