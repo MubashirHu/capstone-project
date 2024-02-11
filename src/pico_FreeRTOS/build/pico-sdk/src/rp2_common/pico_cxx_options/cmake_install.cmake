@@ -1,4 +1,4 @@
-# Install script for directory: /home/swa248/pico/pico-sdk/src/rp2_common/pico_cxx_options
+# Install script for directory: /home/sarmad-alvi/Documents/pico/pico-sdk/src/rp2_common/pico_cxx_options
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

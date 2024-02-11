@@ -1,4 +1,4 @@
-# Install script for directory: /home/swa248/pico/pico-sdk
+# Install script for directory: /home/sarmad-alvi/Documents/pico/pico-sdk
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,9 +39,9 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/swa248/capstone-project/src/pico_FreeRTOS/build/pico-sdk/tools/cmake_install.cmake")
-  include("/home/swa248/capstone-project/src/pico_FreeRTOS/build/pico-sdk/src/cmake_install.cmake")
-  include("/home/swa248/capstone-project/src/pico_FreeRTOS/build/pico-sdk/docs/cmake_install.cmake")
+  include("/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build/pico-sdk/tools/cmake_install.cmake")
+  include("/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build/pico-sdk/src/cmake_install.cmake")
+  include("/home/sarmad-alvi/OneDrive/Documents/a University/Fifth Year/capstone-project/src/pico_FreeRTOS/build/pico-sdk/docs/cmake_install.cmake")
 
 endif()
 

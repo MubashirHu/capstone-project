@@ -6,17 +6,9 @@
 #include "hardware/i2c.h"
 #include "hardware/uart.h"
 #include <string.h>
+#include "util.h"
 
-int uart_get_response(uart_inst_t *uart, char *response)
-{
-    int i = 0;
-    while(uart_is_readable(uart) && i < 250)
-    {
-        response[i] = uart_getc(uart);
-        i++;
-    }
-    return i;
-}
+
 
 static int chars_rxed = 0;
 
@@ -27,9 +19,9 @@ static void led_task(void * parameters);
 
 void initTasks(void)
 {
-	//xTaskCreate(vTaskUart_4g, "4G_Task", 256, NULL, 1, NULL);
+	xTaskCreate(vTaskUart_4g, "4G_Task", 256, NULL, 1, NULL);
 	//xTaskCreate(vTaskUart_OBD, "OBD2_Task", 256, NULL, 1, NULL);
-    xTaskCreate(vTaskI2C_GPS, "GPS_Task", 256, NULL, 1, NULL);
+    //xTaskCreate(vTaskI2C_GPS, "GPS_Task", 256, NULL, 1, NULL);
     //xTaskCreate(led_task, "LED_Task", 256, NULL, 1, NULL);
 }
 
@@ -44,43 +36,63 @@ void vTaskUart_4g(void * parameters)
 
     uart_set_fifo_enabled(UART_ID_4G, true);
 
-    char response[250];
-
-    // TODO: Send initialization commands to 4g module and wait for response  
-    
-
-    // uart_puts(UART_ID_4G, "AT+HTTPINIT\r\n");
-
-    // uart_puts(UART_ID_4G, "AT+HTTPPARA=\"URL\",\"https://test-f1e70.firebaseio.com/pothole.json\"\n");
-    // // get response
-    // uart_puts(UART_ID_4G, "AT+HTTPACTION=0\n");
-    // // get response
-    // uart_puts(UART_ID_4G, "AT+HTTPREAD=0,290\n");
-    // // get response
-    // uart_puts(UART_ID_4G, "AT+HTTPTERM\n");
-    // get response
     uart_init(UART_ID_OBD2, BAUD_RATE_UART_4G);
     gpio_set_function(UART_TX_PIN_OBD2, GPIO_FUNC_UART);
     gpio_set_function(UART_RX_PIN_OBD2, GPIO_FUNC_UART);
     uart_set_hw_flow(UART_ID_OBD2, false, false);
+    uart_set_format(UART_ID_OBD2, DATA_BITS, STOP_BITS, PARITY);
+
+    char response[250];
+    response[0] = '\0';
+    int char_num = 0;
+    vTaskDelay(10000);
+    // TODO: Send initialization commands to 4g module and wait for response
+    while(uart_is_readable(UART_ID_4G))
+    {
+        uart_getc(UART_ID_4G);
+    }
+    uart_puts(UART_ID_OBD2, "\r\n");
+    uart_send_until_valid(UART_ID_4G, "AT\r\n", response, "AT\r\r\nOK\r\n");
+    vTaskDelay(pdMS_TO_TICKS(500));
+    uart_send_until_valid(UART_ID_4G, "AT+CPIN?\r\n", response, "AT+CPIN\r\r\n+CPIN: READY\r\n\r\nOK\r\n");
+    vTaskDelay(pdMS_TO_TICKS(500));
+    uart_send_until_valid(UART_ID_4G, "AT+HTTPINIT\r\n", response, "AT+HTTPINIT\r\r\nOK\r\n");
+    vTaskDelay(pdMS_TO_TICKS(500));
+    uart_send(UART_ID_4G, "AT+HTTPPARA=\"URL\",\"https://test-f1e70.firebaseio.com/uid.json\"\r\n", response, 0);
+    vTaskDelay(pdMS_TO_TICKS(500));
+    uart_send(UART_ID_4G, "AT+HTTPPARA=\"CONTENT\",\"application/json\"\r\n", response, 0);
+    vTaskDelay(pdMS_TO_TICKS(500));
+    uart_send(UART_ID_4G, "AT+HTTPDATA=20,5000\r\n", response, 0);
+    vTaskDelay(pdMS_TO_TICKS(500));
+    uart_send(UART_ID_4G, "{\"test\":\"test\"}\r\n", response, 0);
+    vTaskDelay(pdMS_TO_TICKS(500));
+    uart_send(UART_ID_4G, "\n\r\n", response, 1000);
+    vTaskDelay(pdMS_TO_TICKS(500));
+    uart_send(UART_ID_4G, "AT+HTTPACTION=1\r\n", response, 1000);
+    vTaskDelay(pdMS_TO_TICKS(500));
+    uart_send(UART_ID_4G, "AT+HTTPREAD=0,250\r\n", response, 1000);
+    
+    uart_puts(UART_ID_OBD2, "\r\n");
+    vTaskDelay(pdMS_TO_TICKS(500));
+    // parse response for uid
+    uart_send(UART_ID_4G, "AT+HTTPTERM\r\n", response, 0);
 
     // Set data format
-    uart_set_format(UART_ID_OBD2, DATA_BITS, STOP_BITS, PARITY);
 
     while (1)
     {
-        int response_num = 0;
-        // TODO: Check relavent queues and if certain ones are not empty, send http request else block
-        uart_puts(UART_ID_4G, "AT\r\n");
-        // get response
-        vTaskDelay(1000);
+        // int response_num = 0;
+        // response_num = uart_send(UART_ID_4G, "AT\r\n", response);
 
-        response_num = uart_get_response(UART_ID_4G, response);
-        for(int i = 0; i < response_num; i++)
-        {
-            uart_putc(UART_ID_OBD2, response[i]);
-        }
-        
+        // uart_puts(UART_ID_OBD2, "\r\n\r\n");
+        // for(int i = 0; i < response_num; i++)
+        // {
+        //     char ascii_code[4];
+        //     sprintf(ascii_code, "%02X ", response[i]);
+        //     uart_puts(UART_ID_OBD2, ascii_code);
+        //     uart_puts(UART_ID_OBD2, " | ");
+        // }
+        // uart_puts(UART_ID_OBD2, "\r\n");
         vTaskDelay(1000);
 
     }
@@ -238,7 +250,7 @@ void vTaskI2C_GPS(void * parameters)
         //     // Move to the next token
         //     token = strtok(NULL, "\n");
         // }
-        vTaskDelay(pdMS_TO_TICKS(500));
+        vTaskDelay(pdMS_TO_TICKS(1000));
     }
 }
 

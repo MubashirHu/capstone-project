@@ -4,6 +4,8 @@ add_executable(${ProjectName}
     tasks.h
     queues.c
     queues.h
+    util.c
+    util.h
 )
 
 target_include_directories(${ProjectName} PRIVATE
