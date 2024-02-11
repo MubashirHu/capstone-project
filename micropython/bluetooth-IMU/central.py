@@ -254,21 +254,18 @@ def demo():
 
         # Wait for connection...
         while not central.is_connected():
-            time.sleep_ms(100)
+            time.sleep_ms(1000)
             if not_found:
-                #return
-                pass
+                return  # Exit if no sensor found
 
         print("Connected")
 
-        # Explicitly issue reads, using "print" as the callback.
+        # Continuously issue read operations
         while central.is_connected():
-            central.read(callback=print)
-            time.sleep_ms(2000)
-            #central.disconnect()
+            central.read(callback=print)  # Print the read value
+            time.sleep_ms(100)  # Sleep to avoid flooding the connection
             
         print("Disconnected")
-
 
 if __name__ == "__main__":
     demo()

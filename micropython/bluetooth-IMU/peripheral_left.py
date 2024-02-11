@@ -10,35 +10,23 @@
 # and in particular the temp_sensor.py example included with aioble.
 
 import bluetooth
-import random
 import struct
 import time
 from ble_advertising import advertising_payload
 import MPU6050
+import machine
 
 
 from micropython import const
 
-# Set up the I2C interface
-i2c = machine.I2C(1, sda=machine.Pin(14), scl=machine.Pin(15))
-
-# Set up the MPU6050 class 
-mpu = MPU6050.MPU6050(i2c)
-
-# Wake up the MPU6050 from sleep
-mpu.wake()
-
 # Define Constants
-THRESHOLD_LOW = 9  # Lower threshold value for detecting potholes (in m/s^2)
-THRESHOLD_HIGH = 10  # Upper threshold value for detecting potholes (in m/s^2)
+THRESHOLD_HIGH_RD = 9 # Higher threshold value for detecting road depression
+THRESHOLD_LOW_RD = 8 # Lower threshold value for detecting road depression
+THRESHOLD_LOW_PH = 9  # Lower threshold value for detecting potholes (in m/s^2)
+THRESHOLD_HIGH_PH = 10  # Upper threshold value for detecting potholes (in m/s^2)
 WINDOW_SIZE = 10  # Size of the sliding window for averaging
-MIN_POTHOLE_DURATION = 10  # Minimum duration for a pothole event (in milliseconds)
-CALIBRATED_VALUE = 0.48
-
-# Initialize Variables
-window_buffer = [0] * WINDOW_SIZE
-pothole_detected = False
-pothole_duration = 0
+MIN_ROAD_DEPRESSION_DURATION = 10  # Minimum duration for a pothole event (in milliseconds)
+CALIBRATED_VALUE = 0.9
 
 ###BT
 
@@ -100,23 +88,35 @@ class BLEImu:
                     # Notify connected centrals.
                     self._ble.gatts_notify(conn_handle, self._handle)
                 if indicate:
-                    # Indicate connected centrals.
+                     # Indicate connected centrals.
                     self._ble.gatts_indicate(conn_handle, self._handle)
 
     def _advertise(self, interval_us=500000):
         self._ble.gap_advertise(interval_us, adv_data=self._payload)
-
-
+        
 def main():
+    
+    # Initialize Variables
+    window_buffer = [9] * WINDOW_SIZE
+    pothole_detected = False
+    road_depression_detected = False
+    pothole_duration = 0
+    road_depression_counter = 0
+    
+    ### IMU - configure
+    # Set up the I2C interface
+    i2c = machine.I2C(1, sda=machine.Pin(14), scl=machine.Pin(15))
+    # Set up the MPU6050 class 
+    mpu = MPU6050.MPU6050(i2c)
+    # Wake up the MPU6050 from sleep
+    mpu.wake()
+    
+    ### BLE - configure
     ble = bluetooth.BLE()
     imu_peripheral = BLEImu(ble)
-
-    t = 25
-    i = 0
-
-    imu_peripheral._send_pothole_event(t, notify=i == 0, indicate=False)
-    
+        
     while True:
+        
         ### READ IMU
         # Read accelerometer data (acceleration along the Z-axis)
         accel_z = mpu.read_accel_data()[2]
@@ -126,22 +126,38 @@ def main():
         window_buffer.append(accel_z)
         
         # Calculate the average acceleration value from the window_buffer
-        avg_accel_z = (sum(window_buffer) / len(window_buffer)) - CALIBRATED_VALUE
-        print("Avg Acc: z axis:", avg_accel_z)
-        #print(len(window_buffer))
-        for i in range(10):
-            print(window_buffer[i])
+        avg_accel_z = (sum(window_buffer) / len(window_buffer)) + CALIBRATED_VALUE
+        print("Avg Acc: z axis:", avg_accel_z)      
             
-        ## DETERMINE POTHOLE
+        ### DETERMINE WHETHER THRESHOLDS HAVE BEEN CROSSED
+        pothole_detected = mpu._determine_threshold_crossing(avg_accel_z, THRESHOLD_LOW_PH, THRESHOLD_HIGH_PH)
+        road_depression = mpu._determine_threshold_crossing(avg_accel_z, THRESHOLD_LOW_RD, THRESHOLD_HIGH_RD)
         
-        
-        # Write every second, notify every 10 seconds.
         i = 0
-        #imu_peripheral._send_pothole_event(t, notify=i == 0, indicate=True)
         imu_peripheral._send_pothole_event(pothole_detected, notify=i == 0, indicate=True)
+            
+        if(pothole_detected):
+            print("ph")
+            print(len(window_buffer))
+            i = 0
+            imu_peripheral._send_pothole_event(pothole_detected, notify=i == 0, indicate=True)
+            pothole_detected = False
         
-        time.sleep_ms(1000)
+        if(road_depression_detected):
+            print("rd")
+            road_depression_counter = road_depression_counter + 1
+            
+            if(road_depression_counter > MIN_ROAD_DEPRESSION_DURATION):
+                i = 0
+                imu_peripheral._send_pothole_event(road_depression_detected, notify=i == 0, indicate=True)
+                road_depression_counter = 0
+                road_depression_detected = False
+                
+        time.sleep_ms(100)
 
 if __name__ == "__main__":
     main()
 
+#print(len(window_buffer))
+#         for i in range(10):
+#             print(window_buffer[i])
