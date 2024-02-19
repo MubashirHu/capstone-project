@@ -1,6 +1,7 @@
 #include "FreeRTOS.h"
 #include <stdio.h>
 #include "pico/stdlib.h"
+#include "hardware/uart.h"
 #include "task.h"
 #include <string.h>
 
@@ -34,15 +35,16 @@ int uart_send(uart_inst_t *uart, char *command, char *response, int wait)
     {
         uart_putc(uart, command[i]);
         response[i] = uart_getc(uart);
-        vTaskDelay(1);
+
     }
     vTaskDelay(wait + 1);
     while(uart_is_readable(uart) && i < 250)
     {
         response[i] = uart_getc(uart);
         i++;
-        vTaskDelay(100);
+        vTaskDelay(10);
     }
+    
     for(int j = 0; j < i; j++)
     {
         uart_putc(uart1, response[j]);
@@ -59,13 +61,33 @@ int uart_send_until_valid(uart_inst_t *uart, char *command, char *response, char
         {
             uart_getc(uart);
         }
-        uart_send(uart, command, response, 0);
-        vTaskDelay(10);
+        uart_send(uart, command, response, 50);
+        vTaskDelay(100);
 
     } while (strncmp(response, expected_response, strlen(expected_response)) == 1);
 
-    uart_puts(uart1, "\r\n");
+    uart_puts(uart1, "end_of_command\r\n");
     return 0;
 }
 
+int uart_read_chars(uart_inst_t *uart, char *command, int num_char_to_read, char *response)
+{
+    while(uart_is_readable(uart))
+    {
+        uart_getc(uart);
+    }
+    uart_puts(uart, command);
+    for (int i = 0; i < num_char_to_read; i++)
+    {
+        response[i] = uart_getc(uart);
+    }
+    uart_puts(uart, "\r\n");
+}
+
+void uart_obd2_wheel_speed(uart_inst_t *uart, uint16_t wheel_1, uint16_t wheel_2, uint16_t wheel_3, uint16_t wheel_4)
+{
+    char response[20];
+    uart_read_chars(uart, "at cra 0b0\r\n", 13, "");
+
+}
 
