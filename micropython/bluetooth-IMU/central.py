@@ -16,6 +16,18 @@ from ble_advertising import decode_services, decode_name
 
 from micropython import const
 
+# Define GPIO pin
+GPIO_PIN = 19  # Example GPIO pin
+GPIO_PIN2 = 18  # Example GPIO pin
+
+# Initialize GPIO pin
+gpio_ph = machine.Pin(GPIO_PIN, machine.Pin.OUT)
+gpio_rd = machine.Pin(GPIO_PIN2, machine.Pin.OUT)
+
+# set to high initially
+gpio_ph.value(1)
+gpio_rd.value(1)
+
 _IRQ_CENTRAL_CONNECT = const(1)
 _IRQ_CENTRAL_DISCONNECT = const(2)
 _IRQ_GATTS_WRITE = const(3)
@@ -227,14 +239,14 @@ class BLEImuCentral:
 
     def _update_value(self, data):
         # Data is sint16 in degrees Celsius with a resolution of 0.01 degrees Celsius.
-        self._value = struct.unpack("<h", data)[0] / 100
+        self._value = struct.unpack("<h", data)[0]
         return self._value
 
     def value(self):
         return self._value
 
 
-def demo():
+def main():
     ble = bluetooth.BLE()
     central = BLEImuCentral(ble)
 
@@ -259,13 +271,33 @@ def demo():
                 return  # Exit if no sensor found
 
         print("Connected")
-
+        
         # Continuously issue read operations
         while central.is_connected():
-            central.read(callback=print)  # Print the read value
+            
+            ##This is only included for testing - on the vehicle so that data can be seen
+            #central.read(callback=print)  # Print the read value
+            print("value:", central.value())
+            
+            ## This is to relay the message to the central pico which has FreeRTOS        
+            if(central.value() == 1.0):
+                #Pothole event occured
+                print("pothole event")
+                gpio_ph.value(0)
+                time.sleep(1)
+                gpio_ph.value(1)
+            elif (central.value() == 2.0):
+                #Road depression event occured
+                print("road depression event")
+                gpio_rd.value(0)
+                time.sleep(1)
+                gpio_rd.value(1)
+            else:
+                pass            
+            
             time.sleep_ms(100)  # Sleep to avoid flooding the connection
             
         print("Disconnected")
 
 if __name__ == "__main__":
-    demo()
+    main()
