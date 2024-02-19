@@ -12,12 +12,17 @@
 import bluetooth
 import struct
 import time
+import utime
 from ble_advertising import advertising_payload
 import MPU6050
 import machine
 
 
 from micropython import const
+
+EVENT_NOTIFYING_TIMEOUT = 3000
+last_pothole_time = 0
+last_depression_time = 0
 
 # Define Constants
 THRESHOLD_HIGH_RD = 9 # Higher threshold value for detecting road depression
@@ -27,6 +32,13 @@ THRESHOLD_HIGH_PH = 10  # Upper threshold value for detecting potholes (in m/s^2
 WINDOW_SIZE = 10  # Size of the sliding window for averaging
 MIN_ROAD_DEPRESSION_DURATION = 10  # Minimum duration for a pothole event (in milliseconds)
 CALIBRATED_VALUE = 0.9
+
+
+# POTHOLE EVENTS
+POTHOLE_EVENT = 1
+ROAD_DEPRESSION_EVENT = 2
+
+value_needs_to_be_reset = False
 
 ###BT
 
@@ -78,10 +90,9 @@ class BLEImu:
         elif event == _IRQ_GATTS_INDICATE_DONE:
             conn_handle, value_handle, status = data
 
-    def _send_pothole_event(self, temp_deg_c, notify=False, indicate=False):
-        # Data is sint16 in degrees Celsius with a resolution of 0.01 degrees Celsius.
+    def _send_pothole_event(self, event, notify=False, indicate=False):
         # Write the local value, ready for a central to read.
-        self._ble.gatts_write(self._handle, struct.pack("<h", int(temp_deg_c * 100)))
+        self._ble.gatts_write(self._handle, struct.pack("<h", event*int(1)))
         if notify or indicate:
             for conn_handle in self._connections:
                 if notify:
@@ -93,6 +104,17 @@ class BLEImu:
 
     def _advertise(self, interval_us=500000):
         self._ble.gap_advertise(interval_us, adv_data=self._payload)
+        
+# Non-blocking timer checking if 3 seconds seconds have passed since the last pothole/road event
+def is_time_to_send():
+    global last_pothole_time, last_depression_time
+    current_time = utime.ticks_ms()
+    if current_time - last_pothole_time >= 3000 and current_time - last_depression_time >= 3000:
+        last_pothole_time = current_time
+        last_depression_time = current_time
+        return True
+    else:
+        return False
         
 def main():
     
@@ -133,26 +155,33 @@ def main():
         pothole_detected = mpu._determine_threshold_crossing(avg_accel_z, THRESHOLD_LOW_PH, THRESHOLD_HIGH_PH)
         road_depression = mpu._determine_threshold_crossing(avg_accel_z, THRESHOLD_LOW_RD, THRESHOLD_HIGH_RD)
         
-        i = 0
-        imu_peripheral._send_pothole_event(pothole_detected, notify=i == 0, indicate=True)
+        #Get access to global variable
+        global value_needs_to_be_reset
+        
+        #
+        if value_needs_to_be_reset:
+            imu_peripheral._send_pothole_event(0, notify=i == 0, indicate=True)
+            value_needs_to_be_reset = True
             
-        if(pothole_detected):
+        if(pothole_detected and is_time_to_send()):
             print("ph")
             print(len(window_buffer))
             i = 0
-            imu_peripheral._send_pothole_event(pothole_detected, notify=i == 0, indicate=True)
+            imu_peripheral._send_pothole_event(POTHOLE_EVENT, notify=i == 0, indicate=True)
             pothole_detected = False
-        
-        if(road_depression_detected):
+            value_needs_to_be_reset = True
+            
+        if(road_depression_detected and is_time_to_send()):
             print("rd")
             road_depression_counter = road_depression_counter + 1
             
             if(road_depression_counter > MIN_ROAD_DEPRESSION_DURATION):
                 i = 0
-                imu_peripheral._send_pothole_event(road_depression_detected, notify=i == 0, indicate=True)
+                imu_peripheral._send_pothole_event(ROAD_DEPRESSION_EVENT, notify=i == 0, indicate=True)
                 road_depression_counter = 0
                 road_depression_detected = False
-                
+                value_needs_to_be_reset = False
+                                
         time.sleep_ms(100)
 
 if __name__ == "__main__":
