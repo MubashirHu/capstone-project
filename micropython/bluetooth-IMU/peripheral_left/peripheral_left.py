@@ -17,7 +17,6 @@ from ble_advertising import advertising_payload
 import MPU6050
 import machine
 
-
 from micropython import const
 
 EVENT_NOTIFYING_TIMEOUT = 3000
