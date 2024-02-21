@@ -20,8 +20,8 @@ static void led_task(void * parameters);
 
 void initTasks(void)
 {
-	xTaskCreate(vTaskUart_4g, "4G_Task", 256, NULL, 1, NULL);
-	//xTaskCreate(vTaskUart_OBD, "OBD2_Task", 256, NULL, 1, NULL);
+	//xTaskCreate(vTaskUart_4g, "4G_Task", 256, NULL, 1, NULL);
+	xTaskCreate(vTaskUart_OBD, "OBD2_Task", 256, NULL, 1, NULL);
     //xTaskCreate(vTaskI2C_GPS, "GPS_Task", 256, NULL, 1, NULL);
     //xTaskCreate(led_task, "LED_Task", 256, NULL, 1, NULL);
 }
@@ -128,7 +128,7 @@ void vTaskUart_OBD(void * parameters)
 
     uart_set_fifo_enabled(UART_ID_OBD2, true);
 
-    uart_init(UART_ID_4G, 9600);
+    uart_init(UART_ID_4G, 115200);
     gpio_set_function(UART_TX_PIN_4G, GPIO_FUNC_UART);
     gpio_set_function(UART_RX_PIN_4G, GPIO_FUNC_UART);
     uart_set_hw_flow(UART_ID_4G, false, false);
@@ -136,23 +136,58 @@ void vTaskUart_OBD(void * parameters)
     uart_set_format(UART_ID_4G, DATA_BITS, STOP_BITS, PARITY);
 
     char response[250];
+    uint16_t wheel_1;
+    uint16_t wheel_2;
+    uint16_t wheel_3;
+    uint16_t wheel_4;
+    uint16_t brake_pressure;
     //uart_puts(UART_ID_OBD2, "atz");
-    //uart_send_until_valid(UART_ID_OBD2, "atz\r\n", response, "ELM327\r");
+    uart_send_until_valid(UART_ID_OBD2, "ATZ\r\n", response, "ATZ\r\r\rELM327 v1.4b\r\r>");
+    vTaskDelay(pdMS_TO_TICKS(1000));
 
     while (1)
     {
-        int response_num = 0;
-        response_num = uart_send(UART_ID_OBD2, "ATZ\r\n", response, 0);
-        uart_puts(UART_ID_4G, "\r\n\r\n");
-        for(int i = 0; i < response_num; i++)
-        {
-            char ascii_code[4];
-            sprintf(ascii_code, "%02X ", response[i]);
-            uart_puts(UART_ID_4G, ascii_code);
-            uart_puts(UART_ID_4G, " | ");
-        }
-        uart_puts(UART_ID_4G, "\r\n");
-        tight_loop_contents();
+        char stringValue[6];
+        uart_obd2_wheel_speed(UART_ID_OBD2, &wheel_1, &wheel_2, &wheel_3, &wheel_4, &brake_pressure);
+        uart_puts(UART_ID_4G, "\r\nWheel 1: ");
+        snprintf(stringValue, sizeof(stringValue), "%u", wheel_1);
+        uart_puts(UART_ID_4G, stringValue);
+
+        uart_puts(UART_ID_4G, "\r\nWheel 2: ");
+        snprintf(stringValue, sizeof(stringValue), "%u", wheel_2);
+        art_puts(UART_ID_4G, stringValue);
+
+        uart_puts(UART_ID_4G, "\r\nWheel 3: ");
+        snprintf(stringValue, sizeof(stringValue), "%u", wheel_3);
+        art_puts(UART_ID_4G, stringValue);
+
+        uart_puts(UART_ID_4G, "\r\nWheel 4: ");
+        snprintf(stringValue, sizeof(stringValue), "%u", wheel_4);
+        art_puts(UART_ID_4G, stringValue);
+        
+        uart_puts(UART_ID_4G, "\r\nBrake Pressure: ");
+        snprintf(stringValue, sizeof(stringValue), "%u", brake_pressure);
+        art_puts(UART_ID_4G, stringValue);
+
+        //atz receive after sending: "ATZ\r\r\rELM327 v1.4b\r\r>"
+        //AT CRA x receive after sending: "AT CRA x\rOK\r\r>"
+        //AT MA (for 0b0): "AT MA\r00 00 00 00 11 09\r" 24 char
+        
+
+        //uart_obd2_wheel_speed(UART_ID_OBD2, wheel_1, wheel_2, wheel_3, wheel_4);
+        //int response_num = 0;
+        //response_num = uart_send(UART_ID_OBD2, "AT MA\r\n", response, 100);
+        //uart_puts(UART_ID_4G, "\r\n");
+        // for(int i = 0; i < response_num; i++)
+        // {
+        //     char ascii_code[4];
+        //     sprintf(ascii_code, "%02X ", response[i]);
+        //     uart_puts(UART_ID_4G, ascii_code);
+        //     uart_puts(UART_ID_4G, " | ");
+        // }
+
+        vTaskDelay(pdMS_TO_TICKS(1000));
+        //uart_puts(UART_ID_4G, "\r\n");
 
         //send at cra 0b2 (wheel 4 and 3) each wheel on bytes 1&2 (back left) and 3&4 (back right)
         //send at ma and read x bytes of data and then send enter to stop command

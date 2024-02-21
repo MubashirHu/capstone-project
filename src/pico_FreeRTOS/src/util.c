@@ -47,16 +47,19 @@ int uart_send(uart_inst_t *uart, char *command, char *response, int wait)
     
     for(int j = 0; j < i; j++)
     {
-        uart_putc(uart1, response[j]);
-        vTaskDelay(1);
+        //char ascii_code[4];
+        //sprintf(ascii_code, "%02X ", response[j]);
+        //uart_puts(uart0, ascii_code);
+        uart_putc(uart0, response[j]);
+        vTaskDelay(10);
     }
     return i;
 }
 
 int uart_send_until_valid(uart_inst_t *uart, char *command, char *response, char* expected_response)
 {
-    do
-    {
+   do
+   {
         while(uart_is_readable(uart))
         {
             uart_getc(uart);
@@ -64,9 +67,9 @@ int uart_send_until_valid(uart_inst_t *uart, char *command, char *response, char
         uart_send(uart, command, response, 50);
         vTaskDelay(100);
 
-    } while (strncmp(response, expected_response, strlen(expected_response)) == 1);
+   } while (strncmp(response, expected_response, strlen(expected_response)) != 0);
 
-    uart_puts(uart1, "end_of_command\r\n");
+    //uart_puts(uart0, "end_of_command\r\n");
     return 0;
 }
 
@@ -80,14 +83,38 @@ int uart_read_chars(uart_inst_t *uart, char *command, int num_char_to_read, char
     for (int i = 0; i < num_char_to_read; i++)
     {
         response[i] = uart_getc(uart);
+        //uart_putc(uart0, response[i]);
     }
     uart_puts(uart, "\r\n");
 }
 
-void uart_obd2_wheel_speed(uart_inst_t *uart, uint16_t wheel_1, uint16_t wheel_2, uint16_t wheel_3, uint16_t wheel_4)
+void uart_obd2_wheel_speed(uart_inst_t *uart, uint16_t *wheel_1, uint16_t *wheel_2, uint16_t *wheel_3, uint16_t *wheel_4, uint16_t *brake_pressure)
 {
-    char response[20];
-    uart_read_chars(uart, "at cra 0b0\r\n", 13, "");
+
+    char response[30];
+    uart_send_until_valid(uart, "AT CRA 0B0\r\n", response, "AT CRA 0B0\rOK\r\r>");
+    do
+    {
+        uart_read_chars(uart, "AT MA\r\n", 24, response);
+    } while (strncmp(response, "AT MA\r", 6) != 0);
+    
+    sscanf(response + 6, "%2hx", wheel_1);
+    sscanf(response + 9, "%2hx", wheel_2);
+    uart_send_until_valid(uart, "AT CRA 0B2\r\n", response, "AT CRA 0B2\rOK\r\r>");
+    do
+    {
+        uart_read_chars(uart, "AT MA\r\n", 24, response);
+    } while (strncmp(response, "AT MA\r", 6) != 0);
+    sscanf(response + 6, "%2hx", wheel_3);
+    sscanf(response + 9, "%2hx", wheel_4);
+
+    uart_send_until_valid(uart, "AT CRA 224\r\n", response, "AT CRA 224\rOK\r\r>");
+    do
+    {
+        uart_read_chars(uart, "AT MA\r\n", 29, response);
+    } while (strncmp(response, "AT MA\r", 6) != 0);
+    sscanf(response + 9, "%2hx", brake_pressure);
+
 
 }
 
