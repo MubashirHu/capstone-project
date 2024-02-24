@@ -6,23 +6,18 @@
 
 struct message
 {
-    char utc_time[11];
-    char latitude[12];
-    char latitude_direction;
-    char longitude[13];
-    char longitude_direction;
+    time_t time;
+    double latitude;
+    double longitude;
     double speed;
     int message_type;
 };
 
 struct gps
 {
-    char utc_time[11];
-    char latitude[12];
-    char latitude_direction;
-    char longitude[13];
-    char longitude_direction;
-    int positioning_status;
+    time_t time;
+    double latitude;
+    double longitude;
 };
 
 void initQueues();

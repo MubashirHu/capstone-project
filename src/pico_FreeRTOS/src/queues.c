@@ -25,7 +25,7 @@ void message_enqueue(struct message x)
 
 int message_queue_dequeue(struct message* x)
 {
-    if(xQueueReceive(xMessage_Queue, &x, 10) == pdTRUE)
+    if(xQueueReceive(xMessage_Queue, &x, 0) == pdTRUE)
     {
         return 1;
     }

@@ -8,54 +8,40 @@
 #include <string.h>
 #include "util.h"
 #include "queues.h"
+#include <stdint.h>
+#include <string.h>
 
-
-
-char uid[20];
 
 static void vTaskUart_4g(void * parameters);
+static void vTaskNormal(void * parameters);
 void vTaskUart_OBD(void * parameters);
 void vTaskI2C_GPS(void * parameters);
 static void led_task(void * parameters);
 
 void initTasks(void)
 {
-	//xTaskCreate(vTaskUart_4g, "4G_Task", 256, NULL, 1, NULL);
-	xTaskCreate(vTaskUart_OBD, "OBD2_Task", 256, NULL, 1, NULL);
-    //xTaskCreate(vTaskI2C_GPS, "GPS_Task", 256, NULL, 1, NULL);
-    //xTaskCreate(led_task, "LED_Task", 256, NULL, 1, NULL);
+	xTaskCreate(vTaskUart_4g, "4G_Task", 512, NULL, 6, NULL);
+	//xTaskCreate(vTaskUart_OBD, "OBD2_Task", 256, NULL, 1, NULL);
+    xTaskCreate(vTaskI2C_GPS, "GPS_Task", 512, NULL, 6, NULL);
+    //xTaskCreate(vTaskNormal, "Normal_Task", 256, NULL, 1, NULL);
+    // xTaskCreate(led_task, "LED_Task", 256, NULL, 6, NULL);
 }
 
 void vTaskUart_4g(void * parameters)
 {
-    uart_init(UART_ID_4G, BAUD_RATE_UART_4G);
-    gpio_set_function(UART_TX_PIN_4G, GPIO_FUNC_UART);
-    gpio_set_function(UART_RX_PIN_4G, GPIO_FUNC_UART);
-    uart_set_hw_flow(UART_ID_4G, false, false);
-
-    uart_set_format(UART_ID_4G, DATA_BITS, STOP_BITS, PARITY);
-
-    uart_set_fifo_enabled(UART_ID_4G, true);
-
-    uart_init(UART_ID_OBD2, BAUD_RATE_UART_4G);
-    gpio_set_function(UART_TX_PIN_OBD2, GPIO_FUNC_UART);
-    gpio_set_function(UART_RX_PIN_OBD2, GPIO_FUNC_UART);
-    uart_set_hw_flow(UART_ID_OBD2, false, false);
-    uart_set_format(UART_ID_OBD2, DATA_BITS, STOP_BITS, PARITY);
-
-    char response[250];
-    response[0] = '\0';
+    char uid[20];
+    char response[150];
     int char_num = 0;
-    vTaskDelay(10000);
-    // TODO: Send initialization commands to 4g module and wait for response
+    vTaskDelay(pdMS_TO_TICKS(1000));
+    uart_puts(UART_ID_OBD2, "start_init_task\r\n");
     while(uart_is_readable(UART_ID_4G))
     {
         uart_getc(UART_ID_4G);
     }
-    uart_puts(uart1, "start_init\r\n");
+    uart_puts(UART_ID_OBD2, "start_init\r\n");
     uart_send_until_valid(UART_ID_4G, "AT\r\n", response, "AT\r\r\nOK\r\n");
     vTaskDelay(pdMS_TO_TICKS(500));
-    uart_send_until_valid(UART_ID_4G, "AT+CPIN?\r\n", response, "AT+CPIN\r\r\n+CPIN: READY\r\n\r\nOK\r\n");
+    uart_send_until_valid(UART_ID_4G, "AT+CPIN?\r\n", response, "AT+CPIN?\r\r\n+CPIN: READY\r\n\r\nOK\r\n");
     vTaskDelay(pdMS_TO_TICKS(500));
     uart_send_until_valid(UART_ID_4G, "AT+HTTPINIT\r\n", response, "AT+HTTPINIT\r\r\nOK\r\n");
     vTaskDelay(pdMS_TO_TICKS(500));
@@ -69,14 +55,20 @@ void vTaskUart_4g(void * parameters)
     vTaskDelay(pdMS_TO_TICKS(500));
     uart_send(UART_ID_4G, "\n\r\n", response, 1000);
     vTaskDelay(pdMS_TO_TICKS(500));
-    uart_send(UART_ID_4G, "AT+HTTPACTION=1\r\n", response, 1000);
+    uart_send(UART_ID_4G, "AT+HTTPACTION=1\r\n", response, 500);
     vTaskDelay(pdMS_TO_TICKS(500));
-    uart_send(UART_ID_4G, "AT+HTTPREAD=0,250\r\n", response, 1000);
+    uart_send1(UART_ID_4G, "AT+HTTPREAD=0,250\r\n", response, 0);
     
-    vTaskDelay(pdMS_TO_TICKS(1000));
-    uart_puts(UART_ID_OBD2, "completed_init\r\n");
-    // parse response for uid
+    vTaskDelay(pdMS_TO_TICKS(500));
+
+    strncpy(uid, originalString + 53, sizeof(uid) - 1); // -1 to ensure null termination
+    substring[sizeof(uid) - 1] = '\0'; // Ensure null termination
+
+    
+    // parse response for uid 91
     uart_send(UART_ID_4G, "AT+HTTPTERM\r\n", response, 0);
+
+    uart_puts(UART_ID_OBD2, "completed_init\r\n");
 
     struct message msg;
 
@@ -86,54 +78,71 @@ void vTaskUart_4g(void * parameters)
         // if(message_queue_dequeue(&msg) == 1)
         // {
         //     static char json[512]; // Assuming a fixed size for simplicity, adjust as needed
-        //     sprintf(json, "{\"uid\": \"%s\", \"utc_time\": \"%s\", \"latitude\": \"%s%c\", \"longitude\": \"%s%c\", \"speed\": %f, \"message_type\": %d}",
-        //     uid, msg.utc_time, msg.latitude, msg.latitude_direction, msg.longitude, msg.longitude_direction, msg.speed, msg.message_type);
+        //     sprintf(json, "{\"uid\": \"%s\", \"time\":%ld,\"latitude\":%.6lf,\"longitude\":%.6lf,\"speed\":%.2lf,\"message_type\":%d}",
+        //     uid, (long)msg.time, msg.latitude, msg.longitude, msg.speed, msg.message_type);
 
-            uart_send_until_valid(UART_ID_4G, "AT+HTTPINIT\r\n", response, "AT+HTTPINIT\r\r\nOK\r\n");
-            vTaskDelay(pdMS_TO_TICKS(50));
-            uart_send(UART_ID_4G, "AT+HTTPPARA=\"URL\",\"https://test-f1e70.firebaseio.com/test.json\"\r\n", response, 0);
-            vTaskDelay(pdMS_TO_TICKS(50));
-            uart_send(UART_ID_4G, "AT+HTTPPARA=\"CONTENT\",\"application/json\"\r\n", response, 0);
-            vTaskDelay(pdMS_TO_TICKS(50));
-            uart_send(UART_ID_4G, "AT+HTTPDATA=20,5000\r\n", response, 0);
-            vTaskDelay(pdMS_TO_TICKS(50));
-            // use string to create json string with message structure
-            uart_send(UART_ID_4G, "{\"test\":\"test\"}\r\n", response, 0);
-            vTaskDelay(pdMS_TO_TICKS(50));
-            uart_send(UART_ID_4G, "\n\r\n", response, 1000);
-            vTaskDelay(pdMS_TO_TICKS(50));
-            uart_send(UART_ID_4G, "AT+HTTPACTION=1\r\n", response, 1000);
-            // verify http response of 200 if failed, then repeat until it doesn't for x amount of times
-            vTaskDelay(pdMS_TO_TICKS(50));
-            uart_send(UART_ID_4G, "AT+HTTPTERM\r\n", response, 0);
-        // }
-        // else
-        // {
-        //     vTaskDelay(500);
+        //     uart_send_until_valid(UART_ID_4G, "AT+HTTPINIT\r\n", response, "AT+HTTPINIT\r\r\nOK\r\n");
+        //     vTaskDelay(pdMS_TO_TICKS(50));
+        //     uart_send(UART_ID_4G, "AT+HTTPPARA=\"URL\",\"https://test-f1e70.firebaseio.com/test.json\"\r\n", response, 0);
+        //     vTaskDelay(pdMS_TO_TICKS(50));
+        //     uart_send(UART_ID_4G, "AT+HTTPPARA=\"CONTENT\",\"application/json\"\r\n", response, 0);
+        //     vTaskDelay(pdMS_TO_TICKS(50));
+        //     uart_send(UART_ID_4G, "AT+HTTPDATA=20,5000\r\n", response, 0);
+        //     vTaskDelay(pdMS_TO_TICKS(50));
+        //     // use string to create json string with message structure
+        //     uart_send(UART_ID_4G, json, response, 0);
+        //     vTaskDelay(pdMS_TO_TICKS(50));
+        //     uart_send(UART_ID_4G, "\n\r\n", response, 1000);
+        //     vTaskDelay(pdMS_TO_TICKS(50));
+        //     uart_send(UART_ID_4G, "AT+HTTPACTION=1\r\n", response, 1000);
+        //     // verify http response of 200 if failed, then repeat until it doesn't for x amount of times
+        //     vTaskDelay(pdMS_TO_TICKS(50));
+        //     uart_send(UART_ID_4G, "AT+HTTPTERM\r\n", response, 0);
         // }
         vTaskDelay(pdMS_TO_TICKS(1000));
+        uart_puts(UART_ID_OBD2, "completed_init\r\n");
 
+    }
+}
+
+void vTaskNormal(void * parameters)
+{
+    while(1)
+    {
+        vTaskDelay(pdMS_TO_TICKS(5000));
+        struct message x;
+        struct gps y;
+        if(gps_queue_peek(&y))
+        {
+            x.latitude = y.latitude;
+            x.longitude = y.longitude;
+            x.message_type = 0;
+            x.time = y.time;
+            x.speed = 0;
+            message_enqueue(x);
+        }
+        vTaskDelay(2000);
     }
 }
 
 void vTaskUart_OBD(void * parameters)
 {
-    uart_init(UART_ID_OBD2, BAUD_RATE_UART_OBD2);
-    gpio_set_function(UART_TX_PIN_OBD2, GPIO_FUNC_UART);
-    gpio_set_function(UART_RX_PIN_OBD2, GPIO_FUNC_UART);
-    uart_set_hw_flow(UART_ID_OBD2, false, false);
+    // uart_init(UART_ID_OBD2, BAUD_RATE_UART_OBD2);
+    // gpio_set_function(UART_TX_PIN_OBD2, GPIO_FUNC_UART);
+    // gpio_set_function(UART_RX_PIN_OBD2, GPIO_FUNC_UART);
+    // uart_set_hw_flow(UART_ID_OBD2, false, false);
 
-    // Set data format
-    uart_set_format(UART_ID_OBD2, DATA_BITS, STOP_BITS, PARITY);
+    // // Set data format
+    // uart_set_format(UART_ID_OBD2, DATA_BITS, STOP_BITS, PARITY);
 
-    uart_set_fifo_enabled(UART_ID_OBD2, true);
+    // uart_set_fifo_enabled(UART_ID_OBD2, true);
 
-    uart_init(UART_ID_4G, 115200);
-    gpio_set_function(UART_TX_PIN_4G, GPIO_FUNC_UART);
-    gpio_set_function(UART_RX_PIN_4G, GPIO_FUNC_UART);
-    uart_set_hw_flow(UART_ID_4G, false, false);
+    // uart_init(UART_ID_4G, 115200);
+    // gpio_set_function(UART_TX_PIN_4G, GPIO_FUNC_UART);
+    // gpio_set_function(UART_RX_PIN_4G, GPIO_FUNC_UART);
+    // uart_set_hw_flow(UART_ID_4G, false, false);
 
-    uart_set_format(UART_ID_4G, DATA_BITS, STOP_BITS, PARITY);
+    // uart_set_format(UART_ID_4G, DATA_BITS, STOP_BITS, PARITY);
 
     char response[250];
     uint16_t wheel_1;
@@ -155,19 +164,19 @@ void vTaskUart_OBD(void * parameters)
 
         uart_puts(UART_ID_4G, "\r\nWheel 2: ");
         snprintf(stringValue, sizeof(stringValue), "%u", wheel_2);
-        art_puts(UART_ID_4G, stringValue);
+        uart_puts(UART_ID_4G, stringValue);
 
         uart_puts(UART_ID_4G, "\r\nWheel 3: ");
         snprintf(stringValue, sizeof(stringValue), "%u", wheel_3);
-        art_puts(UART_ID_4G, stringValue);
+        uart_puts(UART_ID_4G, stringValue);
 
         uart_puts(UART_ID_4G, "\r\nWheel 4: ");
         snprintf(stringValue, sizeof(stringValue), "%u", wheel_4);
-        art_puts(UART_ID_4G, stringValue);
+        uart_puts(UART_ID_4G, stringValue);
         
         uart_puts(UART_ID_4G, "\r\nBrake Pressure: ");
         snprintf(stringValue, sizeof(stringValue), "%u", brake_pressure);
-        art_puts(UART_ID_4G, stringValue);
+        uart_puts(UART_ID_4G, stringValue);
 
         //atz receive after sending: "ATZ\r\r\rELM327 v1.4b\r\r>"
         //AT CRA x receive after sending: "AT CRA x\rOK\r\r>"
@@ -186,7 +195,7 @@ void vTaskUart_OBD(void * parameters)
         //     uart_puts(UART_ID_4G, " | ");
         // }
 
-        vTaskDelay(pdMS_TO_TICKS(1000));
+        vTaskDelay(pdMS_TO_TICKS(10));
         //uart_puts(UART_ID_4G, "\r\n");
 
         //send at cra 0b2 (wheel 4 and 3) each wheel on bytes 1&2 (back left) and 3&4 (back right)
@@ -204,44 +213,25 @@ void vTaskUart_OBD(void * parameters)
 
 void vTaskI2C_GPS(void * parameters)
 {
-    //Initialize UART0 with a baud rate of 115200
-    uart_init(UART_ID_OBD2, BAUD_RATE_UART_4G);
-    // Set UART0 TX (transmit) pin to GPIO 0 and RX (receive) pin to GPIO 1
-    gpio_set_function(UART_TX_PIN_OBD2, GPIO_FUNC_UART);
-    gpio_set_function(UART_RX_PIN_OBD2, GPIO_FUNC_UART);
-    uart_set_hw_flow(UART_ID_OBD2, false, false);
-    uart_set_format(UART_ID_OBD2, DATA_BITS, STOP_BITS, PARITY);
-
-    uart_set_fifo_enabled(UART_ID_OBD2, true);
-
-    uart_puts(UART_ID_OBD2, "\r\nTest1\r\n");
-    i2c_init(I2C_ID_GPS, BAUD_RATE_I2C_GPS);
-    gpio_set_function(I2C_SDA_PIN_GPS, GPIO_FUNC_I2C);
-    gpio_set_function(I2C_SCL_PIN_GPS, GPIO_FUNC_I2C);
-    gpio_pull_up(I2C_SDA_PIN_GPS);
-    gpio_pull_up(I2C_SCL_PIN_GPS);
     uint8_t num_bytes_high;
     uint8_t num_bytes_low;
     uint16_t num_bytes_available;
-    uart_puts(UART_ID_OBD2, "Test2\r\n");
-    uint8_t data[256];
+    uint8_t data[255];
     while (1)
     {
-        size_t len = i2c_read_blocking(i2c0, 0x42, data, 255, false);
-        data[len] = '\0';
+        size_t len = i2c_read_blocking(i2c0, 0x42, data, 254, false);
         char* token = strtok(data, "\n"); // Tokenize by newline
 
-        uart_puts(UART_ID_OBD2, token);
-        uart_puts(UART_ID_OBD2, "\r\n");
         while (token != NULL) 
         {
             // Check if the token starts with '$' (indicating an NMEA sentence)
             if (token[0] == '$') 
             {
-                // uart_puts(UART_ID_OBD2, token);
-                // uart_puts(UART_ID_OBD2, "\r\n");
+                
                 if (strncmp(token, "$GNGGA", 6) == 0)
                 {
+                    // uart_puts(UART_ID_OBD2, token);
+                    // uart_puts(UART_ID_OBD2, "\r\n");
                     // Extract information from GNGGA sentence
                     char utc_time[11];
                     char latitude[12];
@@ -261,47 +251,63 @@ void vTaskI2C_GPS(void * parameters)
                                             utc_time, latitude, &latitude_direction, longitude, &longitude_direction,
                                             &positioning_status, &num_satellites, &hdop, &altitude, &geoid_height,
                                             &differential_time, reference_base_station);
-
-                    if (items_matched > 0)
+                    if (items_matched > 4)
                     {
-                        // Data successfully extracted, print it
+                        // uart_puts(UART_ID_OBD2, token);
+                        // uart_puts(UART_ID_OBD2, "\r\n");
+                        // // Data successfully extracted, print it
 
-                        uart_puts(UART_ID_OBD2, "UTC Time: ");
-                        uart_puts(UART_ID_OBD2, utc_time);
-                        uart_puts(UART_ID_OBD2, ", Latitude: ");
-                        if (strlen(latitude) > 0)
-                        {
-                            uart_puts(UART_ID_OBD2, latitude);
-                            uart_putc(UART_ID_OBD2, latitude_direction);
-                        }
-                        else
-                        {
-                            uart_puts(UART_ID_OBD2, "N/A");
-                        }
-
-                        uart_puts(UART_ID_OBD2, ", Longitude: ");
-                        if (strlen(longitude) > 0)
-                        {
-                            uart_puts(UART_ID_OBD2, longitude);
-                            uart_putc(UART_ID_OBD2, longitude_direction);
-                        }
-                        else
-                        {
-                            uart_puts(UART_ID_OBD2, "N/A");
-                        }
-
-                        // struct gps x;
-                        // x.utc_time = utc_time;
-                        // x.latitude = latitude;
-                        // x.latitude_direction = latitude_direction;
-                        // x.longitude = longitude;
-                        // x.longitude_direction = longitude_direction;
-                        // x.positioning_status = positioning_status;
-
-                        // if (positioning_status != 0)
+                        // uart_puts(UART_ID_OBD2, "UTC Time: ");
+                        // uart_puts(UART_ID_OBD2, utc_time);
+                        // uart_puts(UART_ID_OBD2, ", Latitude: ");
+                        // if (strlen(latitude) > 0)
                         // {
-                        //     gps_queue_overwrite(x);
+                        //     uart_puts(UART_ID_OBD2, latitude);
+                        //     uart_putc(UART_ID_OBD2, latitude_direction);
                         // }
+                        // else
+                        // {
+                        //     uart_puts(UART_ID_OBD2, "N/A");
+                        // }
+
+                        // uart_puts(UART_ID_OBD2, ", Longitude: ");
+                        // if (strlen(longitude) > 0)
+                        // {
+                        //     uart_puts(UART_ID_OBD2, longitude);
+                        //     uart_putc(UART_ID_OBD2, longitude_direction);
+                        // }
+                        // else
+                        // {
+                        //     uart_puts(UART_ID_OBD2, "N/A");
+                        // }
+
+                        int lat_degrees, lat_minutes;
+                        double lat_decimalDegrees;
+                        sscanf(latitude, "%2d%2d.%*7c", &lat_degrees, &lat_minutes);
+                        lat_decimalDegrees = lat_degrees + (double)lat_minutes / 60.0;
+
+                        int long_degrees, long_minutes;
+                        double long_decimalDegrees;
+                        sscanf(longitude, "%3d%2d.%*7c", &long_degrees, &long_minutes);
+                        long_decimalDegrees = long_degrees + (double)long_minutes / 60.0;
+
+                        int hours = (utc_time[0] - '0') * 10 + (utc_time[1] - '0');
+                        int minutes = (utc_time[2] - '0') * 10 + (utc_time[3] - '0');
+                        int seconds = (utc_time[4] - '0') * 10 + (utc_time[5] - '0');
+                        int milliseconds = (utc_time[7] - '0') * 100 + (utc_time[8] - '0') * 10 + (utc_time[9] - '0');
+
+                        time_t unixTime = hours * 3600 + minutes * 60 + seconds;
+                        unixTime += milliseconds / 1000;
+
+                        struct gps x;
+                        x.time = unixTime;
+                        x.latitude = lat_decimalDegrees;
+                        x.longitude = long_decimalDegrees;
+
+                        if (positioning_status != 0)
+                        {
+                            gps_queue_overwrite(x);
+                        }
 
                         // char num_satellites_str[4]; // Assuming maximum 3 digits for the number of satellites
                         // char hdop_str[10]; // Adjust the size as per your requirements
@@ -338,13 +344,14 @@ void vTaskI2C_GPS(void * parameters)
                     {
                         // Print a message indicating that data extraction failed
                         uart_puts(UART_ID_OBD2, "Invalid NMEA sentence\r\n");
+                        break;
                     }
                 }
             }
             // Move to the next token
             token = strtok(NULL, "\n");
         }
-        vTaskDelay(500);
+        vTaskDelay(pdMS_TO_TICKS(1000));
     }
 }
 
@@ -355,9 +362,9 @@ void led_task(void * parameters)
     gpio_set_dir(LED_PIN, GPIO_OUT);
     while (true) {
         gpio_put(LED_PIN, 1);
-        vTaskDelay(100);
+        vTaskDelay(pdMS_TO_TICKS(500));
         gpio_put(LED_PIN, 0);
-        vTaskDelay(100);
+        vTaskDelay(pdMS_TO_TICKS(500));
     }
 }
 
