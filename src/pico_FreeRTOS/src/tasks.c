@@ -20,10 +20,10 @@ static void led_task(void * parameters);
 
 void initTasks(void)
 {
-	xTaskCreate(vTaskUart_4g, "4G_Task", 512, NULL, 6, NULL);
-	//xTaskCreate(vTaskUart_OBD, "OBD2_Task", 256, NULL, 1, NULL);
-    xTaskCreate(vTaskI2C_GPS, "GPS_Task", 512, NULL, 6, NULL);
-    xTaskCreate(vTaskNormal, "Normal_Task", 256, NULL, 6, NULL);
+	// xTaskCreate(vTaskUart_4g, "4G_Task", 512, NULL, 6, NULL);
+	xTaskCreate(vTaskUart_OBD, "OBD2_Task", 256, NULL, 1, NULL);
+    // xTaskCreate(vTaskI2C_GPS, "GPS_Task", 512, NULL, 6, NULL);
+    // xTaskCreate(vTaskNormal, "Normal_Task", 256, NULL, 6, NULL);
     // xTaskCreate(led_task, "LED_Task", 256, NULL, 6, NULL);
 }
 
@@ -127,23 +127,6 @@ void vTaskNormal(void * parameters)
 
 void vTaskUart_OBD(void * parameters)
 {
-    // uart_init(UART_ID_OBD2, BAUD_RATE_UART_OBD2);
-    // gpio_set_function(UART_TX_PIN_OBD2, GPIO_FUNC_UART);
-    // gpio_set_function(UART_RX_PIN_OBD2, GPIO_FUNC_UART);
-    // uart_set_hw_flow(UART_ID_OBD2, false, false);
-
-    // // Set data format
-    // uart_set_format(UART_ID_OBD2, DATA_BITS, STOP_BITS, PARITY);
-
-    // uart_set_fifo_enabled(UART_ID_OBD2, true);
-
-    // uart_init(UART_ID_4G, 115200);
-    // gpio_set_function(UART_TX_PIN_4G, GPIO_FUNC_UART);
-    // gpio_set_function(UART_RX_PIN_4G, GPIO_FUNC_UART);
-    // uart_set_hw_flow(UART_ID_4G, false, false);
-
-    // uart_set_format(UART_ID_4G, DATA_BITS, STOP_BITS, PARITY);
-
     char response[250];
     uint16_t wheel_1;
     uint16_t wheel_2;
