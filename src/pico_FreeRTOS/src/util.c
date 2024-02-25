@@ -95,12 +95,18 @@ int uart_read_chars(uart_inst_t *uart, char *command, int num_char_to_read, char
         uart_getc(uart);
     }
     uart_puts(uart, command);
-    for (int i = 0; i < num_char_to_read; i++)
-    {
-        response[i] = uart_getc(uart);
-        //uart_putc(uart0, response[i]);
-    }
+    uart_read_blocking(uart, response, num_char_to_read);
+    // for (int i = 0; i < num_char_to_read; i++)
+    // {
+    //     response[i] = uart_getc(uart);
+    //     //uart_putc(uart0, response[i]);
+    // }
     uart_puts(uart, "\r");
+    char check;
+    do
+    {
+        check = uart_getc(uart);
+    }while(check != ">");
 }
 
 void uart_obd2_wheel_speed(uart_inst_t *uart, uint16_t *wheel_1, uint16_t *wheel_2, uint16_t *wheel_3, uint16_t *wheel_4, uint16_t *brake_pressure)

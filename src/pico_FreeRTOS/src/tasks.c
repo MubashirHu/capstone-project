@@ -160,7 +160,7 @@ void vTaskUart_OBD(void * parameters)
         uart_puts(UART_ID_4G, "\r\nBrake Pressure: ");
         snprintf(stringValue, sizeof(stringValue), "%u", brake_pressure);
         uart_puts(UART_ID_4G, stringValue);
-
+        uart_puts(UART_ID_4G, "\r\n===========================================\r\n");
         //atz receive after sending: "ATZ\r\r\rELM327 v1.4b\r\r>"
         //AT CRA x receive after sending: "AT CRA x\rOK\r\r>"
         //AT MA (for 0b0): "AT MA\r00 00 00 00 11 09\r" 24 char
