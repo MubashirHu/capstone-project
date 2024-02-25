@@ -23,7 +23,7 @@ void initTasks(void)
 	xTaskCreate(vTaskUart_4g, "4G_Task", 512, NULL, 6, NULL);
 	//xTaskCreate(vTaskUart_OBD, "OBD2_Task", 256, NULL, 1, NULL);
     xTaskCreate(vTaskI2C_GPS, "GPS_Task", 512, NULL, 6, NULL);
-    //xTaskCreate(vTaskNormal, "Normal_Task", 256, NULL, 1, NULL);
+    xTaskCreate(vTaskNormal, "Normal_Task", 256, NULL, 6, NULL);
     // xTaskCreate(led_task, "LED_Task", 256, NULL, 6, NULL);
 }
 
@@ -75,30 +75,30 @@ void vTaskUart_4g(void * parameters)
     while (1)
     {
 
-        // if(message_queue_dequeue(&msg) == 1)
-        // {
-        //     static char json[512]; // Assuming a fixed size for simplicity, adjust as needed
-        //     sprintf(json, "{\"uid\": \"%s\", \"time\":%ld,\"latitude\":%.6lf,\"longitude\":%.6lf,\"speed\":%.2lf,\"message_type\":%d}",
-        //     uid, (long)msg.time, msg.latitude, msg.longitude, msg.speed, msg.message_type);
+        if(message_queue_dequeue(&msg) == 1)
+        {
+            static char json[512]; // Assuming a fixed size for simplicity, adjust as needed
+            sprintf(json, "{\"uid\": \"%s\", \"time\":%ld,\"latitude\":%.6lf,\"longitude\":%.6lf,\"speed\":%.2lf,\"message_type\":%d}",
+            uid, (long)msg.time, msg.latitude, msg.longitude, msg.speed, msg.message_type);
 
-        //     uart_send_until_valid(UART_ID_4G, "AT+HTTPINIT\r\n", response, "AT+HTTPINIT\r\r\nOK\r\n");
-        //     vTaskDelay(pdMS_TO_TICKS(50));
-        //     uart_send(UART_ID_4G, "AT+HTTPPARA=\"URL\",\"https://test-f1e70.firebaseio.com/test.json\"\r\n", response, 0);
-        //     vTaskDelay(pdMS_TO_TICKS(50));
-        //     uart_send(UART_ID_4G, "AT+HTTPPARA=\"CONTENT\",\"application/json\"\r\n", response, 0);
-        //     vTaskDelay(pdMS_TO_TICKS(50));
-        //     uart_send(UART_ID_4G, "AT+HTTPDATA=20,5000\r\n", response, 0);
-        //     vTaskDelay(pdMS_TO_TICKS(50));
-        //     // use string to create json string with message structure
-        //     uart_send(UART_ID_4G, json, response, 0);
-        //     vTaskDelay(pdMS_TO_TICKS(50));
-        //     uart_send(UART_ID_4G, "\n\r\n", response, 1000);
-        //     vTaskDelay(pdMS_TO_TICKS(50));
-        //     uart_send(UART_ID_4G, "AT+HTTPACTION=1\r\n", response, 1000);
-        //     // verify http response of 200 if failed, then repeat until it doesn't for x amount of times
-        //     vTaskDelay(pdMS_TO_TICKS(50));
-        //     uart_send(UART_ID_4G, "AT+HTTPTERM\r\n", response, 0);
-        // }
+            uart_send_until_valid(UART_ID_4G, "AT+HTTPINIT\r\n", response, "AT+HTTPINIT\r\r\nOK\r\n");
+            vTaskDelay(pdMS_TO_TICKS(50));
+            uart_send(UART_ID_4G, "AT+HTTPPARA=\"URL\",\"https://test-f1e70.firebaseio.com/test.json\"\r\n", response, 0);
+            vTaskDelay(pdMS_TO_TICKS(50));
+            uart_send(UART_ID_4G, "AT+HTTPPARA=\"CONTENT\",\"application/json\"\r\n", response, 0);
+            vTaskDelay(pdMS_TO_TICKS(50));
+            uart_send(UART_ID_4G, "AT+HTTPDATA=20,5000\r\n", response, 0);
+            vTaskDelay(pdMS_TO_TICKS(50));
+            // use string to create json string with message structure
+            uart_send(UART_ID_4G, json, response, 0);
+            vTaskDelay(pdMS_TO_TICKS(50));
+            uart_send(UART_ID_4G, "\n\r\n", response, 1000);
+            vTaskDelay(pdMS_TO_TICKS(50));
+            uart_send(UART_ID_4G, "AT+HTTPACTION=1\r\n", response, 1000);
+            // verify http response of 200 if failed, then repeat until it doesn't for x amount of times
+            vTaskDelay(pdMS_TO_TICKS(50));
+            uart_send(UART_ID_4G, "AT+HTTPTERM\r\n", response, 0);
+        }
         vTaskDelay(pdMS_TO_TICKS(1000));
         uart_puts(UART_ID_OBD2, "completed_init\r\n");
 
