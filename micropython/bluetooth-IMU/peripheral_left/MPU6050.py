@@ -12,6 +12,8 @@ THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR I
 """
 
 import machine
+import time
+import utime
 
 class MPU6050:
     """Class for reading gyro rates and acceleration data from an MPU-6050 module via I2C."""
@@ -167,5 +169,32 @@ class MPU6050:
                 return True
             else:
                 return False
-                                
+            
+    def _auto_calibrate(self, seconds):
+        window_buffer = [9] * 10
+        calibratedValue = 0
         
+        for i in range(seconds * 10):
+            
+            # Read accelerometer data (acceleration along the Z-axis)
+            accel_z = self.read_accel_data()[2]
+            
+            # Add new data to the window_buffer
+            window_buffer.pop(0)
+            window_buffer.append(accel_z)
+            
+            # Calculate the average acceleration value from the window_buffer
+            avg_accel_z = (sum(window_buffer) / len(window_buffer))
+            print("Avg Acc: z axis:", avg_accel_z)
+            
+            time.sleep_ms(100)
+            
+        # determine the calibrated value to send
+        if avg_accel_z < 9.81 :
+            calibratedValue = 9.81 - avg_accel_z
+        elif avg_accel_z > 9.81 :
+            calibratedValue = -(avg_accel_z - 9.81)
+        
+        return calibratedValue
+        
+
