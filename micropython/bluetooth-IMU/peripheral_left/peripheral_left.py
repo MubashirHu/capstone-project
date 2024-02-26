@@ -30,14 +30,13 @@ THRESHOLD_LOW_PH = 9  # Lower threshold value for detecting potholes (in m/s^2)
 THRESHOLD_HIGH_PH = 10  # Upper threshold value for detecting potholes (in m/s^2)
 WINDOW_SIZE = 10  # Size of the sliding window for averaging
 MIN_ROAD_DEPRESSION_DURATION = 10  # Minimum duration for a pothole event (in milliseconds)
-CALIBRATED_VALUE = 0.39
-
 
 # POTHOLE EVENTS
 POTHOLE_EVENT = 1
 ROAD_DEPRESSION_EVENT = 2
 
 value_needs_to_be_reset = False
+calibratedValue = 0.0
 
 ###BT
 
@@ -135,9 +134,11 @@ def main():
     ### BLE - configure
     ble = bluetooth.BLE()
     imu_peripheral = BLEImu(ble)
+    
+    ## Automatically calibrate the IMU sensor
+    calibratedValue = mpu._auto_calibrate(2)
         
     while True:
-        
         ### READ IMU
         # Read accelerometer data (acceleration along the Z-axis)
         accel_z = mpu.read_accel_data()[2]
@@ -147,7 +148,7 @@ def main():
         window_buffer.append(accel_z)
         
         # Calculate the average acceleration value from the window_buffer
-        avg_accel_z = (sum(window_buffer) / len(window_buffer)) - CALIBRATED_VALUE
+        avg_accel_z = (sum(window_buffer) / len(window_buffer)) + calibratedValue
         print("Avg Acc: z axis:", avg_accel_z)      
             
         ### DETERMINE WHETHER THRESHOLDS HAVE BEEN CROSSED
@@ -189,7 +190,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-#print(len(window_buffer))
-#         for i in range(10):
-#             print(window_buffer[i])
