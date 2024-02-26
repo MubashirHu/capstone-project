@@ -49,15 +49,15 @@ _FLAG_NOTIFY = const(0x0010)
 _FLAG_INDICATE = const(0x0020)
 
 # org.bluetooth.service.environmental_sensing
-_ENV_SENSE_UUID = bluetooth.UUID("c5e15ad3-bcf5-4cc1-a40a-899931a69a3b")
+_IMU_SENSE_UUID = bluetooth.UUID("c5e15ad3-bcf5-4cc1-a40a-899931a69a3b")
 # org.bluetooth.characteristic.temperature
-_TEMP_CHAR = (
+_IMU_CHAR = (
     bluetooth.UUID(0x2A6E),
     _FLAG_READ | _FLAG_NOTIFY | _FLAG_INDICATE,
 )
-_ENV_SENSE_SERVICE = (
-    _ENV_SENSE_UUID,
-    (_TEMP_CHAR,),
+_IMU_SENSE_SERVICE = (
+    _IMU_SENSE_UUID,
+    (_IMU_CHAR,),
 )
 
 # org.bluetooth.characteristic.gap.appearance.xml
@@ -69,10 +69,10 @@ class BLEImu:
         self._ble = ble
         self._ble.active(True)
         self._ble.irq(self._irq)
-        ((self._handle,),) = self._ble.gatts_register_services((_ENV_SENSE_SERVICE,))
+        ((self._handle,),) = self._ble.gatts_register_services((_IMU_SENSE_SERVICE,))
         self._connections = set()
         self._payload = advertising_payload(
-            name=name, services=[_ENV_SENSE_UUID])
+            name=name, services=[_IMU_SENSE_UUID])
         self._advertise()
 
     def _irq(self, event, data):
