@@ -239,7 +239,7 @@ class BLEImuCentral:
 
     def _update_value(self, data):
         # Data is sint16 in degrees Celsius with a resolution of 0.01 degrees Celsius.
-        self._value = struct.unpack("<h", data)[0]
+        self._value = struct.unpack("<f", data)[0]
         return self._value
 
     def value(self):
@@ -284,7 +284,7 @@ def main():
                 #Pothole event occured
                 print("pothole event")
                 gpio_ph.value(0)
-                time.sleep(1)
+                time.sleep(0.1)
                 gpio_ph.value(1)
             elif (central.value() == 2.0):
                 #Road depression event occured
@@ -295,7 +295,7 @@ def main():
             else:
                 pass            
             
-            time.sleep_ms(100)  # Sleep to avoid flooding the connection
+            time.sleep_ms(10)  # Sleep to avoid flooding the connection
             
         print("Disconnected")
 
