@@ -16,6 +16,26 @@ from ble_advertising import decode_services, decode_name
 
 from micropython import const
 
+
+EVENT_NOTIFYING_TIMEOUT = 100
+last_pothole_time = 0
+last_depression_time = 0
+
+# Define Constants
+THRESHOLD_HIGH_RD = 9 # Higher threshold value for detecting road depression
+THRESHOLD_LOW_RD = 8 # Lower threshold value for detecting road depression
+THRESHOLD_LOW_PH = 8  # Lower threshold value for detecting potholes (in m/s^2)
+THRESHOLD_HIGH_PH = 11  # Upper threshold value for detecting potholes (in m/s^2)
+WINDOW_SIZE = 10  # Size of the sliding window for averaging
+MIN_ROAD_DEPRESSION_DURATION = 10  # Minimum duration for a pothole event (in milliseconds)
+
+# POTHOLE EVENTS
+POTHOLE_EVENT = 1
+ROAD_DEPRESSION_EVENT = 2
+
+value_needs_to_be_reset = False
+calibratedValue = 0.0
+
 # Define GPIO pin
 GPIO_PIN = 19  # Example GPIO pin
 GPIO_PIN2 = 18  # Example GPIO pin
@@ -245,10 +265,25 @@ class BLEImuCentral:
     def value(self):
         return self._value
 
+def _determine_threshold_crossing( average_accel, low_threshold, high_threshold):
+        # Check if the average acceleration value falls below THRESHOLD_LOW
+        if average_accel < low_threshold:
+            return True
+        else:
+            if average_accel > high_threshold:
+                return True
+            else:
+                return False
+
 
 def main():
     ble = bluetooth.BLE()
     central = BLEImuCentral(ble)
+    window_buffer = [9] * WINDOW_SIZE
+    pothole_detected = False
+    road_depression_detected = False
+    pothole_duration = 0
+    road_depression_counter = 0
 
     not_found = False
 
@@ -275,25 +310,28 @@ def main():
         # Continuously issue read operations
         while central.is_connected():
             
+            # Read accelerometer data (acceleration along the Z-axis)
+            accel_z = central.value()
+            
+            # Add new data to the window_buffer
+            window_buffer.pop(0)
+            window_buffer.append(accel_z)
+            
+            # Calculate the average acceleration value from the window_buffer
+            avg_accel_z = (sum(window_buffer) / len(window_buffer))
+            print("Avg Acc: z axis:", avg_accel_z)
+            
             ##This is only included for testing - on the vehicle so that data can be seen
             #central.read(callback=print)  # Print the read value
-            print("value:", central.value())
+            #print("value:", central.value())
             
-            ## This is to relay the message to the central pico which has FreeRTOS        
-            if(central.value() == 1.0):
-                #Pothole event occured
-                print("pothole event")
-                gpio_ph.value(0)
-                time.sleep(0.1)
-                gpio_ph.value(1)
-            elif (central.value() == 2.0):
-                #Road depression event occured
-                print("road depression event")
-                gpio_rd.value(0)
-                time.sleep(1)
-                gpio_rd.value(1)
-            else:
-                pass            
+            pothole_detected = _determine_threshold_crossing(avg_accel_z, THRESHOLD_LOW_PH, THRESHOLD_HIGH_PH)
+            road_depression = _determine_threshold_crossing(avg_accel_z, THRESHOLD_LOW_RD, THRESHOLD_HIGH_RD)
+            
+            if(pothole_detected):
+                print("pothole Event at value", avg_accel_z)
+                pothole_detected = False
+                #return
             
             time.sleep_ms(10)  # Sleep to avoid flooding the connection
             
