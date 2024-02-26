@@ -103,25 +103,11 @@ class BLEImu:
     def _advertise(self, interval_us=500000):
         self._ble.gap_advertise(interval_us, adv_data=self._payload)
         
-# Non-blocking timer checking if 3 seconds seconds have passed since the last pothole/road event
-def is_time_to_send():
-    global last_pothole_time, last_depression_time
-    current_time = utime.ticks_ms()
-    if current_time - last_pothole_time >= 3000 and current_time - last_depression_time >= 3000:
-        last_pothole_time = current_time
-        last_depression_time = current_time
-        return True
-    else:
-        return False
         
 def main():
     
     # Initialize Variables
     window_buffer = [9] * WINDOW_SIZE
-    pothole_detected = False
-    road_depression_detected = False
-    pothole_duration = 0
-    road_depression_counter = 0
     
     ### IMU - configure
     # Set up the I2C interface
@@ -135,58 +121,19 @@ def main():
     ble = bluetooth.BLE()
     imu_peripheral = BLEImu(ble)
     
-    ## Automatically calibrate the IMU sensor
+    # Automatically calibrate the IMU sensor
     calibratedValue = mpu._auto_calibrate(2)
-        
+    
     while True:
         ### READ IMU
         # Read accelerometer data (acceleration along the Z-axis)
-        accel_z = mpu.read_accel_data()[2]
-        
-        # Add new data to the window_buffer
-        window_buffer.pop(0)
-        window_buffer.append(accel_z)
-        
-        # Calculate the average acceleration value from the window_buffer
-        avg_accel_z = (sum(window_buffer) / len(window_buffer)) + calibratedValue
-        print("Avg Acc: z axis:", avg_accel_z)      
-            
-        ### DETERMINE WHETHER THRESHOLDS HAVE BEEN CROSSED
-        pothole_detected = mpu._determine_threshold_crossing(avg_accel_z, THRESHOLD_LOW_PH, THRESHOLD_HIGH_PH)
-        road_depression = mpu._determine_threshold_crossing(avg_accel_z, THRESHOLD_LOW_RD, THRESHOLD_HIGH_RD)
-        
-        #Get access to global variable
-        global value_needs_to_be_reset
+        accel_z = mpu.read_accel_data()[2] + calibratedValue
         
         #sending the value of the IMU to the central
         i = 0
-        imu_peripheral._send_pothole_event(avg_accel_z, notify=i == 0, indicate=True)
-        
-        if value_needs_to_be_reset:
-            imu_peripheral._send_pothole_event(0, notify=i == 0, indicate=True)
-            print("here")
-            value_needs_to_be_reset = False
-            
-        if(pothole_detected and is_time_to_send()):
-            print("ph")
-            print(len(window_buffer))
-            i = 0
-            imu_peripheral._send_pothole_event(POTHOLE_EVENT, notify=i == 0, indicate=True)
-            pothole_detected = False
-            value_needs_to_be_reset = True
-            
-        if(road_depression_detected and is_time_to_send()):
-            print("rd")
-            road_depression_counter = road_depression_counter + 1
-            
-            if(road_depression_counter > MIN_ROAD_DEPRESSION_DURATION):
-                i = 0
-                imu_peripheral._send_pothole_event(ROAD_DEPRESSION_EVENT, notify=i == 0, indicate=True)
-                road_depression_counter = 0
-                road_depression_detected = False
-                value_needs_to_be_reset = False
-                                
-        time.sleep_ms(100)
+        imu_peripheral._send_pothole_event(accel_z, notify=i == 0, indicate=True)
+                 
+        time.sleep_ms(10)
 
 if __name__ == "__main__":
     main()
