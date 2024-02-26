@@ -9,6 +9,7 @@
 #include "util.h"
 #include "queues.h"
 #include <stdint.h>
+#include <stdlib.h>
 #include <string.h>
 
 
@@ -21,8 +22,8 @@ static void led_task(void * parameters);
 void initTasks(void)
 {
 	// xTaskCreate(vTaskUart_4g, "4G_Task", 512, NULL, 6, NULL);
-	xTaskCreate(vTaskUart_OBD, "OBD2_Task", 256, NULL, 1, NULL);
-    // xTaskCreate(vTaskI2C_GPS, "GPS_Task", 512, NULL, 6, NULL);
+	// xTaskCreate(vTaskUart_OBD, "OBD2_Task", 512, NULL, 6, NULL);
+    xTaskCreate(vTaskI2C_GPS, "GPS_Task", 512, NULL, 6, NULL);
     // xTaskCreate(vTaskNormal, "Normal_Task", 256, NULL, 6, NULL);
     // xTaskCreate(led_task, "LED_Task", 256, NULL, 6, NULL);
 }
@@ -61,8 +62,8 @@ void vTaskUart_4g(void * parameters)
     
     vTaskDelay(pdMS_TO_TICKS(500));
 
-    strncpy(uid, originalString + 53, sizeof(uid) - 1); // -1 to ensure null termination
-    substring[sizeof(uid) - 1] = '\0'; // Ensure null termination
+    strncpy(uid, response + 53, sizeof(uid) - 1); // -1 to ensure null termination
+    uid[sizeof(uid) - 1] = '\0'; // Ensure null termination
 
     
     // parse response for uid 91
@@ -236,43 +237,47 @@ void vTaskI2C_GPS(void * parameters)
                                             &differential_time, reference_base_station);
                     if (items_matched > 4)
                     {
-                        // uart_puts(UART_ID_OBD2, token);
-                        // uart_puts(UART_ID_OBD2, "\r\n");
+                        // uart_puts(uart0, token);
+                        // uart_puts(uart0, "\r\n");
                         // // Data successfully extracted, print it
 
-                        // uart_puts(UART_ID_OBD2, "UTC Time: ");
-                        // uart_puts(UART_ID_OBD2, utc_time);
-                        // uart_puts(UART_ID_OBD2, ", Latitude: ");
-                        // if (strlen(latitude) > 0)
-                        // {
-                        //     uart_puts(UART_ID_OBD2, latitude);
-                        //     uart_putc(UART_ID_OBD2, latitude_direction);
-                        // }
-                        // else
-                        // {
-                        //     uart_puts(UART_ID_OBD2, "N/A");
-                        // }
+                        uart_puts(uart0, "UTC Time: ");
+                        uart_puts(uart0, utc_time);
+                        uart_puts(uart0, ", Latitude: ");
+                        if (strlen(latitude) > 0)
+                        {
+                            uart_puts(uart0, latitude);
+                            uart_putc(uart0, latitude_direction);
+                        }
+                        else
+                        {
+                            uart_puts(uart0, "N/A");
+                        }
 
-                        // uart_puts(UART_ID_OBD2, ", Longitude: ");
-                        // if (strlen(longitude) > 0)
-                        // {
-                        //     uart_puts(UART_ID_OBD2, longitude);
-                        //     uart_putc(UART_ID_OBD2, longitude_direction);
-                        // }
-                        // else
-                        // {
-                        //     uart_puts(UART_ID_OBD2, "N/A");
-                        // }
+                        uart_puts(uart0, ", Longitude: ");
+                        if (strlen(longitude) > 0)
+                        {
+                            uart_puts(uart0, longitude);
+                            uart_putc(uart0, longitude_direction);
+                        }
+                        else
+                        {
+                            uart_puts(uart0, "N/A");
+                        }
 
-                        int lat_degrees, lat_minutes;
+                        int lat_degrees = atoi(latitude) / 100;
+                        double lat_minutes = atof(latitude + 2);
                         double lat_decimalDegrees;
-                        sscanf(latitude, "%2d%2d.%*7c", &lat_degrees, &lat_minutes);
-                        lat_decimalDegrees = lat_degrees + (double)lat_minutes / 60.0;
+                        //sscanf(latitude, "%lf%lf", &lat_degrees, &lat_minutes);
+                        lat_decimalDegrees = lat_degrees + (double)lat_minutes / 60.000;
 
-                        int long_degrees, long_minutes;
+                        // double long_degrees, long_minutes;
                         double long_decimalDegrees;
-                        sscanf(longitude, "%3d%2d.%*7c", &long_degrees, &long_minutes);
-                        long_decimalDegrees = long_degrees + (double)long_minutes / 60.0;
+
+                        int long_degrees = atoi(longitude) / 100;
+                        double long_minutes = atof(longitude + 3);
+                        // sscanf(longitude, "%lf%lf", &long_degrees, &long_minutes);
+                        long_decimalDegrees = long_degrees + (double)long_minutes / 60.000;
 
                         int hours = (utc_time[0] - '0') * 10 + (utc_time[1] - '0');
                         int minutes = (utc_time[2] - '0') * 10 + (utc_time[3] - '0');
@@ -287,6 +292,10 @@ void vTaskI2C_GPS(void * parameters)
                         x.latitude = lat_decimalDegrees;
                         x.longitude = long_decimalDegrees;
 
+                        static char json[512]; // Assuming a fixed size for simplicity, adjust as needed
+                        sprintf(json, "\r\n\"time\":%ld,\r\n\"latitude\":%.6lf,\r\n\"longitude\":%.6lf,\r\n",
+                        (long)x.time, x.latitude, x.longitude);
+                        uart_puts(uart0, json);
                         if (positioning_status != 0)
                         {
                             gps_queue_overwrite(x);
@@ -326,7 +335,7 @@ void vTaskI2C_GPS(void * parameters)
                     else
                     {
                         // Print a message indicating that data extraction failed
-                        uart_puts(UART_ID_OBD2, "Invalid NMEA sentence\r\n");
+                        uart_puts(uart0, "Invalid NMEA sentence\r\n");
                         break;
                     }
                 }

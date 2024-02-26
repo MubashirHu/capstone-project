@@ -45,13 +45,13 @@ int uart_send(uart_inst_t *uart, char *command, char *response, int wait)
         vTaskDelay(15);
     }
     
-    for(int j = 0; j < i; j++)
-    {
-        //char ascii_code[4];
-        //sprintf(ascii_code, "%02X ", response[j]);
-        //uart_puts(uart0, ascii_code);
-        uart_putc(uart1, response[j]);
-    }
+    // for(int j = 0; j < i; j++)
+    // {
+    //     //char ascii_code[4];
+    //     //sprintf(ascii_code, "%02X ", response[j]);
+    //     //uart_puts(uart0, ascii_code);
+    //     uart_putc(uart0, response[j]);
+    // }
     return i;
 }
 
@@ -59,13 +59,13 @@ int uart_send1(uart_inst_t *uart, char *command, char *response, int wait)
 {
     uart_puts(uart, command);
     uart_read_blocking(uart, response, 91);
-    for(int j = 0; j < 91; j++)
-    {
-        //char ascii_code[4];
-        //sprintf(ascii_code, "%02X ", response[j]);
-        //uart_puts(uart0, ascii_code);
-        uart_putc(uart1, response[j]);
-    }
+    // for(int j = 0; j < 91; j++)
+    // {
+    //     //char ascii_code[4];
+    //     //sprintf(ascii_code, "%02X ", response[j]);
+    //     //uart_puts(uart0, ascii_code);
+    //     // uart_putc(uart0, response[j]);
+    // }
     return 91;
 }
 
@@ -106,7 +106,7 @@ int uart_read_chars(uart_inst_t *uart, char *command, int num_char_to_read, char
     do
     {
         check = uart_getc(uart);
-    }while(check != ">");
+    }while(check != '>');
 }
 
 void uart_obd2_wheel_speed(uart_inst_t *uart, uint16_t *wheel_1, uint16_t *wheel_2, uint16_t *wheel_3, uint16_t *wheel_4, uint16_t *brake_pressure)
@@ -139,7 +139,7 @@ void uart_obd2_wheel_speed(uart_inst_t *uart, uint16_t *wheel_1, uint16_t *wheel
     {
         uart_read_chars(uart, "AT MA\r\n", 29, response);
     } while (strncmp(response, "AT MA\r", 6) != 0);
-    sscanf(response + 15, "%2hx %2hx", &high_nibble, &low_nibble);
+    sscanf(response + 18, "%2hx %2hx", &high_nibble, &low_nibble);
     *brake_pressure = (high_nibble << 8) | low_nibble;
 
 

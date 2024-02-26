@@ -22,11 +22,11 @@ int main()
     // uart_set_fifo_enabled(UART_ID_4G, true);
 
 
-    // i2c_init(I2C_ID_GPS, BAUD_RATE_I2C_GPS);
-    // gpio_set_function(I2C_SDA_PIN_GPS, GPIO_FUNC_I2C);
-    // gpio_set_function(I2C_SCL_PIN_GPS, GPIO_FUNC_I2C);
-    // gpio_pull_up(I2C_SDA_PIN_GPS);
-    // gpio_pull_up(I2C_SCL_PIN_GPS);
+    i2c_init(I2C_ID_GPS, BAUD_RATE_I2C_GPS);
+    gpio_set_function(I2C_SDA_PIN_GPS, GPIO_FUNC_I2C);
+    gpio_set_function(I2C_SCL_PIN_GPS, GPIO_FUNC_I2C);
+    gpio_pull_up(I2C_SDA_PIN_GPS);
+    gpio_pull_up(I2C_SCL_PIN_GPS);
 
     // uart_init(UART_ID_OBD2, BAUD_RATE_UART_4G);
     // gpio_set_function(UART_TX_PIN_OBD2, GPIO_FUNC_UART);
