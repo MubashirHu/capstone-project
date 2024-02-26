@@ -19,7 +19,7 @@ import machine
 
 from micropython import const
 
-EVENT_NOTIFYING_TIMEOUT = 3000
+EVENT_NOTIFYING_TIMEOUT = 100
 last_pothole_time = 0
 last_depression_time = 0
 
@@ -30,7 +30,7 @@ THRESHOLD_LOW_PH = 9  # Lower threshold value for detecting potholes (in m/s^2)
 THRESHOLD_HIGH_PH = 10  # Upper threshold value for detecting potholes (in m/s^2)
 WINDOW_SIZE = 10  # Size of the sliding window for averaging
 MIN_ROAD_DEPRESSION_DURATION = 10  # Minimum duration for a pothole event (in milliseconds)
-CALIBRATED_VALUE = 0.9
+CALIBRATED_VALUE = 0.39
 
 
 # POTHOLE EVENTS
@@ -89,9 +89,9 @@ class BLEImu:
         elif event == _IRQ_GATTS_INDICATE_DONE:
             conn_handle, value_handle, status = data
 
-    def _send_pothole_event(self, event, notify=False, indicate=False):
+    def _send_pothole_event(self, event:float, notify=False, indicate=False):
         # Write the local value, ready for a central to read.
-        self._ble.gatts_write(self._handle, struct.pack("<h", event*int(1)))
+        self._ble.gatts_write(self._handle, struct.pack("<f", event))
         if notify or indicate:
             for conn_handle in self._connections:
                 if notify:
@@ -147,7 +147,7 @@ def main():
         window_buffer.append(accel_z)
         
         # Calculate the average acceleration value from the window_buffer
-        avg_accel_z = (sum(window_buffer) / len(window_buffer)) + CALIBRATED_VALUE
+        avg_accel_z = (sum(window_buffer) / len(window_buffer)) - CALIBRATED_VALUE
         print("Avg Acc: z axis:", avg_accel_z)      
             
         ### DETERMINE WHETHER THRESHOLDS HAVE BEEN CROSSED
@@ -157,10 +157,14 @@ def main():
         #Get access to global variable
         global value_needs_to_be_reset
         
-        #
+        #sending the value of the IMU to the central
+        i = 0
+        imu_peripheral._send_pothole_event(avg_accel_z, notify=i == 0, indicate=True)
+        
         if value_needs_to_be_reset:
             imu_peripheral._send_pothole_event(0, notify=i == 0, indicate=True)
-            value_needs_to_be_reset = True
+            print("here")
+            value_needs_to_be_reset = False
             
         if(pothole_detected and is_time_to_send()):
             print("ph")
