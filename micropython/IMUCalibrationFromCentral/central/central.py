@@ -296,7 +296,7 @@ def _determine_threshold_crossing(average_accel, green_zone):
     if(zone_time is not None):
         
         #for the next 3 seconds find the highest value
-        if time.time() - zone_time < 500:
+        if time.time() - zone_time < 300:
             
             #Update highest value
             if average_accel > highest_value :
@@ -305,7 +305,7 @@ def _determine_threshold_crossing(average_accel, green_zone):
                 return WAITING_FOR_VALUE
         
         #At this point, 3 seconds have passed, So Reset timer and return value
-        
+        print("Timer has ended")
         zone_time = None #reset the timer
         return highest_value #return the highest value
     
@@ -318,7 +318,7 @@ def _determine_zone(value):
         return RED_ZONE
     elif (GREEN_ZONE < value < YELLOW_ZONE):
         return YELLOW_ZONE
-    else:
+    elif (value < GREEN_ZONE):
         return GREEN_ZONE
     
 def main():
@@ -370,28 +370,32 @@ def main():
             thresholding_result = _determine_threshold_crossing(avg_accel_z, GREEN_ZONE)
             
             if(thresholding_result == WAITING):
-                print("WAITING")
-                print("highest value:", highest_value)
-                print("average z:", avg_accel_z)
+                print(avg_accel_z)
+#                 print("WAITING")
+#                 print("highest value:", highest_value)
+#                 print("average z:", avg_accel_z)
+                pass
+            
             elif(thresholding_result == WAITING_FOR_VALUE):
-                print("WAITING_FOR_VALUE")
-                print("highest value:", highest_value)
-                print("average z:", avg_accel_z)
-                break;
+#                 print("WAITING_FOR_VALUE")
+#                 print("highest value:", highest_value)
+#                 print("average z:", avg_accel_z)
+                pass
+
             elif(thresholding_result > GREEN_ZONE):
                 high_value = thresholding_result
-                
-                print("thresholding_result", thresholding_result)
-                print("high_value", high_value)
+#                 print("thresholding_result", thresholding_result)
+#                 print("high_value", high_value)
+                pass
                 
                 zone_result = _determine_zone(high_value)
                 
                 if zone_result is RED_ZONE:
                     print("RED ZONE")
-                    return
+                    #return
                 elif zone_result is YELLOW_ZONE:
                     print("YELLOW ZONE")
-                    return
+                    #return
                 else:
                     print("GREEN ZONE")
                     
