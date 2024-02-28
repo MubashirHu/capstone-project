@@ -22,18 +22,17 @@ last_pothole_time = 0
 last_depression_time = 0
 
 # Define Constants
-THRESHOLD_HIGH_RD = 9 # Higher threshold value for detecting road depression
-THRESHOLD_LOW_RD = 8 # Lower threshold value for detecting road depression
-THRESHOLD_LOW_PH = 8  # Lower threshold value for detecting potholes (in m/s^2)
-THRESHOLD_HIGH_PH = 11  # Upper threshold value for detecting potholes (in m/s^2)
-WINDOW_SIZE = 15  # Size of the sliding window for averaging
+WINDOW_SIZE = 50  # Size of the sliding window for averaging
+GREEN_ZONE = 7
+YELLOW_ZONE = 10
+RED_ZONE = 15
+
+# Global variable to track the start time
+start_time = None
 
 # POTHOLE EVENTS
 POTHOLE_EVENT = 1
 ROAD_DEPRESSION_EVENT = 2
-
-value_needs_to_be_reset = False
-calibratedValue = 0.0
 
 # Define GPIO pin
 GPIO_PIN = 19  # Example GPIO pin
@@ -264,26 +263,37 @@ class BLEImuCentral:
     def value(self):
         return self._value
 
-def _determine_threshold_crossing( average_accel, low_threshold, high_threshold):
-        # Check if the average acceleration value falls below THRESHOLD_LOW
-        if average_accel < low_threshold:
-            return True
-        else:
-            if average_accel > high_threshold:
-                return True
-            else:
-                return False
+def _determine_threshold_crossing(average_accel, green_zone, yellow_zone, red_zone):
+    
+    global start_time
+    
+    # Check if the start time has been initialized
+    if start_time is None:
+        start_time = time.time()  # Initialize start time on first function call
+    
+    # Check if 5 seconds have passed since the start time
+    if time.time() - start_time < 3:
+        return "WAITING"
+    
+    # Check if the average acceleration value falls below THRESHOLD_LOW
+    if average_accel <= green_zone:
+        return GREEN_ZONE
+    elif green_zone < average_accel <= yellow_zone:
+        return YELLOW_ZONE
+    elif yellow_zone < average_accel <= red_zone:
+        return RED_ZONE
+    else:
+        return 1
 
-
+        
 def main():
     ble = bluetooth.BLE()
     central = BLEImuCentral(ble)
     window_buffer = [9] * WINDOW_SIZE
+    
     pothole_detected = False
     road_depression_detected = False
-    pothole_duration = 0
-    road_depression_counter = 0
-
+    
     not_found = False
 
     def on_scan(addr_type, addr, name):
@@ -312,30 +322,34 @@ def main():
             # Read accelerometer data (acceleration along the Z-axis)
             accel_z = central.value()
             
-            # Add new data to the window_buffer
+            # Add new data to the pothole window_buffer
             window_buffer.pop(0)
             window_buffer.append(accel_z)
             
             # Calculate the average acceleration value from the window_buffer
             avg_accel_z = (sum(window_buffer) / len(window_buffer))
             
-            # zero out at the 1g --> 9.81m/s^2
-            avg_accel_z = avg_accel_z - 9.81
-            
             # square the value to create disparity as well as removing negative values
             avg_accel_z = avg_accel_z**2
             
             # print out the processed value
             #print("Avg Acc: z axis:", avg_accel_z)
-            print(avg_accel_z)
+            #print(avg_accel_z)
+               
+            zone = _determine_threshold_crossing(avg_accel_z, GREEN_ZONE, YELLOW_ZONE, RED_ZONE)
             
-            ##This is only included for testing - on the vehicle so that data can be seen
-            #central.read(callback=print)  # Print the read value
-            #print("value:", central.value())
-            
-            pothole_detected = _determine_threshold_crossing(avg_accel_z, THRESHOLD_LOW_PH, THRESHOLD_HIGH_PH)            
-            
-            time.sleep_ms(100)  # Sleep to avoid flooding the connection
+            #send to FREERTOS pico the zone that the vehicle is in
+            if(zone == GREEN_ZONE):
+                print(avg_accel_z)
+                pass
+            elif(zone == YELLOW_ZONE):
+                print("YELLOW_ZONE at avg_accel_z", avg_accel_z)
+                return
+            elif(zone == RED_ZONE):
+                print("RED_ZONE at avg_accel_z", avg_accel_z)
+                return
+                
+            time.sleep_ms(10)  # Sleep to avoid flooding the connection
             
         print("Disconnected")
 
