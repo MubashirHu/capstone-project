@@ -26,8 +26,7 @@ THRESHOLD_HIGH_RD = 9 # Higher threshold value for detecting road depression
 THRESHOLD_LOW_RD = 8 # Lower threshold value for detecting road depression
 THRESHOLD_LOW_PH = 8  # Lower threshold value for detecting potholes (in m/s^2)
 THRESHOLD_HIGH_PH = 11  # Upper threshold value for detecting potholes (in m/s^2)
-WINDOW_SIZE = 10  # Size of the sliding window for averaging
-MIN_ROAD_DEPRESSION_DURATION = 10  # Minimum duration for a pothole event (in milliseconds)
+WINDOW_SIZE = 15  # Size of the sliding window for averaging
 
 # POTHOLE EVENTS
 POTHOLE_EVENT = 1
@@ -319,21 +318,24 @@ def main():
             
             # Calculate the average acceleration value from the window_buffer
             avg_accel_z = (sum(window_buffer) / len(window_buffer))
-            print("Avg Acc: z axis:", avg_accel_z)
+            
+            # zero out at the 1g --> 9.81m/s^2
+            avg_accel_z = avg_accel_z - 9.81
+            
+            # square the value to create disparity as well as removing negative values
+            avg_accel_z = avg_accel_z**2
+            
+            # print out the processed value
+            #print("Avg Acc: z axis:", avg_accel_z)
+            print(avg_accel_z)
             
             ##This is only included for testing - on the vehicle so that data can be seen
             #central.read(callback=print)  # Print the read value
             #print("value:", central.value())
             
-            pothole_detected = _determine_threshold_crossing(avg_accel_z, THRESHOLD_LOW_PH, THRESHOLD_HIGH_PH)
-            road_depression = _determine_threshold_crossing(avg_accel_z, THRESHOLD_LOW_RD, THRESHOLD_HIGH_RD)
+            pothole_detected = _determine_threshold_crossing(avg_accel_z, THRESHOLD_LOW_PH, THRESHOLD_HIGH_PH)            
             
-            if(pothole_detected):
-                print("pothole Event at value", avg_accel_z)
-                pothole_detected = False
-                #return
-            
-            time.sleep_ms(10)  # Sleep to avoid flooding the connection
+            time.sleep_ms(100)  # Sleep to avoid flooding the connection
             
         print("Disconnected")
 
