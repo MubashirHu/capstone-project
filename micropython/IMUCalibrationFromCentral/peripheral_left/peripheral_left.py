@@ -122,18 +122,30 @@ def main():
     imu_peripheral = BLEImu(ble)
     
     # Automatically calibrate the IMU sensor
-    calibratedValue = mpu._auto_calibrate(2)
+    # Calculate the average raw input from the IMU in neutral position
+    calibratedAverage = mpu._auto_calibrate_average(3)
+    
+    # Calculate the offset needed to make 1g on the IMU
+    calibratedAverageOffset = mpu._auto_calibrate_offset(3)
+    
+    #Determine the mean value to subtract from raw input values for centering 1g (9.81/s^2) to 0
+    centeringValue = calibratedAverage + calibratedAverageOffset
+#     print("calibratedAverage", calibratedAverage)
+#     print("calibratedAverageOffset", calibratedAverageOffset)
+#     print("centeringValue", centeringValue)
+    
+    #return
     
     while True:
         ### READ IMU
-        # Read accelerometer data (acceleration along the Z-axis)
-        accel_z = mpu.read_accel_data()[2] + calibratedValue
-        
+        # Read accelerometer data (acceleration along the Z-axis) and center value around 0
+        accel_z = mpu.read_accel_data()[2] - centeringValue
+
         #sending the value of the IMU to the central
         i = 0
         imu_peripheral._send_pothole_event(accel_z, notify=i == 0, indicate=True)
                  
-        time.sleep_ms(10)
+        time.sleep_ms(5)
 
 if __name__ == "__main__":
     main()
