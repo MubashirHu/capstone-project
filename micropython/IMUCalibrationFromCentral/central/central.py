@@ -22,10 +22,10 @@ last_pothole_time = 0
 last_depression_time = 0
 
 # Define Constants
-WINDOW_SIZE = 50  # Size of the sliding window for averaging
-GREEN_ZONE = 7
-YELLOW_ZONE = 10
-RED_ZONE = 15
+WINDOW_SIZE = 40  # Size of the sliding window for averaging
+GREEN_ZONE = 12
+YELLOW_ZONE = 30
+RED_ZONE = 40
 
 # Global variable to track the start time
 start_time = None
@@ -263,29 +263,64 @@ class BLEImuCentral:
     def value(self):
         return self._value
 
-def _determine_threshold_crossing(average_accel, green_zone, yellow_zone, red_zone):
+zone_time = None
+WAITING = 0
+WAITING_FOR_VALUE = 1
+highest_value = 0
+
+def _determine_threshold_crossing(average_accel, green_zone):
     
-    global start_time
+    global start_time, zone_time, highest_value
     
     # Check if the start time has been initialized
     if start_time is None:
         start_time = time.time()  # Initialize start time on first function call
-    
-    # Check if 5 seconds have passed since the start time
-    if time.time() - start_time < 3:
-        return "WAITING"
-    
-    # Check if the average acceleration value falls below THRESHOLD_LOW
-    if average_accel <= green_zone:
-        return GREEN_ZONE
-    elif green_zone < average_accel <= yellow_zone:
-        return YELLOW_ZONE
-    elif yellow_zone < average_accel <= red_zone:
-        return RED_ZONE
-    else:
-        return 1
-
         
+    # Check if 5 seconds have passed since the start time
+    if time.time() - start_time < 5:
+        return WAITING
+    
+    ###########################################
+    
+    #if avg_accel has crossed green_zone and timer has not been started
+    if(average_accel > green_zone and zone_time is None):
+        
+        #highest value is the first read
+        highest_value = average_accel
+        
+        # start zone_time  
+        zone_time = time.time()  # Initialize start time on first function call
+        return WAITING_FOR_VALUE
+    
+    # if the timer has started
+    if(zone_time is not None):
+        
+        #for the next 3 seconds find the highest value
+        if time.time() - zone_time < 500:
+            
+            #Update highest value
+            if average_accel > highest_value :
+                highest_value = average_accel
+                print("highest value", highest_value)
+                return WAITING_FOR_VALUE
+        
+        #At this point, 3 seconds have passed, So Reset timer and return value
+        
+        zone_time = None #reset the timer
+        return highest_value #return the highest value
+    
+    highest_value = 0
+    return WAITING
+    
+def _determine_zone(value):
+    
+    if(value > YELLOW_ZONE):
+        return RED_ZONE
+    elif (GREEN_ZONE < value < YELLOW_ZONE):
+        return YELLOW_ZONE
+    else:
+        return GREEN_ZONE
+    
 def main():
     ble = bluetooth.BLE()
     central = BLEImuCentral(ble)
@@ -332,23 +367,34 @@ def main():
             # square the value to create disparity as well as removing negative values
             avg_accel_z = avg_accel_z**2
             
-            # print out the processed value
-            #print("Avg Acc: z axis:", avg_accel_z)
-            #print(avg_accel_z)
-               
-            zone = _determine_threshold_crossing(avg_accel_z, GREEN_ZONE, YELLOW_ZONE, RED_ZONE)
+            thresholding_result = _determine_threshold_crossing(avg_accel_z, GREEN_ZONE)
             
-            #send to FREERTOS pico the zone that the vehicle is in
-            if(zone == GREEN_ZONE):
-                print(avg_accel_z)
-                pass
-            elif(zone == YELLOW_ZONE):
-                print("YELLOW_ZONE at avg_accel_z", avg_accel_z)
-                return
-            elif(zone == RED_ZONE):
-                print("RED_ZONE at avg_accel_z", avg_accel_z)
-                return
+            if(thresholding_result == WAITING):
+                print("WAITING")
+                print("highest value:", highest_value)
+                print("average z:", avg_accel_z)
+            elif(thresholding_result == WAITING_FOR_VALUE):
+                print("WAITING_FOR_VALUE")
+                print("highest value:", highest_value)
+                print("average z:", avg_accel_z)
+                break;
+            elif(thresholding_result > GREEN_ZONE):
+                high_value = thresholding_result
                 
+                print("thresholding_result", thresholding_result)
+                print("high_value", high_value)
+                
+                zone_result = _determine_zone(high_value)
+                
+                if zone_result is RED_ZONE:
+                    print("RED ZONE")
+                    return
+                elif zone_result is YELLOW_ZONE:
+                    print("YELLOW ZONE")
+                    return
+                else:
+                    print("GREEN ZONE")
+                    
             time.sleep_ms(10)  # Sleep to avoid flooding the connection
             
         print("Disconnected")
