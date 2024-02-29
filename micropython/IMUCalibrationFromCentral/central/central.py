@@ -16,11 +16,6 @@ from ble_advertising import decode_services, decode_name
 
 from micropython import const
 
-
-EVENT_NOTIFYING_TIMEOUT = 100
-last_pothole_time = 0
-last_depression_time = 0
-
 # Define Constants
 WINDOW_SIZE = 40  # Size of the sliding window for averaging
 GREEN_ZONE = 12
@@ -29,22 +24,10 @@ RED_ZONE = 40
 
 # Global variable to track the start time
 start_time = None
-
-# POTHOLE EVENTS
-POTHOLE_EVENT = 1
-ROAD_DEPRESSION_EVENT = 2
-
-# Define GPIO pin
-GPIO_PIN = 19  # Example GPIO pin
-GPIO_PIN2 = 18  # Example GPIO pin
-
-# Initialize GPIO pin
-gpio_ph = machine.Pin(GPIO_PIN, machine.Pin.OUT)
-gpio_rd = machine.Pin(GPIO_PIN2, machine.Pin.OUT)
-
-# set to high initially
-gpio_ph.value(1)
-gpio_rd.value(1)
+zone_time = None
+WAITING = 0
+WAITING_FOR_VALUE = 1
+highest_value = 0
 
 _IRQ_CENTRAL_CONNECT = const(1)
 _IRQ_CENTRAL_DISCONNECT = const(2)
@@ -262,11 +245,6 @@ class BLEImuCentral:
 
     def value(self):
         return self._value
-
-zone_time = None
-WAITING = 0
-WAITING_FOR_VALUE = 1
-highest_value = 0
 
 def _determine_threshold_crossing(average_accel, green_zone):
     
