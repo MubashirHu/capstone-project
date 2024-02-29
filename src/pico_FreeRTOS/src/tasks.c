@@ -21,11 +21,22 @@ static void led_task(void * parameters);
 
 void initTasks(void)
 {
-	// xTaskCreate(vTaskUart_4g, "4G_Task", 512, NULL, 6, NULL);
-	// xTaskCreate(vTaskUart_OBD, "OBD2_Task", 512, NULL, 6, NULL);
-    xTaskCreate(vTaskI2C_GPS, "GPS_Task", 512, NULL, 6, NULL);
-    // xTaskCreate(vTaskNormal, "Normal_Task", 256, NULL, 6, NULL);
-    // xTaskCreate(led_task, "LED_Task", 256, NULL, 6, NULL);
+    UBaseType_t uxCoreAffinityMask_0;
+    uxCoreAffinityMask_0 = ( 1 << 0 );
+
+    UBaseType_t uxCoreAffinityMask_1;
+    uxCoreAffinityMask_1 = ( 1 << 1 );
+
+    UBaseType_t uxCoreAffinityMask_both;
+    uxCoreAffinityMask_both = ( ( 1 << 0 ) | ( 1 << 1 ) );
+
+	// xTaskCreateAffinitySet(vTaskUart_4g, "4G_Task", 512, NULL, 6, uxCoreAffinityMask_0, NULL);
+	// xTaskCreateAffinitySet(vTaskUart_OBD, "OBD2_Task", 512, uxCoreAffinityMask_1, NULL, 6, NULL);
+    xTaskCreateAffinitySet(vTaskI2C_GPS, "GPS_Task", 512, NULL, 6, uxCoreAffinityMask_0, NULL);
+    // xTaskCreateAffinitySet(vTaskNormal, "Normal_Task", 256, NULL, 6, uxCoreAffinityMask_0, NULL);
+    // xTaskCreateAffinitySet(led_task, "LED_Task", 256, NULL, 6, uxCoreAffinityMask_0, NULL);
+
+    
 }
 
 void vTaskUart_4g(void * parameters)
@@ -65,8 +76,6 @@ void vTaskUart_4g(void * parameters)
     strncpy(uid, response + 53, sizeof(uid) - 1); // -1 to ensure null termination
     uid[sizeof(uid) - 1] = '\0'; // Ensure null termination
 
-    
-    // parse response for uid 91
     uart_send(UART_ID_4G, "AT+HTTPTERM\r\n", response, 0);
 
     uart_puts(UART_ID_OBD2, "completed_init\r\n");
@@ -120,6 +129,10 @@ void vTaskNormal(void * parameters)
             x.message_type = 0;
             x.time = y.time;
             x.speed = 0;
+            static char json[512];
+            sprintf(json, "\r\n\"time\":%ld,\r\n\"latitude\":%.6lf,\r\n\"longitude\":%.6lf,\r\n",
+                    (long)x.time, x.latitude, x.longitude);
+            uart_puts(UART_TEST, json);
             message_enqueue(x);
         }
         vTaskDelay(2000);
@@ -134,63 +147,65 @@ void vTaskUart_OBD(void * parameters)
     uint16_t wheel_3;
     uint16_t wheel_4;
     uint16_t brake_pressure;
-    //uart_puts(UART_ID_OBD2, "atz");
+    uint8_t vehicle_speed;
+    uint8_t threshold = 50;
     uart_send_until_valid(UART_ID_OBD2, "ATZ\r\n", response, "ATZ\r\r\rELM327 v1.4b\r\r>");
     vTaskDelay(pdMS_TO_TICKS(1000));
 
     while (1)
     {
         char stringValue[6];
-        uart_obd2_wheel_speed(UART_ID_OBD2, &wheel_1, &wheel_2, &wheel_3, &wheel_4, &brake_pressure);
-        uart_puts(UART_ID_4G, "\r\nWheel 1: ");
+        uart_obd2_wheel_speed(UART_ID_OBD2, &wheel_1, &wheel_2, &wheel_3, &wheel_4, &brake_pressure, &vehicle_speed);
+        // uart_puts(UART_TEST, "\r\nWheel 1: ");
         snprintf(stringValue, sizeof(stringValue), "%u", wheel_1);
-        uart_puts(UART_ID_4G, stringValue);
+        uart_puts(UART_TEST, stringValue);
 
-        uart_puts(UART_ID_4G, "\r\nWheel 2: ");
+        uart_puts(UART_TEST, ",");
+
+        // uart_puts(UART_TEST, "\r\nWheel 2: ");
         snprintf(stringValue, sizeof(stringValue), "%u", wheel_2);
-        uart_puts(UART_ID_4G, stringValue);
+        uart_puts(UART_TEST, stringValue);
 
-        uart_puts(UART_ID_4G, "\r\nWheel 3: ");
+        uart_puts(UART_TEST, ",");
+
+        // uart_puts(UART_TEST, "\r\nWheel 3: ");
         snprintf(stringValue, sizeof(stringValue), "%u", wheel_3);
-        uart_puts(UART_ID_4G, stringValue);
+        uart_puts(UART_TEST, stringValue);
 
-        uart_puts(UART_ID_4G, "\r\nWheel 4: ");
+        uart_puts(UART_TEST, ",");
+
+        // uart_puts(UART_TEST, "\r\nWheel 4: ");
         snprintf(stringValue, sizeof(stringValue), "%u", wheel_4);
-        uart_puts(UART_ID_4G, stringValue);
+        uart_puts(UART_TEST, stringValue);
+
+        uart_puts(UART_TEST, ",");
         
-        uart_puts(UART_ID_4G, "\r\nBrake Pressure: ");
+        // uart_puts(UART_TEST, "\r\nBrake Pressure: ");
         snprintf(stringValue, sizeof(stringValue), "%u", brake_pressure);
-        uart_puts(UART_ID_4G, stringValue);
-        uart_puts(UART_ID_4G, "\r\n===========================================\r\n");
+        uart_puts(UART_TEST, stringValue);
+
+        uart_puts(UART_TEST, ",");
+
+        snprintf(stringValue, sizeof(stringValue), "%u", vehicle_speed);
+        uart_puts(UART_TEST, stringValue);
+
+        uart_puts(UART_TEST, "\r\n");
+        // uart_puts(UART_TEST, "\r\n===========================================\r\n");
+
+        if ((abs(vehicle_speed - wheel_1) > threshold ||
+             abs(vehicle_speed - wheel_2) > threshold ||
+             abs(vehicle_speed - wheel_3) > threshold ||
+             abs(vehicle_speed - wheel_4) > threshold) &&
+             brake_pressure > 0)
+        {
+            vTaskDelay(1);
+        }
         //atz receive after sending: "ATZ\r\r\rELM327 v1.4b\r\r>"
         //AT CRA x receive after sending: "AT CRA x\rOK\r\r>"
         //AT MA (for 0b0): "AT MA\r00 00 00 00 11 09\r" 24 char
-        
 
-        //uart_obd2_wheel_speed(UART_ID_OBD2, wheel_1, wheel_2, wheel_3, wheel_4);
-        //int response_num = 0;
-        //response_num = uart_send(UART_ID_OBD2, "AT MA\r\n", response, 100);
+        // vTaskDelay(pdMS_TO_TICKS(10));
         //uart_puts(UART_ID_4G, "\r\n");
-        // for(int i = 0; i < response_num; i++)
-        // {
-        //     char ascii_code[4];
-        //     sprintf(ascii_code, "%02X ", response[i]);
-        //     uart_puts(UART_ID_4G, ascii_code);
-        //     uart_puts(UART_ID_4G, " | ");
-        // }
-
-        vTaskDelay(pdMS_TO_TICKS(10));
-        //uart_puts(UART_ID_4G, "\r\n");
-
-        //send at cra 0b2 (wheel 4 and 3) each wheel on bytes 1&2 (back left) and 3&4 (back right)
-        //send at ma and read x bytes of data and then send enter to stop command
-        // send at cra ob0 (wheel 2 and 1) each wheel on bytes 1&2 (front left) and 3&4 (front right) 
-        // repeat at ma
-        // send at cra 224 (brake pedal)
-        // repeat at ma
-        // send at cra 610 for vehicle speed (byte 3)
-        // if wheel speeds significantly different and car is braking, and speed is above x,
-        // get gps data and enqueue a message
     }
         
 }
@@ -237,38 +252,33 @@ void vTaskI2C_GPS(void * parameters)
                                             &differential_time, reference_base_station);
                     if (items_matched > 4)
                     {
-                        // uart_puts(uart0, token);
-                        // uart_puts(uart0, "\r\n");
-                        // // Data successfully extracted, print it
-
-                        uart_puts(uart0, "UTC Time: ");
-                        uart_puts(uart0, utc_time);
-                        uart_puts(uart0, ", Latitude: ");
+                        uart_puts(UART_TEST, "UTC Time: ");
+                        uart_puts(UART_TEST, utc_time);
+                        uart_puts(UART_TEST, ", Latitude: ");
                         if (strlen(latitude) > 0)
                         {
-                            uart_puts(uart0, latitude);
-                            uart_putc(uart0, latitude_direction);
+                            uart_puts(UART_TEST, latitude);
+                            uart_putc(UART_TEST, latitude_direction);
                         }
                         else
                         {
-                            uart_puts(uart0, "N/A");
+                            uart_puts(UART_TEST, "N/A");
                         }
 
-                        uart_puts(uart0, ", Longitude: ");
+                        uart_puts(UART_TEST, ", Longitude: ");
                         if (strlen(longitude) > 0)
                         {
-                            uart_puts(uart0, longitude);
-                            uart_putc(uart0, longitude_direction);
+                            uart_puts(UART_TEST, longitude);
+                            uart_putc(UART_TEST, longitude_direction);
                         }
                         else
                         {
-                            uart_puts(uart0, "N/A");
+                            uart_puts(UART_TEST, "N/A");
                         }
-
+                        uart_puts(UART_TEST, "\r\n");
                         int lat_degrees = atoi(latitude) / 100;
                         double lat_minutes = atof(latitude + 2);
                         double lat_decimalDegrees;
-                        //sscanf(latitude, "%lf%lf", &lat_degrees, &lat_minutes);
                         lat_decimalDegrees = lat_degrees + (double)lat_minutes / 60.000;
 
                         // double long_degrees, long_minutes;
@@ -276,8 +286,17 @@ void vTaskI2C_GPS(void * parameters)
 
                         int long_degrees = atoi(longitude) / 100;
                         double long_minutes = atof(longitude + 3);
-                        // sscanf(longitude, "%lf%lf", &long_degrees, &long_minutes);
                         long_decimalDegrees = long_degrees + (double)long_minutes / 60.000;
+
+                        if(latitude_direction == 'S')
+                        {
+                            lat_decimalDegrees = -lat_decimalDegrees;
+                        }
+
+                        if(longitude_direction == 'W')
+                        {
+                            long_decimalDegrees = -long_decimalDegrees;
+                        }
 
                         int hours = (utc_time[0] - '0') * 10 + (utc_time[1] - '0');
                         int minutes = (utc_time[2] - '0') * 10 + (utc_time[3] - '0');
@@ -291,51 +310,16 @@ void vTaskI2C_GPS(void * parameters)
                         x.time = unixTime;
                         x.latitude = lat_decimalDegrees;
                         x.longitude = long_decimalDegrees;
-
-                        static char json[512]; // Assuming a fixed size for simplicity, adjust as needed
-                        sprintf(json, "\r\n\"time\":%ld,\r\n\"latitude\":%.6lf,\r\n\"longitude\":%.6lf,\r\n",
-                        (long)x.time, x.latitude, x.longitude);
-                        uart_puts(uart0, json);
+                        
                         if (positioning_status != 0)
                         {
                             gps_queue_overwrite(x);
                         }
-
-                        // char num_satellites_str[4]; // Assuming maximum 3 digits for the number of satellites
-                        // char hdop_str[10]; // Adjust the size as per your requirements
-                        // char altitude_str[20]; // Adjust the size as per your requirements
-                        // char geoid_height_str[20]; // Adjust the size as per your requirements
-                        // char differential_time_str[20]; // Adjust the size as per your requirements
-
-                        // // Convert integers and floats to strings
-                        // sprintf(num_satellites_str, "%d", num_satellites);
-                        // sprintf(hdop_str, "%.2f", hdop); // Assuming 2 decimal places for HDOP
-                        // sprintf(altitude_str, "%.2f", altitude); // Assuming 2 decimal places for altitude
-                        // sprintf(geoid_height_str, "%.2f", geoid_height); // Assuming 2 decimal places for geoid height
-                        // sprintf(differential_time_str, "%.2f", differential_time); // Assuming 2 decimal places for differential time
-
-
-
-                        // uart_puts(UART_ID_OBD2, ", Positioning Status: ");
-                        // uart_puts(UART_ID_OBD2, positioning_status);
-                        // uart_puts(UART_ID_OBD2, ", Number of Satellites: ");
-                        // uart_puts(UART_ID_OBD2, num_satellites_str);
-                        // uart_puts(UART_ID_OBD2, ", HDOP: ");
-                        // uart_puts(UART_ID_OBD2, hdop_str);
-                        // uart_puts(UART_ID_OBD2, ", Altitude: ");
-                        // uart_puts(UART_ID_OBD2, altitude_str);
-                        // uart_puts(UART_ID_OBD2, ", Geoid Height: ");
-                        // uart_puts(UART_ID_OBD2, geoid_height_str);
-                        // uart_puts(UART_ID_OBD2, ", Differential Time: ");
-                        // uart_puts(UART_ID_OBD2, differential_time_str);
-                        // uart_puts(UART_ID_OBD2, ", Reference Base Station: ");
-                        // uart_puts(UART_ID_OBD2, reference_base_station);
-                        // uart_puts(UART_ID_OBD2, "\r\n");
                     }
                     else
                     {
                         // Print a message indicating that data extraction failed
-                        uart_puts(uart0, "Invalid NMEA sentence\r\n");
+                        uart_puts(UART_TEST, "Invalid NMEA sentence\r\n");
                         break;
                     }
                 }

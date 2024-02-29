@@ -46,14 +46,12 @@ int main()
 
     uart_set_fifo_enabled(UART_ID_OBD2, true);
 
-    uart_init(UART_ID_4G, 115200);
-    gpio_set_function(UART_TX_PIN_4G, GPIO_FUNC_UART);
-    gpio_set_function(UART_RX_PIN_4G, GPIO_FUNC_UART);
-    uart_set_hw_flow(UART_ID_4G, false, false);
+    uart_init(UART_TEST, 115200);
+    gpio_set_function(0, GPIO_FUNC_UART);
+    gpio_set_function(1, GPIO_FUNC_UART);
+    uart_set_hw_flow(UART_TEST, false, false);
 
-    uart_set_format(UART_ID_4G, DATA_BITS, STOP_BITS, PARITY);
-
-    uart_set_fifo_enabled(UART_ID_OBD2, true);
+    uart_set_format(UART_TEST, DATA_BITS, STOP_BITS, PARITY);
 
     initQueues();
     initTasks();

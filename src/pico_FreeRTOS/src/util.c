@@ -5,29 +5,6 @@
 #include "task.h"
 #include <string.h>
 
-int uart_get_response(uart_inst_t *uart, char *response)
-{
-    int i = 0;
-    while(uart_is_readable(uart) && i < 250)
-    {
-        response[i] = uart_getc(uart);
-        i++;
-    }
-    return i;
-}
-
-int uart_validate_response(uart_inst_t *uart, char *response, char *expected_response)
-{
-    for (int i = 0; i < sizeof(expected_response); i++)
-    {
-        if(response[i] != expected_response[i])
-        {
-            return 1;
-        }
-    }
-    return 0;
-}
-
 int uart_send(uart_inst_t *uart, char *command, char *response, int wait)
 {
     int i = 0;
@@ -42,15 +19,15 @@ int uart_send(uart_inst_t *uart, char *command, char *response, int wait)
     {
         response[i] = uart_getc(uart);
         i++;
-        vTaskDelay(15);
+        // vTaskDelay(15);
     }
     
     // for(int j = 0; j < i; j++)
     // {
     //     //char ascii_code[4];
     //     //sprintf(ascii_code, "%02X ", response[j]);
-    //     //uart_puts(uart0, ascii_code);
-    //     uart_putc(uart0, response[j]);
+    //     //uart_puts(UART_TEST, ascii_code);
+    //     uart_putc(UART_TEST, response[j]);
     // }
     return i;
 }
@@ -63,8 +40,8 @@ int uart_send1(uart_inst_t *uart, char *command, char *response, int wait)
     // {
     //     //char ascii_code[4];
     //     //sprintf(ascii_code, "%02X ", response[j]);
-    //     //uart_puts(uart0, ascii_code);
-    //     // uart_putc(uart0, response[j]);
+    //     //uart_puts(UART_TEST, ascii_code);
+    //     // uart_putc(UART_TEST, response[j]);
     // }
     return 91;
 }
@@ -80,11 +57,11 @@ int uart_send_until_valid(uart_inst_t *uart, char *command, char *response, char
             uart_getc(uart);
         }
         uart_send(uart, command, response, 50);
-        vTaskDelay(100);
+        // vTaskDelay(100);
 
    } while (strncmp(response, expected_response, strlen(expected_response)) != 0);
 
-    // uart_puts(uart1, "end_of_command\r\n");
+    // uart_puts(UART_TEST, "end_of_command\r\n");
     return 0;
 }
 
@@ -99,7 +76,7 @@ int uart_read_chars(uart_inst_t *uart, char *command, int num_char_to_read, char
     // for (int i = 0; i < num_char_to_read; i++)
     // {
     //     response[i] = uart_getc(uart);
-    //     //uart_putc(uart0, response[i]);
+    //     //uart_putc(UART_TEST, response[i]);
     // }
     uart_puts(uart, "\r");
     char check;
@@ -109,7 +86,7 @@ int uart_read_chars(uart_inst_t *uart, char *command, int num_char_to_read, char
     }while(check != '>');
 }
 
-void uart_obd2_wheel_speed(uart_inst_t *uart, uint16_t *wheel_1, uint16_t *wheel_2, uint16_t *wheel_3, uint16_t *wheel_4, uint16_t *brake_pressure)
+void uart_obd2_wheel_speed(uart_inst_t *uart, uint16_t *wheel_1, uint16_t *wheel_2, uint16_t *wheel_3, uint16_t *wheel_4, uint16_t *brake_pressure, uint8_t *vechicle_speed)
 {
     uint16_t high_nibble, low_nibble;
 
@@ -117,8 +94,9 @@ void uart_obd2_wheel_speed(uart_inst_t *uart, uint16_t *wheel_1, uint16_t *wheel
     uart_send_until_valid(uart, "AT CRA 0B0\r\n", response, "AT CRA 0B0\rOK\r\r>");
     do
     {
-        uart_read_chars(uart, "AT MA\r\n", 24, response);
-    } while (strncmp(response, "AT MA\r", 6) != 0);
+        uart_read_chars(uart, "AT MA\r\n", 25, response);
+    } while (strncmp(response, "AT MA\r", 6) != 0 && response[24] != '<');
+    // also check for error frames
     
     sscanf(response + 6, "%2hx %2hx", &high_nibble, &low_nibble);
     *wheel_1 = (high_nibble << 8) | low_nibble;
@@ -141,6 +119,8 @@ void uart_obd2_wheel_speed(uart_inst_t *uart, uint16_t *wheel_1, uint16_t *wheel
     } while (strncmp(response, "AT MA\r", 6) != 0);
     sscanf(response + 18, "%2hx %2hx", &high_nibble, &low_nibble);
     *brake_pressure = (high_nibble << 8) | low_nibble;
+
+    //for vehicle speed, send 010D, expect response 41 0D xx\r
 
 
 }
