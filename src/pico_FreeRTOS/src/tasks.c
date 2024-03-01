@@ -84,7 +84,6 @@ void vTaskUart_4g(void * parameters)
 
     while (1)
     {
-
         if(message_queue_dequeue(&msg) == 1)
         {
             static char json[512]; // Assuming a fixed size for simplicity, adjust as needed
@@ -109,6 +108,7 @@ void vTaskUart_4g(void * parameters)
             vTaskDelay(pdMS_TO_TICKS(50));
             uart_send(UART_ID_4G, "AT+HTTPTERM\r\n", response, 0);
         }
+        // check speed limit queue and if not empty, send speed limit api request to google for current location
         vTaskDelay(pdMS_TO_TICKS(1000));
         uart_puts(UART_ID_OBD2, "completed_init\r\n");
 
@@ -119,6 +119,7 @@ void vTaskNormal(void * parameters)
 {
     while(1)
     {
+        //get speed limit, check speed, if speed much lower than posted speed, send conjection request
         vTaskDelay(pdMS_TO_TICKS(5000));
         struct message x;
         struct gps y;
@@ -311,7 +312,7 @@ void vTaskI2C_GPS(void * parameters)
                         x.latitude = lat_decimalDegrees;
                         x.longitude = long_decimalDegrees;
                         
-                        if (positioning_status != 0)
+                        if (positioning_status != 0 && num_satellites > 3)
                         {
                             gps_queue_overwrite(x);
                         }
