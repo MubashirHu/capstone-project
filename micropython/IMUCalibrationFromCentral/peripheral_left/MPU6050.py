@@ -171,9 +171,12 @@ class MPU6050:
                 return False
             
     def _auto_calibrate_average(self, seconds):
-        window_buffer = [9] * 10
+        window_buffer = [9] * 20
         calibratedValue = 0
         avg_accel_z = 0
+        print("Calibrating...")
+        time.sleep_ms(100)
+        print("Caculating Average")
         
         for i in range(seconds * 10):
             # Read accelerometer data (acceleration along the Z-axis)
@@ -185,16 +188,16 @@ class MPU6050:
             
             # Calculate the average acceleration value from the window_buffer
             avg_accel_z = (sum(window_buffer) / len(window_buffer))
-            print("Avg Acc: z axis:", avg_accel_z)
             
             time.sleep_ms(100)
 
-        
+        print("avg_accel_z", avg_accel_z)
         return avg_accel_z
     
     def _auto_calibrate_offset(self, seconds):
         window_buffer = [9] * 10
         calibratedValue = 0
+        print("calibrating offset")
         
         for i in range(seconds * 10):
             
@@ -207,7 +210,7 @@ class MPU6050:
             
             # Calculate the average acceleration value from the window_buffer
             avg_accel_z = (sum(window_buffer) / len(window_buffer))
-            print("Avg Acc: z axis:", avg_accel_z)
+            #print("Avg Acc: z axis:", avg_accel_z)
             
             time.sleep_ms(100)
             
@@ -217,6 +220,9 @@ class MPU6050:
         elif avg_accel_z > 9.81 :
             calibratedValue = -(avg_accel_z - 9.81)
         
+        print("calibratedValue", calibratedValue)
         return calibratedValue
         
+
+
 
