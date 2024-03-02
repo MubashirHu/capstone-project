@@ -16,6 +16,22 @@ from ble_advertising import decode_services, decode_name
 
 from micropython import const
 
+POTHOLE_EVENT_PIN = 25 #GP19
+BIT_0_PIN = 24 #GP18
+BIT_1_PIN = 22 #GP17
+BIT_2_PIN = 21 #GP16
+
+pothole_event_pin = machine.Pin(POTHOLE_EVENT_PIN, machine.Pin.OUT)
+bit_0 = machine.Pin(BIT_0_PIN, machine.Pin.OUT)
+bit_1 = machine.Pin(BIT_1_PIN, machine.Pin.OUT)
+bit_2 = machine.Pin(BIT_2_PIN, machine.Pin.OUT)
+
+#set default values for the pin
+pothole_event_pin.value(1)
+bit_0.value(0)
+bit_1.value(0)
+bit_2.value(0)
+
 # Define Constants
 WINDOW_SIZE = 40  # Size of the sliding window for averaging
 GREEN_ZONE = 12
