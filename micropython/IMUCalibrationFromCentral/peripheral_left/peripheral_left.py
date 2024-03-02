@@ -129,7 +129,7 @@ def main():
     calibratedAverageOffset = mpu._auto_calibrate_offset(3)
     
     #Determine the mean value to subtract from raw input values for centering 1g (9.81/s^2) to 0
-    centeringValue = calibratedAverage + calibratedAverageOffset
+    #centeringValue = calibratedAverage + calibratedAverageOffset
 #     print("calibratedAverage", calibratedAverage)
 #     print("calibratedAverageOffset", calibratedAverageOffset)
 #     print("centeringValue", centeringValue)
@@ -139,8 +139,13 @@ def main():
     while True:
         ### READ IMU
         # Read accelerometer data (acceleration along the Z-axis) and center value around 0
-        accel_z = mpu.read_accel_data()[2] - centeringValue
+        accel_z = mpu.read_accel_data()[2] + calibratedAverageOffset
+        accel_z = accel_z - 9.81
 
+#         print("calibratedAverage",calibratedAverage)
+#         print("calibratedAverageOffset",calibratedAverageOffset)
+#         print("centeringValue",centeringValue)
+#         print("final", accel_z)
         #sending the value of the IMU to the central
         i = 0
         imu_peripheral._send_pothole_event(accel_z, notify=i == 0, indicate=True)
