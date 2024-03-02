@@ -20,6 +20,7 @@ from micropython import const
 WINDOW_SIZE = 40  # Size of the sliding window for averaging
 GREEN_ZONE = 12
 YELLOW_ZONE = 30
+AMBER_ZONE = 35
 RED_ZONE = 40
 
 # Global variable to track the start time
@@ -291,10 +292,11 @@ def _determine_threshold_crossing(average_accel, green_zone):
     return WAITING
     
 def _determine_zone(value):
-    
-    if(value > YELLOW_ZONE):
+    if(value > AMBER_ZONE):
         return RED_ZONE
-    elif (GREEN_ZONE < value < YELLOW_ZONE):
+    if(value > YELLOW_ZONE):
+        return AMBER_ZONE
+    elif (value > GREEN_ZONE ):
         return YELLOW_ZONE
     elif (value < GREEN_ZONE):
         return GREEN_ZONE
