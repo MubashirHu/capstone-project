@@ -30,10 +30,21 @@ int main() {
     // Initialize GPIO pin - pothole
     gpio_init(GPIO_PIN_PH);
     gpio_set_dir(GPIO_PIN_PH, GPIO_IN);
-    gpio_pull_up(GPIO_PIN_PH); // high by default
-    
+    gpio_pull_up(GPIO_PIN_PH); // GPIO_PIN_PH by default
 
-     // Set up interrupt handler for pothole & road-depression - triggers on HIGH to LOW event on selected GPIO
+    gpio_init(BIT_0);
+    gpio_set_dir(BIT_0, GPIO_IN);
+    gpio_pull_up(BIT_0); // GPIO_PIN_PH by default
+
+    gpio_init(BIT_1);
+    gpio_set_dir(BIT_1, GPIO_IN);
+    gpio_pull_up(BIT_1); // GPIO_PIN_PH by default
+
+    gpio_init(BIT_2);
+    gpio_set_dir(BIT_2, GPIO_IN);
+    gpio_pull_up(BIT_2); // GPIO_PIN_PH by default
+    
+    // Set up interrupt handler for pothole & road-depression - triggers on HIGH to LOW event on selected GPIO
     gpio_set_irq_enabled_with_callback(GPIO_PIN_PH, GPIO_IRQ_EDGE_FALL, true, &handle_pothole_interrupt);
 
     while(1)
