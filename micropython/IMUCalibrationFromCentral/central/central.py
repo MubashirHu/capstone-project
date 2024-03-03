@@ -14,7 +14,7 @@ from ble_module import BLEImuCentral
 from thresholding import ThresholdCrossing
 from micropython import const
 
-WINDOW_SIZE = 25 # Size of the sliding window for averaging
+WINDOW_SIZE = 40 # Size of the sliding window for averaging
     
 def main():
     

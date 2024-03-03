@@ -1,4 +1,5 @@
 import time
+import utime
 from gpio_setup import _send_zone_via_gpio
 #State constants
 WAITING = 0
@@ -15,10 +16,10 @@ class ThresholdCrossing:
         Args:
             None
         """ 
-        self.green_zone = 5
-        self.yellow_zone = 10
-        self.amber_zone = 15
-        self.red_zone = 20
+        self.green_zone = 3
+        self.yellow_zone = 6
+        self.amber_zone = 9
+        self.red_zone = 12
         
         self.start_time = None
         self.zone_time = None
@@ -49,14 +50,14 @@ class ThresholdCrossing:
         if average_accel > self.green_zone and self.zone_time is None:
             self.highest_value = average_accel  # Record the highest value
             print("zone_timer has started")
-            self.zone_time = time.time()  # Start zone timer
+            self.zone_time = utime.ticks_us()  # Start zone timer
             self.state = WAITING_FOR_HIGHEST_VALUE
 
         #while the zone timer is running find the highest value reached 
         elif self.zone_time is not None:
             #print("difference", time.time() - self.zone_time)
-            if time.time() - self.zone_time < 1:  # If within 3 seconds window
-                print("difference", time.time() - self.zone_time)
+            if utime.ticks_us() - self.zone_time < 100000:  # 100 milliseconds in microseconds
+                #print("difference", time.time() - self.zone_time)
                 if average_accel > self.highest_value:
                     self.highest_value = average_accel  # Update highest value                    
             
