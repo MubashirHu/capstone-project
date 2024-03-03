@@ -1,5 +1,5 @@
 import time
-
+from gpio_setup import _send_zone_via_gpio
 #State constants
 WAITING = 0
 WAITING_FOR_HIGHEST_VALUE = 1
@@ -77,10 +77,25 @@ class ThresholdCrossing:
         
         if value > self.amber_zone:
             print("RED ZONE")
+            return self.red_zone
         if value > self.yellow_zone:
             print("AMBER ZONE")
+            return self.amber_zone
         elif value > self.green_zone:
             print("YELLOW ZONE")
+            return self.yellow_zone
         elif value <= self.green_zone:
             pass
             #print("GREEN ZONE")
+    def _transmit_zone(self, zone):
+        if zone == self.red_zone:
+            _send_zone_via_gpio(4)
+        elif zone == self.amber_zone:
+            _send_zone_via_gpio(3)
+        elif zone == self.yellow_zone:
+            _send_zone_via_gpio(2)
+        elif zone == self.green_zone:
+            _send_zone_via_gpio(1)
+            
+            
+ 

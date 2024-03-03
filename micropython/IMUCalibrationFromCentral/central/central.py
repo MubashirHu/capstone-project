@@ -6,34 +6,15 @@
 # https://github.com/micropython/micropython-lib/tree/master/micropython/bluetooth/aioble
 # and in particular the temp_client.py example included with aioble.
 import bluetooth
-import random
-import struct
 import time
 import micropython
 import ble_advertising
-import machine
 from ble_advertising import decode_services
 from ble_module import BLEImuCentral
 from thresholding import ThresholdCrossing
-from thresholding import WAITING, WAITING_FOR_HIGHEST_VALUE, WAITING_FOR_RETURN_TO_CENTERED_VALUE
 from micropython import const
 
 WINDOW_SIZE = 25 # Size of the sliding window for averaging
-POTHOLE_EVENT_PIN = 25 #GP19
-BIT_0_PIN = 24 #GP18
-BIT_1_PIN = 22 #GP17
-BIT_2_PIN = 21 #GP16
-
-pothole_event_pin = machine.Pin(POTHOLE_EVENT_PIN, machine.Pin.OUT)
-bit_0 = machine.Pin(BIT_0_PIN, machine.Pin.OUT)
-bit_1 = machine.Pin(BIT_1_PIN, machine.Pin.OUT)
-bit_2 = machine.Pin(BIT_2_PIN, machine.Pin.OUT)
-
-#set default values for the pin
-pothole_event_pin.value(1)
-bit_0.value(0)
-bit_1.value(0)
-bit_2.value(0)
     
 def main():
     
@@ -86,43 +67,12 @@ def main():
             #print("thresholding_result", threshold_crossing.highest_value)
             
             if(thresholding_result > threshold_crossing.green_zone):
-                threshold_crossing._determine_zone(thresholding_result)
+                determined_zone = threshold_crossing._determine_zone(thresholding_result)
+                threshold_crossing._transmit_zone(determined_zone)
              
-            time.sleep_ms(20)
+            time.sleep_ms(10)
            
         print("Disconnected")
 
 if __name__ == "__main__":
     main()
-    
-#             if(thresholding_result == WAITING):
-#                 pass
-#             elif(thresholding_result == WAITING_FOR_HIGHEST_VALUE):
-#                 pass
-#             elif(thresholding_result == WAITING_FOR_RETURN_TO_CENTERED_VALUE):
-#                 pass
-#             elif(thresholding_result > GREEN_ZONE):
-#                 #print("thresholding_result", thresholding_result)
-#                 zone_result = _determine_zone(thresholding_result)
-#                 
-#                 if zone_result is RED_ZONE:
-#                     print("RED ZONE")
-# #                     pothole_event_pin.value(0)
-# #                     bit_0.value(1)
-# #                     bit_1.value(1)
-# #                     bit_2.value(0)
-#                     #return
-#                 elif zone_result is AMBER_ZONE:
-#                     print("AMBER ZONE")
-# #                     pothole_event_pin.value(0)
-# #                     bit_0.value(0)
-# #                     bit_1.value(1)
-# #                     bit_2.value(0)
-#                     #return
-#                 elif zone_result is YELLOW_ZONE:
-#                     print("YELLOW ZONE")
-# #                     pothole_event_pin.value(0)
-# #                     bit_0.value(1)
-# #                     bit_1.value(0)
-# #                     bit_2.value(0)
-#                     #return
