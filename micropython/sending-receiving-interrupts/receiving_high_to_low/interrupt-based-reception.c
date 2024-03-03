@@ -11,7 +11,37 @@
 #define BIT_2 16
 
 void handle_pothole_interrupt(){
-    printf("Pothole Interrupt on pin %d/n", GPIO_PIN_PH);
+    printf("Pothole Interrupt on pin %d\r\n", GPIO_PIN_PH);
+    __int8_t byte = 0;
+    
+    int bit_0_state = gpio_get(BIT_0);
+    int bit_1_state = gpio_get(BIT_1);
+    int bit_2_state = gpio_get(BIT_2);
+
+    // Pack the states into a single byte
+    byte = (bit_2_state << 2) | (bit_1_state << 1) | bit_0_state;
+
+    printf("byte:%d\r\n", byte);
+
+    switch (byte)
+    {
+    case 3:
+        printf("RED ZONE\r\n");
+        break;
+    case 2:
+        printf("AMBER_ZONE\r\n");
+        break;
+    case 1:
+        printf("YELLOW_ZONE\r\n");
+        break;
+    case 0:
+        printf("GREEN_ZONE\r\n");
+        break;
+    default:
+        printf("GREEN_ZONE\r\n");
+        break;
+    }
+
     //get GPS data
     //determine potlevel
     //send speed 

@@ -89,13 +89,13 @@ class ThresholdCrossing:
             #print("GREEN ZONE")
     def _transmit_zone(self, zone):
         if zone == self.red_zone:
-            _send_zone_via_gpio(4)
-        elif zone == self.amber_zone:
             _send_zone_via_gpio(3)
-        elif zone == self.yellow_zone:
+        elif zone == self.amber_zone:
             _send_zone_via_gpio(2)
-        elif zone == self.green_zone:
+        elif zone == self.yellow_zone:
             _send_zone_via_gpio(1)
+        elif zone == self.green_zone:
+            _send_zone_via_gpio(0)
             
             
  
