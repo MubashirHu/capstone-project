@@ -18,25 +18,7 @@ import MPU6050
 import machine
 
 from micropython import const
-
-EVENT_NOTIFYING_TIMEOUT = 100
-last_pothole_time = 0
-last_depression_time = 0
-
-# Define Constants
-THRESHOLD_HIGH_RD = 9 # Higher threshold value for detecting road depression
-THRESHOLD_LOW_RD = 8 # Lower threshold value for detecting road depression
-THRESHOLD_LOW_PH = 9  # Lower threshold value for detecting potholes (in m/s^2)
-THRESHOLD_HIGH_PH = 10  # Upper threshold value for detecting potholes (in m/s^2)
 WINDOW_SIZE = 10  # Size of the sliding window for averaging
-MIN_ROAD_DEPRESSION_DURATION = 10  # Minimum duration for a pothole event (in milliseconds)
-
-# POTHOLE EVENTS
-POTHOLE_EVENT = 1
-ROAD_DEPRESSION_EVENT = 2
-
-value_needs_to_be_reset = False
-calibratedValue = 0.0
 
 ###BT
 
