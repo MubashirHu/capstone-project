@@ -23,6 +23,8 @@ class ThresholdCrossing:
         
         self.start_time = None
         self.zone_time = None
+        self.zone_time_started = 0
+        self.zone_time_ended = 0
         self.highest_value = 0
         self.state = WAITING
 
@@ -51,6 +53,7 @@ class ThresholdCrossing:
             self.highest_value = average_accel  # Record the highest value
             print("zone_timer has started")
             self.zone_time = utime.ticks_us()  # Start zone timer
+            self.zone_time_started = self.zone_time
             self.state = WAITING_FOR_HIGHEST_VALUE
 
         #while the zone timer is running find the highest value reached 
@@ -61,12 +64,14 @@ class ThresholdCrossing:
                 if average_accel > self.highest_value:
                     self.highest_value = average_accel  # Update highest value                    
             
-            elif average_accel > 1:
+            elif average_accel > self.green_zone:
                 print("waiting for value to return to 0")
                 self.state = WAITING_FOR_RETURN_TO_CENTERED_VALUE
             else:
                 print("zone_timer is reset")
                 self.zone_time = None
+                self.zone_time_ended = utime.ticks_us()
+                print("time elapsed:", self.zone_time_ended - self.zone_time_started)
                 return self.highest_value
                 
         return self.state
