@@ -30,10 +30,10 @@ void initTasks(void)
     UBaseType_t uxCoreAffinityMask_both;
     uxCoreAffinityMask_both = ( ( 1 << 0 ) | ( 1 << 1 ) );
 
-	// xTaskCreateAffinitySet(vTaskUart_4g, "4G_Task", 512, NULL, 6, uxCoreAffinityMask_1, NULL);
+	xTaskCreateAffinitySet(vTaskUart_4g, "4G_Task", 512, NULL, 6, uxCoreAffinityMask_1, NULL);
 	// xTaskCreateAffinitySet(vTaskUart_OBD, "OBD2_Task", 512, uxCoreAffinityMask_1, NULL, 6, NULL);
-    xTaskCreateAffinitySet(vTaskI2C_GPS, "GPS_Task", 512, NULL, 6, uxCoreAffinityMask_0, NULL);
-    // xTaskCreateAffinitySet(vTaskNormal, "Normal_Task", 256, NULL, 6, uxCoreAffinityMask_0, NULL);
+    // xTaskCreateAffinitySet(vTaskI2C_GPS, "GPS_Task", 512, NULL, 6, uxCoreAffinityMask_0, NULL);
+    xTaskCreateAffinitySet(vTaskNormal, "Normal_Task", 256, NULL, 6, uxCoreAffinityMask_1, NULL);
     xTaskCreateAffinitySet(led_task, "LED_Task", 256, NULL, 6, uxCoreAffinityMask_1, NULL);
 
     
@@ -41,19 +41,24 @@ void initTasks(void)
 
 void vTaskUart_4g(void * parameters)
 {
-    char uid[20];
+    char uid[21];
+    char http_code[4];
     char response[150];
+    char response1[150];
+    char response2[150];
     int char_num = 0;
     vTaskDelay(pdMS_TO_TICKS(1000));
-    uart_puts(UART_TEST, "start_init_task\r\n");
+    uart_puts(UART_TEST, "\r\nStarting 4G Module Task\r\n");
     while(uart_is_readable(UART_ID_4G))
     {
         uart_getc(UART_ID_4G);
     }
-    uart_puts(UART_TEST, "start_init\r\n");
     uart_send_until_valid(UART_ID_4G, "AT\r\n", response, "AT\r\r\nOK\r\n");
+    uart_puts(UART_TEST, "4G Module booted\r\n");
     vTaskDelay(pdMS_TO_TICKS(500));
     uart_send_until_valid(UART_ID_4G, "AT+CPIN?\r\n", response, "AT+CPIN?\r\r\n+CPIN: READY\r\n\r\nOK\r\n");
+    vTaskDelay(pdMS_TO_TICKS(500));
+    uart_send(UART_ID_4G, "AT+HTTPTERM\r\n", response, 0);
     vTaskDelay(pdMS_TO_TICKS(500));
     uart_send_until_valid(UART_ID_4G, "AT+HTTPINIT\r\n", response, "AT+HTTPINIT\r\r\nOK\r\n");
     vTaskDelay(pdMS_TO_TICKS(500));
@@ -67,18 +72,31 @@ void vTaskUart_4g(void * parameters)
     vTaskDelay(pdMS_TO_TICKS(500));
     uart_send(UART_ID_4G, "\n\r\n", response, 1000);
     vTaskDelay(pdMS_TO_TICKS(500));
-    uart_send(UART_ID_4G, "AT+HTTPACTION=1\r\n", response, 500);
-    vTaskDelay(pdMS_TO_TICKS(500));
-    uart_send1(UART_ID_4G, "AT+HTTPREAD=0,250\r\n", response, 0);
+    uart_send(UART_ID_4G, "AT+HTTPACTION=1\r\n", response2, 4000);
+    
+    strncpy(http_code, response2 + 39, sizeof(http_code) - 1);
+    http_code[sizeof(http_code) - 1] = '\0';
+    uart_puts(UART_TEST, "\r\nHTTP CODE: ");
+    uart_puts(UART_TEST, http_code);
+    uart_puts(UART_TEST, "\r\n");
+
+    vTaskDelay(pdMS_TO_TICKS(3000));
+    uart_send1(UART_ID_4G, "AT+HTTPREAD=0,250\r\n", response1, 500);
+    
+
+    uart_send(UART_ID_4G, "AT+HTTPTERM\r\n", response, 0);
     
     vTaskDelay(pdMS_TO_TICKS(500));
 
-    strncpy(uid, response + 53, sizeof(uid) - 1); // -1 to ensure null termination
+    strncpy(uid, response1 + 55, sizeof(uid) - 1); // -1 to ensure null termination
     uid[sizeof(uid) - 1] = '\0'; // Ensure null termination
+    uart_puts(UART_TEST, "\r\nUID: ");
+    uart_puts(UART_TEST, uid);
+    uart_puts(UART_TEST, "\r\n");
 
-    uart_send(UART_ID_4G, "AT+HTTPTERM\r\n", response, 0);
+    
 
-    uart_puts(UART_TEST, "completed_init\r\n");
+    uart_puts(UART_TEST, "Completed 4G init\r\n");
 
     struct message msg;
 
@@ -86,6 +104,7 @@ void vTaskUart_4g(void * parameters)
     {
         if(message_queue_dequeue(&msg) == 1)
         {
+            uart_puts(UART_TEST, "Message Detected\r\n");
             static char json[512]; // Assuming a fixed size for simplicity, adjust as needed
             sprintf(json, "{\"uid\": \"%s\", \"time\":%ld,\"latitude\":%.6lf,\"longitude\":%.6lf,\"speed\":%.2lf,\"message_type\":%d}",
             uid, (long)msg.time, msg.latitude, msg.longitude, msg.speed, msg.message_type);
@@ -107,10 +126,11 @@ void vTaskUart_4g(void * parameters)
             // verify http response of 200 if failed, then repeat until it doesn't for x amount of times
             vTaskDelay(pdMS_TO_TICKS(50));
             uart_send(UART_ID_4G, "AT+HTTPTERM\r\n", response, 0);
+            uart_puts(UART_TEST, "Message Sent\r\n");
         }
         // check speed limit queue and if not empty, send speed limit api request to google for current location
         vTaskDelay(pdMS_TO_TICKS(1000));
-        uart_puts(UART_TEST, "completed_init\r\n");
+        
 
     }
 }
@@ -120,23 +140,23 @@ void vTaskNormal(void * parameters)
     while(1)
     {
         //get speed limit, check speed, if speed much lower than posted speed, send conjection request
-        vTaskDelay(pdMS_TO_TICKS(5000));
+        // vTaskDelay(pdMS_TO_TICKS(5000));
         struct message x;
         struct gps y;
-        if(gps_queue_peek(&y))
-        {
-            x.latitude = y.latitude;
-            x.longitude = y.longitude;
+        // if(gps_queue_peek(&y))
+        // {
+            x.latitude = 50.22324;//y.latitude;
+            x.longitude = -25.34223;y.longitude;
             x.message_type = 0;
-            x.time = y.time;
+            x.time = 123983;y.time;
             x.speed = 0;
             static char json[512];
             sprintf(json, "\r\n\"time\":%ld,\r\n\"latitude\":%.6lf,\r\n\"longitude\":%.6lf,\r\n",
                     (long)x.time, x.latitude, x.longitude);
-            uart_puts(UART_TEST, json);
+            // uart_puts(UART_TEST, json);
             // message_enqueue(x);
-        }
-        vTaskDelay(2000);
+        // }
+        vTaskDelay(pdMS_TO_TICKS(20000));
     }
 }
 

@@ -38,15 +38,23 @@ int uart_send(uart_inst_t *uart, char *command, char *response, int wait)
 
 int uart_send1(uart_inst_t *uart, char *command, char *response, int wait)
 {
+    while(uart_is_readable(uart))
+    {
+        uart_getc(uart);
+    }
+    // uart_puts(UART_TEST, "\r\nSTART: \r\n");
     uart_puts(uart, command);
-    uart_read_blocking(uart, response, 91);
-    // for(int j = 0; j < 91; j++)
+    uart_read_blocking(uart, response, 75);
+    // for(int j = 0; j < 101; j++)
     // {
     //     //char ascii_code[4];
     //     //sprintf(ascii_code, "%02X ", response[j]);
     //     //uart_puts(UART_TEST, ascii_code);
-    //     // uart_putc(UART_TEST, response[j]);
+    //     uart_is_readable_within_us(uart, 2000);
+    //     response[j] = uart_getc(uart);
     // }
+    // uart_puts(UART_TEST, response);
+    // uart_puts(UART_TEST, "\r\n END \r\n");
     return 91;
 }
 
@@ -60,7 +68,6 @@ int uart_send_until_valid(uart_inst_t *uart, char *command, char *response, char
         {
             uart_getc(uart);
         }
-        uart_puts(UART_TEST, "command\r\n");
         uart_send(uart, command, response, 50);
         vTaskDelay(100);
 
