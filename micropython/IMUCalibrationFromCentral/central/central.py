@@ -61,6 +61,7 @@ def main():
             
             # square the value to create disparity as well as removing negative values
             avg_accel_z = avg_accel_z**2
+            print(avg_accel_z)
             
             thresholding_result = threshold_crossing._determine_threshold_crossing(avg_accel_z)
             #print("threshold_crossing.highest_value", threshold_crossing.highest_value)

@@ -28,15 +28,10 @@ _ADV_DIRECT_IND = const(0x01)
 _ADV_SCAN_IND = const(0x02)
 _ADV_NONCONN_IND = const(0x03)
 
-# org.bluetooth.service.environmental_sensing
-_ENV_SENSE_UUID = bluetooth.UUID("c5e15ad3-bcf5-4cc1-a40a-899931a69a3b")
-# org.bluetooth.characteristic.temperature
-_TEMP_UUID = bluetooth.UUID(0x2A6E)
-
-# org.bluetooth.service.sensor1
-_SENS1_UUID = bluetooth.UUID("0f5b161f-5f75-49bd-b435-13f88527952d")
-# org.bluetooth.characteristic.message
-_VAL1_UUID = bluetooth.UUID(0x2A6F)
+# org.bluetooth.service.Accelerometer_sensing
+_IMU_SENSE_UUID = bluetooth.UUID("c5e15ad3-bcf5-4cc1-a40a-899931a69a3b")
+# org.bluetooth.characteristic.z_axis_value
+_IMU_UUID = bluetooth.UUID(0x2A6E)
 
 class BLEImuCentral:
     def __init__(self, ble):
@@ -73,7 +68,7 @@ class BLEImuCentral:
     def _irq(self, event, data):
         if event == _IRQ_SCAN_RESULT:
             addr_type, addr, adv_type, rssi, adv_data = data
-            if adv_type in (_ADV_IND, _ADV_DIRECT_IND) and _ENV_SENSE_UUID in decode_services(
+            if adv_type in (_ADV_IND, _ADV_DIRECT_IND) and _IMU_SENSE_UUID in decode_services(
                 adv_data
             ):
                 # Found a potential device, remember it and stop scanning.
@@ -121,7 +116,7 @@ class BLEImuCentral:
         elif event == _IRQ_GATTC_SERVICE_RESULT:
             # Connected device returned a service.
             conn_handle, start_handle, end_handle, uuid = data
-            if conn_handle == self._conn_handle and uuid == _ENV_SENSE_UUID:
+            if conn_handle == self._conn_handle and uuid == _IMU_SENSE_UUID:
                 self._start_handle, self._end_handle = start_handle, end_handle
             if conn_handle == self._conn_handle and uuid == _SENS1_UUID:
                 self._start_handle, self._end_handle = start_handle, end_handle
@@ -138,7 +133,7 @@ class BLEImuCentral:
         elif event == _IRQ_GATTC_CHARACTERISTIC_RESULT:
             # Connected device returned a characteristic.
             conn_handle, def_handle, value_handle, properties, uuid = data
-            if conn_handle == self._conn_handle and uuid == _TEMP_UUID:
+            if conn_handle == self._conn_handle and uuid == _IMU_UUID:
                 self._value_handle = value_handle
             if conn_handle == self._conn_handle and uuid == _VAL1_UUID:
                 self._value_handle = value_handle
