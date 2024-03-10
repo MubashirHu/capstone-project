@@ -84,17 +84,17 @@ class Threshold:
         self.highest_value = 0
         print("value", value)
         
-        if value > self.amber_zone:
+        if value > self.red_zone:
+            self.green_zone_timer = None
             print("RED ZONE")
-            self.green_zone_timer = None
             return self.red_zone
-        if value > self.yellow_zone:
+        if value > self.amber_zone and value < self.red_zone:
+            self.green_zone_timer = None
             print("AMBER ZONE")
-            self.green_zone_timer = None
             return self.amber_zone
-        elif value > self.green_zone:
-            print("YELLOW ZONE")
+        elif value > self.yellow_zone and value < self.amber_zone:
             self.green_zone_timer = None
+            print("YELLOW ZONE")
             return self.yellow_zone
     
     def _transmit_zone(self, zone):
@@ -109,7 +109,7 @@ class Threshold:
             #start a green_zone timer
             if self.green_zone_timer is None:
                 print("started green_zone timer")
-                self.green_zone_timer_started = time.time()
+                #self.green_zone_timer_started = time.time()
                 self.green_zone_timer = time.time()
             
             #wait for 2 seconds
