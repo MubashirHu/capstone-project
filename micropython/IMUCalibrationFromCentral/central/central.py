@@ -11,7 +11,7 @@ import micropython
 import ble_advertising
 from ble_advertising import decode_services
 from ble_module import BLEImuCentral
-from thresholding import ThresholdCrossing
+from thresholding import Threshold
 from micropython import const
 
 WINDOW_SIZE = 40 # Size of the sliding window for averaging
@@ -20,7 +20,7 @@ def main():
     
     ble = bluetooth.BLE()
     central = BLEImuCentral(ble)
-    threshold_crossing = ThresholdCrossing()
+    thresholding = Threshold()
     
     window_buffer = [9] * WINDOW_SIZE
         
@@ -61,16 +61,15 @@ def main():
             
             # square the value to create disparity as well as removing negative values
             avg_accel_z = avg_accel_z**2
-            print(avg_accel_z)
+            #print(avg_accel_z)
             
-            thresholding_result = threshold_crossing._determine_threshold_crossing(avg_accel_z)
-            #print("threshold_crossing.highest_value", threshold_crossing.highest_value)
-            #print("thresholding_result", threshold_crossing.highest_value)
+            highest_value_determined = thresholding._determine_highest_value_during_threshold_crossing(avg_accel_z)
             
-            if(thresholding_result > threshold_crossing.green_zone):
-                determined_zone = threshold_crossing._determine_zone(thresholding_result)
-                threshold_crossing._transmit_zone(determined_zone)
-             
+            if(highest_value_determined > thresholding.green_zone):
+                determined_zone = thresholding._determine_zone(highest_value_determined)
+                thresholding._transmit_zone(determined_zone)
+            else:
+                thresholding._transmit_zone(thresholding.green_zone)
             time.sleep_ms(10)
            
         print("Disconnected")
