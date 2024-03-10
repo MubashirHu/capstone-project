@@ -6,6 +6,8 @@ add_executable(${ProjectName}
     queues.h
     util.c
     util.h
+    interrupt.c
+    interrupt.h
 )
 
 target_include_directories(${ProjectName} PRIVATE
@@ -19,7 +21,8 @@ target_link_libraries(${ProjectName}
     pico_stdlib 
     hardware_i2c
     hardware_uart
-    FreeRTOS-Kernel-Heap4 
+    hardware_gpio
+    FreeRTOS-Kernel-Heap4
     )
 
 pico_add_extra_outputs(${ProjectName})
