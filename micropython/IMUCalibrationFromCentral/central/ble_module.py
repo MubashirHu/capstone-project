@@ -33,6 +33,8 @@ _IMU_SENSE_UUID = bluetooth.UUID("c5e15ad3-bcf5-4cc1-a40a-899931a69a3b")
 # org.bluetooth.characteristic.z_axis_value
 _IMU_UUID = bluetooth.UUID(0x2A6E)
 
+
+
 class BLEImuCentral:
     def __init__(self, ble):
         self._ble = ble
@@ -78,7 +80,7 @@ class BLEImuCentral:
                 )  # Note: addr buffer is owned by caller so need to copy it.
                 self._name = decode_name(adv_data) or "?"
                 self._ble.gap_scan(None)
-            if adv_type in (_ADV_IND, _ADV_DIRECT_IND) and _SENS1_UUID in decode_services(
+            if adv_type in (_ADV_IND, _ADV_DIRECT_IND) and _IMU_SENSE_UUID in decode_services(
                 adv_data
             ):
                 # Found a potential device, remember it and stop scanning.
@@ -118,7 +120,7 @@ class BLEImuCentral:
             conn_handle, start_handle, end_handle, uuid = data
             if conn_handle == self._conn_handle and uuid == _IMU_SENSE_UUID:
                 self._start_handle, self._end_handle = start_handle, end_handle
-            if conn_handle == self._conn_handle and uuid == _SENS1_UUID:
+            if conn_handle == self._conn_handle and uuid == _IMU_SENSE_UUID:
                 self._start_handle, self._end_handle = start_handle, end_handle
 
         elif event == _IRQ_GATTC_SERVICE_DONE:
@@ -135,7 +137,7 @@ class BLEImuCentral:
             conn_handle, def_handle, value_handle, properties, uuid = data
             if conn_handle == self._conn_handle and uuid == _IMU_UUID:
                 self._value_handle = value_handle
-            if conn_handle == self._conn_handle and uuid == _VAL1_UUID:
+            if conn_handle == self._conn_handle and uuid == _IMU_UUID :
                 self._value_handle = value_handle
 
         elif event == _IRQ_GATTC_CHARACTERISTIC_DONE:
