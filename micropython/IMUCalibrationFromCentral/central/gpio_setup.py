@@ -19,7 +19,7 @@ bit_2.value(1)
 def _send_zone_via_gpio(zone):
     if(zone == 0):
         
-        print("sending value over GPIO")
+        print("sending value over GPIO for green zone")
         #b'0
         bit_0.value(0)
         bit_1.value(0)
@@ -34,7 +34,7 @@ def _send_zone_via_gpio(zone):
         
     elif(zone == 1):
         
-        print("sending value over GPIO")
+        print("sending value over GPIO for yellow zone")
         #b'1
         bit_0.value(1)
         bit_1.value(0)
@@ -46,7 +46,7 @@ def _send_zone_via_gpio(zone):
         pothole_event_pin.value(1)
             
     elif(zone == 2):
-        print("sending value over GPIO")
+        print("sending value over GPIO for amber zone")
         #b'2
         bit_0.value(0)
         bit_1.value(1)
@@ -58,7 +58,7 @@ def _send_zone_via_gpio(zone):
         pothole_event_pin.value(1)
         
     elif(zone == 3):
-        print("sending value over GPIO")
+        print("sending value over GPIO red zone")
         #b'3
         bit_0.value(1)
         bit_1.value(1)
