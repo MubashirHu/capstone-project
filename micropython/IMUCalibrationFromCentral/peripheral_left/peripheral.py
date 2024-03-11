@@ -12,7 +12,7 @@ import bluetooth
 import struct
 import time
 import utime
-from ble_module_left import BLEImu
+from ble_module import BLEImu
 from ble_advertising import advertising_payload
 import MPU6050
 import machine
