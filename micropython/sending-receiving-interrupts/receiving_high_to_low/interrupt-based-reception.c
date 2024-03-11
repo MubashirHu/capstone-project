@@ -5,21 +5,45 @@
 #include "hardware/gpio.h"
 
 // Define GPIO pin
-#define GPIO_PIN_PH 19  // GPIO PIN - Pothole
-#define GPIO_PIN_RD 18 // GPIO PIN - Road Depression
+#define GPIO_PIN_PH 19  // GPIO PIN - Pothole GP19
+#define BIT_0 18
+#define BIT_1 17
+#define BIT_2 16
 
 void handle_pothole_interrupt(){
-    printf("Pothole Interrupt on pin %d/n", GPIO_PIN_PH);
-    //get GPS data
-    //send that it is a pothole b'1
-    //send speed 
-}
+    printf("Pothole Interrupt on pin %d\r\n", GPIO_PIN_PH);
+    __int8_t byte = 0;
+    
+    int bit_0_state = gpio_get(BIT_0);
+    int bit_1_state = gpio_get(BIT_1);
+    int bit_2_state = gpio_get(BIT_2);
 
-// Define interrupt handler function
-void handle_road_depression_interrupt() {
-    printf("Road depression interrupt on pin %d\n", GPIO_PIN_RD);
+    // Pack the states into a single byte
+    byte = (bit_2_state << 2) | (bit_1_state << 1) | bit_0_state;
+
+    printf("byte:%d\r\n", byte);
+
+    switch (byte)
+    {
+    case 3:
+        printf("RED ZONE\r\n");
+        break;
+    case 2:
+        printf("AMBER_ZONE\r\n");
+        break;
+    case 1:
+        printf("YELLOW_ZONE\r\n");
+        break;
+    case 0:
+        printf("GREEN_ZONE\r\n");
+        break;
+    default:
+        printf("GREEN_ZONE\r\n");
+        break;
+    }
+
     //get GPS data
-    //send that it is a road depression b'0
+    //determine potlevel
     //send speed 
 }
 
@@ -36,16 +60,22 @@ int main() {
     // Initialize GPIO pin - pothole
     gpio_init(GPIO_PIN_PH);
     gpio_set_dir(GPIO_PIN_PH, GPIO_IN);
-    gpio_pull_up(GPIO_PIN_PH); // high by default
+    gpio_pull_up(GPIO_PIN_PH); // GPIO_PIN_PH by default
 
-    // Initialize GPIO pin - road depression
-    gpio_init(GPIO_PIN_RD);
-    gpio_set_dir(GPIO_PIN_RD, GPIO_IN);
-    gpio_pull_up(GPIO_PIN_RD); // high by default
+    gpio_init(BIT_0);
+    gpio_set_dir(BIT_0, GPIO_IN);
+    gpio_pull_up(BIT_0); // GPIO_PIN_PH by default
 
-     // Set up interrupt handler for pothole & road-depression - triggers on HIGH to LOW event on selected GPIO
+    gpio_init(BIT_1);
+    gpio_set_dir(BIT_1, GPIO_IN);
+    gpio_pull_up(BIT_1); // GPIO_PIN_PH by default
+
+    gpio_init(BIT_2);
+    gpio_set_dir(BIT_2, GPIO_IN);
+    gpio_pull_up(BIT_2); // GPIO_PIN_PH by default
+    
+    // Set up interrupt handler for pothole & road-depression - triggers on HIGH to LOW event on selected GPIO
     gpio_set_irq_enabled_with_callback(GPIO_PIN_PH, GPIO_IRQ_EDGE_FALL, true, &handle_pothole_interrupt);
-    gpio_set_irq_enabled_with_callback(GPIO_PIN_RD, GPIO_IRQ_EDGE_FALL, true, &handle_road_depression_interrupt);
 
     while(1)
     {
