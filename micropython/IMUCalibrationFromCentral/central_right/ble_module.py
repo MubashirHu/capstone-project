@@ -29,7 +29,7 @@ _ADV_SCAN_IND = const(0x02)
 _ADV_NONCONN_IND = const(0x03)
 
 # org.bluetooth.service.Accelerometer_sensing
-_IMU_SENSE_UUID = bluetooth.UUID("c5e15ad3-bcf5-4cc1-a40a-899931a69a3b")
+_IMU_SENSE_UUID = bluetooth.UUID("59e9f598-0273-4fba-bb6c-495ea0b37c3d")
 # org.bluetooth.characteristic.z_axis_value
 _IMU_UUID = bluetooth.UUID(0x2A6E)
 

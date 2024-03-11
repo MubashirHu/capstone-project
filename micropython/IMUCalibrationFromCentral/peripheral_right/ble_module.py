@@ -11,7 +11,7 @@ _FLAG_NOTIFY = const(0x0010)
 _FLAG_INDICATE = const(0x0020)
 
 # org.bluetooth.service.environmental_sensing
-_IMU_SENSE_UUID = bluetooth.UUID("c5e15ad3-bcf5-4cc1-a40a-899931a69a3b")
+_IMU_SENSE_UUID = bluetooth.UUID("59e9f598-0273-4fba-bb6c-495ea0b37c3d")
 # org.bluetooth.characteristic.temperature
 _IMU_CHAR = (
     bluetooth.UUID(0x2A6E),
@@ -26,7 +26,7 @@ _IMU_SENSE_SERVICE = (
 _ADV_APPEARANCE_GENERIC_THERMOMETER = const(768)
 
 class BLEImu:
-    def __init__(self, ble, name="leftIMU"):
+    def __init__(self, ble, name="rightIMU"):
         self._ble = ble
         self._ble.active(True)
         self._ble.irq(self._irq)
