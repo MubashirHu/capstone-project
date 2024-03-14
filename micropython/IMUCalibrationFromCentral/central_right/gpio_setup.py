@@ -19,14 +19,14 @@ bit_2.value(1)
 def _send_zone_via_gpio(zone):
     if(zone == 0):
         
-        print("sending value over GPIO for green zone")
+        #print("sending value over GPIO for green zone")
         #b'0
         bit_0.value(0)
         bit_1.value(0)
         bit_2.value(0)
         
         #green_zone
-        print("transition")
+        #print("transition")
         pothole_event_pin.value(0)
         pothole_event_pin.value(1)
             
@@ -34,82 +34,82 @@ def _send_zone_via_gpio(zone):
         
     elif(zone == 1):
         
-        print("sending value over GPIO for yellow zone")
+        #print("sending value over GPIO for yellow zone")
         #b'1
         bit_0.value(1)
         bit_1.value(0)
         bit_2.value(0)
         
         #yellow_zone
-        print("transition")
+        #print("transition")
         pothole_event_pin.value(0)
         pothole_event_pin.value(1)
             
     elif(zone == 2):
-        print("sending value over GPIO for amber zone")
+        #print("sending value over GPIO for amber zone")
         #b'2
         bit_0.value(0)
         bit_1.value(1)
         bit_2.value(0)
         
         #amber_zone
-        print("transition")
+        #print("transition")
         pothole_event_pin.value(0)
         pothole_event_pin.value(1)
         
     elif(zone == 3):
-        print("sending value over GPIO red zone")
+        #print("sending value over GPIO red zone")
         #b'3
         bit_0.value(1)
         bit_1.value(1)
         bit_2.value(0)
         
         #red_zone
-        print("transition")
+        #print("transition")
         pothole_event_pin.value(0)
         pothole_event_pin.value(1)
    
     elif(zone == 4):
-        print("sending value over GPIO")
+        #print("sending value over GPIO")
         #b'4
         bit_0.value(0)
         bit_1.value(0)
         bit_2.value(1)
         
-        print("transition")
+        #print("transition")
         pothole_event_pin.value(0)
         pothole_event_pin.value(1)
             
     elif(zone == 5):
-        print("sending value over GPIO")
+        #print("sending value over GPIO")
         #b'5
         bit_0.value(1)
         bit_1.value(0)
         bit_2.value(1)
         
-        print("transition")
+        #print("transition")
         pothole_event_pin.value(0)
         pothole_event_pin.value(1)
             
     elif(zone == 6):
-        print("sending value over GPIO")
+        #print("sending value over GPIO")
         #b'6
         bit_0.value(0)
         bit_1.value(1)
         bit_2.value(1)
         
-        print("transition")
+        #print("transition")
         pothole_event_pin.value(0)
         pothole_event_pin.value(1)
         
     elif(zone == 7):
-        print("sending value over GPIO")
+        #print("sending value over GPIO")
         #b'7
         bit_0.value(1)
         bit_1.value(1)
         bit_2.value(1)
         
-        print("transition")
+        #print("transition")
         pothole_event_pin.value(0)
         pothole_event_pin.value(1)
         

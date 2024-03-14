@@ -54,7 +54,7 @@ class Threshold:
         #when average accel crosses green zone start the timer
         if average_accel > self.green_zone and self.zone_time is None:
             self.highest_value = average_accel  # Record the highest value
-            print("zone_timer has started")
+            #print("zone_timer has started")
             self.zone_time = utime.ticks_us()  # Start zone timer
             self.zone_time_started = self.zone_time
             self.state = WAITING_FOR_HIGHEST_VALUE
@@ -67,11 +67,11 @@ class Threshold:
                 if average_accel > self.highest_value:
                     self.highest_value = average_accel  # Update highest value                    
             
-            elif average_accel > self.green_zone:
-                print("waiting for value to return to 0")
-                self.state = WAITING_FOR_RETURN_TO_CENTERED_VALUE
+#             elif average_accel > self.green_zone:
+#                 #print("waiting for value to return to 0")
+#                 self.state = WAITING_FOR_RETURN_TO_CENTERED_VALUE
             else:
-                print("zone_timer is reset")
+                #print("zone_timer is reset")
                 self.zone_time = None
                 self.zone_time_ended = utime.ticks_us()
                 print("time elapsed:", self.zone_time_ended - self.zone_time_started)
@@ -92,7 +92,7 @@ class Threshold:
             self.green_zone_timer = None
             print("AMBER ZONE")
             return self.amber_zone
-        elif value > self.yellow_zone and value < self.amber_zone:
+        if value > self.yellow_zone and value < self.amber_zone:
             self.green_zone_timer = None
             print("YELLOW ZONE")
             return self.yellow_zone
