@@ -86,15 +86,15 @@ class Threshold:
         
         if value > self.red_zone:
             self.green_zone_timer = None
-            print("RED ZONE")
+            print("RED ZONE\n")
             return self.red_zone
         if value > self.amber_zone and value < self.red_zone:
             self.green_zone_timer = None
-            print("AMBER ZONE")
+            print("AMBER ZONE\n")
             return self.amber_zone
         if value > self.yellow_zone and value < self.amber_zone:
             self.green_zone_timer = None
-            print("YELLOW ZONE")
+            print("YELLOW ZONE\n")
             return self.yellow_zone
     
     def _transmit_zone(self, zone):
