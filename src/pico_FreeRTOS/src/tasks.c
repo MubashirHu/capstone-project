@@ -30,10 +30,10 @@ void initTasks(void)
     UBaseType_t uxCoreAffinityMask_both;
     uxCoreAffinityMask_both = ( ( 1 << 0 ) | ( 1 << 1 ) );
 
-	xTaskCreateAffinitySet(vTaskUart_4g, "4G_Task", 512, NULL, 6, uxCoreAffinityMask_1, NULL);
-	// xTaskCreateAffinitySet(vTaskUart_OBD, "OBD2_Task", 512, uxCoreAffinityMask_1, NULL, 6, NULL);
-    // xTaskCreateAffinitySet(vTaskI2C_GPS, "GPS_Task", 512, NULL, 6, uxCoreAffinityMask_0, NULL);
-    xTaskCreateAffinitySet(vTaskNormal, "Normal_Task", 256, NULL, 6, uxCoreAffinityMask_1, NULL);
+	// xTaskCreateAffinitySet(vTaskUart_4g, "4G_Task", 512, NULL, 6, uxCoreAffinityMask_1, NULL);
+	// xTaskCreateAffinitySet(vTaskUart_OBD, "OBD2_Task", 512, NULL, 6, uxCoreAffinityMask_1, NULL);
+    xTaskCreateAffinitySet(vTaskI2C_GPS, "GPS_Task", 512, NULL, 6, uxCoreAffinityMask_0, NULL);
+    // xTaskCreateAffinitySet(vTaskNormal, "Normal_Task", 256, NULL, 6, uxCoreAffinityMask_1, NULL);
     xTaskCreateAffinitySet(led_task, "LED_Task", 256, NULL, 6, uxCoreAffinityMask_1, NULL);
 
     
@@ -333,10 +333,14 @@ void vTaskI2C_GPS(void * parameters)
                         static char json[512];
                         sprintf(json, "\r\n\"time\":%ld,\r\n\"latitude\":%.6lf,\r\n\"longitude\":%.6lf,\r\n",
                                 (long)x.time, x.latitude, x.longitude);
+                        uart_puts(UART_TEST, json);
+                        uart_puts(UART_TEST, "\r\n");
                         
                         if (positioning_status != 0 && num_satellites > 3)
                         {
                             gps_queue_overwrite(x);
+                            uart_puts(UART_TEST, "GPS Position enqueued");
+                            uart_puts(UART_TEST, "\r\n");
                         }
                     }
                     // else
