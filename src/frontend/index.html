@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
   <head>
     <title>Heatmaps</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
@@ -15,13 +15,29 @@
     </div>
     <div id="map"></div>
 
-    prettier-ignore
-    <!-- <script>(g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r, "visualization"]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})
-        ({key: "AIzaSyC05BlKrkXFGC3ZwBinu_PBuAmG6yemWMA", v: "weekly"});</script> -->
 
     <script async
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC05BlKrkXFGC3ZwBinu_PBuAmG6yemWMA&loading=async&libraries=visualization&callback=initMap">
     </script>
   </body>
   
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pothole Entries</title>
+</head>
+<body>
+    <h1>Pothole Entries from Firebase Realtime Database</h1>
+    <div id="potholeEntries"></div>
+    
+    <!-- Add Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-database.js"></script>
+    <!-- Include your JavaScript file -->
+    <script src="index.js"></script>
+</body>
 </html>
