@@ -8,7 +8,6 @@
 
 struct message
 {
-    time_t time;
     double latitude;
     double longitude;
     double speed;
@@ -17,7 +16,6 @@ struct message
 
 struct gps
 {
-    time_t time;
     double latitude;
     double longitude;
 };

@@ -19,6 +19,13 @@ void vTaskUart_OBD(void * parameters);
 void vTaskI2C_GPS(void * parameters);
 static void led_task(void * parameters);
 
+#define GREEN_POTHOLE 0
+#define YELLOW_POTHOLE 1
+#define AMBER_POTHOLE 2
+#define RED_POTHOLE 3
+#define SLIPPING 4
+#define CONGESTION 5
+
 void initTasks(void)
 {
     UBaseType_t uxCoreAffinityMask_0;
@@ -106,32 +113,55 @@ void vTaskUart_4g(void * parameters)
         {
             uart_puts(UART_TEST, "Message Detected\r\n");
             static char json[512]; // Assuming a fixed size for simplicity, adjust as needed
-            sprintf(json, "{\"uid\": \"%s\", \"time\":%ld,\"latitude\":%.6lf,\"longitude\":%.6lf,\"speed\":%.2lf,\"message_type\":%d}",
-            uid, (long)msg.time, msg.latitude, msg.longitude, msg.speed, msg.message_type);
+            sprintf(json, "{\"uid\": \"%s\",\"latitude\":%.6lf,\"longitude\":%.6lf,\"speed\":%.2lf,\"message_type\":%d}",
+            uid, msg.latitude, msg.longitude, msg.speed, msg.message_type);
 
-            uart_send_until_valid(UART_ID_4G, "AT+HTTPINIT\r\n", response, "AT+HTTPINIT\r\r\nOK\r\n");
-            vTaskDelay(pdMS_TO_TICKS(50));
-            uart_send(UART_ID_4G, "AT+HTTPPARA=\"URL\",\"https://test-f1e70.firebaseio.com/test.json\"\r\n", response, 0);
-            vTaskDelay(pdMS_TO_TICKS(50));
-            uart_send(UART_ID_4G, "AT+HTTPPARA=\"CONTENT\",\"application/json\"\r\n", response, 0);
-            vTaskDelay(pdMS_TO_TICKS(50));
-            uart_send(UART_ID_4G, "AT+HTTPDATA=20,5000\r\n", response, 0);
-            vTaskDelay(pdMS_TO_TICKS(50));
-            // use string to create json string with message structure
-            uart_send(UART_ID_4G, json, response, 0);
-            vTaskDelay(pdMS_TO_TICKS(50));
-            uart_send(UART_ID_4G, "\n\r\n", response, 1000);
-            vTaskDelay(pdMS_TO_TICKS(50));
-            uart_send(UART_ID_4G, "AT+HTTPACTION=1\r\n", response, 1000);
-            // verify http response of 200 if failed, then repeat until it doesn't for x amount of times
-            vTaskDelay(pdMS_TO_TICKS(50));
-            uart_send(UART_ID_4G, "AT+HTTPTERM\r\n", response, 0);
-            uart_puts(UART_TEST, "Message Sent\r\n");
+            switch (msg.message_type)
+            {
+            case POTHOLE:
+                uart_send_until_valid(UART_ID_4G, "AT+HTTPINIT\r\n", response, "AT+HTTPINIT\r\r\nOK\r\n");
+                vTaskDelay(pdMS_TO_TICKS(50));
+                uart_send(UART_ID_4G, "AT+HTTPPARA=\"URL\",\"https://test-f1e70.firebaseio.com/pothole.json\"\r\n", response, 0);
+                vTaskDelay(pdMS_TO_TICKS(50));
+                uart_send(UART_ID_4G, "AT+HTTPPARA=\"CONTENT\",\"application/json\"\r\n", response, 0);
+                vTaskDelay(pdMS_TO_TICKS(50));
+                uart_send(UART_ID_4G, "AT+HTTPDATA=20,5000\r\n", response, 0);
+                vTaskDelay(pdMS_TO_TICKS(50));
+                // use string to create json string with message structure
+                uart_send(UART_ID_4G, json, response, 0);
+                vTaskDelay(pdMS_TO_TICKS(50));
+                uart_send(UART_ID_4G, "\n\r\n", response, 1000);
+                vTaskDelay(pdMS_TO_TICKS(50));
+                uart_send(UART_ID_4G, "AT+HTTPACTION=1\r\n", response, 1000);
+                // verify http response of 200 if failed, then repeat until it doesn't for x amount of times
+                vTaskDelay(pdMS_TO_TICKS(50));
+                uart_send(UART_ID_4G, "AT+HTTPTERM\r\n", response, 0);
+                uart_puts(UART_TEST, "Message Sent\r\n");
+                break;
+            case SLIPPING:
+                uart_send_until_valid(UART_ID_4G, "AT+HTTPINIT\r\n", response, "AT+HTTPINIT\r\r\nOK\r\n");
+                vTaskDelay(pdMS_TO_TICKS(50));
+                uart_send(UART_ID_4G, "AT+HTTPPARA=\"URL\",\"https://test-f1e70.firebaseio.com/slip.json\"\r\n", response, 0);
+                vTaskDelay(pdMS_TO_TICKS(50));
+                uart_send(UART_ID_4G, "AT+HTTPPARA=\"CONTENT\",\"application/json\"\r\n", response, 0);
+                vTaskDelay(pdMS_TO_TICKS(50));
+                uart_send(UART_ID_4G, "AT+HTTPDATA=20,5000\r\n", response, 0);
+                vTaskDelay(pdMS_TO_TICKS(50));
+                // use string to create json string with message structure
+                uart_send(UART_ID_4G, json, response, 0);
+                vTaskDelay(pdMS_TO_TICKS(50));
+                uart_send(UART_ID_4G, "\n\r\n", response, 1000);
+                vTaskDelay(pdMS_TO_TICKS(50));
+                uart_send(UART_ID_4G, "AT+HTTPACTION=1\r\n", response, 1000);
+                // verify http response of 200 if failed, then repeat until it doesn't for x amount of times
+                vTaskDelay(pdMS_TO_TICKS(50));
+                uart_send(UART_ID_4G, "AT+HTTPTERM\r\n", response, 0);
+                uart_puts(UART_TEST, "Message Sent\r\n");
+                break;
+            }
         }
         // check speed limit queue and if not empty, send speed limit api request to google for current location
         vTaskDelay(pdMS_TO_TICKS(1000));
-        
-
     }
 }
 
@@ -148,11 +178,9 @@ void vTaskNormal(void * parameters)
             x.latitude = 50.22324;//y.latitude;
             x.longitude = -25.34223;y.longitude;
             x.message_type = 0;
-            x.time = 123983;y.time;
             x.speed = 0;
             static char json[512];
-            sprintf(json, "\r\n\"time\":%ld,\r\n\"latitude\":%.6lf,\r\n\"longitude\":%.6lf,\r\n",
-                    (long)x.time, x.latitude, x.longitude);
+            sprintf(json, "\r\n\"latitude\":%.6lf,\r\n\"longitude\":%.6lf,\r\n", x.latitude, x.longitude);
             // uart_puts(UART_TEST, json);
             // message_enqueue(x);
         // }
@@ -317,16 +345,7 @@ void vTaskI2C_GPS(void * parameters)
                             long_decimalDegrees = -long_decimalDegrees;
                         }
 
-                        int hours = (utc_time[0] - '0') * 10 + (utc_time[1] - '0');
-                        int minutes = (utc_time[2] - '0') * 10 + (utc_time[3] - '0');
-                        int seconds = (utc_time[4] - '0') * 10 + (utc_time[5] - '0');
-                        int milliseconds = (utc_time[7] - '0') * 100 + (utc_time[8] - '0') * 10 + (utc_time[9] - '0');
-
-                        time_t unixTime = hours * 3600 + minutes * 60 + seconds;
-                        unixTime += milliseconds / 1000;
-
                         struct gps x;
-                        x.time = unixTime;
                         x.latitude = lat_decimalDegrees;
                         x.longitude = long_decimalDegrees;
 
