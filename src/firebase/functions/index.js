@@ -48,17 +48,21 @@ exports.rms_data = functions.https.onRequest((request, response) => {
         latitude: latitude,
         longitude: longitude,
         speed: speed,
+        weight: messageType,
     };
     let location = null;
     // Save pothole data to the Firebase Realtime Database
     switch (messageType) {
         case 0:
+        case 1:
+        case 2:
+        case 3:
             location = "potholes";
             break;
-        case 1:
+        case 4:
             location = "slipping";
             break;
-        case 2:
+        case 5:
             location = "conjection";
             break;
     }
