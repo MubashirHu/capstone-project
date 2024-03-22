@@ -1,19 +1,25 @@
+#include <stdint.h>
+#include <stdbool.h>
 #ifndef INTERRUPT_H
 #define INTERRUPT_H
 
+#define GPIO_PIN_PH_PICO1 16  // GPIO PIN - Pothole GP19
+#define BIT_0_PICO1 18
+#define BIT_1_PICO1 17
+#define BIT_2_PICO1 19
 
+#define GPIO_PIN_PH_PICO2 12  // GPIO PIN - Pothole GP19
+#define BIT_0_PICO2 10
+#define BIT_1_PICO2 13
+#define BIT_2_PICO2 11
 
-#define GPIO_PIN_PH_1 19  // GPIO PIN - Pothole GP19
-#define BIT1_0 18
-#define BIT1_1 17
-#define BIT1_2 16
+// Flags to indicate interrupts on each Pico
+extern bool pico1_interrupt;
+extern bool pico2_interrupt;
 
+extern uint8_t byte_pico1;
+extern uint8_t byte_pico2;
 
-#define GPIO_PIN_PH_2 13  // GPIO PIN - Pothole GP19
-#define BIT2_0 12
-#define BIT2_1 11
-#define BIT2_2 10
-#include <stdio.h>
-void handle_pothole_interrupt(uint gpio, uint32_t events);
+void handle_pothole_interrupt();
 
 #endif

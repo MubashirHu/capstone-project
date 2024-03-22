@@ -5,19 +5,21 @@
 #include "pico/stdlib.h"
 #include "hardware/i2c.h"
 #include "hardware/uart.h"
+#include "interrupt.h"
 #include <string.h>
 #include "util.h"
 #include "queues.h"
 #include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
-
+#include "pico/binary_info.h"
 
 static void vTaskUart_4g(void * parameters);
 static void vTaskNormal(void * parameters);
 void vTaskUart_OBD(void * parameters);
 void vTaskI2C_GPS(void * parameters);
 static void led_task(void * parameters);
+void bundle_task(void *pvParameters);
 
 #define GREEN_POTHOLE 0
 #define YELLOW_POTHOLE 1
@@ -37,13 +39,12 @@ void initTasks(void)
     UBaseType_t uxCoreAffinityMask_both;
     uxCoreAffinityMask_both = ( ( 1 << 0 ) | ( 1 << 1 ) );
 
-	xTaskCreateAffinitySet(vTaskUart_4g, "4G_Task", 512, NULL, 6, uxCoreAffinityMask_1, NULL);
+	//xTaskCreateAffinitySet(vTaskUart_4g, "4G_Task", 512, NULL, 6, uxCoreAffinityMask_1, NULL);
 	// xTaskCreateAffinitySet(vTaskUart_OBD, "OBD2_Task", 512, NULL, 6, uxCoreAffinityMask_1, NULL);
     // xTaskCreateAffinitySet(vTaskI2C_GPS, "GPS_Task", 512, NULL, 6, uxCoreAffinityMask_0, NULL);
-    xTaskCreateAffinitySet(vTaskNormal, "Normal_Task", 256, NULL, 6, uxCoreAffinityMask_1, NULL);
+    //xTaskCreateAffinitySet(vTaskNormal, "Normal_Task", 256, NULL, 6, uxCoreAffinityMask_1, NULL);
     xTaskCreateAffinitySet(led_task, "LED_Task", 256, NULL, 6, uxCoreAffinityMask_1, NULL);
-
-    
+    xTaskCreateAffinitySet(bundle_task, "BUNDLE_Task", 256, NULL, 6, uxCoreAffinityMask_1, NULL);    
 }
 
 void vTaskUart_4g(void * parameters)
@@ -104,8 +105,6 @@ void vTaskUart_4g(void * parameters)
     uart_puts(UART_TEST, uid);
     uart_puts(UART_TEST, "\r\n");
 
-    
-
     uart_puts(UART_TEST, "Completed Task init\r\n");
 
     struct message msg;
@@ -154,8 +153,8 @@ void vTaskNormal(void * parameters)
         struct message x;
         // if(gps_queue_peek(&y))
         // {
-            x.latitude = 50.22324;//y.latitude;
-            x.longitude = -25.34223;y.longitude;
+            x.latitude = 50.22324;
+            x.longitude = -25.34223;
             x.message_type = 0;
             x.speed = 0;
             static char json[512];
@@ -322,4 +321,100 @@ void led_task(void * parameters)
     }
 }
 
+// bundleTask
+void bundle_task(void *pvParameters) {
+    uart_puts(UART_TEST, "\r\nStarting IMU Test\r\n");
+    struct gps gps;
+    
+    TickType_t xLastWakeTime;
+    const TickType_t xDelay = pdMS_TO_TICKS(500);
+    __int8_t byte_level = 0;
+
+    // Initialize the last wake time
+    xLastWakeTime = xTaskGetTickCount();
+
+    while (true) {
+
+    //check if either of the global variables for pico2 and pico2 become true
+    if(pico1_interrupt)
+    {
+        uart_puts(UART_TEST, "\r\nTest2\r\n");
+        //start a non blocking timer for the next 500ms 
+        TickType_t xStartTime = xTaskGetTickCount();
+        byte_level = byte_pico1;
+
+        // within the next 500ms 
+        while (xTaskGetTickCount() - xStartTime < xDelay) 
+        {
+            if(pico2_interrupt)
+            {
+                if (byte_pico1 >= byte_pico2) 
+                {
+                    uart_puts(UART_TEST, "Bundle data from PICO1 pico1_interrupt \n");
+                    byte_level = byte_pico1;
+
+                    // Bundle data from PICO1
+                } else {
+                    uart_puts(UART_TEST, "Bundle data from PICO2 pico1_interrupt\n");
+                    // Bundle data from PICO2
+                    byte_level = byte_pico2;
+                }
+
+                break;
+            }
+        }
+
+        // If the other interrupt did not occur within 500ms, bundle the byte level from pico1
+        if (pico2_interrupt == false) 
+        {
+            // send the byte level from pico1_interrupt
+            
+        }
+    }
+    else if(pico2_interrupt)
+    {
+        //start a non blocking timer for the next 500ms 
+        TickType_t xStartTime = xTaskGetTickCount();
+        byte_level = byte_pico2;
+
+        // within the next 500ms 
+        while (xTaskGetTickCount() - xStartTime < xDelay) 
+        {
+            if(pico1_interrupt)
+            {
+                if (byte_pico1 >= byte_pico2) 
+                {
+                    uart_puts(UART_TEST,"Bundle data from PICO1 pico2_interrupt\n");
+                    byte_level = byte_pico1;
+
+                    // Bundle data from PICO1
+                } else {
+                    uart_puts(UART_TEST,"Bundle data from PICO2 pico2_interrupt\n");
+                    // Bundle data from PICO2
+                    byte_level = byte_pico2;
+                }
+
+                break;
+            }
+        }
+
+        // If the other interrupt did not occur within 500ms, bundle the byte level from pico2
+        if (pico1_interrupt == false) 
+        {
+            // send the byte level from pico2_interrupt
+            
+        }
+    }
+
+    //reset the values 
+    pico1_interrupt = false;
+    pico2_interrupt = false;
+    byte_pico1 = 0;
+    byte_pico2 = 0;
+
+    // Delay to avoid continuous looping
+        vTaskDelay(pdMS_TO_TICKS(100));
+
+    }
+}
 
