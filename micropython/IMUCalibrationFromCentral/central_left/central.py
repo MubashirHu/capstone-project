@@ -14,7 +14,7 @@ from ble_module import BLEImuCentral
 from thresholding import Threshold
 from micropython import const
 
-WINDOW_SIZE = 40 # Size of the sliding window for averaging
+WINDOW_SIZE = 50 # Size of the sliding window for averaging
     
 def main():
     
@@ -55,6 +55,7 @@ def main():
             # Add new data to the pothole window_buffer
             window_buffer.pop(0)
             window_buffer.append(accel_z)
+            
             
             # Calculate the average acceleration value from the window_buffer
             avg_accel_z = (sum(window_buffer) / len(window_buffer))

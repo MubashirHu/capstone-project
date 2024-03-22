@@ -17,9 +17,9 @@ class Threshold:
             None
         """ 
         self.green_zone = 3
-        self.yellow_zone = 6
-        self.amber_zone = 9
-        self.red_zone = 12
+        self.yellow_zone = 8
+        self.amber_zone = 25
+        self.red_zone = 40
         
         self.green_zone_timer = None
         self.start_time = None
@@ -74,7 +74,7 @@ class Threshold:
                 #print("zone_timer is reset")
                 self.zone_time = None
                 self.zone_time_ended = utime.ticks_us()
-                print("time elapsed:", self.zone_time_ended - self.zone_time_started)
+                #print("time elapsed:", self.zone_time_ended - self.zone_time_started)
                 return self.highest_value
                 
         return self.state
