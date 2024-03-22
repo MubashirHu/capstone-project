@@ -20,12 +20,12 @@ void handle_pothole_interrupt(){
     int check_pin_2_for_change = gpio_get(GPIO_PIN_PH_PICO2);
     // printf("check_pin_1_for_change value:%d\n", check_pin_1_for_change);
     // printf("check_pin_2_for_change value:%d\n", check_pin_2_for_change);
-    uart_puts(UART_TEST, "\r\nTest3\r\n");
+    // uart_puts(UART_TEST, "\r\nTest3\r\n");
 
     if (check_pin_1_for_change == 0) 
     {
         pico1_interrupt = true;
-        uart_puts(UART_TEST, "Interrupt on PICO1\n");
+        // uart_puts(UART_TEST, "Interrupt on PICO1\n");
         // reset value of byte on entry
         __int8_t byte_pico1 = 0;
 
@@ -38,29 +38,29 @@ void handle_pothole_interrupt(){
         byte_pico1 = (BIT_2_PICO1_state << 2) | (BIT_1_PICO1_state << 1) | BIT_0_PICO1_state;
 
         // display the value of the byte
-        uart_puts(UART_TEST, "byte_pico1:");
-        char buffer[20]; // Allocate a buffer to hold the formatted string
-        snprintf(buffer, sizeof(buffer), "%d", byte_pico1);
-        uart_puts(UART_TEST, buffer);
-        uart_puts(UART_TEST, "\r\n");
+        // uart_puts(UART_TEST, "byte_pico1:");
+        // char buffer[20]; // Allocate a buffer to hold the formatted string
+        // snprintf(buffer, sizeof(buffer), "%d", byte_pico1);
+        // uart_puts(UART_TEST, buffer);
+        // uart_puts(UART_TEST, "\r\n");
 
 
         switch (byte_pico1)
         {
             case 3:
-                uart_puts(UART_TEST,"RED ZONE\r\n");
+                // uart_puts(UART_TEST,"RED ZONE\r\n");
                 break;
             case 2:
-                uart_puts(UART_TEST,"AMBER_ZONE\r\n");
+                // uart_puts(UART_TEST,"AMBER_ZONE\r\n");
                 break;
             case 1:
-                uart_puts(UART_TEST,"YELLOW_ZONE\r\n");
+                // uart_puts(UART_TEST,"YELLOW_ZONE\r\n");
                 break;
             case 0:
-                uart_puts(UART_TEST,"GREEN_ZONE\r\n");
+                // uart_puts(UART_TEST,"GREEN_ZONE\r\n");
                 break;
             default:
-                uart_puts(UART_TEST,"GREEN_ZONE\r\n");
+                // uart_puts(UART_TEST,"GREEN_ZONE\r\n");
                 break;
         }
     }
@@ -68,7 +68,7 @@ void handle_pothole_interrupt(){
     if (check_pin_2_for_change == 0) 
     {
         pico2_interrupt = true;
-        uart_puts(UART_TEST,"Interrupt on PICO2\n");
+        // uart_puts(UART_TEST,"Interrupt on PICO2\n");
         // reset value of byte on entry
         __int8_t byte_pico1 = 0;
         
@@ -81,28 +81,28 @@ void handle_pothole_interrupt(){
         byte_pico2 = (BIT_2_PICO1_state << 2) | (BIT_1_PICO1_state << 1) | BIT_0_PICO1_state;
 
         // display the value of the byte
-        uart_puts(UART_TEST, "byte_pico2:");
-        char buffer[20]; // Allocate a buffer to hold the formatted string
-        snprintf(buffer, sizeof(buffer), "%d", byte_pico2);
-        uart_puts(UART_TEST, buffer);
-        uart_puts(UART_TEST, "\r\n");
+        // uart_puts(UART_TEST, "byte_pico2:");
+        // char buffer[20]; // Allocate a buffer to hold the formatted string
+        // snprintf(buffer, sizeof(buffer), "%d", byte_pico2);
+        // uart_puts(UART_TEST, buffer);
+        // uart_puts(UART_TEST, "\r\n");
 
         switch (byte_pico2)
         {
             case 3:
-                uart_puts(UART_TEST,"RED ZONE\r\n");
+                // uart_puts(UART_TEST,"RED ZONE\r\n");
                 break;
             case 2:
-                uart_puts(UART_TEST,"AMBER_ZONE\r\n");
+                // uart_puts(UART_TEST,"AMBER_ZONE\r\n");
                 break;
             case 1:
-                uart_puts(UART_TEST,"YELLOW_ZONE\r\n");
+                // uart_puts(UART_TEST,"YELLOW_ZONE\r\n");
                 break;
             case 0:
-                uart_puts(UART_TEST,"GREEN_ZONE\r\n");
+                // uart_puts(UART_TEST,"GREEN_ZONE\r\n");
                 break;
             default:
-                uart_puts(UART_TEST,"GREEN_ZONE\r\n");
+                // uart_puts(UART_TEST,"GREEN_ZONE\r\n");
                 break;
         }
     }

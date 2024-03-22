@@ -13,7 +13,7 @@ QueueHandle_t xVehicle_Speed_Queue;
 
 void initQueues(void)
 {
-	xMessage_Queue = xQueueCreate(800, sizeof(struct message));
+	xMessage_Queue = xQueueCreate(100, sizeof(struct message));
     xGPS_Queue = xQueueCreate(1, sizeof(struct gps));
     xVehicle_Speed_Queue = xQueueCreate(1, sizeof(uint8_t));
 }
