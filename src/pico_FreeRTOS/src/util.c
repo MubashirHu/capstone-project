@@ -26,13 +26,14 @@ int uart_send(uart_inst_t *uart, char *command, char *response, int wait)
         // vTaskDelay(15);
     }
     
+    // uart_puts(UART_TEST, "\r\n");
     // for(int j = 0; j < i; j++)
     // {
-    //     //char ascii_code[4];
-    //     //sprintf(ascii_code, "%02X ", response[j]);
-    //     //uart_puts(UART_TEST, ascii_code);
-    //     uart_putc(UART_TEST, response[j]);
+    //     char ascii_code[4];
+    //     sprintf(ascii_code, "%02X ", response[j]);
+    //     uart_puts(UART_TEST, ascii_code);
     // }
+    // uart_puts(UART_TEST, "\r\n");
     return i;
 }
 
@@ -111,29 +112,6 @@ void uart_obd2_wheel_speed(uart_inst_t *uart, struct obd2_packet *packet)
     char response4[32];
     char response5[32];
     char response6[15];
-    uart_send_until_valid(uart, "AT CRA 0B0\r\n", response1, "AT CRA 0B0\rOK\r\r>");
-    do
-    {
-        uart_read_chars(uart, "AT MA\r\n", 25, response1);
-    } while (strncmp(response1, "AT MA\r", 6) != 0 && response1[23] == '\r');
-
-    uart_send_until_valid(uart, "AT CRA 0B2\r\n", response2, "AT CRA 0B2\rOK\r\r>");
-    do
-    {
-        uart_read_chars(uart, "AT MA\r\n", 25, response2);
-    } while (strncmp(response2, "AT MA\r", 6) != 0 && response2[23] == '\r');
-
-    uart_send_until_valid(uart, "AT CRA 224\r\n", response3, "AT CRA 224\rOK\r\r>");
-    do
-    {
-        uart_read_chars(uart, "AT MA\r\n", 31, response3);
-    } while (strncmp(response3, "AT MA\r", 6) != 0 && response3[29] == '\r');
-
-    uart_send_until_valid(uart, "AT CRA 2C4\r\n", response3, "AT CRA 2C4\rOK\r\r>");
-    do
-    {
-        uart_read_chars(uart, "AT MA\r\n", 31, response4);
-    } while (strncmp(response4, "AT MA\r", 6) != 0 && response4[29] == '\r');
 
     uart_send_until_valid(uart, "AT CRA 3B7\r\n", response5, "AT CRA 3B7\rOK\r\r>");
     do
@@ -147,23 +125,10 @@ void uart_obd2_wheel_speed(uart_inst_t *uart, struct obd2_packet *packet)
         uart_read_chars(uart, "010D\r\n", 14, response6);
     } while (strncmp(response6, "010D\r", 5) != 0);
 
-    sscanf(response1 + 6, "%2hx %2hx", &high_nibble, &low_nibble);
-    packet->wheel_1 = ((high_nibble << 8) | low_nibble) * 0.01;
-    sscanf(response1 + 12, "%2hx %2hx", &high_nibble, &low_nibble);
-    packet->wheel_2 = ((high_nibble << 8) | low_nibble) * 0.01;
-    
-    sscanf(response2 + 6, "%2hx %2hx", &high_nibble, &low_nibble);
-    packet->wheel_3 = ((high_nibble << 8) | low_nibble) * 0.01;
-    sscanf(response2 + 12, "%2hx %2hx", &high_nibble, &low_nibble);
-    packet->wheel_4 = ((high_nibble << 8) | low_nibble) * 0.01;
-
-    sscanf(response3 + 18, "%2hx %2hx", &high_nibble, &low_nibble);
-    packet->brake_pressure = (high_nibble << 8) | low_nibble;
-
-    sscanf(response4 + 6, "%2hx %2hx", &high_nibble, &low_nibble);
-    packet->rpm = (high_nibble << 8) | low_nibble;
-
     uart_puts(UART_TEST, response5);
+
+    sscanf(response5 + 9, "%2hx", &high_nibble);
+    packet->slipping = high_nibble;
 
     sscanf(response6 + 11, "%2hx", &high_nibble);
     packet->vehicle_speed = high_nibble;

@@ -1,4 +1,11 @@
 #include "interrupt.h"
+#include <stdio.h>
+#include "pico/stdlib.h"
+#include "pico/binary_info.h"
+#include "hardware/uart.h"
+#include "hardware/gpio.h"
+#include "queues.h"
+#include "tasks.h"
 
 void handle_pothole_interrupt(uint gpio, uint32_t events)
 {

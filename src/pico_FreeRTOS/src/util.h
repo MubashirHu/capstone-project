@@ -2,12 +2,7 @@
 #define UTIL_H
 struct obd2_packet
 {
-    double wheel_1;
-    double wheel_2;
-    double wheel_3;
-    double wheel_4;
-    uint16_t brake_pressure;
-    uint16_t rpm;
+    uint8_t slipping;
     uint8_t vehicle_speed;
 };
 

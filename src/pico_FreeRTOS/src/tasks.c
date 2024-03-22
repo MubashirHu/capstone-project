@@ -37,10 +37,10 @@ void initTasks(void)
     UBaseType_t uxCoreAffinityMask_both;
     uxCoreAffinityMask_both = ( ( 1 << 0 ) | ( 1 << 1 ) );
 
-	// xTaskCreateAffinitySet(vTaskUart_4g, "4G_Task", 512, NULL, 6, uxCoreAffinityMask_1, NULL);
+	xTaskCreateAffinitySet(vTaskUart_4g, "4G_Task", 512, NULL, 6, uxCoreAffinityMask_1, NULL);
 	// xTaskCreateAffinitySet(vTaskUart_OBD, "OBD2_Task", 512, NULL, 6, uxCoreAffinityMask_1, NULL);
-    xTaskCreateAffinitySet(vTaskI2C_GPS, "GPS_Task", 512, NULL, 6, uxCoreAffinityMask_0, NULL);
-    // xTaskCreateAffinitySet(vTaskNormal, "Normal_Task", 256, NULL, 6, uxCoreAffinityMask_1, NULL);
+    // xTaskCreateAffinitySet(vTaskI2C_GPS, "GPS_Task", 512, NULL, 6, uxCoreAffinityMask_0, NULL);
+    xTaskCreateAffinitySet(vTaskNormal, "Normal_Task", 256, NULL, 6, uxCoreAffinityMask_1, NULL);
     xTaskCreateAffinitySet(led_task, "LED_Task", 256, NULL, 6, uxCoreAffinityMask_1, NULL);
 
     
@@ -65,7 +65,7 @@ void vTaskUart_4g(void * parameters)
     vTaskDelay(pdMS_TO_TICKS(500));
     uart_send_until_valid(UART_ID_4G, "AT+CPIN?\r\n", response, "AT+CPIN?\r\r\n+CPIN: READY\r\n\r\nOK\r\n");
     vTaskDelay(pdMS_TO_TICKS(500));
-    uart_send(UART_ID_4G, "AT+HTTPTERM\r\n", response, 0);
+    uart_send_until_valid(UART_ID_4G, "AT+HTTPTERM\r\n", response, "AT+HTTPTERM\r\r\nERROR\r\n");
     vTaskDelay(pdMS_TO_TICKS(500));
     uart_send_until_valid(UART_ID_4G, "AT+HTTPINIT\r\n", response, "AT+HTTPINIT\r\r\nOK\r\n");
     vTaskDelay(pdMS_TO_TICKS(500));
@@ -83,9 +83,12 @@ void vTaskUart_4g(void * parameters)
     
     strncpy(http_code, response2 + 39, sizeof(http_code) - 1);
     http_code[sizeof(http_code) - 1] = '\0';
-    uart_puts(UART_TEST, "\r\nHTTP CODE: ");
-    uart_puts(UART_TEST, http_code);
-    uart_puts(UART_TEST, "\r\n");
+    if(strncmp(http_code, "200", 3) != 0)
+    {
+        uart_puts(UART_TEST, "\r\nHTTP CODE: ");
+        uart_puts(UART_TEST, http_code);
+        uart_puts(UART_TEST, "\r\n");
+    }    
 
     vTaskDelay(pdMS_TO_TICKS(3000));
     uart_send1(UART_ID_4G, "AT+HTTPREAD=0,250\r\n", response1, 500);
@@ -103,7 +106,7 @@ void vTaskUart_4g(void * parameters)
 
     
 
-    uart_puts(UART_TEST, "Completed 4G init\r\n");
+    uart_puts(UART_TEST, "Completed Task init\r\n");
 
     struct message msg;
 
@@ -115,50 +118,26 @@ void vTaskUart_4g(void * parameters)
             static char json[512]; // Assuming a fixed size for simplicity, adjust as needed
             sprintf(json, "{\"uid\": \"%s\",\"latitude\":%.6lf,\"longitude\":%.6lf,\"speed\":%.2lf,\"message_type\":%d}",
             uid, msg.latitude, msg.longitude, msg.speed, msg.message_type);
-
-            switch (msg.message_type)
-            {
-            case POTHOLE:
-                uart_send_until_valid(UART_ID_4G, "AT+HTTPINIT\r\n", response, "AT+HTTPINIT\r\r\nOK\r\n");
-                vTaskDelay(pdMS_TO_TICKS(50));
-                uart_send(UART_ID_4G, "AT+HTTPPARA=\"URL\",\"https://test-f1e70.firebaseio.com/pothole.json\"\r\n", response, 0);
-                vTaskDelay(pdMS_TO_TICKS(50));
-                uart_send(UART_ID_4G, "AT+HTTPPARA=\"CONTENT\",\"application/json\"\r\n", response, 0);
-                vTaskDelay(pdMS_TO_TICKS(50));
-                uart_send(UART_ID_4G, "AT+HTTPDATA=20,5000\r\n", response, 0);
-                vTaskDelay(pdMS_TO_TICKS(50));
-                // use string to create json string with message structure
-                uart_send(UART_ID_4G, json, response, 0);
-                vTaskDelay(pdMS_TO_TICKS(50));
-                uart_send(UART_ID_4G, "\n\r\n", response, 1000);
-                vTaskDelay(pdMS_TO_TICKS(50));
-                uart_send(UART_ID_4G, "AT+HTTPACTION=1\r\n", response, 1000);
-                // verify http response of 200 if failed, then repeat until it doesn't for x amount of times
-                vTaskDelay(pdMS_TO_TICKS(50));
-                uart_send(UART_ID_4G, "AT+HTTPTERM\r\n", response, 0);
-                uart_puts(UART_TEST, "Message Sent\r\n");
-                break;
-            case SLIPPING:
-                uart_send_until_valid(UART_ID_4G, "AT+HTTPINIT\r\n", response, "AT+HTTPINIT\r\r\nOK\r\n");
-                vTaskDelay(pdMS_TO_TICKS(50));
-                uart_send(UART_ID_4G, "AT+HTTPPARA=\"URL\",\"https://test-f1e70.firebaseio.com/slip.json\"\r\n", response, 0);
-                vTaskDelay(pdMS_TO_TICKS(50));
-                uart_send(UART_ID_4G, "AT+HTTPPARA=\"CONTENT\",\"application/json\"\r\n", response, 0);
-                vTaskDelay(pdMS_TO_TICKS(50));
-                uart_send(UART_ID_4G, "AT+HTTPDATA=20,5000\r\n", response, 0);
-                vTaskDelay(pdMS_TO_TICKS(50));
-                // use string to create json string with message structure
-                uart_send(UART_ID_4G, json, response, 0);
-                vTaskDelay(pdMS_TO_TICKS(50));
-                uart_send(UART_ID_4G, "\n\r\n", response, 1000);
-                vTaskDelay(pdMS_TO_TICKS(50));
-                uart_send(UART_ID_4G, "AT+HTTPACTION=1\r\n", response, 1000);
-                // verify http response of 200 if failed, then repeat until it doesn't for x amount of times
-                vTaskDelay(pdMS_TO_TICKS(50));
-                uart_send(UART_ID_4G, "AT+HTTPTERM\r\n", response, 0);
-                uart_puts(UART_TEST, "Message Sent\r\n");
-                break;
-            }
+            uart_send_until_valid(UART_ID_4G, "AT+HTTPTERM\r\n", response, "AT+HTTPTERM\r\r\nERROR\r\n");
+            vTaskDelay(pdMS_TO_TICKS(50));
+            uart_send_until_valid(UART_ID_4G, "AT+HTTPINIT\r\n", response, "AT+HTTPINIT\r\r\nOK\r\n");
+            vTaskDelay(pdMS_TO_TICKS(50));
+            uart_send(UART_ID_4G, "AT+HTTPPARA=\"URL\",\"https://us-central1-test-f1e70.cloudfunctions.net/rms_data\"\r\n", response, 0);
+            vTaskDelay(pdMS_TO_TICKS(50));
+            uart_send(UART_ID_4G, "AT+HTTPPARA=\"CONTENT\",\"application/json\"\r\n", response, 0);
+            vTaskDelay(pdMS_TO_TICKS(50));
+            uart_send(UART_ID_4G, "AT+HTTPDATA=20,5000\r\n", response, 0);
+            vTaskDelay(pdMS_TO_TICKS(50));
+            // use response string to create json string with message structure
+            uart_send(UART_ID_4G, json, response, 0);
+            vTaskDelay(pdMS_TO_TICKS(50));
+            uart_send(UART_ID_4G, "\n\r\n", response, 1000);
+            vTaskDelay(pdMS_TO_TICKS(50));
+            uart_send(UART_ID_4G, "AT+HTTPACTION=1\r\n", response, 1000);
+            // verify http response of 200 if failed, then repeat until it doesn't for x amount of times
+            vTaskDelay(pdMS_TO_TICKS(50));
+            uart_send(UART_ID_4G, "AT+HTTPTERM\r\n", response, 0);
+            uart_puts(UART_TEST, "Message Sent\r\n");
         }
         // check speed limit queue and if not empty, send speed limit api request to google for current location
         vTaskDelay(pdMS_TO_TICKS(1000));
@@ -169,10 +148,10 @@ void vTaskNormal(void * parameters)
 {
     while(1)
     {
+        vTaskDelay(pdMS_TO_TICKS(20000));
         //get speed limit, check speed, if speed much lower than posted speed, send conjection request
         // vTaskDelay(pdMS_TO_TICKS(5000));
         struct message x;
-        struct gps y;
         // if(gps_queue_peek(&y))
         // {
             x.latitude = 50.22324;//y.latitude;
@@ -181,25 +160,18 @@ void vTaskNormal(void * parameters)
             x.speed = 0;
             static char json[512];
             sprintf(json, "\r\n\"latitude\":%.6lf,\r\n\"longitude\":%.6lf,\r\n", x.latitude, x.longitude);
-            // uart_puts(UART_TEST, json);
-            // message_enqueue(x);
+            uart_puts(UART_TEST, json);
+            message_enqueue(x);
         // }
-        vTaskDelay(pdMS_TO_TICKS(20000));
+        
     }
 }
 
 void vTaskUart_OBD(void * parameters)
 {
-    char response[250];
     struct obd2_packet packet;
-    double wheel_1;
-    double wheel_2;
-    double wheel_3;
-    double wheel_4;
-    uint16_t brake_pressure;
-    uint16_t vehicle_speed;
-    double threshold = 50;
-    uart_puts(UART_TEST, "\r\nWheel 1: ");
+    struct gps gps;
+    char response[150];
     uart_send_until_valid(UART_ID_OBD2, "ATZ\r\n", response, "ATZ\r\r\rELM327 v1.4b\r\r>");
     vTaskDelay(pdMS_TO_TICKS(1000));
 
@@ -207,53 +179,20 @@ void vTaskUart_OBD(void * parameters)
     {
         char stringValue[6];
         uart_obd2_wheel_speed(UART_ID_OBD2, &packet);
-        // // uart_puts(UART_TEST, "\r\nWheel 1: ");
-        // snprintf(stringValue, sizeof(stringValue), "%u", wheel_1);
-        // uart_puts(UART_TEST, stringValue);
-
-        // uart_puts(UART_TEST, ",");
-
-        // // uart_puts(UART_TEST, "\r\nWheel 2: ");
-        // snprintf(stringValue, sizeof(stringValue), "%u", wheel_2);
-        // uart_puts(UART_TEST, stringValue);
-
-        // uart_puts(UART_TEST, ",");
-
-        // // uart_puts(UART_TEST, "\r\nWheel 3: ");
-        // snprintf(stringValue, sizeof(stringValue), "%u", wheel_3);
-        // uart_puts(UART_TEST, stringValue);
-
-        // uart_puts(UART_TEST, ",");
-
-        // // uart_puts(UART_TEST, "\r\nWheel 4: ");
-        // snprintf(stringValue, sizeof(stringValue), "%u", wheel_4);
-        // uart_puts(UART_TEST, stringValue);
-
-        // uart_puts(UART_TEST, ",");
-        
-        // // uart_puts(UART_TEST, "\r\nBrake Pressure: ");
-        // snprintf(stringValue, sizeof(stringValue), "%u", brake_pressure);
-        // uart_puts(UART_TEST, stringValue);
-
-        // uart_puts(UART_TEST, ",");
-
-        // snprintf(stringValue, sizeof(stringValue), "%u", vehicle_speed);
-        // uart_puts(UART_TEST, stringValue);
-
+        vehicle_speed_queue_overwrite(packet.vehicle_speed);
+        if (packet.slipping == 16)
+        {
+            if(gps_queue_peek(&gps))
+            {
+                struct message message;
+                message.latitude = gps.latitude;
+                message.longitude = gps.longitude;
+                message.message_type = SLIPPING;
+                message.speed = packet.vehicle_speed;
+                message_enqueue(message);
+            }
+        }
         uart_puts(UART_TEST, "\r\n");
-        // uart_puts(UART_TEST, "\r\n===========================================\r\n");
-
-        // if ((wheel_1 ) &&
-        //      brake_pressure > 160)
-        // {
-        //     vTaskDelay(1);
-        // }
-        //atz receive after sending: "ATZ\r\r\rELM327 v1.4b\r\r>"
-        //AT CRA x receive after sending: "AT CRA x\rOK\r\r>"
-        //AT MA (for 0b0): "AT MA\r00 00 00 00 11 09 00 00\r" 24 char
-
-        // vTaskDelay(pdMS_TO_TICKS(10));
-        //uart_puts(UART_ID_4G, "\r\n");
     }
         
 }
@@ -276,8 +215,8 @@ void vTaskI2C_GPS(void * parameters)
             {                
                 if (strncmp(token, "$GNGGA", 6) == 0)
                 {
-                    uart_puts(UART_TEST, token);
-                    uart_puts(UART_TEST, "\r\n");
+                    // uart_puts(UART_TEST, token);
+                    // uart_puts(UART_TEST, "\r\n");
                     // Extract information from GNGGA sentence
                     char utc_time[11];
                     char latitude[12];
@@ -299,30 +238,30 @@ void vTaskI2C_GPS(void * parameters)
                                             &differential_time, reference_base_station);
                     if (items_matched > 4)
                     {
-                        uart_puts(UART_TEST, "UTC Time: ");
-                        uart_puts(UART_TEST, utc_time);
-                        uart_puts(UART_TEST, ", Latitude: ");
-                        if (strlen(latitude) > 0)
-                        {
-                            uart_puts(UART_TEST, latitude);
-                            uart_putc(UART_TEST, latitude_direction);
-                        }
-                        else
-                        {
-                            uart_puts(UART_TEST, "N/A");
-                        }
+                        // uart_puts(UART_TEST, "UTC Time: ");
+                        // uart_puts(UART_TEST, utc_time);
+                        // uart_puts(UART_TEST, ", Latitude: ");
+                        // if (strlen(latitude) > 0)
+                        // {
+                        //     uart_puts(UART_TEST, latitude);
+                        //     uart_putc(UART_TEST, latitude_direction);
+                        // }
+                        // else
+                        // {
+                        //     uart_puts(UART_TEST, "N/A");
+                        // }
 
-                        uart_puts(UART_TEST, ", Longitude: ");
-                        if (strlen(longitude) > 0)
-                        {
-                            uart_puts(UART_TEST, longitude);
-                            uart_putc(UART_TEST, longitude_direction);
-                        }
-                        else
-                        {
-                            uart_puts(UART_TEST, "N/A");
-                        }
-                        uart_puts(UART_TEST, "\r\n");
+                        // uart_puts(UART_TEST, ", Longitude: ");
+                        // if (strlen(longitude) > 0)
+                        // {
+                        //     uart_puts(UART_TEST, longitude);
+                        //     uart_putc(UART_TEST, longitude_direction);
+                        // }
+                        // else
+                        // {
+                        //     uart_puts(UART_TEST, "N/A");
+                        // }
+                        // uart_puts(UART_TEST, "\r\n");
                         int lat_degrees = atoi(latitude) / 100;
                         double lat_minutes = atof(latitude + 2);
                         double lat_decimalDegrees;
@@ -350,27 +289,20 @@ void vTaskI2C_GPS(void * parameters)
                         x.longitude = long_decimalDegrees;
 
                         static char json[512];
-                        sprintf(json, "\r\n\"time\":%ld,\r\n\"latitude\":%.6lf,\r\n\"longitude\":%.6lf,\r\n",
-                                (long)x.time, x.latitude, x.longitude);
-                        uart_puts(UART_TEST, json);
-                        uart_puts(UART_TEST, "\r\n");
+                        // sprintf(json, "\r\n\"time\":%ld,\r\n\"latitude\":%.6lf,\r\n\"longitude\":%.6lf,\r\n",
+                        //         (long)x.time, x.latitude, x.longitude);
+                        // uart_puts(UART_TEST, json);
+                        // uart_puts(UART_TEST, "\r\n");
                         
                         if (positioning_status != 0 && num_satellites > 3)
                         {
                             gps_queue_overwrite(x);
-                            uart_puts(UART_TEST, "GPS Position enqueued");
-                            uart_puts(UART_TEST, "\r\n");
+                            // uart_puts(UART_TEST, "GPS Position enqueued");
+                            // uart_puts(UART_TEST, "\r\n");
                         }
                     }
-                    // else
-                    // {
-                    //     // Print a message indicating that data extraction failed
-                    //     uart_puts(UART_TEST, "Invalid NMEA sentence\r\n");
-                    //     break;
-                    // }
                 }
             }
-            // Move to the next token
             token = strtok(NULL, "\n");
         }
         vTaskDelay(pdMS_TO_TICKS(1000));
