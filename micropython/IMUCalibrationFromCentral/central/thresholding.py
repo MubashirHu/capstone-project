@@ -17,9 +17,9 @@ class Threshold:
             None
         """ 
         self.green_zone = 3
-        self.yellow_zone = 6
-        self.amber_zone = 9
-        self.red_zone = 12
+        self.yellow_zone = 8
+        self.amber_zone = 25
+        self.red_zone = 40
         
         self.green_zone_timer = None
         self.start_time = None
@@ -54,7 +54,7 @@ class Threshold:
         #when average accel crosses green zone start the timer
         if average_accel > self.green_zone and self.zone_time is None:
             self.highest_value = average_accel  # Record the highest value
-            print("zone_timer has started")
+            #print("zone_timer has started")
             self.zone_time = utime.ticks_us()  # Start zone timer
             self.zone_time_started = self.zone_time
             self.state = WAITING_FOR_HIGHEST_VALUE
@@ -67,14 +67,14 @@ class Threshold:
                 if average_accel > self.highest_value:
                     self.highest_value = average_accel  # Update highest value                    
             
-            elif average_accel > self.green_zone:
-                print("waiting for value to return to 0")
-                self.state = WAITING_FOR_RETURN_TO_CENTERED_VALUE
+#             elif average_accel > self.green_zone:
+#                 #print("waiting for value to return to 0")
+#                 self.state = WAITING_FOR_RETURN_TO_CENTERED_VALUE
             else:
-                print("zone_timer is reset")
+                #print("zone_timer is reset")
                 self.zone_time = None
                 self.zone_time_ended = utime.ticks_us()
-                print("time elapsed:", self.zone_time_ended - self.zone_time_started)
+                #print("time elapsed:", self.zone_time_ended - self.zone_time_started)
                 return self.highest_value
                 
         return self.state
@@ -86,15 +86,15 @@ class Threshold:
         
         if value > self.red_zone:
             self.green_zone_timer = None
-            print("RED ZONE")
+            print("RED ZONE\n")
             return self.red_zone
         if value > self.amber_zone and value < self.red_zone:
             self.green_zone_timer = None
-            print("AMBER ZONE")
+            print("AMBER ZONE\n")
             return self.amber_zone
-        elif value > self.yellow_zone and value < self.amber_zone:
+        if value > self.yellow_zone and value < self.amber_zone:
             self.green_zone_timer = None
-            print("YELLOW ZONE")
+            print("YELLOW ZONE\n")
             return self.yellow_zone
     
     def _transmit_zone(self, zone):
@@ -108,12 +108,12 @@ class Threshold:
             
             #start a green_zone timer
             if self.green_zone_timer is None:
-                print("started green_zone timer")
+                #print("started green_zone timer")
                 #self.green_zone_timer_started = time.time()
                 self.green_zone_timer = time.time()
             
             #wait for 2 seconds
-            if time.time() - self.green_zone_timer < 5:
+            if time.time() - self.green_zone_timer < 2:
                 return
             
             #If we're still in the green zone send a gpio value for the green zone
@@ -124,7 +124,7 @@ class Threshold:
             #reset the 2 second timer
             
             #reset the timer
-            print("reset the green_zone_timer")
+            #print("reset the green_zone_timer")
             self.green_zone_timer = None          
             
  
