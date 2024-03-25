@@ -17,8 +17,8 @@
 extern bool pico1_interrupt;
 extern bool pico2_interrupt;
 
-extern uint8_t byte_pico1;
-extern uint8_t byte_pico2;
+extern int byte_pico1;
+extern int byte_pico2;
 
 void handle_pothole_interrupt();
 

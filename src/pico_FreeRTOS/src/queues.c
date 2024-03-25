@@ -33,11 +33,12 @@ int message_enqueue(struct message x)
 
 int message_queue_dequeue(struct message* x)
 {
-    uart_puts(UART_TEST, "starting dequeue\r\n");
-    static char json[512];
-    sprintf(json, "\r\n\"latitude\":%.6lf,\r\n\"longitude\":%.6lf,\r\n", x->latitude, x->longitude);
     if(xQueueReceive(xMessage_Queue, x, 0) == pdTRUE)
     {
+        // uart_puts(UART_TEST, "starting dequeue\r\n");
+        // static char json[512];
+        // sprintf(json, "\r\nQueue Content \"latitude\":%.6lf,\"longitude\":%.6lf, \"message_type\": %d\r\n", x->latitude, x->longitude, x->message_type);
+        // uart_puts(UART_TEST, json);
         return 1;
     }
     else

@@ -40,29 +40,29 @@ void initTasks(void)
     uxCoreAffinityMask_both = ( ( 1 << 0 ) | ( 1 << 1 ) );
 
 	xTaskCreateAffinitySet(vTaskUart_4g, "4G_Task", 512, NULL, 6, uxCoreAffinityMask_1, NULL);
-	xTaskCreateAffinitySet(vTaskUart_OBD, "OBD2_Task", 512, NULL, 6, uxCoreAffinityMask_0, NULL);
-    xTaskCreateAffinitySet(vTaskI2C_GPS, "GPS_Task", 512, NULL, 6, uxCoreAffinityMask_1, NULL);
+	// xTaskCreateAffinitySet(vTaskUart_OBD, "OBD2_Task", 512, NULL, 6, uxCoreAffinityMask_0, NULL);
+    // xTaskCreateAffinitySet(vTaskI2C_GPS, "GPS_Task", 512, NULL, 6, uxCoreAffinityMask_1, NULL);
     // xTaskCreateAffinitySet(vTaskNormal, "Normal_Task", 256, NULL, 6, uxCoreAffinityMask_1, NULL);
     xTaskCreateAffinitySet(led_task, "LED_Task", 256, NULL, 6, uxCoreAffinityMask_1, NULL);
-    xTaskCreateAffinitySet(bundle_task, "BUNDLE_Task", 256, NULL, 6, uxCoreAffinityMask_1, NULL);    
+    xTaskCreateAffinitySet(bundle_task, "BUNDLE_Task", 512, NULL, 6, uxCoreAffinityMask_1, NULL);    
 }
 
 void vTaskUart_4g(void * parameters)
 {
-    char uid[21];
+    char uid[21] = "-Ntr9d1PiQmfRuqryj-c";
     char http_code[4];
     char response[150];
     char response1[150];
     char response2[150];
     int char_num = 0;
     vTaskDelay(pdMS_TO_TICKS(1000));
-    uart_puts(UART_TEST, "\r\nStarting 4G Module Task\r\n");
+    // uart_puts(UART_TEST, "\r\nStarting 4G Module Task\r\n");
     while(uart_is_readable(UART_ID_4G))
     {
         uart_getc(UART_ID_4G);
     }
     uart_send_until_valid(UART_ID_4G, "AT\r\n", response, "AT\r\r\nOK\r\n");
-    uart_puts(UART_TEST, "4G Module booted\r\n");
+    // uart_puts(UART_TEST, "4G Module booted\r\n");
     vTaskDelay(pdMS_TO_TICKS(500));
     uart_send_until_valid(UART_ID_4G, "AT+CPIN?\r\n", response, "AT+CPIN?\r\r\n+CPIN: READY\r\n\r\nOK\r\n");
     vTaskDelay(pdMS_TO_TICKS(500));
@@ -84,12 +84,12 @@ void vTaskUart_4g(void * parameters)
     
     strncpy(http_code, response2 + 39, sizeof(http_code) - 1);
     http_code[sizeof(http_code) - 1] = '\0';
-    if(strncmp(http_code, "200", 3) != 0)
-    {
-        uart_puts(UART_TEST, "\r\nHTTP CODE: ");
-        uart_puts(UART_TEST, http_code);
-        uart_puts(UART_TEST, "\r\n");
-    }    
+    // if(strncmp(http_code, "200", 3) != 0)
+    // {
+    //     uart_puts(UART_TEST, "\r\nHTTP CODE: ");
+    //     uart_puts(UART_TEST, http_code);
+    //     uart_puts(UART_TEST, "\r\n");
+    // }    
 
     vTaskDelay(pdMS_TO_TICKS(3000));
     uart_send1(UART_ID_4G, "AT+HTTPREAD=0,250\r\n", response1, 500);
@@ -105,7 +105,7 @@ void vTaskUart_4g(void * parameters)
     // uart_puts(UART_TEST, uid);
     // uart_puts(UART_TEST, "\r\n");
 
-    uart_puts(UART_TEST, "Completed Task init\r\n");
+    // uart_puts(UART_TEST, "Completed Task init\r\n");
 
     struct message msg;
 
@@ -117,6 +117,9 @@ void vTaskUart_4g(void * parameters)
             static char json[512]; // Assuming a fixed size for simplicity, adjust as needed
             sprintf(json, "{\"uid\": \"%s\",\"latitude\":%.6lf,\"longitude\":%.6lf,\"speed\":%.2lf,\"message_type\":%d}",
             uid, msg.latitude, msg.longitude, msg.speed, msg.message_type);
+            uart_puts(UART_TEST, "\r\n");
+            uart_puts(UART_TEST, json);
+            uart_puts(UART_TEST, "\r\n");
             uart_send_until_valid(UART_ID_4G, "AT+HTTPTERM\r\n", response, "AT+HTTPTERM\r\r\nERROR\r\n");
             vTaskDelay(pdMS_TO_TICKS(50));
             uart_send_until_valid(UART_ID_4G, "AT+HTTPINIT\r\n", response, "AT+HTTPINIT\r\r\nOK\r\n");
@@ -125,23 +128,22 @@ void vTaskUart_4g(void * parameters)
             vTaskDelay(pdMS_TO_TICKS(50));
             uart_send(UART_ID_4G, "AT+HTTPPARA=\"CONTENT\",\"application/json\"\r\n", response, 0);
             vTaskDelay(pdMS_TO_TICKS(50));
-            uart_send(UART_ID_4G, "AT+HTTPDATA=20,5000\r\n", response, 0);
+            uart_send(UART_ID_4G, "AT+HTTPDATA=107,5000\r\n", response, 0);
             vTaskDelay(pdMS_TO_TICKS(50));
             // use response string to create json string with message structure
             uart_send(UART_ID_4G, json, response, 0);
             vTaskDelay(pdMS_TO_TICKS(50));
-            uart_send(UART_ID_4G, "\n\r\n", response, 1000);
+            uart_send(UART_ID_4G, "\n\r\n", response, 500);
             vTaskDelay(pdMS_TO_TICKS(50));
-            uart_send(UART_ID_4G, "AT+HTTPACTION=1\r\n", response, 1000);
+            uart_send(UART_ID_4G, "AT+HTTPACTION=1\r\n", response2, 500);
             // verify http response of 200 if failed, then repeat until it doesn't for x amount of times
             strncpy(http_code, response2 + 39, sizeof(http_code) - 1);
             http_code[sizeof(http_code) - 1] = '\0';
-            if(strncmp(http_code, "200", 3) != 0)
-            {
-                uart_puts(UART_TEST, "\r\nHTTP CODE: ");
-                uart_puts(UART_TEST, http_code);
-                uart_puts(UART_TEST, "\r\n");
-            }    
+
+            uart_puts(UART_TEST, "\r\nHTTP CODE: ");
+            uart_puts(UART_TEST, http_code);
+            uart_puts(UART_TEST, "\r\n");
+
             vTaskDelay(pdMS_TO_TICKS(50));
             uart_send_until_valid(UART_ID_4G, "AT+HTTPTERM\r\n", response, "AT+HTTPTERM\r\r\nERROR\r\n");
             uart_puts(UART_TEST, "Message Sent\r\n");
@@ -332,12 +334,12 @@ void led_task(void * parameters)
 
 // bundleTask
 void bundle_task(void *pvParameters) {
-    uart_puts(UART_TEST, "\r\nStarting IMU Test\r\n");
+    // uart_puts(UART_TEST, "\r\nStarting IMU Test\r\n");
     struct gps gps;
     
     TickType_t xLastWakeTime;
-    const TickType_t xDelay = pdMS_TO_TICKS(500);
-    __int8_t byte_level = 0;
+    const TickType_t xDelay = pdMS_TO_TICKS(100);
+    int byte_level = 0;
 
     // Initialize the last wake time
     xLastWakeTime = xTaskGetTickCount();
@@ -347,7 +349,7 @@ void bundle_task(void *pvParameters) {
     //check if either of the global variables for pico2 and pico2 become true
     if(pico1_interrupt)
     {
-        uart_puts(UART_TEST, "\r\nTest2\r\n");
+        // uart_puts(UART_TEST, "\r\nTest2\r\n");
         //start a non blocking timer for the next 500ms 
         TickType_t xStartTime = xTaskGetTickCount();
         byte_level = byte_pico1;
@@ -357,10 +359,17 @@ void bundle_task(void *pvParameters) {
         {
             if(pico2_interrupt)
             {
+                // uart_puts(UART_TEST, "bundle test \r\n");
                 if (byte_pico1 >= byte_pico2) 
                 {
-                    uart_puts(UART_TEST, "Bundle data from PICO1 pico1_interrupt \r\n");
+                    // uart_puts(UART_TEST, "Bundle data from PICO1 pico1_interrupt \r\n");
                     byte_level = byte_pico1;
+                    // display the value of the byte
+                    // uart_puts(UART_TEST, "byte_pico1:");
+                    // char buffer[20]; // Allocate a buffer to hold the formatted string
+                    // snprintf(buffer, sizeof(buffer), "%d", byte_pico1);
+                    // uart_puts(UART_TEST, buffer);
+                    // uart_puts(UART_TEST, "\r\n");
                     send_message(byte_level);
 
                     // Bundle data from PICO1
@@ -370,6 +379,12 @@ void bundle_task(void *pvParameters) {
                     uart_puts(UART_TEST, "Bundle data from PICO2 pico1_interrupt\r\n");
                     // Bundle data from PICO2
                     byte_level = byte_pico2;
+                    // display the value of the byte
+                    // uart_puts(UART_TEST, "byte_pico2:");
+                    // char buffer[20]; // Allocate a buffer to hold the formatted string
+                    // snprintf(buffer, sizeof(buffer), "%d", byte_pico2);
+                    // uart_puts(UART_TEST, buffer);
+                    // uart_puts(UART_TEST, "\r\n");
                     send_message(byte_level);
                 }
 
@@ -381,6 +396,14 @@ void bundle_task(void *pvParameters) {
         if (pico2_interrupt == false) 
         {
             // send the byte level from pico1_interrupt
+            byte_level = byte_pico1;
+                // display the value of the byte
+            // uart_puts(UART_TEST, "byte_pico1:");
+            // char buffer[20]; // Allocate a buffer to hold the formatted string
+            // snprintf(buffer, sizeof(buffer), "%d", byte_pico1);
+            // uart_puts(UART_TEST, buffer);
+            // uart_puts(UART_TEST, "\r\n");
+            send_message(byte_level);
             
         }
     }
@@ -397,14 +420,14 @@ void bundle_task(void *pvParameters) {
             {
                 if (byte_pico1 >= byte_pico2) 
                 {
-                    uart_puts(UART_TEST,"Bundle data from PICO1 pico2_interrupt\r\n");
+                    // uart_puts(UART_TEST,"Bundle data from PICO1 pico2_interrupt\r\n");
                     byte_level = byte_pico1;
                     send_message(byte_level);
 
                 } 
                 else 
                 {
-                    uart_puts(UART_TEST,"Bundle data from PICO2 pico2_interrupt\r\n");
+                    // uart_puts(UART_TEST,"Bundle data from PICO2 pico2_interrupt\r\n");
                     byte_level = byte_pico2;
                     send_message(byte_level);
                 }
@@ -417,6 +440,8 @@ void bundle_task(void *pvParameters) {
         if (pico1_interrupt == false) 
         {
             // send the byte level from pico2_interrupt
+            byte_level = byte_pico2;
+            send_message(byte_level);
             
         }
     }

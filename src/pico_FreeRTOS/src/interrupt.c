@@ -10,8 +10,8 @@
 bool pico1_interrupt = false;
 bool pico2_interrupt = false;
 
-uint8_t byte_pico1 = 0;
-uint8_t byte_pico2 = 0;
+int byte_pico1 = 0;
+int byte_pico2 = 0;
 
 void handle_pothole_interrupt(){
 
@@ -27,7 +27,7 @@ void handle_pothole_interrupt(){
         pico1_interrupt = true;
         // uart_puts(UART_TEST, "Interrupt on PICO1\n");
         // reset value of byte on entry
-        __int8_t byte_pico1 = 0;
+        byte_pico1 = 0;
 
         // get the value passed by the pico 
         int BIT_0_PICO1_state = gpio_get(BIT_0_PICO1);
@@ -45,24 +45,24 @@ void handle_pothole_interrupt(){
         // uart_puts(UART_TEST, "\r\n");
 
 
-        switch (byte_pico1)
-        {
-            case 3:
-                // uart_puts(UART_TEST,"RED ZONE\r\n");
-                break;
-            case 2:
-                // uart_puts(UART_TEST,"AMBER_ZONE\r\n");
-                break;
-            case 1:
-                // uart_puts(UART_TEST,"YELLOW_ZONE\r\n");
-                break;
-            case 0:
-                // uart_puts(UART_TEST,"GREEN_ZONE\r\n");
-                break;
-            default:
-                // uart_puts(UART_TEST,"GREEN_ZONE\r\n");
-                break;
-        }
+        // switch (byte_pico1)
+        // {
+        //     case 3:
+        //         uart_puts(UART_TEST,"RED ZONE\r\n");
+        //         break;
+        //     case 2:
+        //         uart_puts(UART_TEST,"AMBER_ZONE\r\n");
+        //         break;
+        //     case 1:
+        //         uart_puts(UART_TEST,"YELLOW_ZONE\r\n");
+        //         break;
+        //     case 0:
+        //         uart_puts(UART_TEST,"GREEN_ZONE\r\n");
+        //         break;
+        //     default:
+        //         uart_puts(UART_TEST,"GREEN_ZONE\r\n");
+        //         break;
+        // }
     }
 
     if (check_pin_2_for_change == 0) 
@@ -70,7 +70,7 @@ void handle_pothole_interrupt(){
         pico2_interrupt = true;
         // uart_puts(UART_TEST,"Interrupt on PICO2\n");
         // reset value of byte on entry
-        __int8_t byte_pico1 = 0;
+        byte_pico2 = 0;
         
         // get the value passed by the pico 
         int BIT_0_PICO1_state = gpio_get(BIT_0_PICO1);
@@ -87,23 +87,23 @@ void handle_pothole_interrupt(){
         // uart_puts(UART_TEST, buffer);
         // uart_puts(UART_TEST, "\r\n");
 
-        switch (byte_pico2)
-        {
-            case 3:
-                // uart_puts(UART_TEST,"RED ZONE\r\n");
-                break;
-            case 2:
-                // uart_puts(UART_TEST,"AMBER_ZONE\r\n");
-                break;
-            case 1:
-                // uart_puts(UART_TEST,"YELLOW_ZONE\r\n");
-                break;
-            case 0:
-                // uart_puts(UART_TEST,"GREEN_ZONE\r\n");
-                break;
-            default:
-                // uart_puts(UART_TEST,"GREEN_ZONE\r\n");
-                break;
-        }
+        // switch (byte_pico2)
+        // {
+        //     case 3:
+        //         uart_puts(UART_TEST,"RED ZONE\r\n");
+        //         break;
+        //     case 2:
+        //         uart_puts(UART_TEST,"AMBER_ZONE\r\n");
+        //         break;
+        //     case 1:
+        //         uart_puts(UART_TEST,"YELLOW_ZONE\r\n");
+        //         break;
+        //     case 0:
+        //         uart_puts(UART_TEST,"GREEN_ZONE\r\n");
+        //         break;
+        //     default:
+        //         uart_puts(UART_TEST,"GREEN_ZONE\r\n");
+        //         break;
+        // }
     }
 }
