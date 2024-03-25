@@ -63,7 +63,7 @@ exports.rms_data = functions.https.onRequest((request, response) => {
             location = "slipping";
             break;
         case 5:
-            location = "conjection";
+            location = "congestion";
             break;
     }
     return admin.database().ref(location).push(data)
