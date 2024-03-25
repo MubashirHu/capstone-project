@@ -1,16 +1,12 @@
-# This example finds and connects to a BLE temperature sensor (e.g. the one in ble_temperature.py).
+# This file finds and connects to a BLE IMU sensor
+# This file processes the values received from a peripheral
 
-# This example demonstrates the low-level bluetooth module. For most
-# applications, we recommend using the higher-level aioble library which takes
-# care of all IRQ handling and connection management. See
-# https://github.com/micropython/micropython-lib/tree/master/micropython/bluetooth/aioble
-# and in particular the temp_client.py example included with aioble.
 import bluetooth
 import time
 import micropython
 import ble_advertising
 from ble_advertising import decode_services
-from ble_module import BLEImuCentral
+from ble_module_left import BLEImuCentral
 from thresholding import Threshold
 from micropython import const
 

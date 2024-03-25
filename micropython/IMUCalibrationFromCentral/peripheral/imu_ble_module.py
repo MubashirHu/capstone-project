@@ -1,5 +1,5 @@
 import MPU6050
-from ble_module import BLEImu
+from ble_module_left import BLEImu
 from ble_advertising import advertising_payload
 import machine
 import bluetooth
