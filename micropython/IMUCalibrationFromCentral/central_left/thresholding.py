@@ -108,12 +108,12 @@ class Threshold:
             
             #start a green_zone timer
             if self.green_zone_timer is None:
-                print("started green_zone timer")
+                #print("started green_zone timer")
                 #self.green_zone_timer_started = time.time()
                 self.green_zone_timer = time.time()
             
             #wait for 2 seconds
-            if time.time() - self.green_zone_timer < 5:
+            if time.time() - self.green_zone_timer < 2:
                 return
             
             #If we're still in the green zone send a gpio value for the green zone
@@ -124,7 +124,7 @@ class Threshold:
             #reset the 2 second timer
             
             #reset the timer
-            print("reset the green_zone_timer")
+            #print("reset the green_zone_timer")
             self.green_zone_timer = None          
             
  
