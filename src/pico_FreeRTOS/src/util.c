@@ -5,6 +5,7 @@
 #include "task.h"
 #include "tasks.h"
 #include "util.h"
+#include "queues.h"
 #include <string.h>
 
 int uart_send(uart_inst_t *uart, char *command, char *response, int wait)
@@ -102,14 +103,9 @@ int uart_read_chars(uart_inst_t *uart, char *command, int num_char_to_read, char
 
 void uart_obd2_wheel_speed(uart_inst_t *uart, struct obd2_packet *packet)
 {
-    uint16_t high_nibble, low_nibble;
+    uint16_t nibble;
 
-    high_nibble = low_nibble = 0;
-
-    char response1[26];
-    char response2[26];
-    char response3[32];
-    char response4[32];
+    nibble = 0;
     char response5[32];
     char response6[15];
 
@@ -127,13 +123,32 @@ void uart_obd2_wheel_speed(uart_inst_t *uart, struct obd2_packet *packet)
 
     uart_puts(UART_TEST, response5);
 
-    sscanf(response5 + 9, "%2hx", &high_nibble);
-    packet->slipping = high_nibble;
+    sscanf(response5 + 9, "%2hx", &nibble);
+    packet->slipping = nibble;
 
-    sscanf(response6 + 11, "%2hx", &high_nibble);
-    packet->vehicle_speed = high_nibble;
+    sscanf(response6 + 11, "%2hx", &nibble);
+    packet->vehicle_speed = nibble;
     //for vehicle speed, send 010D, expect response 010D\r41 0D xx\r
 
 
 }
 
+int send_message(__int8_t message_type)
+{
+    struct message message;
+    struct gps gps;
+    uint8_t speed;
+    if(gps_queue_peek(&gps) && vehicle_speed_queue_peek(&speed))
+    {
+        message.latitude = gps.latitude;
+        message.longitude = gps.longitude;
+        message.message_type = message_type;
+        message.speed = speed;
+        message_enqueue(message);
+        return 0;
+    }
+    else
+    {
+        return 1;
+    }
+}

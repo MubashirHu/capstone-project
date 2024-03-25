@@ -16,7 +16,7 @@ struct gps
 };
 
 void initQueues();
-void message_enqueue(struct message x);
+int message_enqueue(struct message x);
 int message_queue_dequeue(struct message* x);
 void gps_queue_overwrite(struct gps x);
 int gps_queue_peek(struct gps* x);

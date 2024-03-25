@@ -40,9 +40,9 @@ void initTasks(void)
     uxCoreAffinityMask_both = ( ( 1 << 0 ) | ( 1 << 1 ) );
 
 	xTaskCreateAffinitySet(vTaskUart_4g, "4G_Task", 512, NULL, 6, uxCoreAffinityMask_1, NULL);
-	// xTaskCreateAffinitySet(vTaskUart_OBD, "OBD2_Task", 512, NULL, 6, uxCoreAffinityMask_1, NULL);
-    // xTaskCreateAffinitySet(vTaskI2C_GPS, "GPS_Task", 512, NULL, 6, uxCoreAffinityMask_0, NULL);
-    //xTaskCreateAffinitySet(vTaskNormal, "Normal_Task", 256, NULL, 6, uxCoreAffinityMask_1, NULL);
+	xTaskCreateAffinitySet(vTaskUart_OBD, "OBD2_Task", 512, NULL, 6, uxCoreAffinityMask_0, NULL);
+    xTaskCreateAffinitySet(vTaskI2C_GPS, "GPS_Task", 512, NULL, 6, uxCoreAffinityMask_1, NULL);
+    // xTaskCreateAffinitySet(vTaskNormal, "Normal_Task", 256, NULL, 6, uxCoreAffinityMask_1, NULL);
     xTaskCreateAffinitySet(led_task, "LED_Task", 256, NULL, 6, uxCoreAffinityMask_1, NULL);
     xTaskCreateAffinitySet(bundle_task, "BUNDLE_Task", 256, NULL, 6, uxCoreAffinityMask_1, NULL);    
 }
@@ -95,7 +95,7 @@ void vTaskUart_4g(void * parameters)
     uart_send1(UART_ID_4G, "AT+HTTPREAD=0,250\r\n", response1, 500);
     
 
-    uart_send(UART_ID_4G, "AT+HTTPTERM\r\n", response, 0);
+    uart_send_until_valid(UART_ID_4G, "AT+HTTPTERM\r\n", response, "AT+HTTPTERM\r\r\nERROR\r\n");
     
     vTaskDelay(pdMS_TO_TICKS(500));
 
@@ -134,12 +134,20 @@ void vTaskUart_4g(void * parameters)
             vTaskDelay(pdMS_TO_TICKS(50));
             uart_send(UART_ID_4G, "AT+HTTPACTION=1\r\n", response, 1000);
             // verify http response of 200 if failed, then repeat until it doesn't for x amount of times
+            strncpy(http_code, response2 + 39, sizeof(http_code) - 1);
+            http_code[sizeof(http_code) - 1] = '\0';
+            if(strncmp(http_code, "200", 3) != 0)
+            {
+                uart_puts(UART_TEST, "\r\nHTTP CODE: ");
+                uart_puts(UART_TEST, http_code);
+                uart_puts(UART_TEST, "\r\n");
+            }    
             vTaskDelay(pdMS_TO_TICKS(50));
-            uart_send(UART_ID_4G, "AT+HTTPTERM\r\n", response, 0);
+            uart_send_until_valid(UART_ID_4G, "AT+HTTPTERM\r\n", response, "AT+HTTPTERM\r\r\nERROR\r\n");
             uart_puts(UART_TEST, "Message Sent\r\n");
         }
         // check speed limit queue and if not empty, send speed limit api request to google for current location
-        vTaskDelay(pdMS_TO_TICKS(200));
+        vTaskDelay(pdMS_TO_TICKS(500));
     }
 }
 
@@ -147,20 +155,21 @@ void vTaskNormal(void * parameters)
 {
     while(1)
     {
-        vTaskDelay(pdMS_TO_TICKS(20000));
+        vTaskDelay(pdMS_TO_TICKS(10000));
         //get speed limit, check speed, if speed much lower than posted speed, send conjection request
         // vTaskDelay(pdMS_TO_TICKS(5000));
         struct message x;
         // if(gps_queue_peek(&y))
         // {
-            x.latitude = 50.22324;
-            x.longitude = -25.34223;
+            x.latitude = 50.416721;//gps.latitude;
+            x.longitude = -104.589579;//gps.longitude;
             x.message_type = 0;
-            x.speed = 0;
-            static char json[512];
-            sprintf(json, "\r\n\"latitude\":%.6lf,\r\n\"longitude\":%.6lf,\r\n", x.latitude, x.longitude);
-            uart_puts(UART_TEST, json);
+            x.speed = 20;
+            // static char json[512];
+            // sprintf(json, "\r\n\"latitude\":%.6lf,\r\n\"longitude\":%.6lf,\r\n", x.latitude, x.longitude);
+            // uart_puts(UART_TEST, json);
             message_enqueue(x);
+            // uart_puts(UART_TEST, "message enqueued");
         // }
         
     }
@@ -352,28 +361,16 @@ void bundle_task(void *pvParameters) {
                 {
                     uart_puts(UART_TEST, "Bundle data from PICO1 pico1_interrupt \r\n");
                     byte_level = byte_pico1;
-
-
-                    struct message message;
-                    message.latitude = 50.416721;//gps.latitude;
-                    message.longitude = -104.589579;//gps.longitude;
-                    message.message_type = byte_level;
-                    message.speed = 0;
-                    // message_enqueue(message);
-                    uart_puts(UART_TEST,"Message Enqueued\r\n");
+                    send_message(byte_level);
 
                     // Bundle data from PICO1
-                } else {
+                } 
+                else 
+                {
                     uart_puts(UART_TEST, "Bundle data from PICO2 pico1_interrupt\r\n");
                     // Bundle data from PICO2
                     byte_level = byte_pico2;
-                    struct message message;
-                    message.latitude = 50.416721;//gps.latitude;
-                    message.longitude = -104.589579;//gps.longitude;
-                    message.message_type = byte_level;
-                    message.speed = 0;
-                    // message_enqueue(message);
-                    uart_puts(UART_TEST,"Message Enqueued\r\n");
+                    send_message(byte_level);
                 }
 
                 break;
@@ -402,26 +399,14 @@ void bundle_task(void *pvParameters) {
                 {
                     uart_puts(UART_TEST,"Bundle data from PICO1 pico2_interrupt\r\n");
                     byte_level = byte_pico1;
+                    send_message(byte_level);
 
-                    // Bundle data from PICO1
-                    struct message message;
-                    message.latitude = 50.416721;//gps.latitude;
-                    message.longitude = -104.589579;//gps.longitude;
-                    message.message_type = byte_level;
-                    message.speed = 0;
-                    // message_enqueue(message);
-                    uart_puts(UART_TEST,"Message Enqueued\r\n");
-                } else {
+                } 
+                else 
+                {
                     uart_puts(UART_TEST,"Bundle data from PICO2 pico2_interrupt\r\n");
-                    // Bundle data from PICO2
                     byte_level = byte_pico2;
-                    struct message message;
-                    message.latitude = 50.416721;//gps.latitude;
-                    message.longitude = -104.589579;//gps.longitude;
-                    message.message_type = byte_level;
-                    message.speed = 0;
-                    // message_enqueue(message);
-                    uart_puts(UART_TEST,"Message Enqueued\r\n");
+                    send_message(byte_level);
                 }
 
                 break;

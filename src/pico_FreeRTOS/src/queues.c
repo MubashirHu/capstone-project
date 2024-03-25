@@ -13,20 +13,30 @@ QueueHandle_t xVehicle_Speed_Queue;
 
 void initQueues(void)
 {
-	xMessage_Queue = xQueueCreate(100, sizeof(struct message));
+	xMessage_Queue = xQueueCreate(1000, sizeof(struct message));
     xGPS_Queue = xQueueCreate(1, sizeof(struct gps));
     xVehicle_Speed_Queue = xQueueCreate(1, sizeof(uint8_t));
 }
 
-void message_enqueue(struct message x)
+int message_enqueue(struct message x)
 {
-    xQueueSendToBack(xMessage_Queue, &x, NULL);
+    if(xQueueSendToBack(xMessage_Queue, &x, NULL) == pdTRUE)
+    {
+        return 0;
+    }
+    else
+    {
+        return 1;
+    }
 }
 
 
 int message_queue_dequeue(struct message* x)
 {
-    if(xQueueReceive(xMessage_Queue, &x, 0) == pdTRUE)
+    uart_puts(UART_TEST, "starting dequeue\r\n");
+    static char json[512];
+    sprintf(json, "\r\n\"latitude\":%.6lf,\r\n\"longitude\":%.6lf,\r\n", x->latitude, x->longitude);
+    if(xQueueReceive(xMessage_Queue, x, 0) == pdTRUE)
     {
         return 1;
     }
