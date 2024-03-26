@@ -50,8 +50,6 @@ def main():
             centeringValue = mpu.read_accel_data()[2] + calibratedAverageOffset
             print("center",centeringValue,"\n")
             
-            time.sleep_ms(2000)
-            
             while True:
                 ### READ IMU
                 # Read accelerometer data (acceleration along the Z-axis) and center value around 0
