@@ -108,33 +108,32 @@ void uart_obd2_wheel_speed(uart_inst_t *uart, struct obd2_packet *packet)
     nibble = 0;
     char response5[32];
     char response6[32];
-    uart_send_until_valid(uart, "AT CRA 610\r\n", response6, "AT CRA 610\rOK\r\r>");
+    uart_send_until_valid(uart, "AT CRA 0B4\r\n", response6, "AT CRA 0B4\rOK\r\r>");
     do
     {
         uart_read_chars(uart, "AT MA\r\n", 31, response6);
     } while (strncmp(response6, "AT MA\r", 6) != 0 && response6[29] == '\r');
-
-    sscanf(response6 + 18, "%2hx", &nibble);
+    uart_puts(UART_TEST, response6);
+    uart_puts(UART_TEST, "\r\n");
+    sscanf(response6 + 20, "%2hx", &nibble);
     packet->vehicle_speed = nibble;
+
+    do
+    {
+        uart_read_chars(uart, "010D\r\n", 14, response6);
+    } while (strncmp(response6, "010D\r", 5) != 0);
+    uart_puts(UART_TEST, response6);
+    uart_puts(UART_TEST, "\r\n");
 
     uart_send_until_valid(uart, "AT CRA 3B7\r\n", response5, "AT CRA 3B7\rOK\r\r>");
     do
     {
         uart_read_chars(uart, "AT MA\r\n", 31, response5);
     } while (strncmp(response5, "AT MA\r", 6) != 0 && response5[29] == '\r');
-
-
-    
-
     // uart_puts(UART_TEST, response5);
-
     sscanf(response5 + 9, "%2hx", &nibble);
     packet->slipping = nibble;
-
-    
     //for vehicle speed, send 010D, expect response 010D\r41 0D xx\r
-
-
 }
 
 int send_message(int message_type)

@@ -189,8 +189,8 @@ void vTaskUart_OBD(void * parameters)
     {
         char stringValue[6];
         uart_obd2_wheel_speed(UART_ID_OBD2, &packet);
-        sprintf(response, "\r\n\"Slipping\":%d,\r\n\"Speed\":%d,\r\n", packet.slipping, packet.vehicle_speed);
-        uart_puts(UART_TEST, response);
+        // sprintf(response, "\r\n\"Slipping\":%d,\r\n\"Speed\":%d,\r\n", packet.slipping, packet.vehicle_speed);
+        // uart_puts(UART_TEST, response);
         vehicle_speed_queue_overwrite(packet.vehicle_speed);
         if (packet.slipping == 16)
         {
