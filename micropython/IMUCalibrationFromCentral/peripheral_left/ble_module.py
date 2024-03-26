@@ -41,13 +41,16 @@ class BLEImu:
         if event == _IRQ_CENTRAL_CONNECT:
             conn_handle, _, _ = data
             self._connections.add(conn_handle)
+            print("connected")
         elif event == _IRQ_CENTRAL_DISCONNECT:
             conn_handle, _, _ = data
             self._connections.remove(conn_handle)
             # Start advertising again to allow a new connection.
+            print("Diconnected")
             self._advertise()
         elif event == _IRQ_GATTS_INDICATE_DONE:
             conn_handle, value_handle, status = data
+            
 
     def _send_pothole_event(self, event:float, notify=False, indicate=False):
         # Write the local value, ready for a central to read.
