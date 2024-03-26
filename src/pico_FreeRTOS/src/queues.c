@@ -54,7 +54,7 @@ void gps_queue_overwrite(struct gps x)
 
 int gps_queue_peek(struct gps* x)
 {
-    if(xQueuePeek(xGPS_Queue, &x, 0) == pdTRUE)
+    if(xQueuePeek(xGPS_Queue, x, 0) == pdTRUE)
     {
         return 1;
     }
@@ -71,7 +71,7 @@ void vehicle_speed_queue_overwrite(uint8_t speed)
 
 int vehicle_speed_queue_peek(uint8_t *speed)
 {
-    if(xQueuePeek(xGPS_Queue, &speed, 0) == pdTRUE)
+    if(xQueuePeek(xGPS_Queue, speed, 0) == pdTRUE)
     {
         return 1;
     }

@@ -39,8 +39,8 @@ void initTasks(void)
     UBaseType_t uxCoreAffinityMask_both;
     uxCoreAffinityMask_both = ( ( 1 << 0 ) | ( 1 << 1 ) );
 
-	xTaskCreateAffinitySet(vTaskUart_4g, "4G_Task", 512, NULL, 6, uxCoreAffinityMask_1, NULL);
-	// xTaskCreateAffinitySet(vTaskUart_OBD, "OBD2_Task", 512, NULL, 6, uxCoreAffinityMask_0, NULL);
+	// xTaskCreateAffinitySet(vTaskUart_4g, "4G_Task", 512, NULL, 6, uxCoreAffinityMask_1, NULL);
+	xTaskCreateAffinitySet(vTaskUart_OBD, "OBD2_Task", 512, NULL, 6, uxCoreAffinityMask_0, NULL);
     // xTaskCreateAffinitySet(vTaskI2C_GPS, "GPS_Task", 512, NULL, 6, uxCoreAffinityMask_1, NULL);
     // xTaskCreateAffinitySet(vTaskNormal, "Normal_Task", 256, NULL, 6, uxCoreAffinityMask_1, NULL);
     xTaskCreateAffinitySet(led_task, "LED_Task", 256, NULL, 6, uxCoreAffinityMask_1, NULL);
@@ -189,6 +189,8 @@ void vTaskUart_OBD(void * parameters)
     {
         char stringValue[6];
         uart_obd2_wheel_speed(UART_ID_OBD2, &packet);
+        sprintf(response, "\r\n\"Slipping\":%d,\r\n\"Speed\":%d,\r\n", packet.slipping, packet.vehicle_speed);
+        uart_puts(UART_TEST, response);
         vehicle_speed_queue_overwrite(packet.vehicle_speed);
         if (packet.slipping == 16)
         {
@@ -299,10 +301,9 @@ void vTaskI2C_GPS(void * parameters)
                         x.longitude = long_decimalDegrees;
 
                         static char json[512];
-                        // sprintf(json, "\r\n\"time\":%ld,\r\n\"latitude\":%.6lf,\r\n\"longitude\":%.6lf,\r\n",
-                        //         (long)x.time, x.latitude, x.longitude);
-                        // uart_puts(UART_TEST, json);
-                        // uart_puts(UART_TEST, "\r\n");
+                        sprintf(json, "\r\n\"latitude\":%.6lf,\r\n\"longitude\":%.6lf,\r\n", x.latitude, x.longitude);
+                        uart_puts(UART_TEST, json);
+                        uart_puts(UART_TEST, "\r\n");
                         
                         if (positioning_status != 0 && num_satellites > 3)
                         {
