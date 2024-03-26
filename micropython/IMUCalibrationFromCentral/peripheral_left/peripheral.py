@@ -64,7 +64,7 @@ def main():
                 imu_peripheral._send_pothole_event(accel_z, notify=i == 0, indicate=True)
                          
                 time.sleep_ms(5)
-                #raise OSError(22, "Invalid argument (EINVAL)")
+                #raise OSError(5, "Invalid argument (EINVAL)")
                 
         except OSError as e:
             if e.args[0] == 22:  # Check if the errno is EINVAL (22)
@@ -73,12 +73,12 @@ def main():
                 pass
             elif e.args[0] == 5:
                 print("IMU diconnected")
-                time.sleep_ms(4000)
+                time.sleep_ms(2000)
                 
                 pass
             elif e.args[1] == 110:
                 print("IMU GND is disconnected")
-                sys.exit(1)
+                time.sleep_ms(2000)
                 
             else:
                 print("Caught OSError:", e)

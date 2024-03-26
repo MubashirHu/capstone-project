@@ -59,6 +59,7 @@ def main():
                 
                 # Check if accel_z is None
                 if accel_z is not None:
+                    led.on()
                     # Add new data to the pothole window_buffer
                     window_buffer.pop(0)
                     window_buffer.append(accel_z)
@@ -84,7 +85,8 @@ def main():
                         pass
                 else:
                     print("Warning: accel_z is None because data is not being sent, due to peripheral calibration")
-                    
+                    led.toggle()
+                    time.sleep_ms(100)
                 time.sleep_ms(10)
                
             print("Disconnected")
