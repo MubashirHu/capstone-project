@@ -335,7 +335,7 @@ void led_task(void * parameters)
 
 // bundleTask
 void bundle_task(void *pvParameters) {
-    // uart_puts(UART_TEST, "\r\nStarting IMU Test\r\n");
+    uart_puts(UART_TEST, "\r\nStarting IMU Test\r\n");
     struct gps gps;
     
     TickType_t xLastWakeTime;
@@ -363,7 +363,7 @@ void bundle_task(void *pvParameters) {
                 // uart_puts(UART_TEST, "bundle test \r\n");
                 if (byte_pico1 >= byte_pico2) 
                 {
-                    // uart_puts(UART_TEST, "Bundle data from PICO1 pico1_interrupt \r\n");
+                    uart_puts(UART_TEST, "Bundle data from PICO1 pico1_interrupt \r\n");
                     byte_level = byte_pico1;
                     // display the value of the byte
                     // uart_puts(UART_TEST, "byte_pico1:");
@@ -421,14 +421,14 @@ void bundle_task(void *pvParameters) {
             {
                 if (byte_pico1 >= byte_pico2) 
                 {
-                    // uart_puts(UART_TEST,"Bundle data from PICO1 pico2_interrupt\r\n");
+                    uart_puts(UART_TEST,"Bundle data from PICO1 pico2_interrupt\r\n");
                     byte_level = byte_pico1;
                     send_message(byte_level);
 
                 } 
                 else 
                 {
-                    // uart_puts(UART_TEST,"Bundle data from PICO2 pico2_interrupt\r\n");
+                    uart_puts(UART_TEST,"Bundle data from PICO2 pico2_interrupt\r\n");
                     byte_level = byte_pico2;
                     send_message(byte_level);
                 }
