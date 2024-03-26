@@ -19,14 +19,13 @@ import machine
 import sys
 
 from micropython import const
-WINDOW_SIZE = 10  # Size of the sliding window for averaging
 
+window_buffer = [9] * 20
+window_buffer2 = [9] * 10
 def main():
     while True:
         try:
-            # Initialize Variables
-            window_buffer = [9] * WINDOW_SIZE
-            
+            # Initialize Variables            
             ### IMU - configure
             # Set up the I2C interface
             i2c = machine.I2C(1, sda=machine.Pin(14), scl=machine.Pin(15))
@@ -41,10 +40,10 @@ def main():
             
             # Automatically calibrate the IMU sensor
             # Calculate the average raw input from the IMU in neutral position
-            calibratedAverage = mpu._auto_calibrate_average(3)
+            calibratedAverage = mpu._auto_calibrate_average(3, window_buffer)
             
             # Calculate the offset needed to make 1g on the IMU
-            calibratedAverageOffset = mpu._auto_calibrate_offset(3)
+            calibratedAverageOffset = mpu._auto_calibrate_offset(3, window_buffer2)
             
             # Use the last read from calibration to determine value to zero the raw data
             centeringValue = mpu.read_accel_data()[2] + calibratedAverageOffset
@@ -74,15 +73,19 @@ def main():
             elif e.args[0] == 5:
                 print("IMU diconnected")
                 time.sleep_ms(2000)
-                
                 pass
             elif e.args[1] == 110:
                 print("IMU GND is disconnected")
                 time.sleep_ms(2000)
-                
+                pass
             else:
                 print("Caught OSError:", e)
+                pass
                 # Additional error handling code if needed
+        except Exception as e :
+            print("Last Exception", e)
+            break
 
 if __name__ == "__main__":
     main()
+

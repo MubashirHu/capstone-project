@@ -170,8 +170,8 @@ class MPU6050:
             else:
                 return False
             
-    def _auto_calibrate_average(self, seconds):
-        window_buffer = [9] * 20
+    def _auto_calibrate_average(self, seconds, window_buffer = []):
+        
         calibratedValue = 0
         avg_accel_z = 0
         print("Calibrating...")
@@ -194,8 +194,8 @@ class MPU6050:
         print("avg_accel_z", avg_accel_z)
         return avg_accel_z
     
-    def _auto_calibrate_offset(self, seconds):
-        window_buffer = [9] * 10
+    def _auto_calibrate_offset(self, seconds, window_buffer = []):
+        
         calibratedValue = 0
         print("calibrating offset")
         
