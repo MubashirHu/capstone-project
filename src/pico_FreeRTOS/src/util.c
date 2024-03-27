@@ -141,20 +141,20 @@ int send_message(int message_type)
     struct message message;
     struct gps gps;
     uint8_t speed;
-    if(gps_queue_peek(&gps) && vehicle_speed_queue_peek(&speed) && speed > 20 && speed < 65)
-    {
+    // if(gps_queue_peek(&gps) && vehicle_speed_queue_peek(&speed) && speed > 20 && speed < 65)
+    // {
         static char json[50];
         sprintf(json, "\r\nInterrupt Type : %d\r\n", message_type);
         uart_puts(UART_TEST, json);
-        message.latitude = gps.latitude;
-        message.longitude = gps.longitude;
+        message.latitude = 34.32432;//gps.latitude;
+        message.longitude = 134.2332;//gps.longitude;
         message.message_type = message_type;
         message.speed = 0;
         message_enqueue(message);
         return 0;
-    }
-    else
-    {
-        return 1;
-    }
+    // }
+    // else
+    // {
+    //     return 1;
+    // }
 }
