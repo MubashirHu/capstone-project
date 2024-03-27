@@ -15,14 +15,14 @@ int uart_send(uart_inst_t *uart, char *command, char *response, int wait)
     {
         uart_putc(uart, command[i]);
         response[i] = uart_getc(uart);
-        uart_putc(UART_TEST, response[i]);
+        // uart_putc(UART_TEST, response[i]);
 
     }
     vTaskDelay(wait + 1);
     while(uart_is_readable(uart) && i < 150)
     {
         response[i] = uart_getc(uart);
-        uart_putc(UART_TEST, response[i]);
+        // uart_putc(UART_TEST, response[i]);
         i++;
         // vTaskDelay(15);
     }
@@ -135,20 +135,20 @@ int send_message(int message_type)
     struct message message;
     struct gps gps;
     uint8_t speed;
-    // if(gps_queue_peek(&gps) && vehicle_speed_queue_peek(&speed) && speed > 20 && speed < 65 && message_type < 4)
-    // {
+    if(gps_queue_peek(&gps) && vehicle_speed_queue_peek(&speed) && speed > 20 && speed < 65 && message_type < 4)
+    {
         static char json[50];
-        sprintf(json, "\r\nInterrupt Type : %d\r\n", message_type);
-        uart_puts(UART_TEST, json);
-        message.latitude = 34.32432;//gps.latitude;
-        message.longitude = 134.2332;//gps.longitude;
+        // sprintf(json, "\r\nInterrupt Type : %d\r\n", message_type);
+        // uart_puts(UART_TEST, json);
+        message.latitude = gps.latitude;
+        message.longitude = gps.longitude;
         message.message_type = message_type;
-        message.speed = 0;
+        message.speed = speed;
         message_enqueue(message);
         return 0;
-    // }
-    // else
-    // {
-    //     return 1;
-    // }
+    }
+    else
+    {
+        return 1;
+    }
 }
