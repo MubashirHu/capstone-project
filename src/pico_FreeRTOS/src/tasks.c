@@ -41,11 +41,11 @@ void initTasks(void)
 
 	xTaskCreateAffinitySet(vTaskUart_4g, "4G_Task", 512, NULL, 6, uxCoreAffinityMask_1, NULL);
 	// xTaskCreateAffinitySet(vTaskUart_OBD, "OBD2_Task", 512, NULL, 6, uxCoreAffinityMask_0, NULL);
-    // xTaskCreateAffinitySet(vTaskI2C_GPS, "GPS_Task", 512, NULL, 6, uxCoreAffinityMask_1, NULL);
+    xTaskCreateAffinitySet(vTaskI2C_GPS, "GPS_Task", 512, NULL, 6, uxCoreAffinityMask_1, NULL);
 
-    // xTaskCreateAffinitySet(vTaskNormal, "Normal_Task", 256, NULL, 6, uxCoreAffinityMask_1, NULL);
+    xTaskCreateAffinitySet(vTaskNormal, "Normal_Task", 256, NULL, 6, uxCoreAffinityMask_1, NULL);
     xTaskCreateAffinitySet(led_task, "LED_Task", 256, NULL, 6, uxCoreAffinityMask_1, NULL);
-    // xTaskCreateAffinitySet(bundle_task, "BUNDLE_Task", 512, NULL, 6, uxCoreAffinityMask_1, NULL);    
+    xTaskCreateAffinitySet(bundle_task, "BUNDLE_Task", 512, NULL, 6, uxCoreAffinityMask_1, NULL);    
 }
 
 void vTaskUart_4g(void * parameters)
@@ -57,13 +57,13 @@ void vTaskUart_4g(void * parameters)
     char response2[150];
     int char_num = 0;
     vTaskDelay(pdMS_TO_TICKS(1000));
-    // uart_puts(UART_TEST, "\r\nStarting 4G Module Task\r\n");
+    uart_puts(UART_TEST, "\r\nStarting 4G Module Task\r\n");
     while(uart_is_readable(UART_ID_4G))
     {
         uart_getc(UART_ID_4G);
     }
     uart_send_until_valid(UART_ID_4G, "AT\r\n", response, "AT\r\r\nOK\r\n");
-    // uart_puts(UART_TEST, "4G Module booted\r\n");
+    uart_puts(UART_TEST, "4G Module booted\r\n");
     vTaskDelay(pdMS_TO_TICKS(500));
     uart_send_until_valid(UART_ID_4G, "AT+CPIN?\r\n", response, "AT+CPIN?\r\r\n+CPIN: READY\r\n\r\nOK\r\n");
     vTaskDelay(pdMS_TO_TICKS(500));
@@ -116,9 +116,9 @@ void vTaskUart_4g(void * parameters)
     {
         if(message_queue_dequeue(&msg) == 1)
         {
-            // uart_puts(UART_TEST, "Message Detected\r\n");
+            uart_puts(UART_TEST, "Message Detected\r\n");
             static char json[200]; // Assuming a fixed size for simplicity, adjust as needed
-            sprintf(json, "{\"uid\": \"%s\",\"latitude\":%.6lf,\"longitude\":%.6lf,\"speed\":%d,\"message_type\":%d}",
+            sprintf(json, "{\"uid\": \"%s\",\"latitude\":%.6lf,\"longitude\":%.6lf,\"speed\":%.2lf,\"message_type\":%d}",
             uid, msg.latitude, msg.longitude, msg.speed, msg.message_type);
             // uart_puts(UART_TEST, "\r\n");
             // uart_puts(UART_TEST, json);
@@ -149,7 +149,7 @@ void vTaskUart_4g(void * parameters)
 
             vTaskDelay(pdMS_TO_TICKS(50));
             uart_send_until_valid(UART_ID_4G, "AT+HTTPTERM\r\n", response, "AT+HTTPTERM\r\r\nERROR\r\n");
-            // uart_puts(UART_TEST, "Message Sent\r\n");
+            uart_puts(UART_TEST, "Message Sent\r\n");
         }
         // check speed limit queue and if not empty, send speed limit api request to google for current location
         vTaskDelay(pdMS_TO_TICKS(500));

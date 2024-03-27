@@ -5,7 +5,7 @@ struct message
 {
     double latitude;
     double longitude;
-    int speed;
+    double speed;
     int message_type;
 };
 

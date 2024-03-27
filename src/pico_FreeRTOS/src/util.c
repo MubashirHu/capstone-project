@@ -15,14 +15,14 @@ int uart_send(uart_inst_t *uart, char *command, char *response, int wait)
     {
         uart_putc(uart, command[i]);
         response[i] = uart_getc(uart);
-        // uart_putc(UART_TEST, response[i]);
+        uart_putc(UART_TEST, response[i]);
 
     }
     vTaskDelay(wait + 1);
     while(uart_is_readable(uart) && i < 150)
     {
         response[i] = uart_getc(uart);
-        // uart_putc(UART_TEST, response[i]);
+        uart_putc(UART_TEST, response[i]);
         i++;
         // vTaskDelay(15);
     }
