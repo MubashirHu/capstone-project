@@ -135,37 +135,20 @@ int send_message(int message_type)
     struct message message;
     struct gps gps;
     uint8_t speed;
-    if(gps_queue_peek(&gps) && vehicle_speed_queue_peek(&speed) && speed > 20 && speed < 65 && message_type < 4)
-    {
+    // if(gps_queue_peek(&gps) && vehicle_speed_queue_peek(&speed) && speed > 20 && speed < 65 && message_type < 4)
+    // {
         static char json[50];
-        // switch (message_type)
-        // {
-        //     case 0:
-        //         uart_puts(UART_TEST,"GREEN\r\n");
-        //         break;
-        //     case 1:
-        //         uart_puts(UART_TEST,"YELLOW Pothole\r\n");
-        //         break;
-        //     case 2:
-        //         uart_puts(UART_TEST,"AMBER Pothole\r\n");
-        //         break;
-        //     case 3:
-        //         uart_puts(UART_TEST,"RED Pothole\r\n");
-        //         break;
-        //     default:
-        //         return 0;
-        //         break;
-        // }
-        // uart_puts(UART_TEST, json);
-        message.latitude = gps.latitude;
-        message.longitude = gps.longitude;
+        sprintf(json, "\r\nInterrupt Type : %d\r\n", message_type);
+        uart_puts(UART_TEST, json);
+        message.latitude = 34.32432;//gps.latitude;
+        message.longitude = 134.2332;//gps.longitude;
         message.message_type = message_type;
         message.speed = 0;
         message_enqueue(message);
         return 0;
-    }
-    else
-    {
-        return 1;
-    }
+    // }
+    // else
+    // {
+    //     return 1;
+    // }
 }
