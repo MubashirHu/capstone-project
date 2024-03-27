@@ -21,6 +21,10 @@ WINDOW_SIZE = 50 # Size of the sliding window for averaging
     
 def main():
     while True:
+        
+        print("Waiting 3 seconds")
+        time.sleep(3)
+        
         print("Trying to connect to a BLE peripheral")
         ble = bluetooth.BLE()
         central = BLEImuCentral(ble)
@@ -81,7 +85,7 @@ def main():
                         determined_zone = thresholding._determine_zone(highest_value_determined)
                         thresholding._transmit_zone(determined_zone)
                     else:
-                        #thresholding._transmit_zone(thresholding.green_zone)
+                        thresholding._transmit_zone(thresholding.green_zone)
                         pass
                 else:
                     print("Warning: accel_z is None because data is not being sent, due to peripheral calibration")
@@ -95,3 +99,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
