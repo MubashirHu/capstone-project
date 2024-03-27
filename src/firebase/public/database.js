@@ -147,7 +147,7 @@ function listenForSlippingChanges() {
 }
 
 function listenForCongestionChanges() {
-  const coordinatesRef = database.ref('conjection');
+  const coordinatesRef = database.ref('congestion');
 
   coordinatesRef.on('child_added', (snapshot) => {
     const newCongestion = snapshot.val();
@@ -200,8 +200,8 @@ function updateHeatmap() {
 
     const gradientOptions = {
       red: ['rgba(255, 0, 0, 0)', 'rgba(255, 0, 0, 1)'],
-      amber: ['rgba(255, 255, 0, 0)', 'rgba(255, 255, 0, 1)'],
-      yellow: ['rgba(255, 165, 0, 0)', 'rgba(255, 165, 0, 1)'],
+      amber: ['rgba(255, 165, 0, 0)', 'rgba(255, 165, 0, 1)'],
+      yellow: ['rgba(255, 255, 0, 0)', 'rgba(255, 255, 0, 1)'],
       green: ['rgba(0, 128, 0, 0)', 'rgba(0, 128, 0, 1)']
     };
 
@@ -283,6 +283,10 @@ function updateHeatmap() {
 window.onload = function() {
   initMap();
   document.getElementById('potholeButton').click(); // Select the Pothole button
+  document.getElementById('RedPotholes').checked = true;
+  document.getElementById('AmberPotholes').checked = true;
+  document.getElementById('YellowPotholes').checked = true;
+  document.getElementById('GreenPotholes').checked = true;
   updateHeatmap(); // Update the heatmap accordingly
 
   
