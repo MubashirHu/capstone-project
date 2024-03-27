@@ -15,14 +15,14 @@ int uart_send(uart_inst_t *uart, char *command, char *response, int wait)
     {
         uart_putc(uart, command[i]);
         response[i] = uart_getc(uart);
-        uart_putc(UART_TEST, response[i]);
+        // uart_putc(UART_TEST, response[i]);
 
     }
     vTaskDelay(wait + 1);
     while(uart_is_readable(uart) && i < 150)
     {
         response[i] = uart_getc(uart);
-        uart_putc(UART_TEST, response[i]);
+        // uart_putc(UART_TEST, response[i]);
         i++;
         // vTaskDelay(15);
     }
@@ -108,22 +108,16 @@ void uart_obd2_wheel_speed(uart_inst_t *uart, struct obd2_packet *packet)
     nibble = 0;
     char response5[32];
     char response6[32];
-    uart_send_until_valid(uart, "AT CRA 0B4\r\n", response6, "AT CRA 0B4\rOK\r\r>");
+
+    uart_send_until_valid(uart, "AT CRA 610\r\n", response6, "AT CRA 610\rOK\r\r>");
     do
     {
         uart_read_chars(uart, "AT MA\r\n", 31, response6);
     } while (strncmp(response6, "AT MA\r", 6) != 0 && response6[29] == '\r');
-    uart_puts(UART_TEST, response6);
-    uart_puts(UART_TEST, "\r\n");
-    sscanf(response6 + 20, "%2hx", &nibble);
+
+    sscanf(response6 + 11, "%2hx", &nibble);
     packet->vehicle_speed = nibble;
 
-    do
-    {
-        uart_read_chars(uart, "010D\r\n", 14, response6);
-    } while (strncmp(response6, "010D\r", 5) != 0);
-    uart_puts(UART_TEST, response6);
-    uart_puts(UART_TEST, "\r\n");
 
     uart_send_until_valid(uart, "AT CRA 3B7\r\n", response5, "AT CRA 3B7\rOK\r\r>");
     do
@@ -141,7 +135,7 @@ int send_message(int message_type)
     struct message message;
     struct gps gps;
     uint8_t speed;
-    // if(gps_queue_peek(&gps) && vehicle_speed_queue_peek(&speed) && speed > 20 && speed < 65)
+    // if(gps_queue_peek(&gps) && vehicle_speed_queue_peek(&speed) && speed > 20 && speed < 65 && message_type < 4)
     // {
         static char json[50];
         sprintf(json, "\r\nInterrupt Type : %d\r\n", message_type);
