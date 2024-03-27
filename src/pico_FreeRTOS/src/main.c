@@ -68,8 +68,7 @@ int main()
     gpio_pull_up(BIT_2_PICO1); // GPIO_PIN_PH_PICO1 by default
     
     // Set up interrupt handler for pothole & road-depression - triggers on HIGH to LOW event on selected GPIO
-    gpio_set_irq_enabled_with_callback(GPIO_PIN_PH_PICO1, GPIO_IRQ_EDGE_FALL, true, &handle_pothole_interrupt);
-    gpio_set_irq_enabled_with_callback(GPIO_PIN_PH_PICO2, GPIO_IRQ_EDGE_FALL, true, &handle_pothole_interrupt);
+    
 
     initQueues();
     initTasks();
