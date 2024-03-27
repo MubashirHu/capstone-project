@@ -163,6 +163,7 @@ void vTaskNormal(void * parameters)
         //get speed limit, check speed, if speed much lower than posted speed, send conjection request
         vTaskDelay(pdMS_TO_TICKS(3000));
         struct message x;
+        struct gps gps;
         uint8_t speed;
         if(gps_queue_peek(&gps) && vehicle_speed_queue_peek(&speed))
         {
