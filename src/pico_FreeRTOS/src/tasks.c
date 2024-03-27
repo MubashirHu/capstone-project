@@ -116,8 +116,8 @@ void vTaskUart_4g(void * parameters)
         if(message_queue_dequeue(&msg) == 1)
         {
             uart_puts(UART_TEST, "Message Detected\r\n");
-            static char json[512]; // Assuming a fixed size for simplicity, adjust as needed
-            sprintf(json, "{\"uid\": \"%s\",\"latitude\":%.6lf,\"longitude\":%.6lf,\"speed\":%.2lf,\"message_type\":%d}",
+            static char json[200]; // Assuming a fixed size for simplicity, adjust as needed
+            sprintf(json, "{\"uid\": \"%s\",\"latitude\":%.6lf,\"longitude\":%.6lf,\"speed\":%d,\"message_type\":%d}",
             uid, msg.latitude, msg.longitude, msg.speed, msg.message_type);
             uart_puts(UART_TEST, "\r\n");
             uart_puts(UART_TEST, json);
@@ -160,22 +160,18 @@ void vTaskNormal(void * parameters)
 {
     while(1)
     {
-        vTaskDelay(pdMS_TO_TICKS(10000));
         //get speed limit, check speed, if speed much lower than posted speed, send conjection request
-        // vTaskDelay(pdMS_TO_TICKS(5000));
+        vTaskDelay(pdMS_TO_TICKS(3000));
         struct message x;
-        // if(gps_queue_peek(&y))
-        // {
+        uint8_t speed;
+        if(gps_queue_peek(&gps) && vehicle_speed_queue_peek(&speed))
+        {
             x.latitude = 50.416721;//gps.latitude;
             x.longitude = -104.589579;//gps.longitude;
-            x.message_type = 0;
-            x.speed = 20;
-            // static char json[512];
-            // sprintf(json, "\r\n\"latitude\":%.6lf,\r\n\"longitude\":%.6lf,\r\n", x.latitude, x.longitude);
-            // uart_puts(UART_TEST, json);
+            x.message_type = CONGESTION;
+            x.speed = speed;
             message_enqueue(x);
-            // uart_puts(UART_TEST, "message enqueued");
-        // }
+        }
         
     }
 }
@@ -195,7 +191,7 @@ void vTaskUart_OBD(void * parameters)
         sprintf(response, "\r\nSlipping: %d,\r\nSpeed: %d,\r\n", packet.slipping, packet.vehicle_speed);
         uart_puts(UART_TEST, response);
         vehicle_speed_queue_overwrite(packet.vehicle_speed);
-        if (packet.slipping == 16) //24
+        if (packet.slipping == 24)// 16 = slipping, 24 = traction control off
         {
             if(gps_queue_peek(&gps))
             {
@@ -205,9 +201,9 @@ void vTaskUart_OBD(void * parameters)
                 message.message_type = SLIPPING;
                 message.speed = packet.vehicle_speed;
                 message_enqueue(message);
+                vTaskDelay(pdMS_TO_TICKS(4000));
             }
         }
-        uart_puts(UART_TEST, "\r\n");
     }
         
 }
@@ -230,9 +226,6 @@ void vTaskI2C_GPS(void * parameters)
             {                
                 if (strncmp(token, "$GNGGA", 6) == 0)
                 {
-                    // uart_puts(UART_TEST, token);
-                    // uart_puts(UART_TEST, "\r\n");
-                    // Extract information from GNGGA sentence
                     char utc_time[11];
                     char latitude[12];
                     char latitude_direction;
@@ -251,32 +244,8 @@ void vTaskI2C_GPS(void * parameters)
                                             utc_time, latitude, &latitude_direction, longitude, &longitude_direction,
                                             &positioning_status, &num_satellites, &hdop, &altitude, &geoid_height,
                                             &differential_time, reference_base_station);
-                    if (items_matched > 4)
+                    if (items_matched > 6)
                     {
-                        // uart_puts(UART_TEST, "UTC Time: ");
-                        // uart_puts(UART_TEST, utc_time);
-                        // uart_puts(UART_TEST, ", Latitude: ");
-                        // if (strlen(latitude) > 0)
-                        // {
-                        //     uart_puts(UART_TEST, latitude);
-                        //     uart_putc(UART_TEST, latitude_direction);
-                        // }
-                        // else
-                        // {
-                        //     uart_puts(UART_TEST, "N/A");
-                        // }
-
-                        // uart_puts(UART_TEST, ", Longitude: ");
-                        // if (strlen(longitude) > 0)
-                        // {
-                        //     uart_puts(UART_TEST, longitude);
-                        //     uart_putc(UART_TEST, longitude_direction);
-                        // }
-                        // else
-                        // {
-                        //     uart_puts(UART_TEST, "N/A");
-                        // }
-                        // uart_puts(UART_TEST, "\r\n");
                         int lat_degrees = atoi(latitude) / 100;
                         double lat_minutes = atof(latitude + 2);
                         double lat_decimalDegrees;
@@ -311,8 +280,8 @@ void vTaskI2C_GPS(void * parameters)
                         if (positioning_status != 0 && num_satellites > 3)
                         {
                             gps_queue_overwrite(x);
-                            // uart_puts(UART_TEST, "GPS Position enqueued");
-                            // uart_puts(UART_TEST, "\r\n");
+                            uart_puts(UART_TEST, "GPS Position enqueued");
+                            uart_puts(UART_TEST, "\r\n");
                         }
                     }
                 }
@@ -366,7 +335,7 @@ void bundle_task(void *pvParameters) {
                 // uart_puts(UART_TEST, "bundle test \r\n");
                 if (byte_pico1 >= byte_pico2) 
                 {
-                    uart_puts(UART_TEST, "Bundle data from PICO1 pico1_interrupt \r\n");
+                    // uart_puts(UART_TEST, "Bundle data from PICO1 pico1_interrupt \r\n");
                     byte_level = byte_pico1;
                     send_message(byte_level);
 
@@ -374,7 +343,7 @@ void bundle_task(void *pvParameters) {
                 } 
                 else 
                 {
-                    uart_puts(UART_TEST, "Bundle data from PICO2 pico1_interrupt\r\n");
+                    // uart_puts(UART_TEST, "Bundle data from PICO2 pico1_interrupt\r\n");
                     // Bundle data from PICO2
                     byte_level = byte_pico2;
                     send_message(byte_level);
@@ -389,7 +358,7 @@ void bundle_task(void *pvParameters) {
         {
             // send the byte level from pico1_interrupt
             byte_level = byte_pico1;
-            uart_puts(UART_TEST, "Pico 1\r\n");
+            // uart_puts(UART_TEST, "Pico 1\r\n");
                 // display the value of the byte
             send_message(byte_level);
             
@@ -408,14 +377,14 @@ void bundle_task(void *pvParameters) {
             {
                 if (byte_pico1 >= byte_pico2) 
                 {
-                    uart_puts(UART_TEST,"Bundle data from PICO1 pico2_interrupt\r\n");
+                    // uart_puts(UART_TEST,"Bundle data from PICO1 pico2_interrupt\r\n");
                     byte_level = byte_pico1;
                     send_message(byte_level);
 
                 } 
                 else 
                 {
-                    uart_puts(UART_TEST,"Bundle data from PICO2 pico2_interrupt\r\n");
+                    // uart_puts(UART_TEST,"Bundle data from PICO2 pico2_interrupt\r\n");
                     byte_level = byte_pico2;
                     send_message(byte_level);
                 }
@@ -429,7 +398,7 @@ void bundle_task(void *pvParameters) {
         {
             // send the byte level from pico2_interrupt
             byte_level = byte_pico2;
-            uart_puts(UART_TEST, "Pico 2\r\n");
+            // uart_puts(UART_TEST, "Pico 2\r\n");
             send_message(byte_level);
             
         }
