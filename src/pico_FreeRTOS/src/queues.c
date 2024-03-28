@@ -13,7 +13,7 @@ QueueHandle_t xVehicle_Speed_Queue;
 
 void initQueues(void)
 {
-	xMessage_Queue = xQueueCreate(1000, sizeof(struct message));
+	xMessage_Queue = xQueueCreate(400, sizeof(struct message));
     xGPS_Queue = xQueueCreate(1, sizeof(struct gps));
     xVehicle_Speed_Queue = xQueueCreate(1, sizeof(uint8_t));
 }
@@ -66,12 +66,12 @@ int gps_queue_peek(struct gps* x)
 
 void vehicle_speed_queue_overwrite(uint8_t speed)
 {
-    xQueueOverwrite(xGPS_Queue, &speed);
+    xQueueOverwrite(xVehicle_Speed_Queue, &speed);
 }
 
 int vehicle_speed_queue_peek(uint8_t *speed)
 {
-    if(xQueuePeek(xGPS_Queue, speed, 0) == pdTRUE)
+    if(xQueuePeek(xVehicle_Speed_Queue, speed, 0) == pdTRUE)
     {
         return 1;
     }

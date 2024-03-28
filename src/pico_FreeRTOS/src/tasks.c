@@ -39,10 +39,10 @@ void initTasks(void)
     UBaseType_t uxCoreAffinityMask_both;
     uxCoreAffinityMask_both = ( ( 1 << 0 ) | ( 1 << 1 ) );
 
-	xTaskCreateAffinitySet(vTaskUart_4g, "4G_Task", 512, NULL, 6, uxCoreAffinityMask_0, NULL);
+	xTaskCreateAffinitySet(vTaskUart_4g, "4G_Task", 512, NULL, 6, uxCoreAffinityMask_1, NULL);
 	xTaskCreateAffinitySet(vTaskUart_OBD, "OBD2_Task", 512, NULL, 6, uxCoreAffinityMask_0, NULL);
     xTaskCreateAffinitySet(vTaskI2C_GPS, "GPS_Task", 512, NULL, 6, uxCoreAffinityMask_1, NULL);
-    xTaskCreateAffinitySet(vTaskNormal, "Normal_Task", 256, NULL, 6, uxCoreAffinityMask_1, NULL);
+    // xTaskCreateAffinitySet(vTaskNormal, "Normal_Task", 256, NULL, 6, uxCoreAffinityMask_1, NULL);
     xTaskCreateAffinitySet(led_task, "LED_Task", 256, NULL, 6, uxCoreAffinityMask_1, NULL);
     xTaskCreateAffinitySet(bundle_task, "BUNDLE_Task", 512, NULL, 6, uxCoreAffinityMask_1, NULL);    
 }
@@ -54,6 +54,7 @@ void vTaskUart_4g(void * parameters)
     char response[150];
     char response1[150];
     char response2[150];
+    char json[512];
     int char_num = 0;
     vTaskDelay(pdMS_TO_TICKS(1000));
     // uart_puts(UART_TEST, "\r\nStarting 4G Module Task\r\n");
@@ -115,8 +116,9 @@ void vTaskUart_4g(void * parameters)
     {
         if(message_queue_dequeue(&msg) == 1)
         {
+            json[0] = '\0';
             // uart_puts(UART_TEST, "Message Detected\r\n");
-            static char json[200]; // Assuming a fixed size for simplicity, adjust as needed
+             // Assuming a fixed size for simplicity, adjust as needed
             sprintf(json, "{\"uid\": \"%s\",\"latitude\":%.6lf,\"longitude\":%.6lf,\"speed\":%.2lf,\"message_type\":%d}",
             uid, msg.latitude, msg.longitude, msg.speed, msg.message_type);
             // uart_puts(UART_TEST, "\r\n");
@@ -158,20 +160,26 @@ void vTaskUart_4g(void * parameters)
 
 void vTaskNormal(void * parameters)
 {
+    struct message x;
+    struct gps gps;
+    uint8_t speed;
+    static char json[512];
     while(1)
     {
         //get speed limit, check speed, if speed much lower than posted speed, send conjection request
         vTaskDelay(pdMS_TO_TICKS(3000));
-        struct message x;
-        struct gps gps;
-        uint8_t speed;
+        
         if(gps_queue_peek(&gps) && vehicle_speed_queue_peek(&speed) && speed > 20)
         {
+            
             x.latitude = gps.latitude;
             x.longitude = gps.longitude;
             x.message_type = CONGESTION;
-            x.speed = speed;
+            x.speed = 0;
             message_enqueue(x);
+            // sprintf(json, "\r\nDequed:{\"latitude\":%.6lf,\"longitude\":%.6lf,\"speed\":%.2lf,\"message_type\":%d}\r\n",
+            // x.latitude, x.longitude, x.speed, x.message_type);
+            // uart_puts(UART_TEST, json);
         }
         
     }
@@ -192,19 +200,19 @@ void vTaskUart_OBD(void * parameters)
         // sprintf(response, "\r\nSlipping: %d,\r\nSpeed: %d,\r\n", packet.slipping, packet.vehicle_speed);
         // uart_puts(UART_TEST, response);
         vehicle_speed_queue_overwrite(packet.vehicle_speed);
-        if (packet.slipping == 24)// 16 = slipping, 24 = traction control off
-        {
-            if(gps_queue_peek(&gps))
-            {
-                struct message message;
-                message.latitude = gps.latitude;
-                message.longitude = gps.longitude;
-                message.message_type = SLIPPING;
-                message.speed = packet.vehicle_speed;
-                message_enqueue(message);
-                vTaskDelay(pdMS_TO_TICKS(4000));
-            }
-        }
+        // if (packet.slipping == 16)// 16 = slipping, 24 = traction control off
+        // {
+        //     if(gps_queue_peek(&gps) == 1)
+        //     {
+        //         struct message message;
+        //         message.latitude = gps.latitude;
+        //         message.longitude = gps.longitude;
+        //         message.message_type = SLIPPING;
+        //         message.speed = packet.vehicle_speed;
+        //         message_enqueue(message);
+        //         // vTaskDelay(pdMS_TO_TICKS(4000));
+        //     }
+        // }
     }
         
 }
@@ -274,13 +282,14 @@ void vTaskI2C_GPS(void * parameters)
                         x.longitude = long_decimalDegrees;
 
                         // static char json[512];
-                        // sprintf(json, "\r\n\"latitude\":%.6lf,\r\n\"longitude\":%.6lf,\r\n", x.latitude, x.longitude);
-                        // uart_puts(UART_TEST, json);
-                        // uart_puts(UART_TEST, "\r\n");
+                        
                         
                         if (positioning_status != 0 && num_satellites > 3)
                         {
                             gps_queue_overwrite(x);
+                            // sprintf(json, "\r\n{\"latitude\":%.6lf,\"longitude\":%.6lf}\r\n",
+                            // x.latitude, x.longitude);
+                            // uart_puts(UART_TEST, json);
                             // uart_puts(UART_TEST, "GPS Position enqueued");
                             // uart_puts(UART_TEST, "\r\n");
                         }
