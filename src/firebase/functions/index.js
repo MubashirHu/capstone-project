@@ -65,6 +65,8 @@ exports.rms_data = functions.https.onRequest((request, response) => {
         case 5:
             location = "congestion";
             break;
+        default:
+            location = "error";
     }
     return admin.database().ref(location).push(data)
         .then(() => {
