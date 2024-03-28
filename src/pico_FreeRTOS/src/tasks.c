@@ -39,7 +39,7 @@ void initTasks(void)
     UBaseType_t uxCoreAffinityMask_both;
     uxCoreAffinityMask_both = ( ( 1 << 0 ) | ( 1 << 1 ) );
 
-	xTaskCreateAffinitySet(vTaskUart_4g, "4G_Task", 512, NULL, 6, uxCoreAffinityMask_1, NULL);
+	// xTaskCreateAffinitySet(vTaskUart_4g, "4G_Task", 512, NULL, 6, uxCoreAffinityMask_1, NULL);
 	xTaskCreateAffinitySet(vTaskUart_OBD, "OBD2_Task", 512, NULL, 6, uxCoreAffinityMask_0, NULL);
     xTaskCreateAffinitySet(vTaskI2C_GPS, "GPS_Task", 512, NULL, 6, uxCoreAffinityMask_1, NULL);
     // xTaskCreateAffinitySet(vTaskNormal, "Normal_Task", 256, NULL, 6, uxCoreAffinityMask_1, NULL);
@@ -135,7 +135,8 @@ void vTaskUart_4g(void * parameters)
             uart_send(UART_ID_4G, "AT+HTTPDATA=107,5000\r\n", response, 0);
             vTaskDelay(pdMS_TO_TICKS(50));
             // use response string to create json string with message structure
-            uart_send(UART_ID_4G, json, response, 0);
+            // uart_send(UART_ID_4G, json, response, 0);
+            uart_puts(UART_ID_4G, json);
             vTaskDelay(pdMS_TO_TICKS(50));
             uart_send(UART_ID_4G, "\n\r\n", response, 500);
             vTaskDelay(pdMS_TO_TICKS(50));
@@ -197,8 +198,8 @@ void vTaskUart_OBD(void * parameters)
     {
         char stringValue[6];
         uart_obd2_wheel_speed(UART_ID_OBD2, &packet);
-        // sprintf(response, "\r\nSlipping: %d,\r\nSpeed: %d,\r\n", packet.slipping, packet.vehicle_speed);
-        // uart_puts(UART_TEST, response);
+        sprintf(response, "\r\nSlipping: %d,\r\nSpeed: %d,\r\n", packet.slipping, packet.vehicle_speed);
+        uart_puts(UART_TEST, response);
         vehicle_speed_queue_overwrite(packet.vehicle_speed);
         // if (packet.slipping == 16)// 16 = slipping, 24 = traction control off
         // {

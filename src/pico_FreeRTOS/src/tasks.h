@@ -1,7 +1,7 @@
 #ifndef TASKS_H
 #define TASKS_H
 
-// #define UART_TEST uart0
+#define UART_TEST uart0
 #define UART_ID_4G uart0
 #define UART_ID_OBD2 uart1
 #define I2C_ID_GPS i2c0

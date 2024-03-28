@@ -135,7 +135,7 @@ int send_message(int message_type)
     struct message message;
     struct gps gps;
     uint8_t speed;
-    if(gps_queue_peek(&gps)) //&& vehicle_speed_queue_peek(&speed))
+    if(message_type < 4)//gps_queue_peek(&gps)) //&& vehicle_speed_queue_peek(&speed))
     {
         static char json[50];
         // sprintf(json, "\r\nInterrupt Type : %d\r\n", message_type);
@@ -143,7 +143,7 @@ int send_message(int message_type)
         message.latitude = gps.latitude;
         message.longitude = gps.longitude;
         message.message_type = message_type;
-        message.speed = 0;
+        message.speed = 25;
         message_enqueue(message);
         return 0;
     }
