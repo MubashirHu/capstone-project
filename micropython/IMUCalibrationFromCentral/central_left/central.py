@@ -45,6 +45,7 @@ def main():
                 nonlocal not_found
                 not_found = True
                 print("No sensor found.")
+                led.off()
 
         while True:
             central.scan(callback=on_scan)
@@ -93,11 +94,11 @@ def main():
                     time.sleep_ms(100)
                 time.sleep_ms(10)
                
-            print("Disconnected")
-            led.off()
             break
 
 if __name__ == "__main__":
     main()
+
+
 
 
