@@ -69,7 +69,8 @@ def main():
                 determined_zone = thresholding._determine_zone(highest_value_determined)
                 thresholding._transmit_zone(determined_zone)
             else:
-                thresholding._transmit_zone(thresholding.green_zone)
+                #thresholding._transmit_zone(thresholding.green_zone)
+                pass
             time.sleep_ms(10)
            
         print("Disconnected")
