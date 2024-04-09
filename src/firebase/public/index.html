@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heatmap Example</title>
+    <style>
+        /* Add your CSS styles here */
+        #map {
+            height: 800px;
+            width: 75%;
+            margin: 0 auto;
+
+        }
+        #container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            margin-bottom: 10px;
+            text-align: center;
+
+        }
+        #buttons {
+            margin-bottom: 10px;
+        }
+        .checkbox-container {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .checkbox-container label {
+            display: inline-block;
+            margin-left: 5px;
+        }
+        .selected-button {
+            background-color: #007bff;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+  <div id="container">
+    <div id="buttons">
+      <button id="potholeButton" onclick="showPotholeCheckboxes()">Potholes</button>
+      <button id="slippingButton" onclick="showSlippingCheckboxes()">Slipping</button>
+      <button id="congestionButton" onclick="showCongestionCheckboxes()">Congestion</button>
+    </div>
+    <div id="checkboxes">
+      <label><input type="checkbox" id="RedPotholes" onclick="updateHeatmap()"> Red Potholes</label>
+      <label><input type="checkbox" id="AmberPotholes" onclick="updateHeatmap()"> Amber Potholes</label>
+      <label><input type="checkbox" id="YellowPotholes" onclick="updateHeatmap()"> Yellow Potholes</label>
+      <label><input type="checkbox" id="GreenPotholes" onclick="updateHeatmap()"> Green Potholes</label>
+    </div>
+  </div>
+  <div id="map"></div>
+  <h1>Pothole Entries from Firebase Realtime Database</h1>
+  <div id="potholeEntries"></div>
+
+  <!-- Load JavaScript at the end of the body -->
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC05BlKrkXFGC3ZwBinu_PBuAmG6yemWMA&libraries=visualization"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-database.js"></script>
+  <script src="https://unpkg.com/unindexed"></script>
+  <script src="database.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        initMap();
+    });
+</script>
+</body>
+
+</html>

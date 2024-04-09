@@ -1,0 +1,43 @@
+<!-- <!DOCTYPE html>
+  <head>
+    <title>Heatmaps</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+    <link rel="stylesheet" type="text/css" href="./style.css" />
+    <script type="module" src="./index.js"></script>
+  </head>
+  <body>
+    <div id="floating-panel">
+      <button id="toggle-heatmap">Toggle Heatmap</button>
+      <button id="change-gradient">Change gradient</button>
+      <button id="change-radius">Change radius</button>
+      <button id="change-opacity">Change opacity</button>
+    </div>
+    <div id="map"></div>
+
+
+    <script async
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC05BlKrkXFGC3ZwBinu_PBuAmG6yemWMA&loading=async&libraries=visualization&callback=initMap">
+    </script>
+  </body>
+  
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pothole Entries</title>
+</head>
+<body>
+    <h1>Pothole Entries from Firebase Realtime Database</h1>
+    <div id="potholeEntries"></div>
+    
+    <!-- Add Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-database.js"></script>
+    <!-- Include your JavaScript file -->
+    <script src="index.js"></script>
+</body>
+</html>
