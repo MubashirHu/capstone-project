@@ -1,3 +1,0 @@
-/home/sarmad-alvi/Documents/rp2040-freertos-template/build/pioasm/CMakeFiles/pioasm.dir
-/home/sarmad-alvi/Documents/rp2040-freertos-template/build/pioasm/CMakeFiles/edit_cache.dir
-/home/sarmad-alvi/Documents/rp2040-freertos-template/build/pioasm/CMakeFiles/rebuild_cache.dir
